@@ -1,0 +1,2 @@
+src/*.astro linguist-language=HTML
+src/*.ts linguist-language=TypeScript
