@@ -1,0 +1,15 @@
+---
+const { post } = Astro.props;
+const {
+  title: { rendered: title },
+  excerp,
+  slug,
+} = post;
+---
+
+<div class='postCard-container'>
+  <h2>{title}</h2>
+  <p>{excerp}</p>
+  <a href={`posts/${slug}`}>Segueix Llegint</a>
+</div>
+

@@ -9,9 +9,9 @@ import type { Post } from '../types';
 // Import Layouts
 import BaseLayout from './BaseLayout.astro';
 
-const posts = await getFromAPI(Endpoints.posts,[PostFields.title, PostFields.content], 1);
-const categories = await getFromAPI(Endpoints.categories,[CategoryFields.id, CategoryFields.name, CategoryFields.slug],1);
-console.log('categories', categories);
+const posts = await getFromAPI(Endpoints.posts,[PostFields.title, PostFields.content, PostFields.excerp], 1);
+// const categories = await getFromAPI(Endpoints.categories,[CategoryFields.id, CategoryFields.name, CategoryFields.slug],1);
+// console.log('categories', categories);
 
 
 ---

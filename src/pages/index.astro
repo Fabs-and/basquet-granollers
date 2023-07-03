@@ -1,10 +1,20 @@
 ---
-import BaseLayout from 'src/layouts/BaseLayout.astro';
-import PostLayout from '../layouts/PostLayout.astro'
-const pageTitle = 'Home Page'
+import { PostFields, Endpoints } from 'src/types';
+import type { Post } from 'src/types';
+import BaseLayout from '@layouts/BaseLayout.astro';
+import PostLayout from '@layouts/PostLayout.astro';
+import PostCard from '@components/PostCard.astro';
+import { getFromAPI } from '@utils/api';
+const pageTitle = 'Home Page';
+const posts = await getFromAPI(
+  Endpoints.posts,
+  [PostFields.title, PostFields.content, PostFields.excerp],
+  1
+);
 ---
 
 <BaseLayout {pageTitle}>
-	<PostLayout/>
+  <PostLayout />
+	{posts.map((post: Post) => <PostCard/{post}>)}
 </BaseLayout>
 
