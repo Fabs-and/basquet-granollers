@@ -1,4 +1,4 @@
-export enum Fields {
+export enum PostFields {
   author = 'author',
   categories = 'categories',
   comment_status = 'comment_status',
@@ -24,6 +24,17 @@ export enum Fields {
   type = 'type',
 }
 
+export enum CategoryFields {
+  count = 'count',
+  description = 'description',
+  id = 'id',
+  link = 'link',
+  meta = 'meta',
+  parent = 'parent',
+  name = 'name',
+  slug = 'slug',
+  taxonomy = 'taxonomy',
+}
 export type Post = {
   author: string,
   categories: string,
@@ -50,3 +61,31 @@ export type Post = {
   type: string,
 }
 
+export enum Endpoints {
+  blockDirectoryItems = 'block-directory/search',
+  blockRenderer = 'block-rendered',
+  blockRevisions = '<id>/autosaves',
+  blocks = 'blocks',
+  blockTypes = 'block-types',
+  categories = 'categories',
+  comments = 'comments',
+  media = 'media',
+  pages = 'pages',
+  pageRevisions = `pages/<id>/revisions`,
+  plugins = 'plugins',
+  postRevisions = `posts/<id>/revisions`,
+  posts = 'posts',
+  postStatuses = 'statuses',
+  postTypes = 'types',
+  search = 'search',
+  settings = 'settings',
+  tags = 'tags',
+  taxonomies = 'taxonomies',
+  themes = 'themes',
+  users = 'users',
+
+
+
+
+
+}
