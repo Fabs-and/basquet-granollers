@@ -8,13 +8,14 @@ import { getFromAPI } from '@utils/api';
 const pageTitle = 'Home Page';
 const posts = await getFromAPI(
   Endpoints.posts,
-  [PostFields.title, PostFields.content, PostFields.excerp],
-  1
+  [PostFields.title, PostFields.content, PostFields.excerpt,
+	PostFields.slug],
+  50
 );
 ---
 
 <BaseLayout {pageTitle}>
   <PostLayout />
-	{posts.map((post: Post) => <PostCard/{post}>)}
+	{posts.map((post: Post) => (<><PostCard {post}/></>))}
 </BaseLayout>
 

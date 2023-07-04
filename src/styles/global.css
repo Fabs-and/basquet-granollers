@@ -42,3 +42,7 @@ img {
   max-width: 100%;
   display: block;
 }
+
+p {
+  max-width: 75ch;
+}

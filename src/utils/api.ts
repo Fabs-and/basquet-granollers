@@ -1,4 +1,5 @@
-import type { Endpoints, PostFields, CategoryFields } from '../types';
+import type { PostFields, CategoryFields } from '../types';
+import { Endpoints } from '../types';
 const API_URL = import.meta.env.API_URL;
 
 // Gets post by API URL and given path
@@ -15,7 +16,7 @@ export async function getFromAPI(
   }
 
   quantity && Object.assign(params, { per_page: quantity });
-  console.log(params);
+
 
   // create an empty URLSearchParams object
   const query = new URLSearchParams();
@@ -30,7 +31,7 @@ export async function getFromAPI(
   return posts;
 }
 
-export async function getCall(endpoint: Endpoints, query?: URLSearchParams) {
+ async function getCall(endpoint: Endpoints, query?: URLSearchParams) {
   // append the query parameter to the URL
   const url = new URL(`${API_URL}/${endpoint}`);
   if (query) url.search = query.toString();
@@ -41,3 +42,14 @@ export async function getCall(endpoint: Endpoints, query?: URLSearchParams) {
 
   return json;
 }
+
+export async function getPostBySlug(slug: string) {
+  // const params = { slug: slug };
+  const query = new URLSearchParams;
+
+  query.append('slug', slug)
+  const post = getCall(Endpoints.posts, query);
+  console.log('postbyslug', post)
+  return post;
+}
+

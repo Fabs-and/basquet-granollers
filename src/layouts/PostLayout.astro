@@ -1,36 +1,19 @@
 ---
-// Import utils
-import { getFromAPI } from '@utils/api';
+import {divForP} from '@utils/helperFunctions'
+const {post} = Astro.props
 
-// Import types
-import { PostFields, Endpoints, CategoryFields } from '../types';
-import type { Post } from '../types';
-
-// Import Layouts
-import BaseLayout from './BaseLayout.astro';
-
-const posts = await getFromAPI(Endpoints.posts,[PostFields.title, PostFields.content, PostFields.excerp], 1);
-// const categories = await getFromAPI(Endpoints.categories,[CategoryFields.id, CategoryFields.name, CategoryFields.slug],1);
-// console.log('categories', categories);
-
+const {title, content, author, categories} = post;
 
 ---
 
-<BaseLayout>
-  <h1>Astro + WordPress 🚀</h1>
-  {
-    posts.map((post: Post) => {
-      const {
-        title: { rendered: title },
-        content: { rendered: content },
-      } = post;
-      return (
-        <>
-          <Fragment set:html={title} />
-          <Fragment set:html={content} />
-        </>
-      );
-    })
-  }
-</BaseLayout>
+<section class="page-container">
+  <h1>{title}</h1>
+  <Fragment set:html={divForP(content)}/>
+</section>
 
+<style>
+ .page-container{
+  display: grid;
+  place-items: center;
+ }
+</style>

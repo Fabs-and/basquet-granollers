@@ -5,7 +5,7 @@ export enum PostFields {
   content = 'content',
   date = 'date',
   date_gmt = 'date_gmt',
-  excerp = 'excerp',
+  excerpt = 'excerpt',
   featured_media = 'featured_media',
   format = 'format',
   guid = 'guid',

@@ -1,0 +1,38 @@
+---
+// Import utils
+import { getFromAPI } from '@utils/api';
+
+// Import types
+import { Endpoints, Post, PostFields } from 'src/types';
+
+// Import Layouts
+import BaseLayout from '@layouts/BaseLayout.astro';
+import PostLayout from '@layouts/PostLayout.astro'
+
+export async function getStaticPaths() {
+  const posts = await getFromAPI(
+    Endpoints.posts,
+    [PostFields.title, PostFields.content, PostFields.slug, PostFields.author, PostFields.categories],
+    50
+  );
+
+  return posts.map((post: Post) => {
+    return {
+            params: { slug: post.slug },
+            props: {
+              title: post.title.rendered,
+              content: post.content.rendered,
+            },
+        };
+    });
+  }
+  
+  const post = Astro.props;
+
+  
+
+---
+
+<BaseLayout pageTitle={post.title}>
+  <PostLayout {post}></PostLayout>
+</BaseLayout>
