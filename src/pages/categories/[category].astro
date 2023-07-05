@@ -7,7 +7,7 @@ import { Endpoints, Post, CategoryFields, PostFields } from 'src/types';
 
 // Import Layouts
 import BaseLayout from '@layouts/BaseLayout.astro';
-import GridPostCard from '@components/GridPostCard.astro';
+import GridPostCard from '@components/postCards/GridPostCard.astro';
 
 export async function getStaticPaths() {
   const categories = await getFromAPI(Endpoints.categories, [
@@ -22,7 +22,7 @@ export async function getStaticPaths() {
       props: {
         name: category.name,
         slug: category.slug,
-        id: category.id
+        id: category.id,
       },
     };
   });
@@ -45,6 +45,13 @@ const posts = await getFromAPI(
 );
 ---
 
-<BaseLayout pageTitle={category.name}>
+<BaseLayout pageTitle=
+{category.name}>
+<section>
+
+  <h1>{category.name}</h1>
   <GridPostCard {posts} />
+</s>
 </BaseLayout>
+
+

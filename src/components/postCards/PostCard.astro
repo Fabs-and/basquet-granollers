@@ -1,5 +1,7 @@
 ---
+import BaseLayout from '@layouts/BaseLayout.astro';
 import { dateConverter, categoryMapper } from '@utils/helperFunctions';
+import type { Category } from 'src/types';
 const { post, postCategories } = Astro.props;
 
 console.log('pooooost', postCategories)
@@ -13,29 +15,31 @@ const {
 
 ---
 
-<div class='card'>
-  <h2 set:html={title} />
-  <p>{dateConverter(date)}</p>
-  <ul>
-    {
-      postCategories.map((category) => (
-        <li>
+
+  <article class='card'>
+    <h2 set:html={title} />
+    <p>{dateConverter(date)}</p>
+    <ul>
+      {
+        postCategories.map((category: Category) => (
+          <li>
           <a
             class="'category"
             href={`/categories/${category.slug}`}
           >
             {category.name}
           </a>
-        </li>
+          </li>
       ))
     }
   </ul>
   <Fragment set:html={excerpt} />
   <a href={`/${slug}`}>Segueix Llegint</a>
-</div>
+
+
 
 <style>
-  div.card {
+  article.card {
     border: 1px solid;
     border-radius: 0.5rem;
     padding: 1rem;

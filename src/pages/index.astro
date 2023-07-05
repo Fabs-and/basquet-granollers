@@ -1,12 +1,11 @@
 ---
-import { PostFields, Endpoints, CategoryFields } from 'src/types';
-import type { Post } from 'src/types';
+import { PostFields, Endpoints } from 'src/types';
+
 import BaseLayout from '@layouts/BaseLayout.astro';
-import PostLayout from '@layouts/PostLayout.astro';
-import PostCard from '@components/PostCard.astro';
+
 import { getFromAPI } from '@utils/api';
-import GridPostCard from '@components/GridPostCard.astro';
-const pageTitle = 'Home Page';
+import GridPostCard from '@components/postCards/GridPostCard.astro';
+const pageTitle = 'El Putu Dapps';
 const posts = await getFromAPI(
   Endpoints.posts,
   [
@@ -19,28 +18,10 @@ const posts = await getFromAPI(
   ],
   16
 );
-
-
-
-
 ---
 
 <BaseLayout {pageTitle}>
-  <section>
-    <h1>El Putu Druaps</h1>
-    <GridPostCard {posts} />
-  </section>
+  <h1>{pageTitle}</h1>
+  <GridPostCard {posts} />
 </BaseLayout>
 
-<style>
-  section {
-    display: grid;
-    place-items: center;
-  }
-  h1 {
-    /* margin: auto; */
-    font-size: 8rem;
-    margin-bottom: 1rem;
-  }
-  
-</style>

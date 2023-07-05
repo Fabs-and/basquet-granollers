@@ -1,0 +1,39 @@
+---
+import PostCard from '@components/postCards/PostCard.astro';
+import { categoryMapper } from '@utils/helperFunctions';
+import type { Post } from 'src/types';
+import { getFromAPI } from '@utils/api';
+import { PostFields, Endpoints, CategoryFields } from 'src/types';
+
+const { posts } = Astro.props;
+
+const allCategories = await getFromAPI(Endpoints.categories, [
+  CategoryFields.id,
+  CategoryFields.name,
+  CategoryFields.slug,
+]);
+---
+
+<section>
+  <div class='postCard-container'>
+    {
+      posts.map((post: Post) => (
+        <>
+          <PostCard
+            {post}
+            postCategories={categoryMapper(allCategories, post.categories)}
+          />
+          </>
+      ))
+    }
+  </div>
+</section>
+
+<style>
+  div.postCard-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(15em, 1fr));
+    gap: 1em;
+    padding-bottom: 2rem;
+  }
+</style>

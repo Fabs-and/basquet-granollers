@@ -1,6 +1,6 @@
 import { strictEqual } from 'assert';
 import { getFromAPI } from './api';
-import { CategoryFields, Endpoints } from 'src/types';
+import type { Category, CategoryFields, Endpoints } from 'src/types';
 
 let ellipsis = /\[.*?\]/g; // match anything in square brackets
 let emptySpace = /&.*?;/g; // match anything between & and ;
@@ -36,7 +36,12 @@ export function dateConverter(date: string) {
   )}, ${new Intl.DateTimeFormat('ca', { year: 'numeric' }).format(newDate)}`;
 }
 
-export function categoryMapper(allCategories, postCategories: number[]) {
-  const categories = allCategories.filter(category => postCategories.indexOf(category.id) !== -1);
+export function categoryMapper(
+  allCategories: Category[],
+  postCategories: number[]
+) {
+  const categories = allCategories.filter(
+    (category) => postCategories.indexOf(category.id) !== -1
+  );
   return categories;
 }

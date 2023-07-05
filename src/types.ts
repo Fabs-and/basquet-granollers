@@ -35,6 +35,17 @@ export enum CategoryFields {
   slug = 'slug',
   taxonomy = 'taxonomy',
 }
+
+export type Category = {
+  count: number,
+  description: string,
+  id: number,
+  link: string,
+  meta: string,
+  name: string,
+  slug: string,
+  taxonomy: string;
+}
 export type Post = {
   author: string,
   categories: number[],

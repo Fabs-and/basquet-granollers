@@ -8,7 +8,8 @@ export async function getFromAPI(
   endpoint: Endpoints,
   fields?: PostFields[] | CategoryFields[],
   quantity: number = -1,
-  category?: number,
+  category: number = -1,
+  slug?: string
 ) {
   const params = {};
 
@@ -16,14 +17,15 @@ export async function getFromAPI(
     fields.length > 0 && Object.assign(params, { _fields: fields.join(',') });
   }
 
-    if (quantity !== -1) {
-      Object.assign(params, { per_page: quantity });
-    }
+  if (quantity !== -1) {
+    Object.assign(params, { per_page: quantity });
+  }
 
+  if (category !== -1) {
+    Object.assign(params, { categories: category });
+  }
 
-   category && Object.assign(params, { categories: category });
-  
-
+  slug && Object.assign(params, { slug: slug });
 
   // create an empty URLSearchParams object
   const query = new URLSearchParams();
@@ -38,7 +40,7 @@ export async function getFromAPI(
   return posts;
 }
 
- async function getCall(endpoint: Endpoints, query?: URLSearchParams) {
+async function getCall(endpoint: Endpoints, query?: URLSearchParams) {
   // append the query parameter to the URL
   const url = new URL(`${API_URL}/${endpoint}`);
   if (query) url.search = query.toString();
@@ -52,14 +54,12 @@ export async function getFromAPI(
 
 export async function getPostBySlug(slug: string) {
   // const params = { slug: slug };
-  const query = new URLSearchParams;
+  const query = new URLSearchParams();
 
-  query.append('slug', slug)
+  query.append('slug', slug);
   const post = getCall(Endpoints.posts, query);
-  console.log('postbyslug', post)
+  console.log('postbyslug', post);
   return post;
 }
-
-
 
 

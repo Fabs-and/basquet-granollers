@@ -15,27 +15,30 @@
   --clr-secondary: var(--hue) 30% 99%;
   --clr-accent: var(--hue) 55% 50%;
 
-   /* dynamic spacing adapted from utopia.fyi taken from https://www.youtube.com/@CodinginPublic */
+  --header-hg: 3rem;
+  --footer-hg: 3rem;
+
+  /* dynamic spacing adapted from utopia.fyi taken from https://www.youtube.com/@CodinginPublic */
   --space-2xs: clamp(0.31rem, calc(0.18rem + 0.65vw), 0.69rem);
   --space-xs: clamp(0.56rem, calc(0.39rem + 0.87vw), 1.06rem);
-  --space-sm: clamp(0.88rem, calc(0.70rem + 0.87vw), 1.38rem);
-  --space-md: clamp(1.13rem, calc(0.80rem + 1.63vw), 2.06rem);
+  --space-sm: clamp(0.88rem, calc(0.7rem + 0.87vw), 1.38rem);
+  --space-md: clamp(1.13rem, calc(0.8rem + 1.63vw), 2.06rem);
   --space-lg: clamp(1.69rem, calc(1.32rem + 1.85vw), 2.75rem);
-  --space-xl: clamp(2.25rem, calc(1.60rem + 3.26vw), 4.13rem);
-  --space-2xl: clamp(3.38rem, calc(2.64rem + 3.70vw), 5.50rem);
-  --space-3xl: clamp(4.50rem, calc(3.20rem + 6.52vw), 8.25rem);
- 
+  --space-xl: clamp(2.25rem, calc(1.6rem + 3.26vw), 4.13rem);
+  --space-2xl: clamp(3.38rem, calc(2.64rem + 3.7vw), 5.5rem);
+  --space-3xl: clamp(4.5rem, calc(3.2rem + 6.52vw), 8.25rem);
+
   /* dynamic font sizes adapted from utopia.fyi https://www.youtube.com/@CodinginPublic*/
-    --fs-sm: clamp(0.78rem, calc(0.75rem + 0.17vw), 0.88rem);
-    --fs-md: clamp(1.13rem, calc(1.04rem + 0.43vw), 1.38rem);
-    --fs-lg: clamp(1.35rem, calc(1.22rem + 0.64vw), 1.72rem);
-    --fs-xl: clamp(1.94rem, calc(1.69rem + 1.29vw), 2.69rem);
-    --fs-2xl: clamp(2.80rem, calc(2.31rem + 2.43vw), 4.20rem);
+  --fs-sm: clamp(0.78rem, calc(0.75rem + 0.17vw), 0.88rem);
+  --fs-md: clamp(1.13rem, calc(1.04rem + 0.43vw), 1.38rem);
+  --fs-lg: clamp(1.35rem, calc(1.22rem + 0.64vw), 1.72rem);
+  --fs-xl: clamp(1.94rem, calc(1.69rem + 1.29vw), 2.69rem);
+  --fs-2xl: clamp(2.8rem, calc(2.31rem + 2.43vw), 4.2rem);
 }
 
 body {
   font-family: var();
-  color: hsl(var(--clr-accent))
+  color: hsl(var(--clr-accent));
 }
 
 img {
@@ -43,6 +46,25 @@ img {
   display: block;
 }
 
-p, h2 {
-  max-width: 75ch;
+h1 {
+  text-align: center;
+  font-size: 7rem;
+  padding: 2rem;
+}
+
+section {
+  /* display: grid;
+  place-items: start; */
+  /* place-content: center; */
+  width: 50rem;
+  margin: auto;
+  min-height: calc(100vh - var(--footer-hg) - var(--header-hg));
+}
+
+ul {
+  list-style: none;
+}
+
+li {
+  display: inline;
 }

@@ -3,12 +3,11 @@ import {divForP} from '@utils/helperFunctions'
 const {post} = Astro.props
 
 const {title, content, author, categories} = post;
-console.log('categories', categories);
 
 ---
 
 <section class="page-container">
-  <h1>{title}</h1>
+  <h1 set:html={title}></h1>
   <Fragment set:html={divForP(content)}/>
 </section>
 
