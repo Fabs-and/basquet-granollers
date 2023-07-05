@@ -5,6 +5,7 @@ const API_URL = import.meta.env.API_URL;
 // Gets post by API URL and given path
 // If no arguments in getPosts, it retrieves all fields of all posts
 export async function getFromAPI(
+  
   endpoint: Endpoints,
   fields?: PostFields[] | CategoryFields[],
   quantity: number = -1,
