@@ -37,7 +37,7 @@ export enum CategoryFields {
 }
 export type Post = {
   author: string,
-  categories: string,
+  categories: number[],
   comment_status:string,
   content: { rendered: string},
   date: string,

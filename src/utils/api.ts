@@ -7,7 +7,8 @@ const API_URL = import.meta.env.API_URL;
 export async function getFromAPI(
   endpoint: Endpoints,
   fields?: PostFields[] | CategoryFields[],
-  quantity?: number
+  quantity: number = -1,
+  category?: number,
 ) {
   const params = {};
 
@@ -15,7 +16,13 @@ export async function getFromAPI(
     fields.length > 0 && Object.assign(params, { _fields: fields.join(',') });
   }
 
-  quantity && Object.assign(params, { per_page: quantity });
+    if (quantity !== -1) {
+      Object.assign(params, { per_page: quantity });
+    }
+
+
+   category && Object.assign(params, { categories: category });
+  
 
 
   // create an empty URLSearchParams object
@@ -52,4 +59,7 @@ export async function getPostBySlug(slug: string) {
   console.log('postbyslug', post)
   return post;
 }
+
+
+
 

@@ -5,6 +5,7 @@ import BaseLayout from '@layouts/BaseLayout.astro';
 import PostLayout from '@layouts/PostLayout.astro';
 import PostCard from '@components/PostCard.astro';
 import { getFromAPI } from '@utils/api';
+import GridPostCard from '@components/GridPostCard.astro';
 const pageTitle = 'Home Page';
 const posts = await getFromAPI(
   Endpoints.posts,
@@ -16,10 +17,10 @@ const posts = await getFromAPI(
     PostFields.categories,
     PostFields.date,
   ],
-  50
+  16
 );
 
-export const allCategories = await getFromAPI(Endpoints.categories, [CategoryFields.id,CategoryFields.name, CategoryFields.slug])
+
 
 
 ---
@@ -27,15 +28,7 @@ export const allCategories = await getFromAPI(Endpoints.categories, [CategoryFie
 <BaseLayout {pageTitle}>
   <section>
     <h1>El Putu Druaps</h1>
-    <div class='postCard-container'>
-      {
-        posts.map((post: Post) => (
-          <>
-            <PostCard {post} {allCategories} />
-          </>
-        ))
-      }
-    </div>
+    <GridPostCard {posts} />
   </section>
 </BaseLayout>
 
@@ -49,10 +42,5 @@ export const allCategories = await getFromAPI(Endpoints.categories, [CategoryFie
     font-size: 8rem;
     margin-bottom: 1rem;
   }
-  div.postCard-container {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(15rem, 1fr));
-
-    gap: 1em;
-  }
+  
 </style>

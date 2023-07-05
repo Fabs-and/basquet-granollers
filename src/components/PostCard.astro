@@ -1,6 +1,8 @@
 ---
 import { dateConverter, categoryMapper } from '@utils/helperFunctions';
-const { post, allCategories } = Astro.props;
+const { post, postCategories } = Astro.props;
+
+console.log('pooooost', postCategories)
 const {
   title: { rendered: title },
   excerpt: { rendered: excerpt },
@@ -9,7 +11,6 @@ const {
   categories,
 } = post;
 
-const postCategories = categoryMapper(allCategories, categories);
 ---
 
 <div class='card'>
@@ -21,7 +22,7 @@ const postCategories = categoryMapper(allCategories, categories);
         <li>
           <a
             class="'category"
-            href={`categories/${category.slug}`}
+            href={`/categories/${category.slug}`}
           >
             {category.name}
           </a>
@@ -30,7 +31,7 @@ const postCategories = categoryMapper(allCategories, categories);
     }
   </ul>
   <Fragment set:html={excerpt} />
-  <a href={`${slug}`}>Segueix Llegint</a>
+  <a href={`/${slug}`}>Segueix Llegint</a>
 </div>
 
 <style>
