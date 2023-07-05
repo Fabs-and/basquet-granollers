@@ -1,22 +1,56 @@
 ---
-import { removeHTMLEntity} from '@utils/helperFunctions'
-const { post } = Astro.props;
+import { dateConverter, categoryMapper } from '@utils/helperFunctions';
+const { post, allCategories } = Astro.props;
 const {
   title: { rendered: title },
   excerpt: { rendered: excerpt },
   slug,
+  date,
+  categories,
 } = post;
-console.log('pooost', post)
+
+const postCategories = categoryMapper(allCategories, categories);
 ---
 
-<div class='postCard-container'>
-  <h2>{title}</h2>
-  <Fragment set:html={excerpt}></>
+<div class='card'>
+  <h2 set:html={title} />
+  <p>{dateConverter(date)}</p>
+  <ul>
+    {
+      postCategories.map((category) => (
+        <li>
+          <a
+            class="'category"
+            href={`categories/${category.slug}`}
+          >
+            {category.name}
+          </a>
+        </li>
+      ))
+    }
+  </ul>
+  <Fragment set:html={excerpt} />
   <a href={`${slug}`}>Segueix Llegint</a>
 </div>
 
 <style>
-  p {
-  font-size:2rem;
-}
+  div.card {
+    border: 1px solid;
+    border-radius: 0.5rem;
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    word-wrap: break-word;
+    /* hyphens: auto; */
+  }
+
+  ul {
+    list-style: none;
+  }
+
+  li {
+    display: inline;
+  }
 </style>
+

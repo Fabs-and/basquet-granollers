@@ -1,5 +1,5 @@
 ---
-import { PostFields, Endpoints } from 'src/types';
+import { PostFields, Endpoints, CategoryFields } from 'src/types';
 import type { Post } from 'src/types';
 import BaseLayout from '@layouts/BaseLayout.astro';
 import PostLayout from '@layouts/PostLayout.astro';
@@ -8,14 +8,51 @@ import { getFromAPI } from '@utils/api';
 const pageTitle = 'Home Page';
 const posts = await getFromAPI(
   Endpoints.posts,
-  [PostFields.title, PostFields.content, PostFields.excerpt,
-	PostFields.slug],
+  [
+    PostFields.title,
+    PostFields.content,
+    PostFields.excerpt,
+    PostFields.slug,
+    PostFields.categories,
+    PostFields.date,
+  ],
   50
 );
+
+export const allCategories = await getFromAPI(Endpoints.categories, [CategoryFields.id,CategoryFields.name, CategoryFields.slug])
+
+
 ---
 
 <BaseLayout {pageTitle}>
-  <PostLayout />
-	{posts.map((post: Post) => (<><PostCard {post}/></>))}
+  <section>
+    <h1>El Putu Druaps</h1>
+    <div class='postCard-container'>
+      {
+        posts.map((post: Post) => (
+          <>
+            <PostCard {post} {allCategories} />
+          </>
+        ))
+      }
+    </div>
+  </section>
 </BaseLayout>
 
+<style>
+  section {
+    display: grid;
+    place-items: center;
+  }
+  h1 {
+    /* margin: auto; */
+    font-size: 8rem;
+    margin-bottom: 1rem;
+  }
+  div.postCard-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(15rem, 1fr));
+
+    gap: 1em;
+  }
+</style>

@@ -43,6 +43,6 @@ img {
   display: block;
 }
 
-p {
+p, h2 {
   max-width: 75ch;
 }
