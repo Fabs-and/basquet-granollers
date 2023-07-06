@@ -1,17 +1,20 @@
 ---
+// Import types
+import { Endpoints, CategoryFields } from 'src/types';
+import type { Category, Post } from 'src/types';
+
+// Import components
 import PostCard from '@components/postCards/PostCard.astro';
+
+// Import Stores
+import { allCategories } from '../../stores/categoriesStore';
+
+// Import utils functions
 import { categoryMapper } from '@utils/helperFunctions';
-import type { Post } from 'src/types';
-import { getFromAPI } from '@utils/api';
-import { PostFields, Endpoints, CategoryFields } from 'src/types';
 
-const { posts } = Astro.props;
+const categories = allCategories.get();
 
-const allCategories = await getFromAPI(Endpoints.categories, [
-  CategoryFields.id,
-  CategoryFields.name,
-  CategoryFields.slug,
-]);
+const { posts } = Astro.props as { posts: Post[] };
 ---
 
 <section>
@@ -21,9 +24,9 @@ const allCategories = await getFromAPI(Endpoints.categories, [
         <>
           <PostCard
             {post}
-            postCategories={categoryMapper(allCategories, post.categories)}
+            postCategories={categoryMapper(categories, post.categories)}
           />
-          </>
+        </>
       ))
     }
   </div>
@@ -37,3 +40,4 @@ const allCategories = await getFromAPI(Endpoints.categories, [
     padding-bottom: 2rem;
   }
 </style>
+

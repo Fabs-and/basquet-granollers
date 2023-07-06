@@ -1,11 +1,16 @@
 ---
+// Import types
 import { PostFields, Endpoints } from 'src/types';
 
+// Import Layouts
 import BaseLayout from '@layouts/BaseLayout.astro';
 
-import { getFromAPI } from '@utils/api';
+// Import components
 import GridPostCard from '@components/postCards/GridPostCard.astro';
-const pageTitle = 'El Putu Dapps';
+
+// Import api functions from utils
+import { getFromAPI } from '@utils/api';
+
 const posts = await getFromAPI(
   Endpoints.posts,
   [
@@ -18,10 +23,12 @@ const posts = await getFromAPI(
   ],
   16
 );
+
+const title = 'El Putu Dapps';
 ---
 
-<BaseLayout {pageTitle}>
-  <h1>{pageTitle}</h1>
+<BaseLayout {title}>
+  <h1>{title}</h1>
   <GridPostCard {posts} />
 </BaseLayout>
 

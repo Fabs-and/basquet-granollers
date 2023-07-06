@@ -25,8 +25,15 @@ export function removeHTMLTags(str: string) {
   return newStr;
 }
 
-export function dateConverter(date: Date) {
-  const newDate = new Date(date);
+export function dateConverter(date: string | null | Date) {
+  let newDate;
+  if (typeof date === 'string') newDate = new Date(date);
+  else if (date !== null) newDate = date;
+  else {
+    const error = new Error('Invalid Parameter');
+    console.error(error); // log the error in the console
+    throw error; // throw the error to the caller
+  }
   return `${new Intl.DateTimeFormat('ca', { month: 'long' }).format(
     newDate
   )} ${new Intl.DateTimeFormat('ca', { day: 'numeric' }).format(

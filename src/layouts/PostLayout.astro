@@ -1,19 +1,21 @@
 ---
-import {divForP} from '@utils/helperFunctions'
-const {post} = Astro.props
+// Import utils functions
+import { divForP } from '@utils/helperFunctions';
 
-const {title, content, author, categories} = post;
+const { post } = Astro.props;
 
+const { title, content } = post;
 ---
 
-<section class="page-container">
-  <h1 set:html={title}></h1>
-  <Fragment set:html={divForP(content)}/>
+<section class='page-container'>
+  <h1 set:html={title} />
+  <Fragment set:html={divForP(content)} />
 </section>
 
 <style>
- .page-container{
-  display: grid;
-  place-items: center;
- }
+  .page-container {
+    display: grid;
+    place-items: center;
+  }
 </style>
+

@@ -1,4 +1,5 @@
 // import TS types
+import { allCategories } from 'src/stores/categoriesStore';
 import type { PostFields, CategoryFields, PostParams } from '../types';
 import { Endpoints } from '../types';
 
@@ -32,7 +33,9 @@ export async function getFromAPI(
   }
 
   const posts = await getCall(endpoint, query);
-  
+
+  // if getFromAPI is used to retrieve categories, save it in a global store
+  if (endpoint === 'categories') allCategories.set(posts)
   return posts;
 }
 

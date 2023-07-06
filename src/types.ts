@@ -113,7 +113,7 @@ export type Post = {
   categories: number[];
   comment_status: string;
   content: { rendered: string };
-  date: string | null | Date;
+  date: string;
   date_gmt: string | null | Date;
   excerpt: { rendered: string };
   featured_media: number;

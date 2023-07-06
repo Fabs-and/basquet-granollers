@@ -1,42 +1,43 @@
 ---
-import BaseLayout from '@layouts/BaseLayout.astro';
-import { dateConverter, categoryMapper } from '@utils/helperFunctions';
-import type { Category } from 'src/types';
-const { post, postCategories } = Astro.props;
+// Import types
+import type { Category, Post } from 'src/types';
 
-console.log('pooooost', postCategories)
+// Import util functions
+import { dateConverter } from '@utils/helperFunctions';
+
+const { post, postCategories } = Astro.props as {
+  post: Post;
+  postCategories: Category[];
+};
+
 const {
   title: { rendered: title },
   excerpt: { rendered: excerpt },
   slug,
   date,
-  categories,
 } = post;
-
 ---
 
-
-  <article class='card'>
-    <h2 set:html={title} />
-    <p>{dateConverter(date)}</p>
-    <ul>
-      {
-        postCategories.map((category: Category) => (
-          <li>
+<article class='card'>
+  <h2 set:html={title} />
+  <p>{dateConverter(date)}</p>
+  <ul>
+    {
+      postCategories.map((category: Category) => (
+        <li>
           <a
             class="'category"
-            href={`/categories/${category.slug}`}
+            href={`/categoria/${category.slug}`}
           >
             {category.name}
           </a>
-          </li>
+        </li>
       ))
     }
   </ul>
   <Fragment set:html={excerpt} />
   <a href={`/${slug}`}>Segueix Llegint</a>
-
-
+</article>
 
 <style>
   article.card {
@@ -47,7 +48,6 @@ const {
     flex-direction: column;
     gap: 0.5rem;
     word-wrap: break-word;
-    /* hyphens: auto; */
   }
 
   ul {

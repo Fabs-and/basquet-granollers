@@ -4,10 +4,13 @@ import { getFromAPI } from '@utils/api';
 
 // Import types
 import { Endpoints, Post, CategoryFields, PostFields } from 'src/types';
+import type { Category } from 'src/types';
 
 // Import Layouts
 import BaseLayout from '@layouts/BaseLayout.astro';
 import GridPostCard from '@components/postCards/GridPostCard.astro';
+
+import { allCategories } from '../../stores/categoriesStore';
 
 export async function getStaticPaths() {
   const categories = await getFromAPI(Endpoints.categories, [
@@ -16,7 +19,7 @@ export async function getStaticPaths() {
     CategoryFields.slug,
   ]);
 
-  return categories.map((category) => {
+  return categories.map((category: Category) => {
     return {
       params: { category: category.slug },
       props: {
