@@ -1,6 +1,6 @@
 ---
 // Import types
-import { PostFields, Endpoints } from 'src/types';
+import { PostFields, Endpoints, CategoryFields } from 'src/types';
 
 // Import Layouts
 import BaseLayout from '@layouts/BaseLayout.astro';
@@ -24,11 +24,16 @@ const posts = await getFromAPI(
   16
 );
 
+const categories = await getFromAPI(Endpoints.categories, [
+    CategoryFields.id,
+    CategoryFields.name,
+    CategoryFields.slug,
+  ]);
 const title = 'El Putu Dapps';
 ---
 
 <BaseLayout {title}>
   <h1>{title}</h1>
-  <GridPostCard {posts} />
+  <GridPostCard {posts} {categories}/>
 </BaseLayout>
 
