@@ -19,22 +19,24 @@ const {
 ---
 
 <article class='card'>
-  <h2 set:html={title} />
-  <p>{dateConverter(date)}</p>
-  <ul>
-    {
-      postCategories.map((category: Category) => (
-        <li>
-          <a
-            class="'category"
-            href={`/categoria/${category.slug}`}
-          >
-            {category.name}
-          </a>
-        </li>
-      ))
-    }
-  </ul>
+  <header>
+    <h2 set:html={title} />
+    <p>{dateConverter(date)}</p>
+    <ul>
+      {
+        postCategories.map((category: Category) => (
+          <li>
+            <a
+              class="'category"
+              href={`/categoria/${category.slug}`}
+            >
+              {category.name}
+            </a>
+          </li>
+        ))
+      }
+    </ul>
+  </header>
   <Fragment set:html={excerpt} />
   <a href={`/${slug}`}>Segueix Llegint</a>
 </article>

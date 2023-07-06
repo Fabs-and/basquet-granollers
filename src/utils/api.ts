@@ -36,6 +36,7 @@ export async function getFromAPI(
 
   // if getFromAPI is used to retrieve categories, save it in a global store
   if (endpoint === 'categories') allCategories.set(posts)
+  
   return posts;
 }
 

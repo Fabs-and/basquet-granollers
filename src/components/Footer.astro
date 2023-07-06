@@ -1,19 +1,39 @@
 ---
-const currentYear = new Date(). getFullYear();
+const currentYear = new Date().getFullYear();
 ---
 
 <footer>
-   <a href='/'>Bàsquet Granollers</a>
-   <small>© {currentYear} Club Bàsquet Granollers</small>
-   <a href="/avis-legal">Avís Legal</a>
-    <a href="/politica-de-cookies">Política de cookies</a>
+  <a href='/'>Bàsquet Granollers</a>
+  <small>© {currentYear} Club Bàsquet Granollers</small>
+  <a href='/avis-legal'>Avís Legal</a>
+  <a href='/politica-de-cookies'>Política de cookies</a>
   <nav>
     <ul>
       <li>
-        <a href="https://www.facebook.com/cbgranollers/" target="_blank">Facebook</a>
-        </li>
-      <li><a href="https://twitter.com/i/flow/login?redirect_after_login=%2FCB_Granollers" target="_blank">Twitter</a></li>
-      <li><a href="https://www.instagram.com/cbgranollers/" target="_blank">Instagram</a></li>
+        <a
+          href='https://www.facebook.com/cbgranollers/'
+          target='_blank'
+          aria-label="Enllaç al perfil de Facebook del Bàsquet Granollers"
+          rel="noopener noreferrer"
+          >Facebook</a
+        >
+      </li>
+      <li>
+        <a
+          href='https://twitter.com/i/flow/login?redirect_after_login=%2FCB_Granollers'
+          target='_blank'
+          aria-label="Enllaç al perfil de Twitter del Bàsquet Granollers"
+          rel="noopener noreferrer"
+          >Twitter</a>
+      </li>
+      <li>
+        <a
+          href='https://www.instagram.com/cbgranollers/'
+          aria-label="Enllaç al perfil d'Instagram del Bàsquet Granollers"
+          target='_blank'
+          rel="noopener noreferrer"
+          >Instagram</a>
+      </li>
     </ul>
   </nav>
 </footer>
@@ -21,16 +41,15 @@ const currentYear = new Date(). getFullYear();
 <style>
   footer {
     position: relative;
-		display: flex;
-		align-self: center;
-		align-items: center;
-		justify-content: space-between;
-		height: var(--footer-hg);
-		width: clamp(375px, 100vw, 1300px);
-		margin: 0.4rem 0.7rem 0.3rem 0.8rem;
-    background-color: beige ;
+    display: flex;
+    align-self: center;
+    align-items: center;
+    justify-content: space-between;
+    height: var(--footer-hg);
+    width: clamp(375px, 100vw, 1300px);
+    margin: 0.4rem 0.7rem 0.3rem 0.8rem;
+    background-color: beige;
     margin: auto;
     padding: 1rem;
-   
   }
 </style>
