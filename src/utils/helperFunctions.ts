@@ -1,23 +1,10 @@
-import { strictEqual } from 'assert';
-import { getFromAPI } from './api';
-import type { Category, CategoryFields, Endpoints } from 'src/types';
+// import types
+import type { Category } from 'src/types';
 
-let ellipsis = /\[.*?\]/g; // match anything in square brackets
-let emptySpace = /&.*?;/g; // match anything between & and ;
-let openDiv = /<div>/g;
-let closingDiv = /<\/div>/g;
-
-export function removeHTMLEntity(str: string) {
-  let newStr;
-  if (ellipsis.test(str) || emptySpace.test(str)) {
-    console.log('trueeeee');
-    newStr = str.replace(ellipsis, '...');
-  }
-  if (emptySpace.test(str)) str.replace(emptySpace, ' ');
-  return newStr;
-}
-
+// Replace <div> for <p>
 export function divForP(str: string) {
+  const openDiv = /<div>/g;
+  const closingDiv = /<\/div>/g;
   let newStr;
   if (openDiv.test(str)) {
     newStr = str.replace(openDiv, '<p>').replace(closingDiv, '</p>');
@@ -27,7 +14,18 @@ export function divForP(str: string) {
   }
 }
 
-export function dateConverter(date: string) {
+export function removeHTMLTags(str: string) {
+  const ellipsis = /\[.*?\]/g; // match anything in square brackets
+  const emptySpace = /&.*?;/g; // match anything between & and ;
+  let newStr;
+  if (ellipsis.test(str) || emptySpace.test(str)) {
+    newStr = str.replace(ellipsis, '...');
+  }
+  if (emptySpace.test(str)) str.replace(emptySpace, ' ');
+  return newStr;
+}
+
+export function dateConverter(date: Date) {
   const newDate = new Date(date);
   return `${new Intl.DateTimeFormat('ca', { month: 'long' }).format(
     newDate
@@ -45,3 +43,4 @@ export function categoryMapper(
   );
   return categories;
 }
+
