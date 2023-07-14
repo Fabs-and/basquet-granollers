@@ -1,5 +1,7 @@
 // import types
-import type { Category } from 'src/types';
+import type { Category, Post } from 'src/types';
+import { getPostBySlug } from './api';
+import type { Url } from 'url';
 
 // Replace <div> for <p>
 export function divForP(str: string) {
@@ -45,9 +47,20 @@ export function categoryMapper(
   allCategories: Category[],
   postCategories: number[]
 ) {
+
+  if (!Array.isArray(allCategories)) return;
   const categories = allCategories.filter(
     (category) => postCategories.indexOf(category.id) !== -1
   );
   return categories;
 }
+
+
+
+export function slugExtractor(link: string) {
+  return new URL(link).pathname.split('/')[1];
+}
+
+
+
 

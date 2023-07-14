@@ -1,6 +1,6 @@
 ---
 // Import types
-import { PostFields, Endpoints, CategoryFields } from 'src/types';
+import { Endpoints, CategoryFields } from 'src/types';
 
 // Import Layouts
 import BaseLayout from '@layouts/BaseLayout.astro';
@@ -11,16 +11,12 @@ import GridPostCard from '@components/postCards/GridPostCard.astro';
 // Import api functions from utils
 import { getFromAPI } from '@utils/api';
 
+// Import global (not global stores) variables/constants
+import { postFields} from '@utils/apiGlobalParams';
+
 const posts = await getFromAPI(
   Endpoints.posts,
-  [
-    PostFields.title,
-    PostFields.content,
-    PostFields.excerpt,
-    PostFields.slug,
-    PostFields.categories,
-    PostFields.date,
-  ],
+  postFields,
   16
 );
 
@@ -29,6 +25,7 @@ const categories = await getFromAPI(Endpoints.categories, [
     CategoryFields.name,
     CategoryFields.slug,
   ]);
+
 const title = 'El Putu Dapps';
 ---
 

@@ -19,6 +19,7 @@ const allCategories: Category[] = await getFromAPI(Endpoints.categories, [
 ]);
 
 const { posts } = Astro.props as { posts: Post[] };
+
 ---
 
 <section>
@@ -28,7 +29,7 @@ const { posts } = Astro.props as { posts: Post[] };
         <>
           <PostCard
             {post}
-            postCategories={categoryMapper(allCategories, post.categories)}
+            postCategories={ categoryMapper(allCategories, post.categories)}
           />
         </>
       ))

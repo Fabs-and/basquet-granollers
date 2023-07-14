@@ -1,9 +1,12 @@
 // import TS types
-import type { PostFields, CategoryFields, PostParams } from '../types';
-import { Endpoints } from '../types';
+import type { CategoryFields, PostParams, Post } from '../types';
+import { Endpoints, PostFields } from '../types';
 
 // Import env variables
 const API_URL = import.meta.env.API_URL;
+
+import { slugExtractor } from '@utils/helperFunctions';
+import { postFields } from './apiGlobalParams';
 
 // Gets post by API URL and given path
 // If no arguments in getPosts, it retrieves all fields of all posts
@@ -31,8 +34,11 @@ export async function getFromAPI(
     query.append(key, value as string);
   }
 
-  const posts = await getCall(endpoint, query);
+  const rawPosts = await getCall(endpoint, query);
 
+  if (endpoint === 'categories') return rawPosts;
+
+  const posts: Post[] = await detectRedirects(rawPosts)
   return posts;
 }
 
@@ -46,7 +52,7 @@ export async function getPostBySlug(slug: string) {
   return post;
 }
 
-async function getCall(endpoint: Endpoints, query?: URLSearchParams) {
+export async function getCall(endpoint: Endpoints, query?: URLSearchParams) {
   try {
     // append the query parameter to the URL
     const url = new URL(`${API_URL}/${endpoint}`);
@@ -60,5 +66,39 @@ async function getCall(endpoint: Endpoints, query?: URLSearchParams) {
   } catch (error) {
     console.error('Error in getCall:', error);
   }
+}
+
+export async function detectRedirects(posts: Post[]) {
+  const newPosts = await Promise.all(
+    posts.map(async (post) => {
+      const linkSlug = slugExtractor(post.link as string);
+      if (post.slug !== linkSlug) {
+        const redirectedPost = await getFromAPI(
+          Endpoints.pages,
+         postFields,
+          -1,
+          -1,
+          linkSlug
+        );
+
+        // If the redirectedPost exists and it's not empty,
+        // add the categories from the original post to the redirected post.
+        if (redirectedPost && redirectedPost.length > 0) {
+          redirectedPost[0] = {
+            ...redirectedPost[0],
+            categories: post.categories,
+          };
+        }
+
+        return redirectedPost;
+      } else {
+        // Ensure to return the original post when the condition does not match.
+        // This is required to ensure the same length for newPosts and posts.
+        return post;
+      }
+    })
+  );
+  // console.log('newPosts', newPosts);
+  return newPosts.flat();
 }
 

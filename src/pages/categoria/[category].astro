@@ -10,6 +10,9 @@ import type { Category } from 'src/types';
 import BaseLayout from '@layouts/BaseLayout.astro';
 import GridPostCard from '@components/postCards/GridPostCard.astro';
 
+// Import global (not global stores) variables/constants
+import { postFields } from '@utils/apiGlobalParams';
+
 export async function getStaticPaths() {
   const categories = await getFromAPI(Endpoints.categories, [
     CategoryFields.id,
@@ -31,19 +34,7 @@ export async function getStaticPaths() {
 
 const category = Astro.props;
 
-const posts = await getFromAPI(
-  Endpoints.posts,
-  [
-    PostFields.title,
-    PostFields.content,
-    PostFields.excerpt,
-    PostFields.slug,
-    PostFields.categories,
-    PostFields.date,
-  ],
-  -1,
-  category.id
-);
+const posts = await getFromAPI(Endpoints.posts, postFields, -1, category.id);
 ---
 
 <BaseLayout pageTitle={category.name}>
