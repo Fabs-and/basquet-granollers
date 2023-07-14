@@ -36,10 +36,12 @@ export async function getFromAPI(
 
   const rawPosts = await getCall(endpoint, query);
 
-  if (endpoint === 'categories') return rawPosts;
+  if (endpoint === 'posts') {
+    const posts: Post[] = await detectRedirects(rawPosts)
+    return posts;
+  }
 
-  const posts: Post[] = await detectRedirects(rawPosts)
-  return posts;
+  return rawPosts;
 }
 
 export async function getPostBySlug(slug: string) {
