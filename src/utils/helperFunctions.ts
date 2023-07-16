@@ -1,6 +1,6 @@
 // import types
-import type { Category, Post } from 'src/types';
-import { getPostBySlug } from './api';
+import type { Category, Post, PostParams } from 'src/types';
+import { getPostBySlug } from './api/apiService';
 import type { Url } from 'url';
 
 // Replace <div> for <p>
@@ -57,9 +57,8 @@ export function categoryMapper(
 
 
 
-export function slugExtractor(link: string) {
-  return new URL(link).pathname.split('/')[1];
-}
+
+
 
 
 

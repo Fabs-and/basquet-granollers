@@ -40,6 +40,32 @@ export enum CategoryFields {
   taxonomy = 'taxonomy',
 }
 
+export enum PageFields {
+  author = 'author',
+  comment_status = 'comment_status',
+  content = 'content',
+  date = 'date',
+  date_gmt = 'date_gmt',
+  excerpt = 'excerpt',
+  featured_media = 'featured_media',
+  generated_slug = 'generated_slug',
+  guid = 'guid',
+  id = 'id',
+  link = 'link',
+  menu_order = 'menu_order',
+  meta = 'meta',
+  modified = 'modified',
+  modified_gmt = 'modified_gmt',
+  password = 'password',
+  permalink_template = 'permalink_template',
+  ping_status = 'ping_status',
+  slug = 'slug',
+  status = 'status',
+  template = 'template',
+  title = 'title',
+  type = 'type',
+}
+
 export enum Endpoints {
   blockDirectoryItems = 'block-directory/search',
   blockRenderer = 'block-rendered',
@@ -144,4 +170,49 @@ export type Category = {
   slug: string;
   taxonomy: string;
 };
+
+// A TypeScript type for a WordPress page
+export type Page = {
+  author: number;
+  comment_status: "open" | "closed";
+  content: {
+    rendered: string;
+    raw?: string;
+    protected?: boolean;
+  };
+  date: string | null;
+  date_gmt: string | null;
+  excerpt: {
+    rendered: string;
+    raw?: string;
+    protected?: boolean;
+  };
+  featured_media: number;
+  generated_slug: string;
+  guid: {
+    rendered: string;
+  };
+  id: number;
+  link: string;
+  menu_order: number;
+  meta: Record<string, any>;
+  modified: string;
+  modified_gmt: string;
+  parent: number;
+  password: string;
+  permalink_template: string;
+  ping_status: "open" | "closed";
+  slug: string;
+  status: "publish" | "future" | "draft" | "pending" | "private";
+  template: string; 
+  title: {
+    rendered: string;
+    raw?: string;
+  };
+  type: "page";
+};
+
+
+
+
 

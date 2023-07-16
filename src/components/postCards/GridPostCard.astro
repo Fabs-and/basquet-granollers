@@ -7,16 +7,13 @@ import type { Category, Post } from 'src/types';
 import PostCard from '@components/postCards/PostCard.astro';
 
 // Import api functions from utils
-import { getFromAPI } from '@utils/api';
+import { fetchAllCategories } from '@utils/api/apiService';
 
 // Import utils functions
 import { categoryMapper } from '@utils/helperFunctions';
+import { categoryFields } from 'src/apiGlobalConsts';
 
-const allCategories: Category[] = await getFromAPI(Endpoints.categories, [
-  CategoryFields.id,
-  CategoryFields.name,
-  CategoryFields.slug,
-]);
+const allCategories: Category[] = await fetchAllCategories(categoryFields)
 
 const { posts } = Astro.props as { posts: Post[] };
 

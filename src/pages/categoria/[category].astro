@@ -1,9 +1,8 @@
 ---
 // Import utils
-import { getFromAPI } from '@utils/api';
+import { fetchAllCategories, fetchPostsInCategory } from '@utils/api/apiService';
 
 // Import types
-import { Endpoints, CategoryFields } from 'src/types';
 import type { Category } from 'src/types';
 
 // Import Layouts
@@ -11,14 +10,11 @@ import BaseLayout from '@layouts/BaseLayout.astro';
 import GridPostCard from '@components/postCards/GridPostCard.astro';
 
 // Import global (not global stores) variables/constants
-import { postFields } from '@utils/apiGlobalParams';
+import { postFields, categoryFields } from 'src/apiGlobalConsts';
+
 
 export async function getStaticPaths() {
-  const categories = await getFromAPI(Endpoints.categories, [
-    CategoryFields.id,
-    CategoryFields.name,
-    CategoryFields.slug,
-  ]);
+  const categories = await fetchAllCategories(categoryFields);
 
   return categories.map((category: Category) => {
     return {
@@ -34,7 +30,8 @@ export async function getStaticPaths() {
 
 const category = Astro.props;
 
-const posts = await getFromAPI(Endpoints.posts, postFields, -1, category.id);
+const posts = await fetchPostsInCategory(category.id, postFields)
+
 ---
 
 <BaseLayout pageTitle={category.name}>

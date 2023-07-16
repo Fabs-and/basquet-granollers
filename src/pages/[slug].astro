@@ -1,17 +1,17 @@
 ---
 // Import utils
-import { getFromAPI } from '@utils/api';
+import { fetchAllPosts } from '@utils/api/apiService';
 
 // Import types
-import { Endpoints, Post} from 'src/types';
+import type { Post } from 'src/types';
 
 // Import Layouts
 import BaseLayout from '@layouts/BaseLayout.astro';
 import PostLayout from '@layouts/PostLayout.astro';
-import { postFields } from '@utils/apiGlobalParams';
+import { postFields } from 'src/apiGlobalConsts';
 
 export async function getStaticPaths() {
-  const posts = await getFromAPI(Endpoints.posts, postFields, 50);
+  const posts = await fetchAllPosts(50, postFields);
 
   return posts.map((post: Post) => {
     return {
@@ -30,3 +30,4 @@ const post = Astro.props;
 <BaseLayout pageTitle={post.title}>
   <PostLayout {post} />
 </BaseLayout>
+

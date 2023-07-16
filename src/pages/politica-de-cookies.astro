@@ -1,20 +1,15 @@
 ---
-import { getFromAPI } from '@utils/api';
+import { fetchPageBySlug } fro@utils/api/apiServiceapiService';
 import BaseLayout from '@layouts/BaseLayout.astro';
 import PostLayout from '@layouts/PostLayout.astro';
 
-import { Endpoints, PostFields } from 'src/types';
 
-const [postCalled] = await getFromAPI(Endpoints.pages, [
-  PostFields.title,
-  PostFields.content,
-  PostFields.excerpt,
-],1,-1,'politica-de-cookies');
+const [page] = await fetchPageBySlug('politica-de-cookies')
 
 
 const post = {
-  title: postCalled.title.rendered,
-  content: postCalled.content.rendered
+  title: page.title.rendered,
+  content: page.content.rendered
 }
 ---
 
