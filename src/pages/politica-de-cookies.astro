@@ -1,20 +1,17 @@
 ---
-import { fetchPageBySlug } fro@utils/api/apiServiceapiService';
+import { fetchPageBySlug } from 'fetch-wordpress-api';
 import BaseLayout from '@layouts/BaseLayout.astro';
 import PostLayout from '@layouts/PostLayout.astro';
 
-
-const [page] = await fetchPageBySlug('politica-de-cookies')
-
+const [page] = await fetchPageBySlug('politica-de-cookies');
 
 const post = {
   title: page.title.rendered,
-  content: page.content.rendered
-}
+  content: page.content.rendered,
+};
 ---
 
 <BaseLayout title={post.title}>
-  <PostLayout {post}/>
+  <PostLayout {post} />
 </BaseLayout>
-
 

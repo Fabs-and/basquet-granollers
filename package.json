@@ -10,7 +10,8 @@
     "astro": "astro"
   },
   "dependencies": {
-    "astro": "^2.7.0"
+    "astro": "^2.7.0",
+    "fetch-wordpress-api": "^1.0.0"
   },
   "devDependencies": {
     "@types/node": "^20.3.2",

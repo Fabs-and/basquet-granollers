@@ -1,7 +1,5 @@
 // import types
-import type { Category, Post, PostParams } from 'src/types';
-import { getPostBySlug } from './api/apiService';
-import type { Url } from 'url';
+import type { Category } from 'fetch-wordpress-api';
 
 // Replace <div> for <p>
 export function divForP(str: string) {
@@ -47,19 +45,10 @@ export function categoryMapper(
   allCategories: Category[],
   postCategories: number[]
 ) {
-
   if (!Array.isArray(allCategories)) return;
   const categories = allCategories.filter(
     (category) => postCategories.indexOf(category.id) !== -1
   );
   return categories;
 }
-
-
-
-
-
-
-
-
 

@@ -1,9 +1,9 @@
 ---
 // Import utils
-import { fetchAllPosts } from '@utils/api/apiService';
+import { fetchPosts,Post } from 'fetch-wordpress-api';
 
 // Import types
-import type { Post } from 'src/types';
+// import type { Post } from 'src/types';
 
 // Import Layouts
 import BaseLayout from '@layouts/BaseLayout.astro';
@@ -11,7 +11,7 @@ import PostLayout from '@layouts/PostLayout.astro';
 import { postFields } from 'src/apiGlobalConsts';
 
 export async function getStaticPaths() {
-  const posts = await fetchAllPosts(50, postFields);
+  const posts = await fetchPosts(50, postFields);
 
   return posts.map((post: Post) => {
     return {

@@ -1,6 +1,6 @@
 ---
 // Import types
-import { Endpoints, CategoryFields } from 'src/types';
+// import { Endpoints, CategoryFields } from 'src/types';
 
 // Import Layouts
 import BaseLayout from '@layouts/BaseLayout.astro';
@@ -9,12 +9,23 @@ import BaseLayout from '@layouts/BaseLayout.astro';
 import GridPostCard from '@components/postCards/GridPostCard.astro';
 
 // Import api functions from utils
-import { fetchAllCategories, fetchAllPosts } from '@utils/api/apiService';
+import {
+  configure,
+  fetchAllCategories,
+  fetchPosts,
+  Endpoints,
+  CategoryFields,
+} from 'fetch-wordpress-api';
 
 // Import global (not global stores) variables/constants
 import { postFields, categoryFields } from 'src/apiGlobalConsts';
 
-const posts = await fetchAllPosts(8, postFields);
+
+const DOMAIN = import.meta.env.DOMAIN;
+
+configure({DOMAIN: DOMAIN})
+
+const posts = await fetchPosts(8, postFields);
 
 const categories = await fetchAllCategories(categoryFields);
 

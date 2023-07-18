@@ -1,13 +1,13 @@
 ---
 // Import types
-import { Endpoints, CategoryFields } from 'src/types';
-import type { Category, Post } from 'src/types';
+// import { Endpoints, CategoryFields } from 'src/types';
+// import type { Category, Post } from 'src/types';
 
 // Import components
 import PostCard from '@components/postCards/PostCard.astro';
 
 // Import api functions from utils
-import { fetchAllCategories } from '@utils/api/apiService';
+import { fetchAllCategories, Endpoints, CategoryFields, Category, Post } from 'fetch-wordpress-api';
 
 // Import utils functions
 import { categoryMapper } from '@utils/helperFunctions';

@@ -1,4 +1,4 @@
-import { CategoryFields, PageFields, PostFields } from 'src/types';
+import { CategoryFields, PageFields, PostFields } from 'fetch-wordpress-api';
 
 export const postFields = [
   PostFields.title,
