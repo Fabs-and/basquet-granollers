@@ -20,10 +20,9 @@ import {
 // Import global (not global stores) variables/constants
 import { postFields, categoryFields } from 'src/apiGlobalConsts';
 
+import { BASE_URL } from 'src/config';
 
-const DOMAIN = import.meta.env.DOMAIN;
-
-configure({DOMAIN: DOMAIN})
+configure({BASE_URL: BASE_URL})
 
 const posts = await fetchPosts(8, postFields);
 

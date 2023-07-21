@@ -1,9 +1,10 @@
 ---
-import { fetchPageBySlug } fro@utils/api/apiServiceapiService';
+import { fetchPageBySlug } from 'fetch-wordpress-api'
+
 import BaseLayout from '@layouts/BaseLayout.astro';
 import PostLayout from '@layouts/PostLayout.astro';
 
-import { Endpoints, PostFields } from 'src/types';
+// import { Endpoints, PostFields } from 'src/types';
 
 const [page] = await fetchPageBySlug('avis-legal')
 
