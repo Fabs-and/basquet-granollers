@@ -7,7 +7,7 @@ import BaseLayout from '@layouts/BaseLayout.astro';
 
 // Import components
 import GridPostCard from '@components/postCards/GridPostCard.astro';
-
+import ButtonAnchor from '@components/ButtonAnchor.astro';
 // Import api functions from utils
 import {
   configure,
@@ -33,9 +33,20 @@ const title = 'El Putu Dapps';
 
 <BaseLayout {title}>
   <h1>{title}</h1>
+  <div>
+    <ButtonAnchor text={'fes-te soci'} isFilled={true}/>
+    <ButtonAnchor text={'fes-te sponsor'} isFilled={false}/>
+  </div>
   <GridPostCard
     {posts}
     {categories}
   />
 </BaseLayout>
 
+<style>
+  div {
+    display: flex;
+    gap: 1rem;
+    justify-content: end;
+  }
+</style>
