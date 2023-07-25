@@ -1,23 +1,23 @@
 import { CategoryFields, PageFields, PostFields } from 'fetch-wordpress-api';
 
-export const postFields = [
-  PostFields.title,
-  PostFields.content,
-  PostFields.excerpt,
-  PostFields.link,
-  PostFields.slug,
-  PostFields.categories,
-  PostFields.date,
+export const postFields: PostFields[] = [
+  'title',
+  'content',
+  'excerpt',
+  'link',
+  'slug',
+  'categories',
+  'date',
 ];
 
 export const categoryFields = [
-  CategoryFields.id,
-  CategoryFields.name,
-  CategoryFields.slug,
+  'id',
+  'name',
+  'slug',
 ];
 
 export const pageFields = [
-  PageFields.title,
-  PageFields.content,
+  'title',
+  'content',
 ]
 
