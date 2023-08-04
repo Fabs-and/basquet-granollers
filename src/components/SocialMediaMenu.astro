@@ -1,0 +1,53 @@
+---
+import { instagramIcon, tiktokIcon, twitterIcon, youtubeIcon, facebookIcon } from "@icons/icons";
+---
+
+<nav>
+    <ul>
+      <li>
+        <a
+          href='https://www.instagram.com/cbgranollers/'
+          aria-label="Enllaç al perfil d'Instagram del Bàsquet Granollers"
+          target='_blank'
+          rel='noopener noreferrer'
+          ><Fragment set:html={instagramIcon}/></a
+        >
+      </li>
+      <li>
+        <a
+          href='https://www.tiktok.com/@cbgranollers'
+          aria-label="Enllaç al perfil de TikTOk del Bàsquet Granollers"
+          target='_blank'
+          rel='noopener noreferrer'
+          ><Fragment set:html={tiktokIcon}/></a
+        >
+      </li>
+      <li>
+        <a
+        href='https://twitter.com/i/flow/login?redirect_after_login=%2FCB_Granollers'
+        target='_blank'
+        aria-label='Enllaç al perfil de Twitter del Bàsquet Granollers'
+        rel='noopener noreferrer'
+        ><Fragment set:html={twitterIcon}/></a
+        >
+      </li>
+      <li>
+        <a
+        href='https://www.youtube.com/channel/UCIE42xUN3MdyA6bGt8VAoPw'
+        target='_blank'
+        aria-label='Enllaç al perfil de Youtube del Bàsquet Granollers'
+        rel='noopener noreferrer'
+        ><Fragment set:html={youtubeIcon}/></a
+        >
+      </li>
+      <li>
+        <a
+          href='https://www.facebook.com/cbgranollers/'
+          target='_blank'
+          aria-label='Enllaç al perfil de Facebook del Bàsquet Granollers'
+          rel='noopener noreferrer'
+          ><Fragment set:html={facebookIcon}/></a
+        >
+      </li>
+    </ul>
+  </nav>
