@@ -8,11 +8,10 @@
 
 :root {
   /*Colors*/
-  --clr-text: #FFFFFF;
-  --clr-primary: #001A9C;
-  --clr-secondary: #FFFFFF;
-  --clr-secondary: #FB7326;
-  --clr-accent: #FB7326; /*Added from Dapps, used in orange button*/
+  --clr-primary: #002E6D;
+  --clr-secondary: #F3F3F3;
+  --clr-accent: #FA6E19;
+  --clr-footer:#142847;  /*Added from Dapps, used in orange button*/
 
   --header-hg: 3rem;
   --footer-hg: 3rem;
