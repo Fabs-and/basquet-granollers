@@ -3,7 +3,7 @@ import { fetchPageBySlug } from 'fetch-wordpress-api';
 import BaseLayout from '@layouts/BaseLayout.astro';
 import PostLayout from '@layouts/PostLayout.astro';
 
-const [page] = await fetchPageBySlug('politica-de-cookies');
+const [ page ] = await fetchPageBySlug('politica-de-cookies');
 
 const post = {
   title: page.title.rendered,

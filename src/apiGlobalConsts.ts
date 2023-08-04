@@ -1,4 +1,8 @@
-import { CategoryFields, PageFields, PostFields } from 'fetch-wordpress-api';
+import type {
+  CategoryFields,
+  PageFields,
+  PostFields,
+} from 'fetch-wordpress-api';
 
 export const postFields: PostFields[] = [
   'title',
@@ -10,14 +14,7 @@ export const postFields: PostFields[] = [
   'date',
 ];
 
-export const categoryFields = [
-  'id',
-  'name',
-  'slug',
-];
+export const categoryFields: CategoryFields[] = ['id', 'name', 'slug'];
 
-export const pageFields = [
-  'title',
-  'content',
-]
+export const pageFields: PageFields[] = ['title', 'content'];
 

@@ -13,10 +13,9 @@ import {
   configure,
   fetchAllCategories,
   fetchPosts,
-  Endpoints,
-  CategoryFields,
 } from 'fetch-wordpress-api';
 
+import type { Category, Post } from 'fetch-wordpress-api';
 // Import global (not global stores) variables/constants
 import { postFields, categoryFields } from 'src/apiGlobalConsts';
 
@@ -24,9 +23,9 @@ import { BASE_URL } from 'src/config';
 
 configure({BASE_URL: BASE_URL})
 
-const posts = await fetchPosts(8, postFields);
+const posts: Post[] = await fetchPosts(8, postFields);
 
-const categories = await fetchAllCategories(categoryFields);
+const categories: Category[] = await fetchAllCategories(categoryFields);
 
 const title = 'El Putu Dapps';
 ---
