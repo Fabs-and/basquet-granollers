@@ -8,7 +8,7 @@ import { fetchPosts,Post } from 'fetch-wordpress-api';
 // Import Layouts
 import BaseLayout from '@layouts/BaseLayout.astro';
 import PostLayout from '@layouts/PostLayout.astro';
-import { postFields } from 'src/apiGlobalConsts';
+import { postFields } from 'src/data/apiGlobalConsts';
 
 export async function getStaticPaths() {
   const posts = await fetchPosts(50, postFields);

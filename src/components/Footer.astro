@@ -1,17 +1,29 @@
 ---
 import SocialMediaMenu from '@components/SocialMediaMenu.astro';
 
+import { bottomFooterLinks } from 'src/data/footer';
 const currentYear = new Date().getFullYear();
 ---
 
 <footer>
   <div>
-    <a href='/avis-legal'>Avís Legal</a>
-    <a href='/politica-de-cookies'>Política de cookies</a>
+    {
+      bottomFooterLinks.map((link) => (
+        <a
+          href={`/${link.slug}`}
+          target='_blank'
+          rel='noopener noreferrer'
+        >
+          {link.name}
+        </a>
+      ))
+    }
   </div>
-  <div></div>
-  <small>Web Propietat del Club Bàsquet Granollers. Copyright © {currentYear}. All rights reserved</small>
-  <SocialMediaMenu/>
+  <small
+    >Web Propietat del Club Bàsquet Granollers. Copyright © {currentYear}. All
+    rights reserved</small
+  >
+  <SocialMediaMenu />
 </footer>
 
 <style>

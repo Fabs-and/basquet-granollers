@@ -11,7 +11,7 @@ import { fetchAllCategories, Endpoints, CategoryFields, Category, Post } from 'f
 
 // Import utils functions
 import { categoryMapper } from '@utils/helperFunctions';
-import { categoryFields } from 'src/apiGlobalConsts';
+import { categoryFields } from 'src/data/apiGlobalConsts';
 
 const allCategories: Category[] = await fetchAllCategories(categoryFields)
 
