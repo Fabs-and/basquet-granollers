@@ -15,7 +15,10 @@
   --clr-footer: #142847;
 
   --header-hg: 3rem;
-  --footer-hg: 3rem;
+
+  --footer-top-section-hg: 17.6875rem;
+  --footer-bottom-section-hg: 5.6875rem;
+  --footer-hg: calc(var(--footer-top-section-hg) + var(--footer-bottom-section-hg));
 
   /*Buttons*/
   --btn-height: 2.69rem;
@@ -30,6 +33,8 @@
   --font-size-h3: 1.875rem;
   --font-size-h4: 1.25rem;
   --font-size-h5: 0.9375rem;
+  --font-size-footer: 0.5625rem;
+  
 
   /*Font weight*/
   --font-weight-regular: 550;
@@ -62,8 +67,12 @@ body {
   font-size: var(--font-size-regular);
   line-height: var(--line-height-regular);
   color: var(--clr-contrast);
+  /* padding-inline: 6.13rem; */
 }
 
+main {
+    padding-inline: 6.13rem;
+}
 img {
   max-width: 100%;
   display: block;
@@ -101,3 +110,6 @@ li {
   display: inline;
 }
 
+a {
+  text-decoration: none;
+}

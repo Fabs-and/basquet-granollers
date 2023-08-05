@@ -6,39 +6,56 @@ const currentYear = new Date().getFullYear();
 ---
 
 <footer>
-  <div>
-    {
-      bottomFooterLinks.map((link) => (
-        <a
-          href={`/${link.slug}`}
-          target='_blank'
-          rel='noopener noreferrer'
-        >
-          {link.name}
-        </a>
-      ))
+  <div class='top-section'></div>
+  <div class='bottom-section'>
+    <div>
+      {bottomFooterLinks.map((link) => (
+      <a
+        href={`/${link.slug}`}
+        target='_blank'
+        rel='noopener noreferrer'
+      >
+        {link.name}
+      </a>
+      )) }
+    </div>{
+      (
+        <>
+          <small>
+            Web Propietat del Club Bàsquet Granollers. Copyright © {currentYear}
+            . All rights reserved
+          </small>
+          <SocialMediaMenu />
+        </>
+      )
     }
   </div>
-  <small
-    >Web Propietat del Club Bàsquet Granollers. Copyright © {currentYear}. All
-    rights reserved</small
-  >
-  <SocialMediaMenu />
-</footer>
 
-<style>
-  footer {
-    position: relative;
-    display: flex;
-    align-self: center;
-    align-items: center;
-    justify-content: space-between;
-    height: var(--footer-hg);
-    width: clamp(375px, 100vw, 1300px);
-    margin: 0.4rem 0.7rem 0.3rem 0.8rem;
-    /* background-color: beige; */
-    margin: auto;
-    padding: 1rem;
-  }
-</style>
+  <style>
+    footer {
+      /* position: relative; */
+      font-size: var(--font-size-footer);
+      height: var(--footer-hg);
+      /* background-color: beige; */
+      
+    }
+    .top-section {
+      height: var(--footer-top-section-hg);
+      background-color: var(--clr-footer);
+      padding-inline: 6.13rem;
+    }
+
+    .bottom-section {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: var(--footer-bottom-section-hg);
+      padding-inline: 6.13rem;
+    
+    }
+    small {
+      font-size: inherit;
+    }
+  </style>
+</footer>
 
