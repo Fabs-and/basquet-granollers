@@ -1,23 +1,59 @@
 ---
 import SocialMediaMenu from '@components/SocialMediaMenu.astro';
 
-import { bottomFooterLinks } from 'src/data/footer';
+import { bottomFooterLinks, topFooterLinks } from 'src/data/footer';
 const currentYear = new Date().getFullYear();
 ---
 
 <footer>
-  <div class='top-section'></div>
+  <div class='top-section'>
+    {
+      topFooterLinks.map((section) => (
+        <div>
+          <h5>{section.name.toUpperCase()}</h5>
+          <ul>
+            {section.links.map((link) => (
+              <li>
+                <a>{link}</a>
+              </li>
+            ))}
+          </ul>
+        </div>
+      ))
+    }
+    <div class="links-to-pages">
+      <ul>
+        <li>
+          <a href=''>
+            <h5>BOTIGA</h5>
+          </a>
+        </li>
+        <li>
+          <a>
+            <h5>LA HISTÒRIA DEL BÀSQUET A GRANOLLERS</h5>
+          </a>
+        </li>
+        <li>
+          <a href=''>
+            <h5>CONTACTE</h5>
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
   <div class='bottom-section'>
     <div>
-      {bottomFooterLinks.map((link) => (
-      <a
-        href={`/${link.slug}`}
-        target='_blank'
-        rel='noopener noreferrer'
-      >
-        {link.name}
-      </a>
-      )) }
+      {
+        bottomFooterLinks.map((link) => (
+          <a
+            href={`/${link.slug}`}
+            target='_blank'
+            rel='noopener noreferrer'
+          >
+            {link.name}
+          </a>
+        ))
+      }
     </div>{
       (
         <>
@@ -37,9 +73,11 @@ const currentYear = new Date().getFullYear();
       font-size: var(--font-size-footer);
       height: var(--footer-hg);
       /* background-color: beige; */
-      
     }
     .top-section {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
       height: var(--footer-top-section-hg);
       background-color: var(--clr-footer);
       padding-inline: 6.13rem;
@@ -51,11 +89,22 @@ const currentYear = new Date().getFullYear();
       justify-content: space-between;
       height: var(--footer-bottom-section-hg);
       padding-inline: 6.13rem;
-    
     }
     small {
       font-size: inherit;
     }
+    a {
+      margin-right: 1.62rem;
+    }
+
+    ul {
+      display: flex;
+      flex-direction: column;
+    }
+
+   .links-to-pages {
+    width: 23ch;
+   }
   </style>
 </footer>
 
