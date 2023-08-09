@@ -49,9 +49,14 @@
   /* --line-height-h5: 1.5625rem; Use it in the specific place that needs to be used*/
 }
 
-@font-face {
+/* @font-face {
   font-family: 'RobotoSerif-Regular';
   src: url('/RobotoSerif-Regular.woff2');
+} */
+
+@font-face {
+font-family:"obviously";
+src:url("https://use.typekit.net/af/5bb57c/00000000000000007735c9e3/30/l?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=n4&v=3") format("woff2");
 }
 
 html {
@@ -63,7 +68,7 @@ html {
 body {
   max-width: 87.5rem;
   background-color: var(--clr-primary);
-  font-family: 'RobotoSerif-Regular', sans-serif;
+  font-family: 'obviously', sans-serif;
   font-size: var(--font-size-regular);
   line-height: var(--line-height-regular);
   color: var(--clr-contrast);

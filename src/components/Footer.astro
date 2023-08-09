@@ -1,51 +1,58 @@
 ---
 import SocialMediaMenu from '@components/SocialMediaMenu.astro';
 
-import { bottomFooterLinks, topFooterLinks } from 'src/data/footer';
+import {
+  bottomFooterLinks,
+  topFooterLinks,
+  topFooterImportantLinks,
+} from 'src/data/footer';
 const currentYear = new Date().getFullYear();
 ---
 
 <footer>
-  <div class='top-section'>
+  <nav class='top-section'>
     {
-      topFooterLinks.map((section) => (
-        <div>
-          <h5>{section.name.toUpperCase()}</h5>
-          <ul>
-            {section.links.map((link) => (
-              <li>
-                <a>{link}</a>
-              </li>
-            ))}
-          </ul>
-        </div>
+      topFooterLinks.map((category) => (
+        <article>
+          <header>
+            <h5>{category.title.toUpperCase()}</h5>
+          </header>
+          <div class='links-container'>
+            <ul>
+              {category.links.map((link) => (
+                <li>
+                  <a href={link.slug}>{link.name}</a>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </article>
       ))
     }
-    <div class="links-to-pages">
-      <ul>
-        <li>
-          <a href=''>
-            <h5>BOTIGA</h5>
-          </a>
-        </li>
-        <li>
-          <a>
-            <h5>LA HISTÒRIA DEL BÀSQUET A GRANOLLERS</h5>
-          </a>
-        </li>
-        <li>
-          <a href=''>
-            <h5>CONTACTE</h5>
-          </a>
-        </li>
-      </ul>
-    </div>
-  </div>
-  <div class='bottom-section'>
+
+    <ul class='links-container'>
+      {
+        topFooterImportantLinks.map((link) => (
+          <li>
+            <a
+              class='bottom-footer-links'
+              href={`/${link.slug}`}
+              target='_blank'
+              rel='noopener noreferrer'
+            >
+              <h5>{link.name.toUpperCase()}</h5>
+            </a>
+          </li>
+        ))
+      }
+    </ul>
+  </nav>
+  <section class='bottom-section'>
     <div>
       {
         bottomFooterLinks.map((link) => (
           <a
+            class='bottom-footer-links'
             href={`/${link.slug}`}
             target='_blank'
             rel='noopener noreferrer'
@@ -65,7 +72,7 @@ const currentYear = new Date().getFullYear();
         </>
       )
     }
-  </div>
+  </section>
 
   <style>
     footer {
@@ -90,11 +97,14 @@ const currentYear = new Date().getFullYear();
       height: var(--footer-bottom-section-hg);
       padding-inline: 6.13rem;
     }
+
     small {
       font-size: inherit;
     }
-    a {
+
+    .bottom-footer-links {
       margin-right: 1.62rem;
+      text-decoration: underline;
     }
 
     ul {
@@ -102,9 +112,15 @@ const currentYear = new Date().getFullYear();
       flex-direction: column;
     }
 
-   .links-to-pages {
-    width: 23ch;
-   }
+    li {
+      /* text-wrap: balance; */
+      width: 14.625rem;
+    }
+
+    .links-container {
+      height: 8.0625rem;
+      justify-content: space-between;
+    }
   </style>
 </footer>
 
