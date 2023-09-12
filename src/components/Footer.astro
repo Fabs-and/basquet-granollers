@@ -90,6 +90,9 @@ const currentYear = new Date().getFullYear();
     padding-inline: var(--padding-inline);
   }
 
+  .top-section-tablet {
+    display: none;
+  }
   article {
     display: flex;
     flex-direction: column;
@@ -112,11 +115,12 @@ const currentYear = new Date().getFullYear();
     height: inherit;
     flex-direction: column;
     justify-content: space-between;
+    width: 13.7rem;
   }
 
-  li {
+  /* li {
     width: 14.625rem;
-  }
+  } */
 
   .bottom-section {
     height: var(--footer-bottom-section-hg);
@@ -131,8 +135,17 @@ const currentYear = new Date().getFullYear();
   }
 
   .bottom-footer-links {
-    margin-right: 1.62rem;
     text-decoration: underline;
+  }
+
+  .bottom-footer-links:not(:last-child) {
+    margin-right: 1.62rem;
+  }
+
+  @media (width < 952px) {
+    .top-section {
+      display: none;
+    }
   }
 </style>
 
