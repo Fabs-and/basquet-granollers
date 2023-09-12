@@ -14,11 +14,14 @@
   --clr-secondary: #084395;
   --clr-footer: #142847;
 
+  /*Element sizes*/
+  --padding-inline: 6.13rem;
   --header-hg: 3rem;
-
   --footer-top-section-hg: 17.6875rem;
   --footer-bottom-section-hg: 5.6875rem;
-  --footer-hg: calc(var(--footer-top-section-hg) + var(--footer-bottom-section-hg));
+  --footer-hg: calc(
+    var(--footer-top-section-hg) + var(--footer-bottom-section-hg)
+  );
 
   /*Buttons*/
   --btn-height: 2.69rem;
@@ -34,7 +37,6 @@
   --font-size-h4: 1.25rem;
   --font-size-h5: 0.9375rem;
   --font-size-footer: 0.5625rem;
-  
 
   /*Font weight*/
   --font-weight-regular: 550;
@@ -62,12 +64,15 @@ body {
   font-size: var(--font-size-regular);
   line-height: var(--line-height-regular);
   color: var(--clr-contrast);
-  /* padding-inline: 6.13rem; */
+  
 }
 
 main {
-    padding-inline: 6.13rem;
+  padding-inline: var(--padding-inline);
 }
+
+
+
 img {
   max-width: 100%;
   display: block;
@@ -112,11 +117,10 @@ a {
   border: none;
   text-decoration: none;
   color: var(--clr-contrast);
-
 }
 
 a:hover {
-  color: var(--clr-accent)
+  color: var(--clr-accent);
 }
 
 a:hover svg path {
