@@ -1,6 +1,8 @@
 ---
 import SocialMediaMenu from '@components/SocialMediaMenu.astro';
 
+import { collapsibleArrow } from '@icons/icons';
+
 import {
   bottomFooterLinks,
   topFooterLinks,
@@ -28,6 +30,47 @@ const currentYear = new Date().getFullYear();
         </article>
       ))
     }
+
+    <article>
+      <ul class='last-article'>
+        {
+          topFooterImportantLinks.map((link) => (
+            <li>
+              <a
+                href={`/${link.slug}`}
+                target='_blank'
+                rel='noopener noreferrer'
+              >
+                <h5>{link.name.toUpperCase()}</h5>
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+    </article>
+  </nav>
+  <nav class='top-section-tablet'>
+    <article class='collapsible-item'>
+      {
+        topFooterLinks.map((category) => (
+          <>
+            <button class='collapsible'>
+              <>
+                <h5>{category.title.toUpperCase()}</h5>
+                <Fragment set:html={collapsibleArrow} />
+              </>
+            </button>
+            <ul class='links-container-tablet'>
+              {category.links.map((link) => (
+                <li>
+                  <a href={link.slug}>{link.name}</a>
+                </li>
+              ))}
+            </ul>
+          </>
+        ))
+      }
+    </article>
 
     <article>
       <ul class='last-article'>
@@ -93,6 +136,7 @@ const currentYear = new Date().getFullYear();
   .top-section-tablet {
     display: none;
   }
+
   article {
     display: flex;
     flex-direction: column;
@@ -110,6 +154,9 @@ const currentYear = new Date().getFullYear();
     justify-content: space-between;
   }
 
+  .links-container-tablet {
+    display: none;
+  }
   .last-article {
     display: flex;
     height: inherit;
@@ -117,10 +164,6 @@ const currentYear = new Date().getFullYear();
     justify-content: space-between;
     width: 13.7rem;
   }
-
-  /* li {
-    width: 14.625rem;
-  } */
 
   .bottom-section {
     height: var(--footer-bottom-section-hg);
@@ -145,6 +188,28 @@ const currentYear = new Date().getFullYear();
   @media (width < 952px) {
     .top-section {
       display: none;
+    }
+
+    .top-section-tablet {
+      display: flex;
+      align-items: center;
+      /* padding-block: 3.19rem; */
+      justify-content: space-between;
+      height: var(--footer-top-section-hg);
+      background-color: var(--clr-footer);
+      padding-inline: var(--padding-inline);
+    }
+
+    .collapsible-item {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+    button {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 0.7rem;
     }
   }
 </style>

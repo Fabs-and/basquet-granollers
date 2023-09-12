@@ -126,6 +126,13 @@ a {
   color: var(--clr-contrast);
 }
 
+button {
+  all: unset;
+}
+
+button:hover {
+  cursor: pointer;
+}
 a:hover {
   color: var(--clr-accent);
 }
