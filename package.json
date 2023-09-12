@@ -10,13 +10,13 @@
     "astro": "astro"
   },
   "dependencies": {
-    "astro": "^2.7.0",
-    "fetch-wordpress-api": "^1.0.0"
+    "astro": "^2.10.15",
+    "fetch-wordpress-api": "^1.0.13"
   },
   "devDependencies": {
-    "@types/node": "^20.3.2",
-    "@typescript-eslint/parser": "^5.60.1",
-    "eslint": "^8.43.0",
+    "@types/node": "^20.6.0",
+    "@typescript-eslint/parser": "^5.62.0",
+    "eslint": "^8.49.0",
     "eslint-plugin-astro": "^0.27.2",
     "eslint-plugin-jsx-a11y": "^6.7.1",
     "typescript": "~5.1.6"
