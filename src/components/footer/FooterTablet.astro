@@ -1,0 +1,82 @@
+---
+import { collapsibleArrow } from '@icons/icons';
+
+
+const { topFooterLinks, topFooterImportantLinks } = Astro.props;
+---
+
+<script>
+  let accordion = document.getElementsByClassName('collapsible');
+
+  for (let i = 0; i < accordion.length; i++) {
+    accordion[i].addEventListener('click', function () {
+      accordion[i].nextElementSibling!.classList.toggle('content');
+    });
+  }
+</script>
+
+
+  <article class='top-footer-articles cd ..collapsible-item'>
+    {
+      topFooterLinks.map((category) => (
+        <>
+          <button class='collapsible'>
+            <>
+              <h5>{category.title.toUpperCase()}</h5>
+              <Fragment set:html={collapsibleArrow} />
+            </>
+          </button>
+          <ul class='content'>
+            {category.links.map((link) => (
+              <li>
+                <a href={link.slug}>{link.name}</a>
+              </li>
+            ))}
+          </ul>
+        </>
+      ))
+    }
+  </article>
+
+  <article>
+    <ul class='last-article'>
+      {
+        topFooterImportantLinks.map((link) => (
+          <li>
+            <a
+              href={`/${link.slug}`}
+              target='_blank'
+              rel='noopener noreferrer'
+            >
+              <h5>{link.name.toUpperCase()}</h5>
+            </a>
+          </li>
+        ))
+      }
+    </ul>
+  </article>
+
+
+<style>
+    .content {
+    display: none;
+  }
+ 
+    .links-container-tablet {
+    display: none;
+  }
+
+  
+    .collapsible-item {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+    button {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 0.7rem;
+    }
+  
+</style>

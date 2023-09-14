@@ -70,15 +70,11 @@ body {
   font-size: var(--font-size-regular);
   line-height: var(--line-height-regular);
   color: var(--clr-contrast);
-  
 }
-
 
 main {
   padding-inline: var(--padding-inline);
 }
-
-
 
 img {
   max-width: 100%;
@@ -139,4 +135,12 @@ a:hover {
 
 a:hover svg path {
   fill: var(--clr-accent);
+}
+
+/*Global Classes*/
+
+.top-footer-articles {
+  display: flex;
+  flex-direction: column;
+  height: 8.0625rem;
 }

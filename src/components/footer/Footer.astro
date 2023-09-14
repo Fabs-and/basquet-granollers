@@ -1,0 +1,58 @@
+---
+const { topFooterLinks, topFooterImportantLinks } = Astro.props;
+---
+
+{
+      topFooterLinks.map((category) => (
+        <article class="top-footer-articles">
+          <header>
+            <h5>{category.title.toUpperCase()}</h5>
+          </header>
+
+          <ul class='links-container'>
+            {category.links.map((link) => (
+              <li>
+                <a href={link.slug}>{link.name}</a>
+              </li>
+            ))}
+          </ul>
+        </article>
+      ))
+    }
+
+    <article>
+      <ul class='top-footer-articles last-article'>
+        {
+          topFooterImportantLinks.map((link) => (
+            <li>
+              <a
+                href={`/${link.slug}`}
+                target='_blank'
+                rel='noopener noreferrer'
+              >
+                <h5>{link.name.toUpperCase()}</h5>
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+    </article>
+  
+  <style>
+    article header {
+      margin-bottom: 0.5rem;
+    }
+
+    .links-container {
+      display: flex;
+      flex-grow: 1;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .last-article {
+    
+      justify-content: space-between;
+      width: 13.7rem;
+    }
+  </style>

@@ -1,0 +1,120 @@
+---
+import SocialMediaMenu from '@components/SocialMediaMenu.astro';
+
+import FooterTablet from '@components/footer/FooterTablet.astro';
+import FooterMobile from '@components/footer/FooterMobile.astro';
+import Footer from '@components/footer/Footer.astro';
+
+import {
+  bottomFooterLinks,
+  topFooterLinks,
+  topFooterImportantLinks,
+} from 'src/data/footer';
+const currentYear = new Date().getFullYear();
+---
+
+
+<footer>
+  <section class='top-section'>
+
+    <nav class="footer"> 
+      <Footer {topFooterLinks} {topFooterImportantLinks}/>
+    </nav>
+
+    <nav class="footer tablet">
+      <FooterTablet {topFooterLinks} {topFooterImportantLinks}/>
+    </nav>
+
+    <nav class="footer-mobile">
+
+    </nav>
+  </section>
+  
+
+  <section class='bottom-section'>
+    <div>
+      {
+        bottomFooterLinks.map((link) => (
+          <a
+            class='bottom-footer-links'
+            href={`/${link.slug}`}
+            target='_blank'
+            rel='noopener noreferrer'
+          >
+            {link.name}
+          </a>
+        ))
+      }
+    </div>{
+      (
+        <>
+          <small>
+            Web Propietat del Club Bàsquet Granollers. Copyright © {currentYear}
+            . All rights reserved
+          </small>
+          <SocialMediaMenu />
+        </>
+      )
+    }
+  </section>
+</footer>
+
+<style>
+
+  footer {
+    font-size: var(--font-size-footer);
+    height: var(--footer-hg);
+  }
+
+  .top-section {
+    height: var(--footer-top-section-hg);
+    background-color: var(--clr-footer);
+    padding-inline: var(--padding-inline);
+  }
+  
+  .footer {
+    height: inherit;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .tablet {
+    display: none;
+  }
+
+ 
+
+ 
+
+  .bottom-section {
+    height: var(--footer-bottom-section-hg);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-inline: var(--padding-inline);
+  }
+
+  small {
+    font-size: inherit;
+  }
+
+  .bottom-footer-links {
+    text-decoration: underline;
+  }
+
+  .bottom-footer-links:not(:last-child) {
+    margin-right: 1.62rem;
+  }
+
+  @media (width < 952px) {
+    .footer {
+      display: none;
+    }
+
+    .tablet {
+      display: block;
+    }
+  }
+</style>
+
