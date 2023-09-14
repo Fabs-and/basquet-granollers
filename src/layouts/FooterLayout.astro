@@ -26,7 +26,7 @@ const currentYear = new Date().getFullYear();
     </nav>
 
     <nav class="footer mobile">
-
+      <FooterMobile {topFooterLinks} {topFooterImportantLinks}/>
     </nav>
   </section>
   
@@ -63,7 +63,6 @@ const currentYear = new Date().getFullYear();
 
   footer {
     font-size: var(--font-size-footer);
-    /* height: var(--footer-hg); */
   }
 
   .top-section {
@@ -110,6 +109,17 @@ const currentYear = new Date().getFullYear();
     .tablet {
       display: block;
 
+    }
+  }
+
+  
+  @media (width < 648px) {
+    .tablet {
+      display: none;
+    }
+
+    .mobile {
+      display: block;
     }
   }
 </style>

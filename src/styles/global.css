@@ -142,6 +142,6 @@ a:hover svg path {
 .top-footer-articles {
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+ gap: 2.37rem;
   height: 8.0625rem;
 }

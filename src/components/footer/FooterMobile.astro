@@ -1,0 +1,113 @@
+---
+import { collapsibleArrow } from '@icons/icons';
+
+const { topFooterLinks, topFooterImportantLinks } = Astro.props;
+---
+
+
+  <article class="first-article">
+    {
+      topFooterLinks.map((category) => (
+       
+          <details >
+            
+            <summary>
+              <h5>{category.title.toUpperCase()}</h5>
+            </summary>
+    
+            <ul class='links-container'>
+                {category.links.map((link) => (
+                  <li>
+                    <a href={link.slug}>{link.name}</a>
+                  </li>
+                ))}
+            </ul>
+                   
+          </details>
+      
+      ))
+    }
+  </article>
+
+  <article class="second-article">
+    <ul class='top-footer-articles'>
+      {
+        topFooterImportantLinks.map((link) => (
+          <li>
+            <a
+              href={`/${link.slug}`}
+              target='_blank'
+              rel='noopener noreferrer'
+            >
+              <h5>{link.name.toUpperCase()}</h5>
+            </a>
+          </li>
+        ))
+      }
+    </ul>
+  </article>
+
+
+<style>
+  details > summary {
+    list-style: none;
+  }
+
+  summary::-webkit-details-marker {
+	  display: none;
+  }
+
+  details summary {
+    cursor: pointer;
+    position: relative;
+    transition: margin 0.45s ease-out;
+  }
+
+  details[open] summary {
+    margin-bottom: 10px;
+  }
+
+  summary::before {
+  	position: absolute;
+    top: -20%;
+    left: 4.5rem;
+    content: url('../../icons/collapsibleArrow.svg');;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    transform: rotate(0);
+    transform-origin: 50% 35%;
+    transition: 0.45s transform ease;
+  }
+
+  details[open] > summary:before {
+    transform: rotate(-180deg);
+    transition: 0.45s transform ease;
+  }
+
+  .first-article {
+    padding-top: 4.85rem;
+    /* padding-bottom: 4.85rem; */
+    display: flex;
+    flex-direction: column;
+    gap: 2.37rem;
+    width: 13.7rem;
+    margin: auto;
+  }
+
+  .links-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 0.65rem;
+  }
+
+  .second-article {
+    /* margin-top: 4.85rem; */
+    padding-top: 2.37rem;
+    padding-bottom: 4.85rem;
+    width: 13.7rem;
+    margin: auto;
+
+  }
+</style>
