@@ -25,7 +25,7 @@ const currentYear = new Date().getFullYear();
       <FooterTablet {topFooterLinks} {topFooterImportantLinks}/>
     </nav>
 
-    <nav class="footer-mobile">
+    <nav class="footer mobile">
 
     </nav>
   </section>
@@ -63,29 +63,24 @@ const currentYear = new Date().getFullYear();
 
   footer {
     font-size: var(--font-size-footer);
-    height: var(--footer-hg);
+    /* height: var(--footer-hg); */
   }
 
   .top-section {
-    height: var(--footer-top-section-hg);
     background-color: var(--clr-footer);
     padding-inline: var(--padding-inline);
   }
   
   .footer {
-    height: inherit;
+    min-height: var(--footer-top-section-hg);
     display: flex;
     align-items: center;
     justify-content: space-between;
   }
 
-  .tablet {
+  .tablet, .mobile {
     display: none;
   }
-
- 
-
- 
 
   .bottom-section {
     height: var(--footer-bottom-section-hg);
@@ -114,6 +109,7 @@ const currentYear = new Date().getFullYear();
 
     .tablet {
       display: block;
+
     }
   }
 </style>

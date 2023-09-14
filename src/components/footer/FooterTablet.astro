@@ -1,45 +1,37 @@
 ---
 import { collapsibleArrow } from '@icons/icons';
 
-
 const { topFooterLinks, topFooterImportantLinks } = Astro.props;
 ---
 
-<script>
-  let accordion = document.getElementsByClassName('collapsible');
+<div class="articles-container">
 
-  for (let i = 0; i < accordion.length; i++) {
-    accordion[i].addEventListener('click', function () {
-      accordion[i].nextElementSibling!.classList.toggle('content');
-    });
-  }
-</script>
-
-
-  <article class='top-footer-articles cd ..collapsible-item'>
+  <article class="first-article">
     {
       topFooterLinks.map((category) => (
-        <>
-          <button class='collapsible'>
-            <>
+       
+          <details >
+            
+            <summary>
               <h5>{category.title.toUpperCase()}</h5>
-              <Fragment set:html={collapsibleArrow} />
-            </>
-          </button>
-          <ul class='content'>
-            {category.links.map((link) => (
-              <li>
-                <a href={link.slug}>{link.name}</a>
-              </li>
-            ))}
-          </ul>
-        </>
+            </summary>
+    
+            <ul class='links-container'>
+                {category.links.map((link) => (
+                  <li>
+                    <a href={link.slug}>{link.name}</a>
+                  </li>
+                ))}
+            </ul>
+                   
+          </details>
+      
       ))
     }
   </article>
 
-  <article>
-    <ul class='last-article'>
+  <article class="second-article">
+    <ul class='top-footer-articles'>
       {
         topFooterImportantLinks.map((link) => (
           <li>
@@ -56,27 +48,44 @@ const { topFooterLinks, topFooterImportantLinks } = Astro.props;
     </ul>
   </article>
 
+</div>
 
 <style>
-    .content {
-    display: none;
-  }
- 
-    .links-container-tablet {
-    display: none;
+  .articles-container {
+    display: flex;
+    justify-content: space-evenly;
   }
 
+  details > summary {
+    list-style: none;
+  }
+
+  summary::-webkit-details-marker {
+	  display: none;
+  }
+
+  summary {
+    cursor: pointer;
+  }
+
+  .first-article {
+    margin-top: 4.85rem;
+    padding-bottom: 4.85rem;
+    display: flex;
+    flex-direction: column;
+    gap: 2.37rem;
+    width: 10rem;
+  }
+
+  .links-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 0.65rem;
+  }
   
-    .collapsible-item {
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-    }
-    button {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      gap: 0.7rem;
-    }
-  
+  .second-article {
+    margin-top: 4.85rem;
+    width: 13.7rem;
+  }
 </style>
