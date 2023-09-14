@@ -66,7 +66,32 @@ const { topFooterLinks, topFooterImportantLinks } = Astro.props;
 
   summary {
     cursor: pointer;
+    position: relative;
   }
+
+  summary::before {
+  	position: absolute;
+    top: -20%;
+	/* 
+	transform: translateY(-50%); */
+	left: 4.5rem;
+	content: url('../../icons/collapsibleArrow.svg');;
+	display: inline-flex;
+	justify-content: center;
+	align-items: center;
+	transform: rotate(0);
+   transform-origin: 50% 35%;
+  transition: 0.45s transform ease;
+  }
+
+  details[open] > summary:before {
+  transform: rotate(-180deg);
+  transition: 0.45s transform ease;
+}
+
+details[open] {
+  
+}
 
   .first-article {
     margin-top: 4.85rem;
