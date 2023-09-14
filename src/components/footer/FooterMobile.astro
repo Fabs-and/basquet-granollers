@@ -1,45 +1,30 @@
 ---
 import Accordion from "./Accordion.astro";
+import ImportantLinksContainer from "./ImportantLinksContainer.astro";
 
 const { topFooterLinks, topFooterImportantLinks } = Astro.props;
 ---
 
+<article class="first-article">
+  <Accordion {topFooterLinks}/>
+</article>
 
-  <article class="first-article">
-    <Accordion {topFooterLinks}/>
-  </article>
-
-  <article class="second-article">
-    <ul class='top-footer-articles'>
-      {
-        topFooterImportantLinks.map((link) => (
-          <li>
-            <a
-              href={`/${link.slug}`}
-              target='_blank'
-              rel='noopener noreferrer'
-            >
-              <h5>{link.name.toUpperCase()}</h5>
-            </a>
-          </li>
-        ))
-      }
-    </ul>
-  </article>
-
+<article class="second-article">
+  <ImportantLinksContainer {topFooterImportantLinks}/>
+</article>
 
 <style>
   .first-article {
     padding-top: 4.85rem;
     display: flex;
     flex-direction: column;
-    gap: 2.37rem;
+    gap: 1.8rem;
     width: 13.7rem;
     margin: auto;
   }
 
   .second-article {
-    padding-top: 2.37rem;
+    padding-top: 1.8rem;
     padding-bottom: 4.85rem;
     width: 13.7rem;
     margin: auto;
