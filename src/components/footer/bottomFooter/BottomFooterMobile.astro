@@ -1,0 +1,62 @@
+---
+import SocialMediaMenu from "@components/SocialMediaMenu.astro";
+
+const { bottomFooterLinks } = Astro.props;
+
+const currentYear = new Date().getFullYear();
+---
+
+<div class="main-container">
+
+  <div class="desktop">
+    {
+        bottomFooterLinks.map((link) => (
+          <a
+            class='bottom-footer-links'
+            href={`/${link.slug}`}
+            target='_blank'
+            rel='noopener noreferrer'
+          >
+            {link.name}
+          </a>
+        ))
+      }
+    
+  </div>
+  <small>
+      Web Propietat del Club Bàsquet Granollers. Copyright © {currentYear}
+      . All rights reserved
+    </small>
+  <SocialMediaMenu />
+  </div>
+    
+<style>
+  .main-container {
+    height: var(--footer-bottom-section-tablet-hg);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+  }
+
+  .desktop {
+    display: flex;
+    justify-content: space-around;
+    width: 16rem;
+}
+  small {
+    font-size: inherit;
+    text-align: center;
+    /* align-self: center; */
+    text-wrap: balance;
+  }
+
+  .bottom-footer-links {
+    text-decoration: underline;
+  }
+
+  .bottom-footer-links:not(:last-child) {
+    margin-right: 1.62rem;
+  }
+
+</style>

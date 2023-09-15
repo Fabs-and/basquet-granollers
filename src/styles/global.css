@@ -22,9 +22,14 @@
   --tablet-width: 769px;
   --mobile-width: 375px;
   --padding-inline: 6.13rem;
+  --padding-inline-tablet: 2rem;
+  --padding-inline-mobile: 1.56rem;
   --header-hg: 3rem;
   --footer-top-section-hg: 17.6875rem;
   --footer-bottom-section-hg: 5.6875rem;
+  --footer-bottom-section-tablet-hg: 9.0625rem;
+  --footer-bottom-section-mobile-hg: 13.875rem;
+
   --footer-hg: calc(
     var(--footer-top-section-hg) + var(--footer-bottom-section-hg)
   );
@@ -144,4 +149,5 @@ a:hover svg path {
   flex-direction: column;
   justify-content: space-between;
   height: 8.0625rem;
+
 }
