@@ -1,5 +1,12 @@
 ---
+import type { Link, Category } from "../../../types/footer";
+
 import ImportantLinksContainer from "./ImportantLinksContainer.astro";
+
+interface Props {
+  topFooterLinks: Category[];
+  topFooterImportantLinks: Link[];
+}
 
 const { topFooterLinks, topFooterImportantLinks } = Astro.props;
 ---
@@ -11,7 +18,7 @@ const { topFooterLinks, topFooterImportantLinks } = Astro.props;
         <h5>{category.title.toUpperCase()}</h5>
       </header>
 
-      <ul class='links-container'>
+      <ul class="links-container">
         {category.links.map((link) => (
           <li>
             <a href={link.slug}>{link.name}</a>
@@ -23,9 +30,9 @@ const { topFooterLinks, topFooterImportantLinks } = Astro.props;
 }
 
 <article>
-  <ImportantLinksContainer {topFooterImportantLinks}/>
+  <ImportantLinksContainer {topFooterImportantLinks} />
 </article>
-  
+
 <style>
   article header {
     margin-bottom: 0.5rem;

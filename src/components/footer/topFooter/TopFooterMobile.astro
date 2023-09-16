@@ -5,16 +5,16 @@ import ImportantLinksContainer from "./ImportantLinksContainer.astro";
 const { topFooterLinks, topFooterImportantLinks } = Astro.props;
 ---
 
-<article class="first-article">
+<article class="mobile-first-article">
   <Accordion {topFooterLinks}/>
 </article>
 
-<article class="second-article">
+<article class="mobile-second-article">
   <ImportantLinksContainer {topFooterImportantLinks}/>
 </article>
 
 <style>
-  .first-article {
+  .mobile-first-article {
     padding-top: 4.85rem;
     display: flex;
     flex-direction: column;
@@ -23,7 +23,7 @@ const { topFooterLinks, topFooterImportantLinks } = Astro.props;
     margin: auto;
   }
 
-  .second-article {
+  .mobile-second-article {
     padding-top: 1.8rem;
     padding-bottom: 4.85rem;
     width: 13.7rem;

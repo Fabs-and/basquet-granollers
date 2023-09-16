@@ -7,10 +7,10 @@ const { topFooterLinks, topFooterImportantLinks } = Astro.props;
 ---
 
 <div class="articles-container">
-  <article class="first-article">
+  <article class="tablet-first-article">
     <Accordion {topFooterLinks}/>
   </article>
-  <article class="second-article">
+  <article class="tablet-second-article">
     <ImportantLinksContainer {topFooterImportantLinks}/>
   </article>
 </div>
@@ -21,7 +21,7 @@ const { topFooterLinks, topFooterImportantLinks } = Astro.props;
     justify-content: space-evenly;
   }
 
-  .first-article {
+  .tablet-first-article {
     margin-top: 4.85rem;
     padding-bottom: 4.85rem;
     display: flex;
@@ -30,7 +30,7 @@ const { topFooterLinks, topFooterImportantLinks } = Astro.props;
     width: 10rem;
   }
 
-  .second-article {
+  .tablet-second-article {
     margin-top: 4.85rem;
     width: 13.7rem;
   }
