@@ -1,7 +1,9 @@
 ---
 import SocialMediaMenu from "@components/SocialMediaMenu.astro";
-import { copyright } from "src/data/footer";
 import BottomFooterLinks from "./BottomFooterLinks.astro";
+import Copyright from "./Copyright.astro";
+
+import { copyright } from "src/data/footer";
 
 const { bottomFooterLinks } = Astro.props;
 
@@ -13,15 +15,14 @@ const { bottomFooterLinks } = Astro.props;
 
     <SocialMediaMenu />
   </div>
-  <small>
-    {copyright}
-  </small>
+  <div class="copyright">
+    <Copyright/>
+  </div>
 </div>
 
 <style>
   .footer-main-container {
     height: var(--footer-bottom-section-hg);
-    
   }
 
   .tablet {
@@ -30,7 +31,7 @@ const { bottomFooterLinks } = Astro.props;
     justify-content: space-between;
   }
 
-  small {
+  .copyright {
     align-self: center;
   }
 </style>

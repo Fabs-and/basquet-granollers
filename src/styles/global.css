@@ -146,6 +146,7 @@ a:hover svg path {
 
 small {
   font-size: inherit;
+  text-wrap: balance;
 }
 
 /*Global Classes*/

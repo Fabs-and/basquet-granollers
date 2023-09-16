@@ -1,8 +1,8 @@
 ---
 import SocialMediaMenu from "@components/SocialMediaMenu.astro";
-import { copyright } from "src/data/footer";
+import { copyright } from "src/data/footer.ts";
 import BottomFooterLinks from "./BottomFooterLinks.astro";
-
+import Copyright from "./Copyright.astro";
 const { bottomFooterLinks } = Astro.props;
 ---
 
@@ -10,9 +10,7 @@ const { bottomFooterLinks } = Astro.props;
   <div>
     <BottomFooterLinks {bottomFooterLinks} />
   </div>
-  <small>
-    {copyright}
-  </small>
+  <Copyright />
   <SocialMediaMenu />
 </div>
 
