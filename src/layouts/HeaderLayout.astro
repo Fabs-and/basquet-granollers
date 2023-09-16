@@ -1,0 +1,41 @@
+---
+import TopHeader from '@components/header/topHeader/TopHeader.astro'
+import TopHeaderResponsive from '@components/header/topHeader/TopHeaderResponsive.astro'
+
+import BottomHeader from '@components/header/bottomHeader/BottomHeader.astro'
+import BottomHeaderResponsive from '@components/header/bottomHeader/BottomHeaderResponsive.astro'
+import HeaderLineSeparator from '@components/header/HeaderLineSeparator.astro'
+---
+
+<header>
+  <section class="header-top-section">
+    <div class="top-header">
+
+    </div>
+    <div class="top-header responsive"></div>
+  </section>
+  <section class="header-bottom-section">
+    <div class="bottom-header">
+      <BottomHeader />
+    </div>
+    <div class="bottom-header responsive">
+      <BottomHeaderResponsive />
+    </div>
+  </section>
+  <HeaderLineSeparator />
+</header>
+
+<style>
+   @media (width < 965px) {
+    .top-header, .bottom-header {
+      display: none;
+    }
+
+    .header-top-section, .header-bottom-section {
+      padding-inline: var(--padding-inline-tablet);
+    }
+    .responsive {
+      display: block;
+    }
+  }
+</style>

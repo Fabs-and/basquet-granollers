@@ -16,7 +16,7 @@ import {
 
 
 <footer>
-  <section class='top-section'>
+  <section class='footer-top-section'>
     
     <nav class="top-footer"> 
       <TopFooter {topFooterLinks} {topFooterImportantLinks}/>
@@ -32,7 +32,7 @@ import {
   </section>
   
 
-  <section class='bottom-section'>
+  <section class='footer-bottom-section'>
     <div class="bottom-footer">
       <BottomFooter {bottomFooterLinks} {copyright} />
     </div>
@@ -51,7 +51,7 @@ import {
     font-size: var(--font-size-footer);
   }
 
-  .top-section {
+  .footer-top-section {
     background-color: var(--clr-footer);
     padding-inline: var(--padding-inline);
   }
@@ -67,7 +67,7 @@ import {
     display: none;
   }
 
-  .bottom-section {
+  .footer-bottom-section {
     padding-inline: var(--padding-inline);
   }
 
@@ -76,7 +76,7 @@ import {
       display: none;
     }
 
-    .top-section, .bottom-section {
+    .footer-top-section, .footer-bottom-section {
       padding-inline: var(--padding-inline-tablet);
     }
     .tablet {
@@ -91,7 +91,7 @@ import {
       display: none;
     }
 
-     .top-section, .bottom-section {
+     .footer-top-section, .footer-bottom-section {
       padding-inline: var(--padding-inline-mobile);
     }
 
