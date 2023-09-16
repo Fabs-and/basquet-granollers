@@ -5,46 +5,32 @@ import BottomFooterLinks from "./BottomFooterLinks.astro";
 
 const { bottomFooterLinks } = Astro.props;
 
-const currentYear = new Date().getFullYear();
 ---
 
-<div class="main-container">
-
-  <div class="desktop">
+<div class="footer-main-container">
+  <div class="tablet">
     <BottomFooterLinks {bottomFooterLinks} />
-    
+
     <SocialMediaMenu />
   </div>
   <small>
-      {copyright}
-    </small>
-  </div>
-    
+    {copyright}
+  </small>
+</div>
+
 <style>
-  .main-container {
+  .footer-main-container {
     height: var(--footer-bottom-section-hg);
-    display: flex;
-    flex-direction: column;
-    justify-content: space-evenly;
+    
   }
 
-  .desktop {
+  .tablet {
     display: flex;
     align-items: center;
     justify-content: space-between;
   }
 
   small {
-    font-size: inherit;
     align-self: center;
   }
-
-  .bottom-footer-links {
-    text-decoration: underline;
-  }
-
-  .bottom-footer-links:not(:last-child) {
-    margin-right: 1.62rem;
-  }
-
 </style>

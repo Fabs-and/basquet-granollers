@@ -1,17 +1,24 @@
 ---
-const {bottomFooterLinks} = Astro.props;
+const { bottomFooterLinks } = Astro.props;
 ---
- 
- {
-  bottomFooterLinks.map((link) => (
-    <a
-      class='underline-links'
-      href={`/${link.slug}`}
-      target='_blank'
-      rel='noopener noreferrer'
-    >
-      {link.name}
-    </a>
-  ))
-}
 
+
+  {
+    bottomFooterLinks.map((link) => (
+      <a
+        class="underline-links"
+        href={`/${link.slug}`}
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        {link.name}
+      </a>
+    ))
+  }
+
+
+<style>
+  a:not(:last-child) {
+    margin-right: 1.62rem;
+  }
+</style>
