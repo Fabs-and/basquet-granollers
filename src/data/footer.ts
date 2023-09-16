@@ -1,3 +1,5 @@
+const currentYear = new Date().getFullYear();
+
 export const topFooterLinks = [
   {
     title: `El club`,
@@ -42,13 +44,17 @@ export const topFooterLinks = [
 
 export const topFooterImportantLinks = [
   { name: `Botiga`, slug: 'botiga' },
-  { name: `La història del bàsquet a Granollers`, slug: 'la-historia-del-basquet-a-granollers' },
+  {
+    name: `La història del bàsquet a Granollers`,
+    slug: 'la-historia-del-basquet-a-granollers',
+  },
   { name: `Contacte`, slug: 'contacte' },
 ];
+
 export const bottomFooterLinks = [
   { name: `Avís Legal`, slug: 'avis-legal' },
   { name: `Política de cookies`, slug: 'politica-de-cookies' },
 ];
 
-
+export const copyright = `Web Propietat del Club Bàsquet Granollers. Copyright © ${currentYear}. All rights reserved`;
 

@@ -10,6 +10,7 @@ import {
   bottomFooterLinks,
   topFooterLinks,
   topFooterImportantLinks,
+  copyright
 } from 'src/data/footer';
 ---
 
@@ -33,13 +34,13 @@ import {
 
   <section class='bottom-section'>
     <div class="bottom-footer">
-      <BottomFooter {bottomFooterLinks} />
+      <BottomFooter {bottomFooterLinks} {copyright} />
     </div>
     <div class="tablet">
-      <BottomFooterTablet {bottomFooterLinks} />
+      <BottomFooterTablet {bottomFooterLinks} {copyright}/>
     </div>
     <div class="mobile">
-      <BottomFooterMobile {bottomFooterLinks} />
+      <BottomFooterMobile {bottomFooterLinks} {copyright}/>
     </div>
   </section>
 </footer>
@@ -92,6 +93,10 @@ import {
 
      .top-section, .bottom-section {
       padding-inline: var(--padding-inline-mobile);
+    }
+
+    .top-section {
+      min-height: var(--footer-top-section-mobile-hg);
     }
 
     .mobile {

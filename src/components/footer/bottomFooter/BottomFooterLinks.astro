@@ -1,0 +1,17 @@
+---
+const {bottomFooterLinks} = Astro.props;
+---
+ 
+ {
+  bottomFooterLinks.map((link) => (
+    <a
+      class='underline-links'
+      href={`/${link.slug}`}
+      target='_blank'
+      rel='noopener noreferrer'
+    >
+      {link.name}
+    </a>
+  ))
+}
+
