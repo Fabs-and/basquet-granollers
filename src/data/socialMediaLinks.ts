@@ -1,4 +1,4 @@
-import { facebookIcon, instagramIcon, tiktokIcon, twitterIcon, youtubeIcon } from "@icons/icons";
+import { facebookIcon, instagramIcon, tiktokIcon, twitterIcon, youtubeIcon } from "src/assets/icons";
 
 export const socialMediaLinks = [
   {

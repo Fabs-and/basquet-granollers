@@ -1,11 +1,15 @@
 ---
 import { topHeaderCallToAction } from "src/data/header";
+import SocialMediaMenu from "@components/SocialMediaMenu.astro";
 ---
 
 <p>
   {topHeaderCallToAction.toUpperCase() }
   <a href="" class="underline-links"> AQUÍ</a>
 </p>
+<div>
+  <SocialMediaMenu />
+</div>
 
 <style>
   p {
@@ -13,5 +17,13 @@ import { topHeaderCallToAction } from "src/data/header";
     line-height: var(--top-header-hg);
     font-weight: 560;
     font-style: italic;
+  }
+
+  div {
+    margin-top: 0.28rem;
+    position: absolute;
+    top: 0;
+    right: var(--padding-inline);
+    transform: translate(0,50%);
   }
 </style>
