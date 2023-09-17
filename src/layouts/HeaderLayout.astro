@@ -12,7 +12,7 @@ import HeaderLineSeparator from '@components/header/HeaderLineSeparator.astro'
     <div class="top-header">
       <TopHeader />
     </div>
-    <div class="top-header responsive">
+    <div class="top-header responsive top">
       <TopHeaderResponsive />
     </div>
   </section>
@@ -52,6 +52,12 @@ import HeaderLineSeparator from '@components/header/HeaderLineSeparator.astro'
     }
     .responsive {
       display: block;
+    }
+  }
+
+   @media (width < 648px) {
+    .top {
+      display: none;
     }
   }
 </style>
