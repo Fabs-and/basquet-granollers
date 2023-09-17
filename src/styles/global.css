@@ -35,6 +35,9 @@
     var(--footer-top-section-hg) + var(--footer-bottom-section-hg)
   );
 
+  --top-header-hg: 2.75rem;
+  --bottom-header-hg: 6.3125rem ;
+
   /*Buttons*/
   --btn-height: 2.69rem;
   --btn-width-s: 2.69rem;

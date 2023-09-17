@@ -10,9 +10,11 @@ import HeaderLineSeparator from '@components/header/HeaderLineSeparator.astro'
 <header>
   <section class="header-top-section">
     <div class="top-header">
-
+      <TopHeader />
     </div>
-    <div class="top-header responsive"></div>
+    <div class="top-header responsive">
+      <TopHeaderResponsive />
+    </div>
   </section>
   <section class="header-bottom-section">
     <div class="bottom-header">
@@ -26,6 +28,19 @@ import HeaderLineSeparator from '@components/header/HeaderLineSeparator.astro'
 </header>
 
 <style>
+  .top-header {
+    min-height: var(--top-header-hg)
+  }
+
+  .bottom-header {
+    min-height: var(--bottom-header-hg);
+    background-color: var(--clr-contrast);
+    opacity: 0.9;
+  }
+  .responsive {
+    display: none;
+  }
+
    @media (width < 965px) {
     .top-header, .bottom-header {
       display: none;

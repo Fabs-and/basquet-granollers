@@ -1,0 +1,1 @@
+export const topHeaderCallToAction = `Fes-te soci/sòcia del cbg`
