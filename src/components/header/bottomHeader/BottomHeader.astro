@@ -1,3 +1,62 @@
 ---
-
+import { bottomHeaderLinks } from "src/data/header";
 ---
+
+<img
+  src="../../../assets/club-basquet-granollers-logo.png"
+  alt="Club Bàsquet Granollers Logo"
+/>
+
+<nav class="nav">
+  <ul>
+    {
+      bottomHeaderLinks.map((category) => (
+        <li>
+          {category.title ? (
+            <button>{category.title.toUpperCase()}</button>
+          ) : (
+            <a href={category.slug}>{category.name!.toUpperCase()}</a>
+          )}
+        </li>
+      ))
+    }
+  </ul>
+</nav>
+
+<style>
+  img {
+    position: absolute;
+  }
+
+  button {
+    position: relative;
+         color: var(--clr-primary);
+    font-weight: var(--font-weight-bold);
+  }
+
+  button::before {
+    color: var(--clr-primary);
+    position: absolute;
+    top: -10%;
+    left: 3.5rem;
+    content: url('../../../assets/collapsibleArrowHeader.svg');
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    transform: rotate(0);
+    transform-origin: 50% 35%;
+    transition: 0.45s transform ease;
+  }
+  ul {
+    min-height: var(--bottom-header-hg);
+    display: flex;
+    gap: 2rem;
+    align-items: center;
+    color: var(--clr-primary);
+    font-weight: var(--font-weight-bold);
+  }
+  a {
+     color: var(--clr-primary);
+    font-weight: var(--font-weight-bold);
+  }
+</style>
