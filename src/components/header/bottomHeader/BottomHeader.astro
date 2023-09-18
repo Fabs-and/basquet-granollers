@@ -1,6 +1,6 @@
 ---
 import { bottomHeaderLinks } from "src/data/header";
-
+import { logo } from "@assets/logo";
 import { collapsibleArrowHeader } from '@assets/icons'
 ---
 <script>
@@ -18,10 +18,7 @@ buttons.forEach(function(button) {
 });
 
 </script>
-<img
-  src="../../../assets/club-basquet-granollers-logo.png"
-  alt="Club Bàsquet Granollers Logo"
-/>
+<a title="Club Bàsquet Granollers Logo" aria-label="Club Bàsquet Granollers Logo"href="/"><Fragment set:html={logo}/></a>
 
 <nav class="nav">
   <ul>
@@ -40,9 +37,13 @@ buttons.forEach(function(button) {
 </nav>
 
 <style>
-  img {
+  a {
     position: absolute;
+    bottom: 4px;
+    left: var(--padding-inline)
   }
+
+ 
 
  .rotate {
     display: inline-block;
