@@ -1,10 +1,10 @@
 ---
-const { text, isFilled } = Astro.props as  { text: string;
+const { text, isFilled, slug } = Astro.props as  { text: string;
 isFilled: boolean};
 ---
 
 
-  <a href="" class:list={[{ isFilled: isFilled }]}>{text.toUpperCase()}</a>
+  <a href={slug} class:list={[{ isFilled: isFilled }]}>{text.toUpperCase()}</a>
 
 
 <style>

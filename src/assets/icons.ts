@@ -20,11 +20,12 @@ export const facebookIcon = `<svg xmlns="http://www.w3.org/2000/svg" class="icon
   <path d="M14.2997 0.225586H1.57129C0.702068 0.225586 0 0.958035 0 1.86488V15.1441C0 16.0477 0.702068 16.7834 1.57129 16.7834H7.01155V10.6923H5.39163V8.49179H7.01155V7.19494C7.01155 6.04395 7.37018 5.12443 8.08744 4.43637C8.80471 3.74831 9.74687 3.40587 10.9139 3.40587C11.5096 3.40587 11.999 3.46929 12.3849 3.59612V5.91395C11.999 5.75541 11.6342 5.67614 11.2908 5.67614C10.3213 5.67614 9.83805 6.23737 9.83805 7.35665V8.48862H12.0445V10.6891H9.83805V16.7802H14.2997C15.1659 16.7802 15.871 16.0477 15.871 15.1409V1.86488C15.871 0.958035 15.1689 0.225586 14.2997 0.225586Z" fill="white"/>
   </svg>`;
 
-export const collapsibleArrow = `<svg xmlns="http://www.w3.org/2000/svg" width="27" height="27" viewBox="0 0 32 32" fill="none">
-<path fill-rule="evenodd" clip-rule="evenodd" d="M15.8367 24.4043C16.0373 24.3823 16.2332 24.2995 16.3948 24.1544C16.4349 24.1185 16.4713 24.0801 16.5042 24.0396L29.8789 9.09631C30.2472 8.68478 30.2122 8.05259 29.8007 7.68426C29.3891 7.31593 28.757 7.35095 28.3886 7.76247L15.7251 21.9112L2.86823 7.58705C2.49932 7.17604 1.86708 7.14191 1.45607 7.51082C1.04506 7.87973 1.01093 8.51197 1.37984 8.92298L14.9446 24.0358C14.9786 24.0781 15.0165 24.1182 15.0583 24.1556C15.2791 24.3533 15.5636 24.4348 15.8367 24.4043Z" fill="white"/>
-</svg>`;
-
 export const collapsibleArrowHeader = `<svg xmlns="http://www.w3.org/2000/svg" style="margin-left: 0.15rem; margin-bottom: 0.1rem"width="9" height="6" viewBox="0 0 9 6" fill="none">
 <path d="M7.78174 1.04249L4.50936 4.69864" stroke="#002E6D" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
 <path d="M1.19 1.00006L4.50979 4.69871" stroke="#002E6D" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>`;
+
+export const magnifyingGlass = `<svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 28 28" fill="none">
+  <path d="M20.8057 20.8062L26.8057 26.8062" stroke="#002E6D" stroke-width="2" stroke-linecap="round"/>
+  <circle cx="13.8995" cy="13.8994" r="8.82843" transform="rotate(-45 13.8995 13.8994)" stroke="#002E6D" stroke-width="2"/>
 </svg>`;
