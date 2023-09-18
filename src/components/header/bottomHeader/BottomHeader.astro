@@ -7,7 +7,7 @@ import { collapsibleArrowHeader, magnifyingGlass } from "@assets/icons";
 <script>
   function handleClick() {
     let div = this.querySelector(".rotate");
-    div.classList.toggle("rotated");
+    div.classList.toggle(".rotated");
   }
   let buttons = document.querySelectorAll("button");
 
@@ -16,6 +16,7 @@ import { collapsibleArrowHeader, magnifyingGlass } from "@assets/icons";
     button.addEventListener("click", handleClick);
   });
 </script>
+
 <a
   class="logo"
   title="Club Bàsquet Granollers Logo"
@@ -23,18 +24,14 @@ import { collapsibleArrowHeader, magnifyingGlass } from "@assets/icons";
   href="/"><Fragment set:html={logo} /></a
 >
 
-<nav class="nav">
+
+ <nav class="nav">
   <ul>
     {
       bottomHeaderLinks.map((category) => (
         <li>
           {category.title ? (
-            <button>
-              {category.title.toUpperCase()}
-              <div class="rotate">
-                <Fragment set:html={collapsibleArrowHeader} />
-              </div>
-            </button>
+            <button>{category.title.toUpperCase()}<div class="rotate"><Fragment set:html={collapsibleArrowHeader} /></div></button>
           ) : (
             <a href={category.slug}>{category.name!.toUpperCase()}</a>
           )}
@@ -42,9 +39,10 @@ import { collapsibleArrowHeader, magnifyingGlass } from "@assets/icons";
       ))
     }
   </ul>
+
 </nav>
 
-<div class="history-and-search-container">
+<div class="history-search-container">
   <a href="" class="button">
     {`La història`.toUpperCase()}
   </a>
@@ -61,16 +59,15 @@ import { collapsibleArrowHeader, magnifyingGlass } from "@assets/icons";
   }
 
   button:hover {
-    color: var(--clr-accent)
+    color: var(--clr-accent);
   }
-
-  .history-and-search-container {
+  .history-search-container {
     position: absolute;
+    display: flex;
     right: var(--padding-inline);
     bottom: 50%;
     transform: translateY(50%);
-    display: flex;
-    gap:0.94rem;
+    gap: 0.94rem;
   }
 
   .search-icon {
@@ -100,9 +97,9 @@ import { collapsibleArrowHeader, magnifyingGlass } from "@assets/icons";
     font-weight: var(--font-weight-bold);
     padding-left: 12.4rem;
   }
+
   a {
     color: var(--clr-primary);
-    font-weight: var(--font-weight-bold);
   }
 
   .button {
@@ -111,7 +108,6 @@ import { collapsibleArrowHeader, magnifyingGlass } from "@assets/icons";
     place-items: center;
     height: 2.6875rem;
     width: 8.8125rem;
-    /* border: 1px solid var(--clr-accent); */
     border-radius: 1.75rem;
     color: inherit;
     background-color: var(--clr-primary);
@@ -119,7 +115,6 @@ import { collapsibleArrowHeader, magnifyingGlass } from "@assets/icons";
     transition:
       background-color 0.1s ease-in-out,
       font-weight 0.1s ease-in-out;
-    
   }
 
   .button:hover {
