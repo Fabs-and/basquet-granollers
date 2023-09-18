@@ -29,3 +29,9 @@ export const magnifyingGlass = `<svg xmlns="http://www.w3.org/2000/svg" width="2
   <path d="M20.8057 20.8062L26.8057 26.8062" stroke="#002E6D" stroke-width="2" stroke-linecap="round"/>
   <circle cx="13.8995" cy="13.8994" r="8.82843" transform="rotate(-45 13.8995 13.8994)" stroke="#002E6D" stroke-width="2"/>
 </svg>`;
+
+export const hamburgerMenuIcon = `<svg xmlns="http://www.w3.org/2000/svg" width="23" height="16" viewBox="0 0 23 16" fill="none">
+  <path d="M1 1H22" stroke="#002E6D" stroke-width="2" stroke-linecap="round"/>
+  <path d="M1 8H22" stroke="#002E6D" stroke-width="2" stroke-linecap="round"/>
+  <path d="M1 15H22" stroke="#002E6D" stroke-width="2" stroke-linecap="round"/>
+</svg>`;

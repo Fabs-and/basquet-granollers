@@ -44,7 +44,7 @@ import { collapsibleArrowHeader, magnifyingGlass } from "@assets/icons";
   </ul>
 </nav>
 
-<div class="history-search-container">
+<div class="history-and-search-container">
   <a href="" class="button">
     {`La història`.toUpperCase()}
   </a>
@@ -63,12 +63,13 @@ import { collapsibleArrowHeader, magnifyingGlass } from "@assets/icons";
   button:hover {
     color: var(--clr-accent)
   }
-  .history-search-container {
+
+  .history-and-search-container {
     position: absolute;
-    display: flex;
     right: var(--padding-inline);
     bottom: 50%;
     transform: translateY(50%);
+    display: flex;
     gap:0.94rem;
   }
 
@@ -118,7 +119,7 @@ import { collapsibleArrowHeader, magnifyingGlass } from "@assets/icons";
     transition:
       background-color 0.1s ease-in-out,
       font-weight 0.1s ease-in-out;
-    /* opacity: 1; */
+    
   }
 
   .button:hover {

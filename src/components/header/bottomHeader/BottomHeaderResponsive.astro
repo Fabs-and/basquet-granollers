@@ -1,0 +1,52 @@
+---
+import { logoSmall } from "@assets/logo";
+import { magnifyingGlass, hamburgerMenuIcon } from "@assets/icons";
+---
+
+<script>
+  function handleClick() {
+    let div = this.querySelector(".rotate");
+    div.classList.toggle("rotated");
+  }
+  let buttons = document.querySelectorAll("button");
+
+  buttons.forEach(function (button) {
+    // Add the event listener to each button
+    button.addEventListener("click", handleClick);
+  });
+</script>
+<div class="flex-container">
+  <button class="dropdown-menu">
+      <Fragment set:html={hamburgerMenuIcon} />
+  </button>
+  <a
+    class="logo"
+    title="Club Bàsquet Granollers Logo"
+    aria-label="Club Bàsquet Granollers Logo"
+    href="/"><Fragment set:html={logoSmall} /></a>
+
+  <div class="search-icon">
+    <Fragment set:html={magnifyingGlass} />
+  </div>
+</div>
+<style>
+  .flex-container {
+    min-height: var(--bottom-header-hg);
+   
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .logo {
+    padding-top: 0.35rem;
+  }
+  .search-icon:hover {
+    cursor: pointer;
+  }
+
+  a {
+    color: var(--clr-primary);
+    font-weight: var(--font-weight-bold);
+  }
+</style>
