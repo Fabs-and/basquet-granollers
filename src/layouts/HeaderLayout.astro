@@ -24,7 +24,9 @@ import HeaderLineSeparator from '@components/header/HeaderLineSeparator.astro'
       <BottomHeaderResponsive />
     </div>
   </section>
-  <HeaderLineSeparator />
+  <div class="separator-line">
+    <HeaderLineSeparator />
+  </div>
 </header>
 
 <style>
@@ -43,11 +45,16 @@ import HeaderLineSeparator from '@components/header/HeaderLineSeparator.astro'
     display: none;
   }
 
-   @media (width < 965px) {
+  .separator-line {
+    height: var(--footer-separator-line-hg);
+  }
+   @media (width < 1025px) {
     .top-header, .bottom-header {
       display: none;
     }
-
+     .separator-line {
+    height: var(--footer-separator-line-responsive-hg);
+  }
     .header-top-section, .bottom-header {
       padding-inline: var(--padding-inline-tablet);
     }

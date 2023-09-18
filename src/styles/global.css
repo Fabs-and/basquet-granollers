@@ -30,7 +30,8 @@
   --footer-bottom-section-hg: 5.6875rem;
   --footer-bottom-section-tablet-hg: 9.0625rem;
   --footer-bottom-section-mobile-hg: 13.875rem;
-
+  --footer-separator-line-hg: 0.5625rem;
+  --footer-separator-line-responsive-hg: 0.3125rem;
   --footer-hg: calc(
     var(--footer-top-section-hg) + var(--footer-bottom-section-hg)
   );
