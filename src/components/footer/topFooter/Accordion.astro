@@ -48,12 +48,12 @@ const { topFooterLinks } = Astro.props;
     align-items: center;
     transform: rotate(0);
     transform-origin: 50% 35%;
-    transition: 0.45s transform ease;
+    transition: 0.45s transform ease-in-out;
   }
 
   details[open] > summary:before {
     transform: rotate(-180deg);
-    transition: 0.45s transform ease;
+    transition: 0.45s transform ease-in-out;
   }
 
   .links-container {
