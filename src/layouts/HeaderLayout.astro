@@ -30,6 +30,14 @@ import HeaderLineSeparator from '@components/header/HeaderLineSeparator.astro'
 </header>
 
 <style>
+  header {
+    position: absolute;
+    /* padding-inline: var(--padding-inline); */
+    /* min-width: var(--regular-width); */
+    left: 0;
+    right: 0;
+    top: 0rem;
+  }
   .top-header {
     min-height: var(--top-header-hg);
     position: relative;
@@ -37,6 +45,8 @@ import HeaderLineSeparator from '@components/header/HeaderLineSeparator.astro'
 
   .bottom-header {
     min-height: var(--bottom-header-hg);
+    
+
     background-color: var(--clr-contrast);
     opacity: 0.9;
     position: relative;

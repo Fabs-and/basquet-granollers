@@ -1,41 +1,40 @@
 ---
 // Import styles
-import '@styles/global.css';
+import "@styles/global.css";
 
 // Import components
-import FooterLayout from './FooterLayout.astro';
-import HeaderLayout from './HeaderLayout.astro';
+import FooterLayout from "./FooterLayout.astro";
+import HeaderLayout from "./HeaderLayout.astro";
 const { title } = Astro.props;
 ---
 
-<html lang='ca'>
+<html lang="ca">
   <head>
-    <meta charset='utf-8' />
+    <meta charset="utf-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link
-      rel='icon'
-      type='image/svg+xml'
-      href='/favicon.svg'
+      rel="stylesheet"
+      href="ttps://p.typekit.net/p.css?s=1&k=elj5gax&ht=tk&f=44038.44039.44044.44045.44054.44055.44060.44061.44070.44071.44076.44077.44086.44087.44092.44093.44102.44103.44108.44109.44118.44119.44124.44125&a=17452211&app=typekit&e=css"
     />
-    <link rel="stylesheet" href="ttps://p.typekit.net/p.css?s=1&k=elj5gax&ht=tk&f=44038.44039.44044.44045.44054.44055.44060.44061.44070.44071.44076.44077.44086.44087.44092.44093.44102.44103.44108.44109.44118.44119.44124.44125&a=17452211&app=typekit&e=css">
 
-    <meta
-      name='viewport'
-      content='width=device-width'
-    />
-    <meta
-      name='generator'
-      content={Astro.generator}
-    />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="generator" content={Astro.generator} />
     <title>{title}</title>
   </head>
   <body>
-    <HeaderLayout />
-    <main>
-      <slot />
-    </main>
-    <FooterLayout/>
+ 
+      <HeaderLayout />
+      <main>
+        <slot />
+      </main>
+      <FooterLayout />
+  
   </body>
 </html>
 
+<style>
+  body {
+    position: relative;
+  }
 
-
+</style>
