@@ -3,7 +3,9 @@ import { mainSponsorsWhite } from "@data/sponsors";
 ---
 
 <section>
-  <img src="hero-image.avif" />
+  <div class='image-container'>
+    <img src="hero-image.avif"/>
+  </div>
 
   <div class="sponsors-flex-container">
     <aside>
@@ -32,21 +34,25 @@ import { mainSponsorsWhite } from "@data/sponsors";
     z-index: -1;
   }
 
+  img {
+    /* transform: scale(1.35) */
+  }
+
   .sponsors-flex-container {
     position: absolute;
     left: 0rem;
     right: 0rem;
-    bottom: 0rem;
+    bottom: 6rem;
     height: 7.875rem;
     background-color: var(--clr-primary);
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 2rem;
+    gap: 3.05rem;
   }
   aside {
     height: 60%;
-    padding-right: 2rem;
+    padding-right: 3.05rem;
     display: flex;
     align-items: center;
     border-right: 1px solid white;
@@ -54,6 +60,6 @@ import { mainSponsorsWhite } from "@data/sponsors";
   ul {
     display: flex;
     align-items: center;
-    gap: 2rem;
+    gap: 3.05rem;
   }
 </style>
