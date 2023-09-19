@@ -1,17 +1,59 @@
 ---
-
+import { mainSponsorsWhite } from "@data/sponsors";
 ---
 
 <section>
-  <img src="hero-image.avif"/>
-</section>
+  <img src="hero-image.avif" />
 
+  <div class="sponsors-flex-container">
+    <aside>
+      Patrocinadors principals
+    </aside>
+    <ul class="hero-sponsors-container">
+      {
+        mainSponsorsWhite.map((sponsor) => (
+          <li>
+            <a href={sponsor.link} target="_blank" rel="noopener noreferrer">
+              <img src={sponsor.logo} alt={sponsor.alt} />
+            </a>
+          </li>
+        ))
+      }
+    </ul>
+  </div>
+</section>
 
 <style>
   section {
-    position: relative;
-    margin-top: var(--top-header-hg);
+    position:relative;
+    margin-top: calc(
+      (var(--bottom-header-hg) + var(--header-separator-line-hg)) * -1
+    );
     z-index: -1;
-    padding: none;
+  }
+
+  .sponsors-flex-container {
+    position: absolute;
+    left: 0rem;
+    right: 0rem;
+    bottom: 0rem;
+    height: 7.875rem;
+    background-color: var(--clr-primary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 2rem;
+  }
+  aside {
+    height: 60%;
+    padding-right: 2rem;
+    display: flex;
+    align-items: center;
+    border-right: 1px solid white;
+  }
+  ul {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
   }
 </style>
