@@ -31,16 +31,17 @@ import HeaderLineSeparator from '@components/header/HeaderLineSeparator.astro'
 
 <style>
   header {
-    position: absolute;
-    /* padding-inline: var(--padding-inline); */
-    /* min-width: var(--regular-width); */
-    left: 0;
-    right: 0;
-    top: 0rem;
+    position: sticky;
+    top:0;
+    /* left: 50%;
+    transform: translateX(-50%);
+    max-width: 1400px; */
   }
   .top-header {
     min-height: var(--top-header-hg);
-    position: relative;
+    background-color: var(--clr-primary);
+    /* width: max-content; */
+    /* position: relative; */
   }
 
   .bottom-header {
