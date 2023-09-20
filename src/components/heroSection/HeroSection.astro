@@ -1,38 +1,26 @@
 ---
-import { mainSponsorsWhite } from "@data/sponsors";
 import { slides } from "@data/hero-carousel";
-import ButtonAnchor  from "@components/ButtonAnchor.astro";
+import ButtonAnchor from "@components/ButtonAnchor.astro";
 ---
 
 <section>
-
-    <img src="hero-image.avif" />
-  
-
-  <div class="hero-info-container">
-    <div class="hero-info-flex">
-      <h2>{slides[0].title}</h2>
-      <p>{slides[0].description}</p>
-      <ButtonAnchor slug={slides[0].link} text={slides[0].buttonText}/>
-    </div>
-  </div>
-
-  <!-- <div class="sponsors-flex-container">
-    <p class="sponsors-title">Patrocinadors principals</p>
-    <nav>
-      <ul class="hero-sponsors-container">
-        {
-          mainSponsorsWhite.map((sponsor) => (
-            <li>
-              <a href={sponsor.link} target="_blank" rel="noopener noreferrer">
-                <img src={sponsor.logo} alt={sponsor.alt} />
-              </a>
-            </li>
-          ))
-        }
-      </ul>
-    </nav>
-  </div> -->
+  {
+    slides.map((slide, index) => (
+        <img
+          src={slide.image}
+          class="hidden"
+          alt={slide.imageAlt}
+          loading="lazy"
+        />
+        <div class="hero-info-container">
+          <div class="hero-info-flex">
+            <h2>{slide.title}</h2>
+            <p>{slide.description}</p>
+            <ButtonAnchor slug={slide.link} text={slide.buttonText} />
+          </div>
+        </div>
+    ))
+  }
 </section>
 
 <style>
@@ -44,28 +32,24 @@ import ButtonAnchor  from "@components/ButtonAnchor.astro";
     height: calc(100dvh - var(--top-header-hg));
     overflow: hidden;
   }
-  
-  img {
-    /* position: absolute; */
-   height: inherit;
-   width: 100vw;
-    object-fit: cover;
-    /* object-position: center; */
-  }
 
+  img {
+    height: inherit;
+    width: 100vw;
+    object-fit: cover;
+  }
 
   .hero-info-container {
     position: absolute;
     background-color: rgba(0, 0, 0, 0.65);
-    top: calc(var(--bottom-header-hg) + var(--header-separator-line-hg)) ;
+    top: calc(var(--bottom-header-hg) + var(--header-separator-line-hg));
     left: 0;
     width: 37rem;
-   bottom: 0rem;
+    bottom: 0rem;
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: center;
-   
   }
 
   .hero-info-flex {
@@ -73,39 +57,10 @@ import ButtonAnchor  from "@components/ButtonAnchor.astro";
     flex-direction: column;
     justify-content: center;
     width: 60%;
-    /* align-items: center; */
-    /* padding-inline: 6.25rem; */
     gap: 1.5rem;
     text-wrap: balance;
   }
 
-  .sponsors-flex-container {
-    position: absolute;
-    left: 0rem;
-    right: 0rem;
-    bottom: 0rem;
-    height: 7.875rem;
-    background-color: var(--clr-primary);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 3.05rem;
-  }
-
-  .sponsors-title {
-    height: 60%;
-    padding-right: 3.05rem;
-    display: flex;
-    align-items: center;
-    border-right: 1px solid white;
-  }
-  ul {
-    display: flex;
-    align-items: center;
-    gap: 3.05rem;
-  }
-
-  
   @media (width < 1184px) {
     .hero-info-container {
       width: 50%;
@@ -114,20 +69,17 @@ import ButtonAnchor  from "@components/ButtonAnchor.astro";
 
   @media (width < 1025px) {
     .hero-info-flex {
-      /* padding-inline: 2.56rem; */
       width: 80%;
     }
   }
-  
+
   @media (width < 648px) {
     .hero-info-container {
       width: 100vw;
     }
-    
-
 
     section {
-        height: 100dvh;
+      height: 100dvh;
     }
   }
 </style>
