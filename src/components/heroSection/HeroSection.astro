@@ -3,41 +3,48 @@ import { mainSponsorsWhite } from "@data/sponsors";
 ---
 
 <section>
-  <div class='image-container'>
-    <img src="hero-image.avif"/>
+  <div class="image-container">
+    <img src="hero-image.avif" />
   </div>
 
+  <div class="hero-info">
+
+  </div>
   <div class="sponsors-flex-container">
-    <aside>
-      Patrocinadors principals
-    </aside>
-    <ul class="hero-sponsors-container">
-      {
-        mainSponsorsWhite.map((sponsor) => (
-          <li>
-            <a href={sponsor.link} target="_blank" rel="noopener noreferrer">
-              <img src={sponsor.logo} alt={sponsor.alt} />
-            </a>
-          </li>
-        ))
-      }
-    </ul>
+    <p>Patrocinadors principals</p>
+    <nav>
+      <ul class="hero-sponsors-container">
+        {
+          mainSponsorsWhite.map((sponsor) => (
+            <li>
+              <a href={sponsor.link} target="_blank" rel="noopener noreferrer">
+                <img src={sponsor.logo} alt={sponsor.alt} />
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+    </nav>
   </div>
 </section>
 
 <style>
   section {
-    position:relative;
+    position: relative;
     margin-top: calc(
       (var(--bottom-header-hg) + var(--header-separator-line-hg)) * -1
     );
-    z-index: -1;
   }
-
-  img {
-    /* transform: scale(1.35) */
+  .hero-info {
+    position: absolute;
+    background-color: black;
+    left: 0;
+    right: 50.7rem;
+    bottom: 0;
+    top: var(--bottom-header-hg);
+    opacity: 0.65;
+    mix-blend-mode: multiply;
   }
-
   .sponsors-flex-container {
     position: absolute;
     left: 0rem;
@@ -50,7 +57,8 @@ import { mainSponsorsWhite } from "@data/sponsors";
     justify-content: center;
     gap: 3.05rem;
   }
-  aside {
+
+  p {
     height: 60%;
     padding-right: 3.05rem;
     display: flex;
