@@ -1,5 +1,7 @@
 ---
 import { mainSponsorsWhite } from "@data/sponsors";
+import { slides } from "@data/hero-carousel";
+import ButtonAnchor  from "@components/ButtonAnchor.astro";
 ---
 
 <section>
@@ -7,9 +9,14 @@ import { mainSponsorsWhite } from "@data/sponsors";
     <img src="hero-image.avif" />
   </div>
 
-  <div class="hero-info">
-
+  <div class="hero-info-container">
+    <div class="hero-info-flex">
+      <h2>{slides[0].title}</h2>
+      <p>{slides[0].description}</p>
+      <ButtonAnchor slug={slides[0].link} text={slides[0].buttonText}/>
+    </div>
   </div>
+
   <div class="sponsors-flex-container">
     <p>Patrocinadors principals</p>
     <nav>
@@ -35,15 +42,32 @@ import { mainSponsorsWhite } from "@data/sponsors";
       (var(--bottom-header-hg) + var(--header-separator-line-hg)) * -1
     );
   }
-  .hero-info {
+
+  .hero-info-container {
     position: absolute;
-    background-color: black;
+    background-color: rgba(0, 0, 0, 0.65);
     left: 0;
-    right: 50.7rem;
-    bottom: 0;
-    top: var(--bottom-header-hg);
-    opacity: 0.65;
-    mix-blend-mode: multiply;
+    right: 58%;
+    bottom: calc(7.875rem + 6rem);;
+    top: calc(var(--bottom-header-hg) + var(--header-separator-line-hg)) ;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: center;
+    /* mix-blend-mode: multiply; */
+  }
+
+  .hero-info-flex {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    /* align-items: center; */
+    padding-inline: 6.25rem;
+    gap: 1.5rem;
+  }
+
+  h2 {
+    text-wrap: balance;
   }
   .sponsors-flex-container {
     position: absolute;
