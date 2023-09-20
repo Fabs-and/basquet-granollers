@@ -5,9 +5,9 @@ import ButtonAnchor  from "@components/ButtonAnchor.astro";
 ---
 
 <section>
-  <div class="image-container">
+
     <img src="hero-image.avif" />
-  </div>
+  
 
   <div class="hero-info-container">
     <div class="hero-info-flex">
@@ -17,8 +17,8 @@ import ButtonAnchor  from "@components/ButtonAnchor.astro";
     </div>
   </div>
 
-  <div class="sponsors-flex-container">
-    <p>Patrocinadors principals</p>
+  <!-- <div class="sponsors-flex-container">
+    <p class="sponsors-title">Patrocinadors principals</p>
     <nav>
       <ul class="hero-sponsors-container">
         {
@@ -32,7 +32,7 @@ import ButtonAnchor  from "@components/ButtonAnchor.astro";
         }
       </ul>
     </nav>
-  </div>
+  </div> -->
 </section>
 
 <style>
@@ -41,39 +41,49 @@ import ButtonAnchor  from "@components/ButtonAnchor.astro";
     margin-top: calc(
       (var(--bottom-header-hg) + var(--header-separator-line-hg)) * -1
     );
+    height: calc(100dvh - var(--top-header-hg));
+    overflow: hidden;
   }
+  
+  img {
+    /* position: absolute; */
+   height: inherit;
+   width: 100vw;
+    object-fit: cover;
+    /* object-position: center; */
+  }
+
 
   .hero-info-container {
     position: absolute;
     background-color: rgba(0, 0, 0, 0.65);
-    left: 0;
-    right: 58%;
-    bottom: calc(7.875rem + 6rem);;
     top: calc(var(--bottom-header-hg) + var(--header-separator-line-hg)) ;
+    left: 0;
+    width: 37rem;
+   bottom: 0rem;
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: center;
-    /* mix-blend-mode: multiply; */
+   
   }
 
   .hero-info-flex {
     display: flex;
     flex-direction: column;
     justify-content: center;
+    width: 60%;
     /* align-items: center; */
-    padding-inline: 6.25rem;
+    /* padding-inline: 6.25rem; */
     gap: 1.5rem;
-  }
-
-  h2 {
     text-wrap: balance;
   }
+
   .sponsors-flex-container {
     position: absolute;
     left: 0rem;
     right: 0rem;
-    bottom: 6rem;
+    bottom: 0rem;
     height: 7.875rem;
     background-color: var(--clr-primary);
     display: flex;
@@ -82,7 +92,7 @@ import ButtonAnchor  from "@components/ButtonAnchor.astro";
     gap: 3.05rem;
   }
 
-  p {
+  .sponsors-title {
     height: 60%;
     padding-right: 3.05rem;
     display: flex;
@@ -93,5 +103,31 @@ import ButtonAnchor  from "@components/ButtonAnchor.astro";
     display: flex;
     align-items: center;
     gap: 3.05rem;
+  }
+
+  
+  @media (width < 1184px) {
+    .hero-info-container {
+      width: 50%;
+    }
+  }
+
+  @media (width < 1025px) {
+    .hero-info-flex {
+      /* padding-inline: 2.56rem; */
+      width: 80%;
+    }
+  }
+  
+  @media (width < 648px) {
+    .hero-info-container {
+      width: 100vw;
+    }
+    
+
+
+    section {
+        height: 100dvh;
+    }
   }
 </style>
