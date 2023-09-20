@@ -8,7 +8,8 @@ import BaseLayout from '@layouts/BaseLayout.astro';
 // Import components
 import GridPostCard from '@components/postCards/GridPostCard.astro';
 import HeroSection from '@components/heroSection/HeroSection.astro';
-
+import MainSponsors from '@components/sponsors/MainSponsors.astro';
+import AllSponsors from '@components/sponsors/AllSponsors.astro';
 // Import api functions from utils
 import {
   configure,
@@ -33,6 +34,8 @@ const title = 'El Putu Dapps';
 
 <BaseLayout {title}>
   <HeroSection/>
+  <MainSponsors/>
+  <AllSponsors/>
   <!-- <GridPostCard
     {posts}
     {categories}

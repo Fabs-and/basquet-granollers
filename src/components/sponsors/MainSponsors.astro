@@ -1,10 +1,10 @@
 ---
 import { mainSponsorsWhite } from "@data/sponsors";
 ---
-<!-- <div class="sponsors-flex-container">
-    <p class="sponsors-title">Patrocinadors principals</p>
+<section class="main-sponsors-flex-container">
+    <p class="main-sponsors-title">Patrocinadors principals</p>
     <nav>
-      <ul class="hero-sponsors-container">
+      <ul class="main-sponsors-container">
         {
           mainSponsorsWhite.map((sponsor) => (
             <li>
@@ -16,23 +16,18 @@ import { mainSponsorsWhite } from "@data/sponsors";
         }
       </ul>
     </nav>
-  </div> -->
+  </section>
 
   <style>
-    .sponsors-flex-container {
-    position: absolute;
-    left: 0rem;
-    right: 0rem;
-    bottom: 0rem;
-    height: 7.875rem;
-    background-color: var(--clr-primary);
+    .main-sponsors-flex-container {
     display: flex;
     align-items: center;
     justify-content: center;
     gap: 3.05rem;
+    height: var(--sponsors-main-hg)
   }
 
-  .sponsors-title {
+  .main-sponsors-title {
     height: 60%;
     padding-right: 3.05rem;
     display: flex;
