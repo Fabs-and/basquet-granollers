@@ -1,5 +1,5 @@
 ---
-import { mainSponsorsBlue } from "@data/sponsors";
+import { mainSponsorsBlue, otherSponsors } from "@data/sponsors";
 ---
 
 <section class="sponsors-flex-container">
@@ -11,12 +11,16 @@ import { mainSponsorsBlue } from "@data/sponsors";
     </div>
     <!-- <p class="sponsors-title">Patrocinadors principals</p> -->
     <nav>
-      <ul class="sponsors-container">
+      <ul class="main-sponsors-container">
         {
-          mainSponsorsBlue.map((sponsor) => (
+          mainSponsorsBlue.map((mainSponsor) => (
             <li>
-              <a href={sponsor.link} target="_blank" rel="noopener noreferrer">
-                <img src={sponsor.logo} alt={sponsor.alt} />
+              <a
+                href={mainSponsor.link}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <img src={mainSponsor.logo} alt={mainSponsor.alt} />
               </a>
             </li>
           ))
@@ -24,12 +28,34 @@ import { mainSponsorsBlue } from "@data/sponsors";
       </ul>
     </nav>
   </div>
-  <div class="team-sponsors"></div>
+  <div class="team-sponsors">
+    <nav>
+      <ul class="other-sponsors-container">
+        {
+          otherSponsors.map((otherSponsor) => (
+            <li>
+              <a
+                href={otherSponsor.link}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <img
+                  class="other-sponsors-images"
+                  src={otherSponsor.logo}
+                  alt={otherSponsor.alt}
+                />
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+    </nav>
+  </div>
 </section>
 
 <style>
   .sponsors-flex-container {
-    height: var(--sponsors-all-hg);
+    /* height: var(--sponsors-all-hg); */
     background-color: var(--clr-contrast);
     color: var(--clr-primary);
     display: flex;
@@ -38,6 +64,8 @@ import { mainSponsorsBlue } from "@data/sponsors";
     padding-block: 4.5rem;
     gap: 4.5rem;
     /* justify-content: center; */
+    /* max-width: var(--regular-width); */
+    /* max-width: var(--regular-width); */
   }
 
   .main-sponsors {
@@ -46,37 +74,52 @@ import { mainSponsorsBlue } from "@data/sponsors";
     align-items: center;
     gap: 2.5rem;
   }
-  ul {
+
+  .other-sponsors-container {
+    /* padding-inline: var(--padding-inline); */
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(6rem, 1fr));
+    /* align-items: center;  */
+    gap: 1.5rem;
+  }
+
+  .other-sponsors-images {
+    /* max-width: auto; */
+    /* height: 70%;
+    margin: auto; */
+  }
+
+  .main-sponsors-container {
     display: flex;
     align-items: center;
     gap: 4.11rem;
   }
 
   .title-container {
-      display: flex;
-      align-items: center;
-      width: var(--regular-width);
-    }
+    display: flex;
+    align-items: center;
+    max-width: var(--regular-width);
+  }
 
-    .text {
-      margin: 0 10px;
-    }
+  .text {
+    margin: 0 10px;
+  }
 
-    .line {
-      flex: 1;
-      height: 1px;
-      background-color: #D8D8D8;
-    }
+  .line {
+    flex: 1;
+    height: 1px;
+    background-color: #d8d8d8;
+  }
 
-    .line:before,
-    .line:after {
-      content: "";
-      display: block;
-      /* width: 100px; */
-      /* height: 1px; */
-      /* border-radius: 50%; */
-      background-color: #D8D8D8;
-      position: relative;
-      top: -5px;
-    }
+  .line:before,
+  .line:after {
+    content: "";
+    display: block;
+    /* width: 100px; */
+    /* height: 1px; */
+    /* border-radius: 50%; */
+    background-color: #d8d8d8;
+    position: relative;
+    top: -5px;
+  }
 </style>

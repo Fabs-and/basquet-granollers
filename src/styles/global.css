@@ -87,9 +87,7 @@ body {
   color: var(--clr-contrast);
 }
 
-main {
-  /* padding-inline: var(--padding-inline); */
-}
+
 
 img {
   max-width: 100%;
