@@ -9,7 +9,9 @@ import { mainSponsorsWhite } from "@data/sponsors";
           mainSponsorsWhite.map((sponsor) => (
             <li>
               <a href={sponsor.link} target="_blank" rel="noopener noreferrer">
-                <img src={sponsor.logo} alt={sponsor.alt} />
+                <img src={sponsor.logo} alt={sponsor.alt}
+                  loading="lazy" 
+                 />
               </a>
             </li>
           ))
