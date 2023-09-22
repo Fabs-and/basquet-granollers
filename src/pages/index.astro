@@ -23,6 +23,7 @@ import type { Category, Post } from 'fetch-wordpress-api';
 import { postFields, categoryFields } from 'src/data/apiGlobalConsts';
 
 import { BASE_URL } from 'src/config';
+import CarouselProjects from '@components/projects/CarouselProjects.astro';
 
 configure({BASE_URL: BASE_URL})
 
@@ -38,6 +39,7 @@ const title = 'El Putu Dapps';
   <MainSponsors/>
   <Projects/>
   <AllSponsors/>
+  <CarouselProjects/>
   <!-- <GridPostCard
     {posts}
     {categories}

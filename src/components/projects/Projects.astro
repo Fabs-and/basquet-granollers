@@ -1,57 +1,74 @@
 ---
-import { Image } from "astro:assets"
-import Rectangle23 from '../../assets/Rectangle23.png'
-import Rectangle24 from '../../assets/Rectangle24.png'
-import Rectangle25 from '../../assets/Rectangle25.png'
-import Rectangle26 from '../../assets/Rectangle26.png'
-import Rectangle27 from '../../assets/Rectangle27.png'
-import Rectangle28 from '../../assets/Rectangle28.png'
+import { Image } from "astro:assets";
+import Rectangle23 from "../../assets/Rectangle23.png";
+import Rectangle24 from "../../assets/Rectangle24.png";
+import Rectangle25 from "../../assets/Rectangle25.png";
+import Rectangle26 from "../../assets/Rectangle26.png";
+import Rectangle27 from "../../assets/Rectangle27.png";
+import Rectangle28 from "../../assets/Rectangle28.png";
 ---
 
-<h3>
-  Projectes
-</h3>
 
-<div class='projects-container'>
-  <Image src={Rectangle23} alt="Rectangle23" />
-  <Image src={Rectangle24} alt="Rectangle24" />
-  <Image src={Rectangle25} alt="Rectangle25" />
-  <Image src={Rectangle26} alt="Rectangle26" />
-  <Image src={Rectangle27} alt="Rectangle27" />
-  <Image src={Rectangle28} alt="Rectangle28" />
+  <h3>Projectes</h3>
+
+<div class="projects-container">
+  <Image class='image' src={Rectangle23} alt="Rectangle23" />
+  <Image class='image' src={Rectangle24} alt="Rectangle24" />
+  <Image class='image' src={Rectangle25} alt="Rectangle25" />
+  <Image class='image' src={Rectangle26} alt="Rectangle26" />
+  <Image class='image' src={Rectangle27} alt="Rectangle27" />
+  <Image class='image' src={Rectangle28} alt="Rectangle28" />
 </div>
 
+
+
 <style>
-  h3{
-    padding-inline: var(--padding-inline); 
+  h3 {
+    padding-inline: var(--padding-inline);
   }
+ 
   .projects-container {
     padding-inline: var(--padding-inline);
     padding-block: 2rem;
     display: grid;
-    grid-template-columns:  repeat(auto-fill, minmax(20rem, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(20rem, 1fr));
     justify-items: center;
     /* align-items: center; */
     gap: 0.8rem;
     /* place-content: center; */
   }
 
-    @media (width < 1025px) {
-      h3{
-    padding-inline: var(--padding-inline-tablet); 
+  @media (width < 1025px) {
+    h3 {
+      padding-inline: var(--padding-inline-tablet);
+    }
+    .projects-container {
+      padding-inline: var(--padding-inline-tablet);
+    }
   }
-      .projects-container {
-        padding-inline: var(--padding-inline-tablet);
-      }
+
+  @media (width < 648px) {
+
+    h3 {
+      padding-top: 2rem;
+      padding-inline: var(--padding-inline-mobile);
+    }
+    .projects-container {
+      margin-left: var(--padding-inline-mobile);
+     /* padding-inline: 0rem; */
+     /* padding-block: 0rem; */
+      display: flex;
+      overflow-x: scroll;
+      scroll-snap-type: x mandatory;
+      gap: var(--padding-inline-mobile);
     }
 
-     @media (width < 648px) {
-      h3{
-    padding-inline: var(--padding-inline-mobile); 
-  }
-      .projects-container {
-        padding-inline: var(--padding-inline-mobile);
-      }
+     .projects-container .image:not(:first-child)  {
+      opacity: 0.5;
+     }
+    .image {
+      object-fit:contain;
+      scroll-snap-align: start;
     }
-  
+  }
 </style>
