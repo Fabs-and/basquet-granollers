@@ -7,15 +7,15 @@
 import PostCard from '@components/postCards/PostCard.astro';
 
 // Import api functions from utils
-import { fetchAllCategories, Endpoints, CategoryFields, Category, Post } from 'fetch-wordpress-api';
+import { fetchAllCategories} from 'fetch-wordpress-api';
 
+import type { Endpoints, CategoryFields, Category, Post } from 'fetch-wordpress-api'
 // Import utils functions
 import { categoryMapper } from '@utils/helperFunctions';
-import { categoryFields } from 'src/data/apiGlobalConsts';
 
-const allCategories: Category[] = await fetchAllCategories(categoryFields)
 
-const { posts } = Astro.props as { posts: Post[] };
+
+const { posts, allCategories } = Astro.props as { posts: Post[], allCategories: Category[] };
 
 ---
 

@@ -15,9 +15,13 @@ const {
   excerpt: { rendered: excerpt },
   slug,
   date,
+  image,
 } = post;
+
+console.log('image', post);
 ---
 
+<img src={image} alt={title} />
 <article class='card'>
   <header>
     <h2 set:html={title} />
