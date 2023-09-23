@@ -6,6 +6,8 @@
 // Import components
 import PostCard from "@components/postCards/PostCard.astro";
 
+import NewsSection from "@components/postCards/NewsSection.svelte";
+import IndividualNews from "@components/postCards/IndividualNews.svelte";
 // Import api functions from utils
 import { fetchAllCategories } from "fetch-wordpress-api";
 
@@ -25,14 +27,13 @@ const { posts, allCategories } = Astro.props as {
   allCategories: Category[];
 };
 
-
 const firstPost = posts.at(0);
-console.log("firstPost", firstPost);
+// console.log("firstPost", firstPost);
 const isFirstPost = true;
-let currentIndex = 0;
+// let currentIndex = 0;
 ---
 
-<script define:vars={{currentIndex: currentIndex}}>
+<!-- <script define:vars={{currentIndex: currentIndex}}>
   const leftArrow = document.querySelector("#left-arrow");
   console.log('left-arrow', leftArrow);
   // console.log('currentIndex', currentIndex);
@@ -44,29 +45,21 @@ function goToPreviousPosts() {
 }
 
   leftArrow.addEventListener("click",function() { return console.log('clickeeed')});
-</script>
-
+</script> -->
 <section class="noticies-container">
   <h2>CBG Notícies</h2>
   <div class="postCard-container">
-    <PostCard
-      post={posts[currentIndex]}
-      postCategories={categoryMapper(
-        allCategories,
-        posts[currentIndex].categories,
-      )}
-      {isFirstPost}
-    />
+    <IndividualNews post={firstPost} {isFirstPost}/>
+
     <div class="older-posts">
       {
-        posts
-          .slice(currentIndex + 1, currentIndex + 4)
-          .map((post: Post) => (
-            <PostCard
-              {post}
-              postCategories={categoryMapper(allCategories, post.categories)}
-            />
-          ))
+        posts.map((post: Post, i) => {
+          if (i > 0 && i < 4) {
+            return (
+               <IndividualNews {post}/>
+            );
+          }
+        })
       }
       <div class="position-container">
         <div class="position-controls-container">
