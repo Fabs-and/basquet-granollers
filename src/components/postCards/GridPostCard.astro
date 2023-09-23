@@ -30,19 +30,21 @@ const isFirstPost = true;
 <section class="noticies-container">
   <h2>CBG Notícies</h2>
   <div class="postCard-container">
-      <PostCard
-          post={firstPost}
-          postCategories={categoryMapper(allCategories, firstPost!.categories)}
-          {isFirstPost}
-        />
-    {
-      posts.map((post: Post) => (
-        <PostCard
-          {post}
-          postCategories={categoryMapper(allCategories, post.categories)}
-        />
-      ))
-    }
+    <PostCard
+      post={firstPost}
+      postCategories={categoryMapper(allCategories, firstPost!.categories)}
+      {isFirstPost}
+    />
+    <div class="older-posts">
+      {
+        posts.map((post: Post) => (
+          <PostCard
+            {post}
+            postCategories={categoryMapper(allCategories, post.categories)}
+          />
+        ))
+      }
+    </div>
   </div>
 </section>
 
@@ -56,5 +58,13 @@ const isFirstPost = true;
     display: flex;
     padding-inline: var(--padding-inline);
     padding-block: 2rem;
+    gap: 1rem;
+  }
+
+  div.older-posts {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    /* margin-inline-start: 2rem; */
   }
 </style>
