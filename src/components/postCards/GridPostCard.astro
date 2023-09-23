@@ -51,28 +51,31 @@ const isFirstPost = true;
       }
       <div class="position-container">
         <div class="position-controls-container">
-
           <button>
             <img
-            src="slider-left-arrow.svg"
-            alt="Fletxa per retrocedir quatre notícies"
-            class=""
-          />
-        </button>
-        <span class="position-indicator">
-          <span class="first-number"> 01</span>
-          /
-          <span class="second-number"> 04</span>
-        </span>
-        <button>
-          <img
-          src="slider-right-arrow.svg"
-          alt="Fletxa per avançar quatre notícies"
-          class=""
-          />
-        </button>
-      </div>
-        <ButtonAnchor text={'veure totes'}/>
+              src="slider-left-arrow.svg"
+              alt="Fletxa per retrocedir quatre notícies"
+              class=""
+            />
+          </button>
+          <span class="position-indicator">
+            <span class="first-number"> 01</span>
+             /
+            <span class="second-number"> 04</span>
+          </span>
+          <button>
+            <img
+              src="slider-right-arrow.svg"
+              alt="Fletxa per avançar quatre notícies"
+              class=""
+            />
+          </button>
+        </div>
+        <ButtonAnchor
+          text={"veure totes"}
+          textColor={"var(--clr-accent)"}
+          hoverTextColor={"var(--clr-contrast)"}
+        />
       </div>
     </div>
   </div>
@@ -117,6 +120,10 @@ const isFirstPost = true;
   }
 
   .first-number {
+    color: var(--clr-accent);
+  }
+
+  .button {
     color: var(--clr-accent);
   }
 </style>

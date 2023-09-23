@@ -1,14 +1,18 @@
 ---
-const { text, isFilled, slug } = Astro.props as  { text: string;
+const { text, isFilled, slug, textColor, hoverTextColor } = Astro.props as  { text: string;
 isFilled: boolean,
-slug: string};
+slug: string,
+textColor: string,
+hoverTextColor: string};
+
+console.log('color',hoverTextColor)
 ---
 
 
   <a href={slug} class:list={[{ isFilled: isFilled }]}>{text.toUpperCase()}</a>
 
 
-<style>
+<style define:vars={{ textColor, hoverTextColor}}>
   a {
     text-decoration: none;
     display: grid;
@@ -17,14 +21,16 @@ slug: string};
     width: 10rem;
     border: 1px solid var(--clr-accent);
     border-radius: 1.75rem;
-    color: inherit;
+    color: var(--textColor);
   }
-
+  
   a:hover {
+    cursor: pointer;
     background-color: var(--clr-accent);
+    color: var(--hoverTextColor)
   }
 
   .isFilled {
-    background-color: var(--clr-accent);
+    background-color: var(--hoverTextColor);
   }
 </style>
