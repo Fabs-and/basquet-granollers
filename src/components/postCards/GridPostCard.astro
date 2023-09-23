@@ -25,35 +25,52 @@ const { posts, allCategories } = Astro.props as {
   allCategories: Category[];
 };
 
+
 const firstPost = posts.at(0);
 console.log("firstPost", firstPost);
 const isFirstPost = true;
+let currentIndex = 0;
 ---
+
+<script define:vars={{currentIndex: currentIndex}}>
+  const leftArrow = document.querySelector("#left-arrow");
+  console.log('left-arrow', leftArrow);
+  // console.log('currentIndex', currentIndex);
+function goToPreviousPosts() {
+  if (currentIndex - 4 >= 0) {
+    currentIndex -= 4;
+  }
+  console.log('clickeeed')
+}
+
+  leftArrow.addEventListener("click",function() { return console.log('clickeeed')});
+</script>
 
 <section class="noticies-container">
   <h2>CBG Notícies</h2>
   <div class="postCard-container">
     <PostCard
-      post={firstPost}
-      postCategories={categoryMapper(allCategories, firstPost!.categories)}
+      post={posts[currentIndex]}
+      postCategories={categoryMapper(
+        allCategories,
+        posts[currentIndex].categories,
+      )}
       {isFirstPost}
     />
     <div class="older-posts">
       {
-        posts.map((post: Post, i) => {
-          if (i > 0) {
-            return (
-              <PostCard
-                {post}
-                postCategories={categoryMapper(allCategories, post.categories)}
-              />
-            );
-          }
-        })
+        posts
+          .slice(currentIndex + 1, currentIndex + 4)
+          .map((post: Post) => (
+            <PostCard
+              {post}
+              postCategories={categoryMapper(allCategories, post.categories)}
+            />
+          ))
       }
       <div class="position-container">
         <div class="position-controls-container">
-          <button>
+          <button id="left-arrow">
             <Fragment set:html={sliderLeftArrow} />
           </button>
           <span class="position-indicator">
@@ -61,7 +78,7 @@ const isFirstPost = true;
              /
             <span class="second-number"> 04</span>
           </span>
-          <button>
+          <button id="right-arrow">
             <Fragment set:html={sliderRightArrow} />
           </button>
         </div>

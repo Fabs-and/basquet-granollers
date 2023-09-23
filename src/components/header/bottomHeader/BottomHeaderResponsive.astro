@@ -4,9 +4,11 @@ import { magnifyingGlass, hamburgerMenuIcon } from "@assets/icons";
 ---
 
 <script>
-  function handleClick() {
+  function handleClick(this: any) {
     let div = this.querySelector(".rotate");
-    div.classList.toggle("rotated");
+    if (div) {
+      div.classList.toggle("rotated");
+    }
   }
   let buttons = document.querySelectorAll("button");
 

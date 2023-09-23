@@ -5,11 +5,11 @@ import { collapsibleArrowHeader, magnifyingGlass } from "@assets/icons";
 ---
 
 <script>
-  function handleClick() {
+  function handleClick(this: any) {
     let div = this.querySelector(".rotate");
     div.classList.toggle(".rotated");
   }
-  let buttons = document.querySelectorAll("button");
+  let buttons = document.querySelectorAll("#drop-down-menu");
 
   buttons.forEach(function (button) {
     // Add the event listener to each button
@@ -30,7 +30,7 @@ import { collapsibleArrowHeader, magnifyingGlass } from "@assets/icons";
       bottomHeaderLinks.map((category) => (
         <li>
           {category.title ? (
-            <button>{category.title.toUpperCase()}<div class="rotate"><Fragment set:html={collapsibleArrowHeader} /></div></button>
+            <button id="drop-down-menu">{category.title.toUpperCase()}<div class="rotate"><Fragment set:html={collapsibleArrowHeader} /></div></button>
           ) : (
             <a href={category.slug}>{category.name!.toUpperCase()}</a>
           )}

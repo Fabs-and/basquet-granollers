@@ -1,52 +1,48 @@
 ---
-import TopFooter from '@components/footer/topFooter/TopFooter.astro';
-import TopFooterTablet from '@components/footer/topFooter/TopFooterTablet.astro';
-import TopFooterMobile from '@components/footer/topFooter/TopFooterMobile.astro';
-import BottomFooter from '@components/footer/bottomFooter/BottomFooter.astro';
-import BottomFooterTablet from '@components/footer/bottomFooter/BottomFooterTablet.astro';
-import BottomFooterMobile from '@components/footer/bottomFooter/BottomFooterMobile.astro';
+import TopFooter from "@components/footer/topFooter/TopFooter.astro";
+import TopFooterTablet from "@components/footer/topFooter/TopFooterTablet.astro";
+import TopFooterMobile from "@components/footer/topFooter/TopFooterMobile.astro";
+import BottomFooter from "@components/footer/bottomFooter/BottomFooter.astro";
+import BottomFooterTablet from "@components/footer/bottomFooter/BottomFooterTablet.astro";
+import BottomFooterMobile from "@components/footer/bottomFooter/BottomFooterMobile.astro";
 
 import {
   bottomFooterLinks,
   topFooterLinks,
   topFooterImportantLinks,
-  copyright
-} from 'src/data/footer';
+  copyright,
+} from "src/data/footer";
 ---
 
-
 <footer>
-  <section class='footer-top-section'>
-    
-    <nav class="top-footer"> 
-      <TopFooter {topFooterLinks} {topFooterImportantLinks}/>
+  <section class="footer-top-section">
+    <nav class="top-footer">
+      <TopFooter {topFooterLinks} {topFooterImportantLinks} />
     </nav>
 
     <nav class="top-footer tablet">
-      <TopFooterTablet {topFooterLinks} {topFooterImportantLinks}/>
+      <TopFooterTablet {topFooterLinks} {topFooterImportantLinks} />
     </nav>
 
     <nav class="top-footer mobile">
-      <TopFooterMobile {topFooterLinks} {topFooterImportantLinks}/>
+      <TopFooterMobile {topFooterLinks} {topFooterImportantLinks} />
     </nav>
   </section>
-  
 
-  <section class='footer-bottom-section'>
+  <section class="footer-bottom-section">
     <div class="bottom-footer">
       <BottomFooter {bottomFooterLinks} {copyright} />
     </div>
     <div class="tablet">
-      <BottomFooterTablet {bottomFooterLinks} {copyright}/>
+      <BottomFooterTablet {bottomFooterLinks} {copyright} />
     </div>
     <div class="mobile">
-      <BottomFooterMobile {bottomFooterLinks} {copyright}/>
+      <BottomFooterMobile {bottomFooterLinks} {copyright} />
     </div>
   </section>
 </footer>
 
 <style>
-
   footer {
     font-size: var(--font-size-footer);
   }
@@ -55,7 +51,7 @@ import {
     background-color: var(--clr-footer);
     padding-inline: var(--padding-inline);
   }
-  
+
   .top-footer {
     min-height: var(--footer-top-section-hg);
     display: flex;
@@ -63,7 +59,8 @@ import {
     justify-content: space-between;
   }
 
-  .tablet, .mobile {
+  .tablet,
+  .mobile {
     display: none;
   }
 
@@ -72,26 +69,27 @@ import {
   }
 
   @media (width < 965px) {
-    .top-footer, .bottom-footer {
+    .top-footer,
+    .bottom-footer {
       display: none;
     }
 
-    .footer-top-section, .footer-bottom-section {
+    .footer-top-section,
+    .footer-bottom-section {
       padding-inline: var(--padding-inline-tablet);
     }
     .tablet {
       display: block;
-
     }
   }
 
-  
   @media (width < 648px) {
     .tablet {
       display: none;
     }
 
-     .footer-top-section, .footer-bottom-section {
+    .footer-top-section,
+    .footer-bottom-section {
       padding-inline: var(--padding-inline-mobile);
     }
 
@@ -104,4 +102,3 @@ import {
     }
   }
 </style>
-
