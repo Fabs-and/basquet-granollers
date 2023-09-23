@@ -1,13 +1,14 @@
 ---
 // Import types
-import type { Category, Post } from 'fetch-wordpress-api';
+import type { Category, Post } from "fetch-wordpress-api";
 
 // Import util functions
-import { dateConverter } from '@utils/helperFunctions';
+import { dateConverter } from "@utils/helperFunctions";
 
-const { post, postCategories } = Astro.props as {
+const { post, postCategories, isFirstPost } = Astro.props as {
   post: Post;
   postCategories: Category[];
+  isFirstPost: boolean;
 };
 
 const {
@@ -17,51 +18,57 @@ const {
   date,
   image,
 } = post;
-
-console.log('image', post);
 ---
 
-<img src={image} alt={title} />
-<article class='card'>
-  <header>
-    <h2 set:html={title} />
-    <p>{dateConverter(date)}</p>
-    <ul>
-      {
-        postCategories.map((category: Category) => (
-          <li>
-            <a
-              class="'category"
-              href={`/categoria/${category.slug}`}
-            >
-              {category.name}
-            </a>
-          </li>
-        ))
-      }
-    </ul>
-  </header>
-  <Fragment set:html={excerpt} />
-  <a href={`/${slug}`}>Segueix Llegint</a>
-</article>
+<a href={`/${slug}`}>
+  <article class="card" class:list={[{ isFirstPost: isFirstPost }]}>
+    <img src={image} alt={title} />
+    <div class="info-container">
+      <h3 set:html={title} />
+      <p>{`Publicat ${dateConverter(date)}`}</p>
+    </div>
+  </article>
+</a>
 
 <style>
+  p {
+    font-style: italic;
+  }
+  .isFirstPost {
+    height: 32.0625rem;
+    width: 43.375rem;
+    /* width: clamp(10rem, 30rem, 43.375rem); */
+    border-top-left-radius: 2.9375rem;
+    overflow: hidden;
+    position: relative;
+  }
   article.card {
-    border: 1px solid;
-    border-radius: 0.5rem;
-    padding: 1rem;
+  
+  }
+  
+  .isFirstPost img {
+    height: 80%;
+    border-top-left-radius: 2.9375rem;
+    transition: transform 0.3s;
+    position: relative;
+    object-fit: cover;
+    /* z-index: 0; */
+  }
+  
+  .isFirstPost img:hover {
+    transform: scale(1.1);
+  }
+  
+  .isFirstPost .info-container {
+    /* so the z-index has effect and the image does not overflow the info-container when hovered */
+    position: relative; 
+    background-color: var(--clr-secondary);
+    height: 20%;
+    padding-inline: 1rem;
+    padding-block: 0.5rem;
     display: flex;
     flex-direction: column;
-    gap: 0.5rem;
-    word-wrap: break-word;
-  }
-
-  ul {
-    list-style: none;
-  }
-
-  li {
-    display: inline;
+    justify-content: space-between;
+    z-index:1;
   }
 </style>
-

@@ -34,11 +34,11 @@ export function dateConverter(date: string | null | Date) {
     console.error(error); // log the error in the console
     throw error; // throw the error to the caller
   }
-  return `${new Intl.DateTimeFormat('ca', { month: 'long' }).format(
-    newDate
-  )} ${new Intl.DateTimeFormat('ca', { day: 'numeric' }).format(
-    newDate
-  )}, ${new Intl.DateTimeFormat('ca', { year: 'numeric' }).format(newDate)}`;
+  return `${new Intl.DateTimeFormat("ca", { day: "numeric" }).format(
+    newDate,
+  )}.${new Intl.DateTimeFormat("ca", { month: "numeric" }).format(
+    newDate,
+  )}.${new Intl.DateTimeFormat("ca", { year: "numeric" }).format(newDate)}`;
 }
 
 export function categoryMapper(

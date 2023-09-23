@@ -15,8 +15,8 @@ dependencies:
     specifier: ^3.1.2
     version: 3.1.2(@types/node@20.6.3)
   fetch-wordpress-api:
-    specifier: ^1.0.15
-    version: 1.0.15
+    specifier: ^1.0.16
+    version: 1.0.16
 
 devDependencies:
   '@types/node':
@@ -2216,8 +2216,8 @@ packages:
     dependencies:
       reusify: 1.0.4
 
-  /fetch-wordpress-api@1.0.15:
-    resolution: {integrity: sha512-dWXI/uY0avWy7f8i3CS0cH038np80MK9vn0932FyngPLsy24eya/XxASdw+9jSSgZL6wdzDLs1A2JGB6jW1ajg==}
+  /fetch-wordpress-api@1.0.16:
+    resolution: {integrity: sha512-CVn1mgO+s58CBk9I6jAUZCaBSxDK81pJpwNlh+KwYeY0TArnIcc52t5D4cFaAJbst4Pvrgoq+6X/RoU9kG8S9w==}
     dev: false
 
   /file-entry-cache@6.0.1:

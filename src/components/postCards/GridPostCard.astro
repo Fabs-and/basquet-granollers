@@ -4,42 +4,57 @@
 // import type { Category, Post } from 'src/types';
 
 // Import components
-import PostCard from '@components/postCards/PostCard.astro';
+import PostCard from "@components/postCards/PostCard.astro";
 
 // Import api functions from utils
-import { fetchAllCategories} from 'fetch-wordpress-api';
+import { fetchAllCategories } from "fetch-wordpress-api";
 
-import type { Endpoints, CategoryFields, Category, Post } from 'fetch-wordpress-api'
+import type {
+  Endpoints,
+  CategoryFields,
+  Category,
+  Post,
+} from "fetch-wordpress-api";
 // Import utils functions
-import { categoryMapper } from '@utils/helperFunctions';
+import { categoryMapper } from "@utils/helperFunctions";
 
+const { posts, allCategories } = Astro.props as {
+  posts: Post[];
+  allCategories: Category[];
+};
 
-
-const { posts, allCategories } = Astro.props as { posts: Post[], allCategories: Category[] };
-
+const firstPost = posts.at(0);
+const isFirstPost = true;
 ---
 
-<section>
-  <div class='postCard-container'>
+<section class="noticies-container">
+  <h2>CBG Notícies</h2>
+  <div class="postCard-container">
+      <PostCard
+          post={firstPost}
+          postCategories={categoryMapper(allCategories, firstPost!.categories)}
+          {isFirstPost}
+        />
     {
       posts.map((post: Post) => (
-        <>
-          <PostCard
-            {post}
-            postCategories={ categoryMapper(allCategories, post.categories)}
-          />
-        </>
+        <PostCard
+          {post}
+          postCategories={categoryMapper(allCategories, post.categories)}
+        />
       ))
     }
   </div>
 </section>
 
 <style>
+  section.noticies-container {
+    background-color: var(--clr-contrast);
+    color: var(--clr-primary);
+  }
+
   div.postCard-container {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(15em, 1fr));
-    gap: 1em;
-    padding-bottom: 2rem;
+    display: flex;
+    padding-inline: var(--padding-inline);
+    padding-block: 2rem;
   }
 </style>
-
