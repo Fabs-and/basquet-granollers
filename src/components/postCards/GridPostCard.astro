@@ -46,7 +46,7 @@ function goToPreviousPosts() {
 
   leftArrow.addEventListener("click",function() { return console.log('clickeeed')});
 </script> -->
-<section class="noticies-container">
+<!-- <section class="noticies-container">
   <h2>CBG Notícies</h2>
   <div class="postCard-container">
     <IndividualNews post={firstPost} {isFirstPost}/>
@@ -83,9 +83,9 @@ function goToPreviousPosts() {
       </div>
     </div>
   </div>
-</section>
+</section> -->
 
-<NewsSection posts={posts}/>
+<NewsSection client:load posts={posts}/>
 
 <style>
   section.noticies-container {

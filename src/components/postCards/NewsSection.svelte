@@ -7,6 +7,20 @@ export let posts: Post[];
 
 const firstPost = posts[0];
 const isFirstPost = true;
+
+let position = 1;
+const totalNews = posts.length;
+function goBack() {
+  if (position > 1) {
+    position--;
+  }
+}
+
+function goForward() {
+  if (position < totalNews) {
+    position++;
+  }
+}
 </script>
 
 
@@ -23,15 +37,15 @@ const isFirstPost = true;
       {/each}
       <div class="position-container">
         <div class="position-controls-container">
-          <button id="left-arrow">
+          <button on:click={goBack}>
             {@html sliderLeftArrow}
           </button>
           <span class="position-indicator">
-            <span class="first-number"> 01</span>
+            <span class="first-number"> {position < 10 ? `0${position}` : position}</span>
              /
-            <span class="second-number"> 04</span>
+            <span class="second-number">{totalNews < 10 ? `0${totalNews}` : totalNews}</span>
           </span>
-          <button id="right-arrow">
+          <button on:click={goForward}>
           {@html sliderRightArrow}
           </button>
         </div>
