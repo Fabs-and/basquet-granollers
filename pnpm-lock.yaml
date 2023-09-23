@@ -15,8 +15,8 @@ dependencies:
     specifier: ^3.1.2
     version: 3.1.2(@types/node@20.6.3)
   fetch-wordpress-api:
-    specifier: ^1.0.17
-    version: 1.0.17
+    specifier: ^1.0.21
+    version: 1.0.21
 
 devDependencies:
   '@types/node':
@@ -950,8 +950,8 @@ packages:
       '@types/ms': 0.7.31
     dev: false
 
-  /@types/estree@1.0.1:
-    resolution: {integrity: sha512-LG4opVs2ANWZ1TJoKc937iMmNstM/d0ae1vNbnBvBhqCSezgVUOzcLCqbI5elV8Vy6WKwKjaqR+zO9VKirBBCA==}
+  /@types/estree@1.0.2:
+    resolution: {integrity: sha512-VeiPZ9MMwXjO32/Xu7+OwflfmeoRwkE/qzndw42gGtgJwZopBnzy2gD//NN1+go1mADzkDcqf/KnFRSjTJ8xJA==}
     dev: false
 
   /@types/hast@2.3.6:
@@ -2109,7 +2109,7 @@ packages:
   /estree-walker@3.0.3:
     resolution: {integrity: sha512-7RUKfXgSMMkzt6ZuXmqapOurLGPPfgj6l9uRZ7lRGolvk0y2yocc35LdcxKC5PQZdn2DMqioAQ2NoWcrTKmm6g==}
     dependencies:
-      '@types/estree': 1.0.1
+      '@types/estree': 1.0.2
     dev: false
 
   /esutils@2.0.3:
@@ -2216,8 +2216,8 @@ packages:
     dependencies:
       reusify: 1.0.4
 
-  /fetch-wordpress-api@1.0.17:
-    resolution: {integrity: sha512-77icktF0c95twJiaVjquyminlrZqnvEcL9K8nSiznHEHIJ1aZro7WnqwS1pxhmq1idAa1qV5C36Zk5S2Y4k+0A==}
+  /fetch-wordpress-api@1.0.21:
+    resolution: {integrity: sha512-p7iQP4tI9WPMwUxCBpq13J8783tftEQxLeWWPBG+wULyb/joctWMsyOae5ajfFTLEbMHIMgczWIYLOMvDKFX3w==}
     dev: false
 
   /file-entry-cache@6.0.1:

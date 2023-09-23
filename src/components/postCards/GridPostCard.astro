@@ -18,6 +18,7 @@ import type {
 // Import utils functions
 import { categoryMapper } from "@utils/helperFunctions";
 import ButtonAnchor from "@components/ButtonAnchor.astro";
+import { sliderLeftArrow, sliderRightArrow } from "@assets/icons";
 
 const { posts, allCategories } = Astro.props as {
   posts: Post[];
@@ -25,6 +26,7 @@ const { posts, allCategories } = Astro.props as {
 };
 
 const firstPost = posts.at(0);
+console.log("firstPost", firstPost);
 const isFirstPost = true;
 ---
 
@@ -52,11 +54,7 @@ const isFirstPost = true;
       <div class="position-container">
         <div class="position-controls-container">
           <button>
-            <img
-              src="slider-left-arrow.svg"
-              alt="Fletxa per retrocedir quatre notícies"
-              class=""
-            />
+            <Fragment set:html={sliderLeftArrow} />
           </button>
           <span class="position-indicator">
             <span class="first-number"> 01</span>
@@ -64,11 +62,7 @@ const isFirstPost = true;
             <span class="second-number"> 04</span>
           </span>
           <button>
-            <img
-              src="slider-right-arrow.svg"
-              alt="Fletxa per avançar quatre notícies"
-              class=""
-            />
+            <Fragment set:html={sliderRightArrow} />
           </button>
         </div>
         <ButtonAnchor
@@ -123,7 +117,7 @@ const isFirstPost = true;
     color: var(--clr-accent);
   }
 
-  .button {
-    color: var(--clr-accent);
+  .button:hover {
+    fill: var(--clr-accent);
   }
 </style>

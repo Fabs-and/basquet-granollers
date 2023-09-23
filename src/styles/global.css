@@ -152,6 +152,15 @@ a:hover svg.icons path {
   fill: var(--clr-accent);
 }
 
+/* Targeting the svg arrow position controls */
+button:hover svg.icons {
+  fill: var(--clr-accent);
+}
+
+button:hover svg.icons path {
+  stroke: var(--clr-contrast);
+}
+
 small {
   font-size: inherit;
   text-wrap: balance;

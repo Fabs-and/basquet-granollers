@@ -35,3 +35,33 @@ export const hamburgerMenuIcon = `<svg xmlns="http://www.w3.org/2000/svg" width=
   <path d="M1 8H22" stroke="#002E6D" stroke-width="2" stroke-linecap="round"/>
   <path d="M1 15H22" stroke="#002E6D" stroke-width="2" stroke-linecap="round"/>
 </svg>`;
+
+export const sliderLeftArrow = `<svg width="43" height="43" viewBox="0 0 43 43" fill="none" class="icons" xmlns="http://www.w3.org/2000/svg">
+<g clip-path="url(#clip0_268_2348)">
+<circle cx="21.5" cy="21.5" r="20.9" transform="rotate(-180 21.5 21.5)" stroke="#FA6E19" stroke-width="1.2"/>
+<path d="M11.6566 21.0799L30.833 21.0799" stroke="#FA6E19" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M19.959 29.9683L11.1231 21.2106" stroke="#FA6E19" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M19.7695 12.4878L11.124 21.2106" stroke="#FA6E19" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+</g>
+<defs>
+<clipPath id="clip0_268_2348">
+<rect width="43" height="43" fill="white" transform="translate(43 43) rotate(-180)"/>
+</clipPath>
+</defs>
+</svg>
+`;
+
+export const sliderRightArrow = `<svg width="43" height="43" viewBox="0 0 43 43" fill="none" class="icons" xmlns="http://www.w3.org/2000/svg">
+<g clip-path="url(#clip0_268_2342)">
+<circle cx="21.5" cy="21.5" r="20.9" stroke="#FA6E19" stroke-width="1.2"/>
+<path d="M31.3434 21.9201L12.167 21.9201" stroke="#FA6E19" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M23.041 13.0317L31.8769 21.7894" stroke="#FA6E19" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M23.2305 30.5122L31.876 21.7894" stroke="#FA6E19" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+</g>
+<defs>
+<clipPath id="clip0_268_2342">
+<rect width="43" height="43" fill="white"/>
+</clipPath>
+</defs>
+</svg>
+`;
