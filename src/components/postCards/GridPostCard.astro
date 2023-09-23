@@ -17,6 +17,7 @@ import type {
 } from "fetch-wordpress-api";
 // Import utils functions
 import { categoryMapper } from "@utils/helperFunctions";
+import ButtonAnchor from "@components/ButtonAnchor.astro";
 
 const { posts, allCategories } = Astro.props as {
   posts: Post[];
@@ -37,26 +38,55 @@ const isFirstPost = true;
     />
     <div class="older-posts">
       {
-        posts.map((post: Post) => (
-          <PostCard
-            {post}
-            postCategories={categoryMapper(allCategories, post.categories)}
-          />
-        ))
+        posts.map((post: Post, i) => {
+          if (i > 0) {
+            return (
+              <PostCard
+                {post}
+                postCategories={categoryMapper(allCategories, post.categories)}
+              />
+            );
+          }
+        })
       }
+      <div class="position-container">
+        <div class="position-controls-container">
+
+          <button>
+            <img
+            src="slider-left-arrow.svg"
+            alt="Fletxa per retrocedir quatre notícies"
+            class=""
+          />
+        </button>
+        <span class="position-indicator">
+          <span class="first-number"> 01</span>
+          /
+          <span class="second-number"> 04</span>
+        </span>
+        <button>
+          <img
+          src="slider-right-arrow.svg"
+          alt="Fletxa per avançar quatre notícies"
+          class=""
+          />
+        </button>
+      </div>
+        <ButtonAnchor text={'veure totes'}/>
+      </div>
     </div>
   </div>
 </section>
 
 <style>
   section.noticies-container {
+    padding-inline: var(--padding-inline);
     background-color: var(--clr-contrast);
     color: var(--clr-primary);
   }
 
   div.postCard-container {
     display: flex;
-    padding-inline: var(--padding-inline);
     padding-block: 2rem;
     gap: 1rem;
   }
@@ -66,5 +96,27 @@ const isFirstPost = true;
     flex-direction: column;
     gap: 2rem;
     /* margin-inline-start: 2rem; */
+  }
+
+  .position-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    /* gap: 1rem; */
+  }
+
+  .position-controls-container {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  .position-indicator {
+    font-size: 0.78125rem;
+    font-weight: 550;
+  }
+
+  .first-number {
+    color: var(--clr-accent);
   }
 </style>
