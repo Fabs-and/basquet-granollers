@@ -10,7 +10,7 @@ const {
   date,
   image,
 } = post;
-
+console.log('loading')
 </script>
 
 
@@ -34,25 +34,22 @@ const {
   
   .isFirstPost {
     height: 100%;
-    max-width: 60%;
+    width: 60%;
     border-top-left-radius: 2.9375rem;
     overflow: hidden;
-    position: relative;
   }
   
   .isFirstPost a {
     display:block;
     height: 100%;
+    width: 100%;
   }
 
    .isFirstPost .image-container {
     height: 80%;
-    border-top-left-radius: 2.9375rem;
+    width: 100%;
     overflow: hidden;
-    /* display: grid;
-    place-items: center; */
     background-color:white;
-    /* position: relative; */
     z-index: 0;
   }
   
@@ -60,8 +57,8 @@ const {
     height: 100%;
     object-fit: cover;
     object-position: start;
-    border-top-left-radius: 2.9375rem;
     transition: transform 0.3s;
+    margin: auto;
   }
 
   .isFirstPost img:hover {
@@ -109,12 +106,22 @@ const {
   }
 
   .card .info-container {
+    position: relative;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
   }
   
- 
+
+  .card p {
+    font-style: italic;
+    font-weight: 560;
+    position: absolute;
+    width: 100%;
+    bottom: 0;
+    z-index: 10;
+    background-color: var(--clr-contrast);
+}
   
   a h4:hover {
     color: var(--clr-accent);

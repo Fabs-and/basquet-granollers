@@ -85,6 +85,7 @@ function goForward() {
     display: flex;
     gap: 1rem;
     max-height: 80%;
+    width: 100%;
     align-items: center;
   }
   
