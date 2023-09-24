@@ -5,7 +5,7 @@ import IndividualNews from "./IndividualNews.svelte";
     import ButtonAnchor from "@components/ButtonAnchor.svelte";
 
 export let posts: Post[];
-
+export let title: string;
 
 
 let position = 1;
@@ -30,7 +30,7 @@ function goForward() {
 
 
 <section class="news-section-container">
-  <h2>CBG Notícies</h2>
+  <h2>{title}</h2>
   <div class="news-container">
     {#each visiblePosts as post, i (post.id)}
       {#if i === 0}

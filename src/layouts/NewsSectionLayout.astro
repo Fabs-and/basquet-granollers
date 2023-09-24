@@ -2,26 +2,30 @@
 import NewsSection from "@components/postCards/NewsSection.svelte";
 import NewsSectionResponsive from "@components/postCards/NewsSectionResponsive.svelte";
 
-const { posts} = Astro.props
+const { posts } = Astro.props;
+const title = "CBG Notícies";
 ---
 
 <div class="desktop">
-  <NewsSection client:visible {posts}/>
+  <NewsSection client:visible {title} {posts} />
 </div>
 <div class="responsive">
-  <NewsSectionResponsive client:visible {posts}/>
+  <NewsSectionResponsive client:visible {title} {posts} />
 </div>
 
 <style>
   .responsive {
     display: none;
   }
- @media (width < 1050px) {
+  @media (width < 1050px) {
     .desktop {
-     display: none;
+      display: none;
     }
 
-    /* .responsive {} */
+    .responsive {
+      display: block;
+      /* width: 100%;
+      overflow-x: scroll; */
+    }
   }
 </style>
-

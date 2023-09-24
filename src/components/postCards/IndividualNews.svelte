@@ -3,7 +3,7 @@ import { dateConverter } from "../../utils/helperFunctions";
 
 export let post;
 export let isFirstPost: boolean = false;
-
+export let isResponsive: boolean = false;
 const {
   title: { rendered: title },
   slug,
@@ -13,7 +13,7 @@ const {
 </script>
 
 
-<article class={isFirstPost ? "isFirstPost" : "card"}>
+<article class={isResponsive? "isResponsive" : isFirstPost ? "isFirstPost" : "card"}>
   <a href={`/${slug}`}>
     <div class="image-container">
       <img src={image} alt={title} />
@@ -124,5 +124,52 @@ const {
   
   a h4:hover {
     color: var(--clr-accent);
+  }
+
+  .isResponsive {
+    height: 18rem;
+    width: 18.6875rem;
+    flex-shrink: 0;
+    border-top-left-radius: 2.9375rem;
+    overflow: hidden;
+    scroll-snap-align:start;
+  }
+  
+  .isResponsive a {
+    display: block;
+    height: 100%;
+    width: 100%;
+  }
+
+   .isResponsive .image-container {
+    height: 60%;
+    width: 100%;
+    overflow: hidden;
+    background-color:white;
+    z-index: 0;
+  }
+  
+  .isResponsive .image-container img {
+    height: 100%;
+    object-fit: cover;
+    /* object-position: start; */
+    transition: transform 0.3s;
+    margin: auto;
+  }
+
+  .isResponsive img:hover {
+    transform: scale(1.1);
+  }
+  
+  .isResponsive .info-container {
+    color: var(--clr-contrast);
+    width: 100%;
+    background-color: var(--clr-secondary);
+    height: 40%;
+    padding-inline: 1rem;
+    padding-block: 0.5rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
   }
 </style>
