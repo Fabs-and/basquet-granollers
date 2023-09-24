@@ -7,7 +7,6 @@ import type {
 export const postFields: PostFields[] = [
   'title',
   'content',
-  'excerpt',
   'link',
   'slug',
   'categories',

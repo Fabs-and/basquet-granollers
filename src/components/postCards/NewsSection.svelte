@@ -9,14 +9,10 @@ export let posts: Post[];
 
 let position = 1;
 const totalNews = Math.ceil(posts.length / 4);
-const isFirstPost = true;
 
-// $: isFirstPost = position === 1; // True if the first post is the first in the array
-
-$: visiblePosts = posts.slice(position * 4 - 4 , position * 4); // The slice of posts that are visible in the current view
+$: visiblePosts = posts.slice(position * 4 - 4 , position * 4); 
 $: firstPost = visiblePosts[0];
-$: console.log('firstPost', firstPost) // The first post in the current view
-$: console.log('postschanged', visiblePosts)
+
 
 function goBack() {
   if (position > 1) {
@@ -32,22 +28,22 @@ function goForward() {
 </script>
 
 
-<section class="noticies-container">
+<section class="news-section-container">
   <h2>CBG Notícies</h2>
-  <div class="postCard-container">
+  <div class="news-container">
     {#each visiblePosts as post, i (post.id)}
-    {#if i === 0}
-    <IndividualNews post={firstPost} {isFirstPost}/>
-    {/if}
+      {#if i === 0}
+      <IndividualNews post={firstPost} isFirstPost={true}/>
+      {/if}
     {/each}
 
-    <div class="older-posts">
+    <div class="older-news-and-slider-controls-container">
       {#each visiblePosts as post, i (post.id)}
-      {#if i > 0}
-          <IndividualNews {post}/>
-      {/if}
+        {#if i > 0}
+            <IndividualNews {post}/>
+        {/if}
       {/each}
-      <div class="position-container">
+      <div class="position-controls-and-button-container">
         <div class="position-controls-container">
           <button on:click={goBack}>
             {@html sliderLeftArrow}
@@ -72,30 +68,34 @@ function goForward() {
 </section>
 
 <style>
-  section.noticies-container {
+  section.news-section-container {
+    height: calc(100dvh - var(--top-header-hg) - (var(--bottom-header-hg) - var(--header-separator-line-hg)));
     padding-inline: var(--padding-inline);
+  
     background-color: var(--clr-contrast);
     color: var(--clr-primary);
-  }
-
-  div.postCard-container {
     display: flex;
-    padding-block: 2rem;
-    gap: 1rem;
+    flex-direction: column;
+    justify-content: center;
   }
 
-  div.older-posts {
+  div.news-container {
+    display: flex;
+    gap: 1rem;
+    max-height: 60%;
+    align-items: center;
+  }
+
+  div.older-news-and-slider-controls-container {
     display: flex;
     flex-direction: column;
     gap: 2rem;
-    /* margin-inline-start: 2rem; */
   }
 
-  .position-container {
+  .position-controls-and-button-container {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    /* gap: 1rem; */
   }
 
   .position-controls-container {
@@ -111,9 +111,5 @@ function goForward() {
 
   .first-number {
     color: var(--clr-accent);
-  }
-
-  .button:hover {
-    fill: var(--clr-accent);
   }
 </style>

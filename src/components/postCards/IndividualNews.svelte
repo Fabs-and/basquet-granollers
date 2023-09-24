@@ -6,7 +6,6 @@ export let isFirstPost: boolean = false;
 
 const {
   title: { rendered: title },
-  excerpt: { rendered: excerpt },
   slug,
   date,
   image,
@@ -15,8 +14,8 @@ const {
 </script>
 
 
-<a href={`/${slug}`}>
-  <article class={isFirstPost ? "isFirstPost" : "card"}>
+<article class={isFirstPost ? "isFirstPost" : "card"}>
+  <a href={`/${slug}`}>
     <div class="image-container">
       <img src={image} alt={title} />
     </div>
@@ -24,31 +23,54 @@ const {
       <h4>{@html title}</h4>
       <p>{`Publicat ${dateConverter(date)}`}</p>
     </div>
+  </a>
   </article>
-</a>
 
 <style>
   p {
     font-style: italic;
     font-weight: 560;
   }
+  
   .isFirstPost {
-    /* display: block; */
-    height: 32.0625rem;
-    width: 43.375rem;
-    /* width: clamp(10rem, 30rem, 43.375rem); */
+    height: 100%;
+    max-width: 60%;
     border-top-left-radius: 2.9375rem;
     overflow: hidden;
     position: relative;
   }
+  
+  .isFirstPost a {
+    display:block;
+    height: 100%;
+  }
 
-   .isFirstPost img:hover {
+   .isFirstPost .image-container {
+    height: 80%;
+    border-top-left-radius: 2.9375rem;
+    overflow: hidden;
+    /* display: grid;
+    place-items: center; */
+    background-color:white;
+    /* position: relative; */
+    z-index: 0;
+  }
+  
+  .isFirstPost .image-container img {
+    height: 100%;
+    object-fit: cover;
+    object-position: start;
+    border-top-left-radius: 2.9375rem;
+    transition: transform 0.3s;
+  }
+
+  .isFirstPost img:hover {
     transform: scale(1.1);
   }
   
   .isFirstPost .info-container {
     /* so the z-index has effect and the image does not overflow the info-container when hovered */
-    position: relative; 
+    /* position: relative;  */
     color: var(--clr-contrast);
     background-color: var(--clr-secondary);
     height: 20%;
@@ -59,14 +81,7 @@ const {
     justify-content: space-between;
   }
 
-   .isFirstPost img {
-    height: 80%;
-    border-top-left-radius: 2.9375rem;
-    transition: transform 0.3s;
-    position: relative;
-    object-fit: cover;
-    /* z-index: 0; */
-  }
+  
 
   article.card {
     color: var(--clr-primary);

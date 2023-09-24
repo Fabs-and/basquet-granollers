@@ -11,6 +11,7 @@ import HeroSection from '@components/heroSection/HeroSection.astro';
 import MainSponsors from '@components/sponsors/MainSponsors.astro';
 import AllSponsors from '@components/sponsors/AllSponsors.astro';
 import Projects from '@components/projects/Projects.astro';
+import NewsSection from '@components/postCards/NewsSection.svelte';
 // Import api functions from utils
 import CarouselProjects from '@components/projects/CarouselProjects.astro';
 import {
@@ -27,7 +28,7 @@ import { BASE_URL } from 'src/config';
 
 configure({BASE_URL: BASE_URL})
 
-const posts: Post[] = await fetchPosts(9);
+const posts: Post[] = await fetchPosts(20);
 
 // console.log(posts[1])
 
@@ -39,10 +40,7 @@ const title = 'El Putu Dapps';
 <BaseLayout {title}>
   <HeroSection/>
   <MainSponsors/>
-  <GridPostCard
-    {posts}
-    {allCategories}
-  />
+  <NewsSection {posts}/>
   <Projects/>
   <AllSponsors/>
   <CarouselProjects/>
