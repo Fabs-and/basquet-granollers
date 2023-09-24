@@ -38,11 +38,13 @@ function goForward() {
     {/each}
 
     <div class="older-news-and-slider-controls-container">
-      {#each visiblePosts as post, i (post.id)}
-        {#if i > 0}
-            <IndividualNews {post}/>
-        {/if}
-      {/each}
+      <div class='older-news'>
+        {#each visiblePosts as post, i (post.id)}
+          {#if i > 0}
+              <IndividualNews {post}/>
+          {/if}
+        {/each}
+      </div>
       <div class="position-controls-and-button-container">
         <div class="position-controls-container">
           <button on:click={goBack}>
@@ -71,22 +73,32 @@ function goForward() {
   section.news-section-container {
     height: calc(100dvh - var(--top-header-hg) - (var(--bottom-header-hg) - var(--header-separator-line-hg)));
     padding-inline: var(--padding-inline);
-  
+   padding-block: 3rem;
     background-color: var(--clr-contrast);
     color: var(--clr-primary);
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    gap: 2rem;
   }
-
+  
   div.news-container {
     display: flex;
     gap: 1rem;
-    max-height: 60%;
+    max-height: 80%;
     align-items: center;
   }
-
+  
   div.older-news-and-slider-controls-container {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    flex: 1;
+    justify-content: space-between;
+  }
+  
+  .older-news {
+    overflow: hidden;
+    flex: 1;
     display: flex;
     flex-direction: column;
     gap: 2rem;
@@ -104,6 +116,10 @@ function goForward() {
     gap: 1rem;
   }
 
+  button {
+    display: flex;
+    /* align-items: center; */
+  }
   .position-indicator {
     font-size: 0.78125rem;
     font-weight: 550;
@@ -112,4 +128,11 @@ function goForward() {
   .first-number {
     color: var(--clr-accent);
   }
+
+  @media (width < 1025px) {
+    section.news-section-container {
+      padding-inline: var(--padding-inline-tablet);
+    }
+  }
+
 </style>

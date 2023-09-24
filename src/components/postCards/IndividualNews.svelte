@@ -81,29 +81,24 @@ const {
     justify-content: space-between;
   }
 
-  
-
   article.card {
+    height: 25%;
+    overflow: hidden;
+    /* flex-shrink:0; */
+  }
+
+  article.card a{
     color: var(--clr-primary);
     display: flex;
     gap: 1rem;
-    /* align-items: start; */
+    height: 100%;
   }
   
-  .card .info-container {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-  }
-  
-  .card .image-container {
-    /* position: relative; */
-    width: 11.4375rem;
+   .card .image-container {
+    width: 40%;
     height: 7.375rem;
     background-color: white;
     flex-shrink: 0;
-    /* flex: 1; */
-    /* overflow: hidden; */
   }
   
   .card img {
@@ -111,9 +106,15 @@ const {
     height: 100%;
     object-fit: cover;
     object-position: top;
-    /* overflow: hidden; */
-    /* margin: auto; */
   }
+
+  .card .info-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+  
+ 
   
   a h4:hover {
     color: var(--clr-accent);
