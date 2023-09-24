@@ -2,6 +2,7 @@
 import type { Post } from "fetch-wordpress-api"
 import IndividualNews from "./IndividualNews.svelte";
     import { sliderLeftArrow, sliderRightArrow } from "@assets/icons";
+    import ButtonAnchor from "@components/ButtonAnchor.svelte";
 
 export let posts: Post[];
 
@@ -59,11 +60,11 @@ function goForward() {
           {@html sliderRightArrow}
           </button>
         </div>
-        <!-- <ButtonAnchor
+        <ButtonAnchor
           text={"veure totes"}
           textColor={"var(--clr-accent)"}
           hoverTextColor={"var(--clr-contrast)"}
-        /> -->
+        />
       </div>
     </div>
   </div>
@@ -129,11 +130,4 @@ function goForward() {
   .first-number {
     color: var(--clr-accent);
   }
-
-  @media (width < 1025px) {
-    section.news-section-container {
-      padding-inline: var(--padding-inline-tablet);
-    }
-  }
-
 </style>

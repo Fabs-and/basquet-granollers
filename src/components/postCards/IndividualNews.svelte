@@ -10,7 +10,6 @@ const {
   date,
   image,
 } = post;
-console.log('loading')
 </script>
 
 

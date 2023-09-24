@@ -1,0 +1,27 @@
+---
+import NewsSection from "@components/postCards/NewsSection.svelte";
+import NewsSectionResponsive from "@components/postCards/NewsSectionResponsive.svelte";
+
+const { posts} = Astro.props
+---
+
+<div class="desktop">
+  <NewsSection client:visible {posts}/>
+</div>
+<div class="responsive">
+  <NewsSectionResponsive client:visible {posts}/>
+</div>
+
+<style>
+  .responsive {
+    display: none;
+  }
+ @media (width < 1050px) {
+    .desktop {
+     display: none;
+    }
+
+    /* .responsive {} */
+  }
+</style>
+

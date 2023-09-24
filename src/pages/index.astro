@@ -19,7 +19,7 @@ import {
   fetchAllCategories,
   fetchPosts,
 } from 'fetch-wordpress-api';
-
+import NewsSectionLayout from '@layouts/NewsSectionLayout.astro';
 import type { Category, Post } from 'fetch-wordpress-api';
 // Import global (not global stores) variables/constants
 import { postFields, categoryFields } from 'src/data/apiGlobalConsts';
@@ -40,7 +40,7 @@ const title = 'El Putu Dapps';
 <BaseLayout {title}>
   <HeroSection/>
   <MainSponsors/>
-  <NewsSection client:visible {posts}/>
+  <NewsSectionLayout {posts}/>
   <Projects/>
   <AllSponsors/>
   <CarouselProjects/>
