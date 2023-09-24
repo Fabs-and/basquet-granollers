@@ -5,11 +5,19 @@ import IndividualNews from "./IndividualNews.svelte";
 
 export let posts: Post[];
 
-const firstPost = posts[0];
-const isFirstPost = true;
+
 
 let position = 1;
-const totalNews = posts.length;
+const totalNews = Math.ceil(posts.length / 4);
+const isFirstPost = true;
+
+// $: isFirstPost = position === 1; // True if the first post is the first in the array
+
+$: visiblePosts = posts.slice(position * 4 - 4 , position * 4); // The slice of posts that are visible in the current view
+$: firstPost = visiblePosts[0];
+$: console.log('firstPost', firstPost) // The first post in the current view
+$: console.log('postschanged', visiblePosts)
+
 function goBack() {
   if (position > 1) {
     position--;
@@ -27,13 +35,17 @@ function goForward() {
 <section class="noticies-container">
   <h2>CBG Notícies</h2>
   <div class="postCard-container">
+    {#each visiblePosts as post, i (post.id)}
+    {#if i === 0}
     <IndividualNews post={firstPost} {isFirstPost}/>
+    {/if}
+    {/each}
 
     <div class="older-posts">
-      {#each posts as post, i}
-        {#if i > 0 && i < 4}
+      {#each visiblePosts as post, i (post.id)}
+      {#if i > 0}
           <IndividualNews {post}/>
-        {/if}
+      {/if}
       {/each}
       <div class="position-container">
         <div class="position-controls-container">
