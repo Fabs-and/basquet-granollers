@@ -1,29 +1,35 @@
 ---
 import ButtonAnchor from "@components/ButtonAnchor.astro";
 
+import { teams } from "@data/teamsSection.ts";
 ---
 
 <div class="teams-container">
-  <article class="team-article">
-    <img src="" alt="" />
-    <div class="half-hidden">
-      <div class="flex-content">
-        <h3>Femenins</h3>
-        <ButtonAnchor text={`Veure més`}/>
-      </div>
-    </div>
-  </article>
+  {
+    teams.map((team) => (
+      <article class="team-article">
+        <img src={team.image} alt={team.alt} />
+        <div class="half-hidden">
+          <div class="flex-content">
+            <h3>{team.name}</h3>
+            <ButtonAnchor slug={team.slug} text={`Veure més`} />
+          </div>
+        </div>
+      </article>
+    ))
+  }
 </div>
 
 <style>
   .teams-container {
-    background-color: gray;
     height: 80vh;
+    display: flex;
+    justify-content: space-between;
+    padding-inline: var(--padding-inline);
   }
 
   .team-article {
     position: relative;
-    background-color: red;
     width: 17.8125rem;
     height: 19.3125rem;
     border-top-left-radius: 2.9375rem;
@@ -37,7 +43,7 @@ import ButtonAnchor from "@components/ButtonAnchor.astro";
     left: 0;
     width: 100%;
     height: 100%;
-    background: linear-gradient(0deg, #18366C 0%, rgba(0, 26, 156, 0.00) 83.17%);
+    background: linear-gradient(0deg, #18366c 0%, rgba(0, 26, 156, 0) 83.17%);
     transform: translateY(20%);
     transition: transform 0.2s ease-in;
     display: flex;
