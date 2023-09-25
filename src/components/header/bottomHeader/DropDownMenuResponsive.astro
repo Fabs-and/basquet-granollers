@@ -1,0 +1,122 @@
+---
+const { category } = Astro.props;
+import { collapsibleArrowHeader } from "@assets/icons";
+---
+
+<script>
+  function handleClick(this: any) {
+    let divArrow = this.querySelector(".rotate");
+    divArrow.classList.toggle(".rotated");
+
+    let dropDown = document.querySelector("#myDropdown");
+
+    dropDown!.classList.toggle("show");
+  }
+  let buttons = document.querySelectorAll("#drop-down-menu");
+
+  buttons.forEach(function (button) {
+    // Add the event listener to each button
+    button.addEventListener("click", handleClick);
+  });
+</script>
+<div class="dropdown">
+  <button id="drop-down-menu">
+    {category.title.toUpperCase()}
+    <div class="rotate">
+      <Fragment set:html={collapsibleArrowHeader} />
+    </div>
+  </button>
+  <ul id="myDropdown" class="dropdown-content">
+    <li>
+      <a href="#">Estatuts</a>
+    </li>
+    <a href="#">Codi Ètic</a>
+    <li>
+      <a href="#">Protocol prevenció violències sexuals</a>
+    </li>
+    <li><a href="#">Lorem Ipsum</a></li>
+    <li><a href="#">Lorem Ipsum</a></li>
+    <li><a href="#">Lorem Ipsum</a></li>
+  </ul>
+</div>
+
+<style>
+  .dropdown {
+    position: relative;
+    display: inline-block;
+  }
+
+  .dropdown:hover .dropdown-content {
+    display: flex;
+  }
+
+  .dropdown:hover .rotate {
+    transform: rotate(-180deg);
+  }
+
+  .show {
+    display: flex;
+  }
+
+  .dropdown-content {
+    display: none;
+    flex-direction: column;
+    top: 2rem;
+    gap: 0.75rem;
+    position: absolute;
+    background-color: var(--clr-primary);
+    padding-inline: 1.31rem;
+    padding-block: 0.81rem;
+    width: 9.8rem;
+    z-index: 1;
+  }
+
+  .dropdown-content:before {
+    content: "";
+    width: 0;
+    height: 0;
+    border-left: 0.71875rem solid transparent; /* Half of the width */
+    border-right: 0.71875rem solid transparent; /* Half of the width */
+    border-bottom: 0.9375rem solid var(--clr-primary); /* Given height */
+    position: absolute;
+    top: -0.9375rem;
+    left: 10%;
+    /* transform: translateX(5%); */
+  }
+  .dropdown-content a {
+    /* text-decoration: none; */
+    display: block;
+  }
+  .show {
+    display: block;
+  }
+
+  .rotate {
+    display: inline-block;
+    transform: rotate(0);
+    transform-origin: 60% 45%;
+    transition: 0.45s transform ease-in-out;
+  }
+
+  .rotated {
+    transform: rotate(-180deg);
+  }
+
+  @keyframes slideInFromTop {
+    from {
+      transform: translateY(-100%);
+      opacity: 0;
+    }
+    to {
+      transform: translateY(0);
+      opacity: 1;
+    }
+  }
+
+  .dropdown-content a {
+    /* ... existing styles ... */
+    animation-name: slideInFromTop;
+    animation-duration: 0.5s; /* adjust this as per your preference */
+    animation-fill-mode: forwards; /* to make sure the end state remains */
+  }
+</style>
