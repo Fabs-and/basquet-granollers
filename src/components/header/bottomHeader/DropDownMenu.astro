@@ -3,22 +3,32 @@ const { category } = Astro.props;
 import { collapsibleArrowHeader } from "@assets/icons";
 ---
 
-<!-- <script>
+<script>
   function handleClick(this: any) {
     let divArrow = this.querySelector(".rotate");
-    divArrow.classList.toggle(".rotated");
-
-    let dropDown = document.querySelector("#myDropdown");
-
-    dropDown!.classList.toggle("show");
+    divArrow.classList.toggle("rotated");
+ 
+    let dropDown = this.nextElementSibling;
+    dropDown!.style.display === "flex"
+      ? (dropDown!.style.display = "none")
+      : (dropDown!.style.display = "flex");
   }
   let buttons = document.querySelectorAll("#drop-down-menu");
 
-  buttons.forEach(function (button) {
+  // Check if the device does not support hover
+  if (window.matchMedia("(hover: none)").matches) {
     // Add the event listener to each button
-    button.addEventListener("click", handleClick);
-  });
-</script> -->
+    buttons.forEach(function (button) {
+      button.addEventListener("click", handleClick);
+    });
+  } else {
+    // Remove the event listener from each button
+    buttons.forEach(function (button) {
+      button.removeEventListener("click", handleClick);
+    });
+  }
+</script>
+</script>
 
 <div class="dropdown">
   <button id="drop-down-menu">
@@ -42,23 +52,28 @@ import { collapsibleArrowHeader } from "@assets/icons";
 </div>
 
 <style>
+  .show {
+    display: flex;
+  }
   .dropdown {
     position: relative;
     display: inline-block;
   }
 
-  .dropdown:hover .dropdown-content {
-    display: flex;
-  }
+  @media (hover: hover) {
+    .dropdown:hover .dropdown-content {
+      display: flex;
+    }
 
-  .dropdown:hover .rotate {
-    transform: rotate(-180deg);
+    .dropdown:hover .rotate {
+      transform: rotate(-180deg);
+    }
   }
 
   .dropdown-content {
     display: none;
     flex-direction: column;
-    top: 2rem;
+    top: 2.5rem;
     gap: 0.75rem;
     position: absolute;
     background-color: var(--clr-primary);
