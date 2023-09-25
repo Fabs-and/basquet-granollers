@@ -1,26 +1,34 @@
 ---
-
+import MobileCarousel from "./MobileCarousel.svelte";
 ---
 
-
-  <h3>Projectes</h3>
+<h3>Projectes</h3>
 
 <div class="projects-container">
-  <img class='image' src="Rectangle23.png" alt="Rectangle23" />
-  <img class='image' src="Rectangle24.png" alt="Rectangle24" />
-  <img class='image' src="Rectangle25.png" alt="Rectangle25" />
-  <img class='image' src="Rectangle26.png" alt="Rectangle26" />
-  <img class='image' src="Rectangle27.png" alt="Rectangle27" />
-  <img class='image' src="Rectangle28.png" alt="Rectangle28" />
+  <a href="">
+    <img class="image" src="Rectangle23.png" alt="Rectangle23" />
+  </a>
+  <a href="">
+    <img class="image" src="Rectangle24.png" alt="Rectangle24" />
+  </a>
+  <a href="">
+    <img class="image" src="Rectangle25.png" alt="Rectangle25" />
+  </a>
+  <a href="">
+    <img class="image" src="Rectangle26.png" alt="Rectangle26" />
+  </a>
+  <a href="">
+    <img class="image" src="Rectangle27.png" alt="Rectangle27" />
+  </a><a href="">
+    <img class="image" src="Rectangle28.png" alt="Rectangle28" />
+  </a>
 </div>
-
-
 
 <style>
   h3 {
     padding-inline: var(--padding-inline);
   }
- 
+
   .projects-container {
     padding-inline: var(--padding-inline);
     padding-block: 2rem;
@@ -42,26 +50,33 @@
   }
 
   @media (width < 648px) {
-
     h3 {
       padding-top: 2rem;
       padding-inline: var(--padding-inline-mobile);
     }
     .projects-container {
       margin-left: var(--padding-inline-mobile);
-     /* padding-inline: 0rem; */
-     /* padding-block: 0rem; */
+      /* padding-inline: 0rem; */
+      /* padding-block: 0rem; */
       display: flex;
       overflow-x: scroll;
       scroll-snap-type: x mandatory;
       gap: var(--padding-inline-mobile);
     }
 
-     .projects-container .image:not(:first-child)  {
-      opacity: 0.5;
-     }
+    .projects-container a {
+      /* width: 5.6875rem; */
+      /* height: 11.0625rem; */
+      flex-shrink: 0;
+      /* display: flex; */
+      /* gap: 1rem; */
+      /* height: 100%; */
+      /* flex-basis: auto; */
+    }
     .image {
-      object-fit:contain;
+      width: 18.6875rem;
+      height: 11.0625rem;
+      object-fit: contain;
       scroll-snap-align: start;
     }
   }

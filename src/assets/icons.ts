@@ -65,3 +65,33 @@ export const sliderRightArrow = `<svg width="43" height="43" viewBox="0 0 43 43"
 </defs>
 </svg>
 `;
+
+export const sliderLeftArrowWhite = `<svg width="47" height="47" viewBox="0 0 47 47" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g clip-path="url(#clip0_475_5506)">
+<circle cx="23.5" cy="23.5" r="22.9" transform="rotate(-180 23.5 23.5)" stroke="#FA6E19" stroke-width="1.2"/>
+<path d="M12.7401 23.0408L33.7004 23.0408" stroke="white" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M21.8154 32.756L12.1575 23.1837" stroke="white" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M21.6079 13.6495L12.1582 23.1837" stroke="white" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+</g>
+<defs>
+<clipPath id="clip0_475_5506">
+<rect width="47" height="47" fill="white" transform="translate(47 47) rotate(-180)"/>
+</clipPath>
+</defs>
+</svg>
+`;
+
+export const sliderArrowArrowWhite = `<svg width="47" height="47" viewBox="0 0 47 47" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g clip-path="url(#clip0_425_3831)">
+<circle cx="23.5" cy="23.5" r="22.9" stroke="#FA6E19" stroke-width="1.2"/>
+<path d="M34.2599 23.9592L13.2996 23.9592" stroke="white" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M25.1846 14.244L34.8425 23.8163" stroke="white" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M25.3921 33.3505L34.8418 23.8163" stroke="white" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+</g>
+<defs>
+<clipPath id="clip0_425_3831">
+<rect width="47" height="47" fill="white"/>
+</clipPath>
+</defs>
+</svg>
+`;

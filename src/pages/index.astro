@@ -13,7 +13,6 @@ import AllSponsors from '@components/sponsors/AllSponsors.astro';
 import Projects from '@components/projects/Projects.astro';
 import NewsSection from '@components/postCards/NewsSection.svelte';
 // Import api functions from utils
-import CarouselProjects from '@components/projects/CarouselProjects.astro';
 import {
   configure,
   fetchAllCategories,
@@ -43,6 +42,5 @@ const title = 'El Putu Dapps';
   <NewsSectionLayout {posts}/>
   <Projects/>
   <AllSponsors/>
-  <CarouselProjects/>
 </BaseLayout>
 
