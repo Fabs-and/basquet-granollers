@@ -1,0 +1,72 @@
+---
+const {category} = Astro.props
+import {collapsibleArrowHeader} from '@assets/icons'
+---
+
+<script>
+  function handleClick(this: any) {
+    let divArrow = this.querySelector(".rotate");
+    divArrow.classList.toggle(".rotated");
+
+    let dropDown = document.querySelector("#myDropdown");
+
+    dropDown!.classList.toggle("show");
+  }
+  let buttons = document.querySelectorAll("#drop-down-menu");
+
+  buttons.forEach(function (button) {
+    // Add the event listener to each button
+    button.addEventListener("click", handleClick);
+  });
+</script>
+
+<div class="dropdown">
+  <button id="drop-down-menu">
+    {category.title.toUpperCase()}
+    <div class="rotate">
+      <Fragment set:html={collapsibleArrowHeader} />
+    </div>
+  </button>
+  <div id="myDropdown" class="dropdown-content">
+    <a href="#">Link 1</a>
+    <a href="#">Link 2</a>
+    <a href="#">Link 3</a>
+  </div>
+</div>
+
+<style>
+  .dropdown {
+    position: relative;
+    display: inline-block;
+  }
+
+  .dropdown:hover {
+    color: var(--clr-accent)
+  }
+  .dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: var(--clr-primary);
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+    z-index: 1;
+  }
+  .dropdown-content a {
+    text-decoration: none;
+    display: block;
+  }
+  .show {
+    display: block;
+  }
+
+   .rotate {
+    display: inline-block;
+    transform: rotate(0);
+    transform-origin: 60% 45%;
+    transition: 0.45s transform ease-in-out;
+  }
+
+  .rotated {
+    transform: rotate(-180deg);
+  }
+</style>

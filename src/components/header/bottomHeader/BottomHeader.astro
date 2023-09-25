@@ -1,36 +1,29 @@
 ---
 import { bottomHeaderLinks } from "src/data/header";
 import { logo } from "@assets/logo";
+import DropDownMenu from "@components/DropDownMenu.astro";
 import { collapsibleArrowHeader, magnifyingGlass } from "@assets/icons";
 ---
 
-<script>
-  function handleClick(this: any) {
-    let div = this.querySelector(".rotate");
-    div.classList.toggle(".rotated");
-  }
-  let buttons = document.querySelectorAll("#drop-down-menu");
 
-  buttons.forEach(function (button) {
-    // Add the event listener to each button
-    button.addEventListener("click", handleClick);
-  });
-</script>
 
-<h1 class="logo">  
-  <a
-  href="/"><img src="logo.svg" alt="Web oficial del Club Bàsquet Granollers" class=""></a
+<h1 class="logo">
+  <a href="/"
+    ><img
+      src="logo.svg"
+      alt="Web oficial del Club Bàsquet Granollers"
+      class=""
+    /></a
   >
 </h1>
 
-
- <nav class="nav">
+<nav class="nav">
   <ul>
     {
       bottomHeaderLinks.map((category) => (
         <li>
           {category.title ? (
-            <button id="drop-down-menu">{category.title.toUpperCase()}<div class="rotate"><Fragment set:html={collapsibleArrowHeader} /></div></button>
+            <DropDownMenu {category}/>
           ) : (
             <a href={category.slug}>{category.name!.toUpperCase()}</a>
           )}
@@ -38,7 +31,6 @@ import { collapsibleArrowHeader, magnifyingGlass } from "@assets/icons";
       ))
     }
   </ul>
-
 </nav>
 
 <div class="history-search-container">
@@ -51,6 +43,7 @@ import { collapsibleArrowHeader, magnifyingGlass } from "@assets/icons";
 </div>
 
 <style>
+  
   .logo {
     position: absolute;
     bottom: 0.5rem;
@@ -76,16 +69,7 @@ import { collapsibleArrowHeader, magnifyingGlass } from "@assets/icons";
   .search-icon:hover {
     cursor: pointer;
   }
-  .rotate {
-    display: inline-block;
-    transform: rotate(0);
-    transform-origin: 60% 45%;
-    transition: 0.45s transform ease-in-out;
-  }
-
-  .rotated {
-    transform: rotate(-180deg);
-  }
+ 
 
   ul {
     min-height: var(--bottom-header-hg);

@@ -33,3 +33,4 @@ export const bottomHeaderLinks = [
   { name: `Botiga`, slug: "botiga" },
   { name: `Contacte`, slug: "contacte" },
 ];
+
