@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { onMount } from "svelte";
+  import { removeOpacity } from "../../svelte-actions/intersectionObserver";
   import type { Post } from "fetch-wordpress-api";
   import IndividualNews from "./IndividualNews.svelte";
   import ButtonAnchor from "@components/ButtonAnchor.svelte";
@@ -23,7 +23,6 @@
 
   function goForward() {
     if (scrollPosition === carousel.scrollWidth - carousel.clientWidth) return;
-    console.log("scrollLeft: ", scrollPosition);
     scrollPosition = carousel.scrollLeft;
     carousel.scrollLeft = scrollPosition + scrollAmount;
   }
@@ -37,7 +36,9 @@
     on:scroll={updateXScrollPosition}
   >
     {#each posts as post (post.id)}
-      <IndividualNews {post} isResponsive={true} />
+      <div use:removeOpacity class="opacity">
+        <IndividualNews {post} isResponsive={true} />
+      </div>
     {/each}
   </div>
   <div class="controls-container">
@@ -58,6 +59,10 @@
 </section>
 
 <style>
+  .opacity {
+    opacity: 0.5;
+    transition: opacity 0.3s;
+  }
   .responsive-news {
     width: 99.9vw;
     background-color: var(--clr-contrast);

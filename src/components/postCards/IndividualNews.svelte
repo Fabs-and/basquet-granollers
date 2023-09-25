@@ -10,10 +10,11 @@ const {
   date,
   image,
 } = post;
+
 </script>
 
 
-<article class={isResponsive? "isResponsive" : isFirstPost ? "isFirstPost" : "card"}>
+<article class={isResponsive? "isResponsive" : isFirstPost ? "isFirstPost" : "card"} >
   <a href={`/${slug}`}>
     <div class="image-container">
       <img src={image} alt={title} />
@@ -172,4 +173,6 @@ const {
     flex-direction: column;
     justify-content: space-between;
   }
+
+ 
 </style>

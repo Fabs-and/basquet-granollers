@@ -4,9 +4,6 @@
   export let isFilled = false;
   export let textColor;
   export let hoverTextColor;
-  console.log('textColor', textColor);
-  console.log('hoverColor', hoverTextColor);
-  console.log('isFilled', isFilled);
 </script>
 
 
