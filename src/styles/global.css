@@ -185,3 +185,6 @@ small {
   justify-content: space-evenly;
 }
 
+.opacity {
+  opacity: 0.5;
+}

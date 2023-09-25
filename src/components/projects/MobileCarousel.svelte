@@ -1,4 +1,5 @@
 <script lang="ts">
+  import {removeOpacity} from "../../svelte-actions/intersectionObserver";
   import { sliderLeftArrowWhite, sliderRightArrowWhite } from "@assets/icons";
   export let projects;
 
@@ -26,7 +27,7 @@
 
 <div class="projects-container-mobile" bind:this={carousel} on:scroll={updateXScrollPosition}>
   {#each projects as project}
-    <a href={project.link}>
+    <a use:removeOpacity class='opacity'href={project.link}>
       <img class="image" src={project.image} alt={project.alt} />
     </a>
   {/each}
