@@ -1,6 +1,6 @@
 ---
-const {category} = Astro.props
-import {collapsibleArrowHeader} from '@assets/icons'
+const { category } = Astro.props;
+import { collapsibleArrowHeader } from "@assets/icons";
 ---
 
 <script>
@@ -27,11 +27,18 @@ import {collapsibleArrowHeader} from '@assets/icons'
       <Fragment set:html={collapsibleArrowHeader} />
     </div>
   </button>
-  <div id="myDropdown" class="dropdown-content">
-    <a href="#">Link 1</a>
-    <a href="#">Link 2</a>
-    <a href="#">Link 3</a>
-  </div>
+  <ul id="myDropdown" class="dropdown-content">
+    <li>
+      <a href="#">Estatuts</a>
+    </li>
+    <a href="#">Codi Ètic</a>
+    <li>
+      <a href="#">Protocol prevenció violències sexuals</a>
+    </li>
+    <li><a href="#">Lorem Ipsum</a></li>
+    <li><a href="#">Lorem Ipsum</a></li>
+    <li><a href="#">Lorem Ipsum</a></li>
+  </ul>
 </div>
 
 <style>
@@ -40,26 +47,48 @@ import {collapsibleArrowHeader} from '@assets/icons'
     display: inline-block;
   }
 
-  .dropdown:hover {
-    color: var(--clr-accent)
+  .dropdown:hover .dropdown-content {
+    display: flex;
   }
+
+  .dropdown:hover .rotate {
+    transform: rotate(-180deg);
+  }
+
   .dropdown-content {
     display: none;
+    flex-direction: column;
+    top: 2rem;
+    gap: 0.75rem;
     position: absolute;
     background-color: var(--clr-primary);
-    min-width: 160px;
-    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+    padding-inline: 1.31rem;
+    padding-block: 0.81rem;
+    width: 9.8rem;
     z-index: 1;
   }
+
+  .dropdown-content:before {
+    content: "";
+    width: 0;
+    height: 0;
+    border-left: 0.71875rem solid transparent; /* Half of the width */
+    border-right: 0.71875rem solid transparent; /* Half of the width */
+    border-bottom: 0.9375rem solid var(--clr-primary); /* Given height */
+    position: absolute;
+    top: -0.9375rem;
+    left: 10%;
+    /* transform: translateX(5%); */
+  }
   .dropdown-content a {
-    text-decoration: none;
+    /* text-decoration: none; */
     display: block;
   }
   .show {
     display: block;
   }
 
-   .rotate {
+  .rotate {
     display: inline-block;
     transform: rotate(0);
     transform-origin: 60% 45%;
@@ -68,5 +97,23 @@ import {collapsibleArrowHeader} from '@assets/icons'
 
   .rotated {
     transform: rotate(-180deg);
+  }
+
+  @keyframes slideInFromTop {
+    from {
+      transform: translateY(-100%);
+      opacity: 0;
+    }
+    to {
+      transform: translateY(0);
+      opacity: 1;
+    }
+  }
+
+  .dropdown-content a {
+    /* ... existing styles ... */
+    animation-name: slideInFromTop;
+    animation-duration: 0.5s; /* adjust this as per your preference */
+    animation-fill-mode: forwards; /* to make sure the end state remains */
   }
 </style>
