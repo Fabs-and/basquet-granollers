@@ -15,6 +15,7 @@
   function updateXScrollPosition() {
     scrollPosition = carousel.scrollLeft;
   }
+  
   function goBack() {
     if (scrollPosition === 0) return;
     scrollPosition = carousel.scrollLeft;

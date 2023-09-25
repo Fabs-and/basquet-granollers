@@ -1,32 +1,30 @@
 ---
 import MobileCarousel from "./MobileCarousel.svelte";
+import { projects } from "@data/projects.ts";
 ---
 
 <h3>Projectes</h3>
 
-<div class="projects-container">
-  <a href="">
-    <img class="image" src="Rectangle23.png" alt="Rectangle23" />
-  </a>
-  <a href="">
-    <img class="image" src="Rectangle24.png" alt="Rectangle24" />
-  </a>
-  <a href="">
-    <img class="image" src="Rectangle25.png" alt="Rectangle25" />
-  </a>
-  <a href="">
-    <img class="image" src="Rectangle26.png" alt="Rectangle26" />
-  </a>
-  <a href="">
-    <img class="image" src="Rectangle27.png" alt="Rectangle27" />
-  </a><a href="">
-    <img class="image" src="Rectangle28.png" alt="Rectangle28" />
-  </a>
+<div class="desktop">
+  <div class="projects-container">
+    {
+      projects.map((project) => (
+        <a href={project.link}>
+          <img class="image" src={project.image} alt={project.alt} />
+        </a>
+      ))
+    }
+  </div>
+</div>
+
+<div class="mobile">
+  <MobileCarousel client:visible {projects} />
 </div>
 
 <style>
   h3 {
     padding-inline: var(--padding-inline);
+    padding-top: 2rem;
   }
 
   .projects-container {
@@ -40,6 +38,9 @@ import MobileCarousel from "./MobileCarousel.svelte";
     /* place-content: center; */
   }
 
+  .mobile {
+    display: none;
+  }
   @media (width < 1025px) {
     h3 {
       padding-inline: var(--padding-inline-tablet);
@@ -51,33 +52,13 @@ import MobileCarousel from "./MobileCarousel.svelte";
 
   @media (width < 648px) {
     h3 {
-      padding-top: 2rem;
       padding-inline: var(--padding-inline-mobile);
     }
-    .projects-container {
-      margin-left: var(--padding-inline-mobile);
-      /* padding-inline: 0rem; */
-      /* padding-block: 0rem; */
-      display: flex;
-      overflow-x: scroll;
-      scroll-snap-type: x mandatory;
-      gap: var(--padding-inline-mobile);
+    .desktop {
+      display: none;
     }
-
-    .projects-container a {
-      /* width: 5.6875rem; */
-      /* height: 11.0625rem; */
-      flex-shrink: 0;
-      /* display: flex; */
-      /* gap: 1rem; */
-      /* height: 100%; */
-      /* flex-basis: auto; */
-    }
-    .image {
-      width: 18.6875rem;
-      height: 11.0625rem;
-      object-fit: contain;
-      scroll-snap-align: start;
+    .mobile {
+      display: block;
     }
   }
 </style>

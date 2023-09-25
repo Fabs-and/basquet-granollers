@@ -81,7 +81,7 @@ export const sliderLeftArrowWhite = `<svg width="47" height="47" viewBox="0 0 47
 </svg>
 `;
 
-export const sliderArrowArrowWhite = `<svg width="47" height="47" viewBox="0 0 47 47" fill="none" xmlns="http://www.w3.org/2000/svg">
+export const sliderRightArrowWhite = `<svg width="47" height="47" viewBox="0 0 47 47" fill="none" xmlns="http://www.w3.org/2000/svg">
 <g clip-path="url(#clip0_425_3831)">
 <circle cx="23.5" cy="23.5" r="22.9" stroke="#FA6E19" stroke-width="1.2"/>
 <path d="M34.2599 23.9592L13.2996 23.9592" stroke="white" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
