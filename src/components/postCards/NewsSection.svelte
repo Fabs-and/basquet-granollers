@@ -72,7 +72,7 @@ function goForward() {
 
 <style>
   section.news-section-container {
-    height: calc(100dvh - var(--top-header-hg) - (var(--bottom-header-hg) - var(--header-separator-line-hg)));
+    height: 47rem;
     padding-inline: var(--padding-inline);
    padding-block: 3rem;
     background-color: var(--clr-contrast);

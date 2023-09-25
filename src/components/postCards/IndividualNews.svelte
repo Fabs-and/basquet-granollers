@@ -1,20 +1,20 @@
-<script lang='ts'>
-import { dateConverter } from "../../utils/helperFunctions";
+<script lang="ts">
+  import { dateConverter } from "../../utils/helperFunctions";
 
-export let post;
-export let isFirstPost: boolean = false;
-export let isResponsive: boolean = false;
-const {
-  title: { rendered: title },
-  slug,
-  date,
-  image,
-} = post;
-
+  export let post;
+  export let isFirstPost: boolean = false;
+  export let isResponsive: boolean = false;
+  const {
+    title: { rendered: title },
+    slug,
+    date,
+    image,
+  } = post;
 </script>
 
-
-<article class={isResponsive? "isResponsive" : isFirstPost ? "isFirstPost" : "card"} >
+<article
+  class={isResponsive ? "isResponsive" : isFirstPost ? "isFirstPost" : "card"}
+>
   <a href={`/${slug}`}>
     <div class="image-container">
       <img src={image} alt={title} />
@@ -24,39 +24,42 @@ const {
       <p>{`Publicat ${dateConverter(date)}`}</p>
     </div>
   </a>
-  </article>
+</article>
 
 <style>
   p {
     font-style: italic;
     font-weight: 560;
   }
-  
+
   .isFirstPost {
-    height: 100%;
+    height: 33.1875rem;
     width: 60%;
     border-top-left-radius: 2.9375rem;
     overflow: hidden;
+    flex-shrink: 0;
   }
-  
+
   .isFirstPost a {
-    display:block;
+    display: flex;
+    flex-direction: column;
     height: 100%;
     width: 100%;
   }
 
-   .isFirstPost .image-container {
+  .isFirstPost .image-container {
     height: 80%;
     width: 100%;
     overflow: hidden;
-    background-color:white;
+    background-color: white;
+    flex-shrink: 0;
     z-index: 0;
   }
-  
+
   .isFirstPost .image-container img {
-    height: 100%;
+    width: 100%;
     object-fit: cover;
-    object-position: start;
+    object-position: top;
     transition: transform 0.3s;
     margin: auto;
   }
@@ -64,7 +67,7 @@ const {
   .isFirstPost img:hover {
     transform: scale(1.1);
   }
-  
+
   .isFirstPost .info-container {
     /* so the z-index has effect and the image does not overflow the info-container when hovered */
     /* position: relative;  */
@@ -84,20 +87,20 @@ const {
     /* flex-shrink:0; */
   }
 
-  article.card a{
+  article.card a {
     color: var(--clr-primary);
     display: flex;
     gap: 1rem;
     height: 100%;
   }
-  
-   .card .image-container {
+
+  .card .image-container {
     width: 40%;
     height: 7.375rem;
     background-color: white;
     flex-shrink: 0;
   }
-  
+
   .card img {
     width: 100%;
     height: 100%;
@@ -111,7 +114,6 @@ const {
     flex-direction: column;
     justify-content: space-between;
   }
-  
 
   .card p {
     font-style: italic;
@@ -121,8 +123,8 @@ const {
     bottom: 0;
     z-index: 10;
     background-color: var(--clr-contrast);
-}
-  
+  }
+
   a h4:hover {
     color: var(--clr-accent);
   }
@@ -133,23 +135,23 @@ const {
     flex-shrink: 0;
     border-top-left-radius: 2.9375rem;
     overflow: hidden;
-    scroll-snap-align:start;
+    scroll-snap-align: start;
   }
-  
+
   .isResponsive a {
     display: block;
     height: 100%;
     width: 100%;
   }
 
-   .isResponsive .image-container {
+  .isResponsive .image-container {
     height: 60%;
     width: 100%;
     overflow: hidden;
-    background-color:white;
+    background-color: white;
     z-index: 0;
   }
-  
+
   .isResponsive .image-container img {
     height: 100%;
     object-fit: cover;
@@ -161,7 +163,7 @@ const {
   .isResponsive img:hover {
     transform: scale(1.1);
   }
-  
+
   .isResponsive .info-container {
     color: var(--clr-contrast);
     width: 100%;
@@ -173,6 +175,4 @@ const {
     flex-direction: column;
     justify-content: space-between;
   }
-
- 
 </style>
