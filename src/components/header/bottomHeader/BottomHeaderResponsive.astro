@@ -9,12 +9,19 @@ import DropDownAccordion from "./DropDownAccordion.astro";
 
 <script>
   function handleClick(this: any) {
-    let div = this.querySelector(".rotate");
+    let div = document.querySelector(".dropdown-content-responsive") as HTMLDivElement;
+
     if (div) {
-      div.classList.toggle("rotated");
+        // Toggle the 'visible' class
+        if (div.classList.contains('visible')) {
+            div.classList.remove('visible');
+        } else {
+            div.classList.add('visible');
+        }
     }
   }
-  let buttons = document.querySelectorAll("button");
+  
+  let buttons = document.querySelectorAll(".dropdown-menu");
 
   buttons.forEach(function (button) {
     // Add the event listener to each button
@@ -37,7 +44,7 @@ import DropDownAccordion from "./DropDownAccordion.astro";
   </div>
 </div>
 
-<ul id="myDropdown" class="dropdown-content">
+<ul id="myDropdown" class="dropdown-content-responsive">
   {
     bottomHeaderLinks.map((category) => (
       <li>
@@ -53,24 +60,31 @@ import DropDownAccordion from "./DropDownAccordion.astro";
   }
 </ul>
 <style>
-  .dropdown-content {
+  .dropdown-content-responsive {
     position: fixed;
+    display: flex;
     background-color: var(--clr-primary);
     color: var(--clr-contrast);
     top: calc(
-      var(--bottom-header-hg) + var(--header-separator-line-responsive-hg)
+      var(--bottom-header-hg) +  var(--top-header-hg) + var(--header-separator-line-responsive-hg)
     );
     left: 0;
     right: 0;
     bottom: 0;
-    /* opacity: 1; */
     padding-inline: var(--padding-inline-tablet);
     padding-block: 2.06rem;
-    display:flex;
     flex-direction:column;
     gap: 1.87rem;
+    transform: translateX(-100%);
+    transition: transform 0.2s ease-in-out;
   }
- 
+
+  .dropdown-content-responsive.visible {
+    transform: translateX(0);
+}
+ .dropdown-content-responsive h5{
+  color:var(--clr-contrast)
+ }
   .dropdown-content a {
     color: var(--clr-contrast);
     text-decoration: none;
@@ -97,7 +111,10 @@ import DropDownAccordion from "./DropDownAccordion.astro";
   }
 
   @media (width < 648px) {
-    .dropdown-content {
+    .dropdown-content-responsive {
+       top: calc(
+      var(--bottom-header-hg) + var(--header-separator-line-responsive-hg)
+    );
       padding-inline: var(--padding-inline-mobile);
     }
   }
