@@ -4,28 +4,56 @@ import ButtonAnchor from "@components/ButtonAnchor.astro";
 import { teams } from "@data/teamsSection.ts";
 ---
 
-<div class="teams-container">
-  {
-    teams.map((team) => (
-      <article class="team-article">
-        <img src={team.image} alt={team.alt} />
-        <div class="half-hidden">
-          <div class="flex-content">
-            <h3>{team.name}</h3>
-            <ButtonAnchor slug={team.slug} text={`Veure més`} />
-          </div>
-        </div>
-      </article>
-    ))
-  }
-</div>
+<section class="teams-section-container">
+  <h2>Equips</h2>
+  <div class="teams-container">
+    {
+      teams.map((team) => {
+        if (team.name === "Escola") {
+          console.log("mascot", team.mascot);
+          return (
+            <article class="team-article">
+              <img src={team.image} alt={team.alt} />
+              <div class="half-hidden">
+                <img class="mascot" src={team.mascot} alt={team.mascotAlt} />
+                <div class="flex-content">
+                  <h3>{team.name}</h3>
+                  <ButtonAnchor slug={team.slug} text={`Veure més`} />
+                </div>
+              </div>
+            </article>
+          );
+        } else {
+          return (
+            <article class="team-article">
+              <img src={team.image} alt={team.alt} />
+              <div class="half-hidden">
+                <div class="flex-content">
+                  <h3>{team.name}</h3>
+                  <ButtonAnchor slug={team.slug} text={`Veure més`} />
+                </div>
+              </div>
+            </article>
+          );
+        }
+      })
+    }
+  </div>
+</section>
 
 <style>
-  .teams-container {
-    height: 80vh;
-    display: flex;
-    justify-content: space-between;
+  .teams-section-container {
+    padding-block: 2rem;
     padding-inline: var(--padding-inline);
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+  }
+  .teams-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 1rem;
   }
 
   .team-article {
@@ -52,6 +80,17 @@ import { teams } from "@data/teamsSection.ts";
 
   .half-hidden:hover {
     transform: translateY(0);
+  }
+
+  .half-hidden .mascot {
+    position: absolute;
+
+    right: -1.5rem;
+    transform: translateY(17%);
+  }
+
+  .half-hidden:hover > .mascot {
+    transform: translateY(30%);
   }
 
   .flex-content {

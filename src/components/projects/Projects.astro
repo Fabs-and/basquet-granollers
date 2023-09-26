@@ -3,7 +3,7 @@ import MobileCarousel from "./MobileCarousel.svelte";
 import { projects } from "@data/projects.ts";
 ---
 
-<h3>Projectes</h3>
+<h2>Projectes</h2>
 
 <div class="desktop">
   <div class="projects-container">
@@ -22,7 +22,7 @@ import { projects } from "@data/projects.ts";
 </div>
 
 <style>
-  h3 {
+  h2 {
     padding-inline: var(--padding-inline);
     padding-top: 2rem;
   }
@@ -42,7 +42,7 @@ import { projects } from "@data/projects.ts";
     display: none;
   }
   @media (width < 1025px) {
-    h3 {
+    h2 {
       padding-inline: var(--padding-inline-tablet);
     }
     .projects-container {
@@ -51,7 +51,7 @@ import { projects } from "@data/projects.ts";
   }
 
   @media (width < 648px) {
-    h3 {
+    h2 {
       padding-inline: var(--padding-inline-mobile);
     }
     .desktop {

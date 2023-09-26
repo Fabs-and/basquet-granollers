@@ -22,5 +22,7 @@ export const teams = [
     slug: `/`,
     image: `/teams/escola-de-basquet.png`,
     alt: `Escola de bàsquet`,
-  },	
-]
+    mascot: `mascota.png`,
+    mascotAlt: `Mascota del club bàsquet Granollers`,
+  },
+];
