@@ -11,6 +11,7 @@ import MainSponsors from '@components/sponsors/MainSponsors.astro';
 import AllSponsors from '@components/sponsors/AllSponsors.astro';
 import Projects from '@components/projects/Projects.astro';
 import TeamsSection from '@components/teams/TeamsSection.astro';
+import MembershipsSection from '@components/memberships/MembershipsSection.astro';
 // Import api functions from utils
 import {
   configure,
@@ -39,6 +40,7 @@ const title = 'El Putu Dapps';
   <HeroSection/>
   <MainSponsors/>
   <NewsSectionLayout {posts}/>
+  <MembershipsSection/>
   <TeamsSection/>
   <Projects/>
   <AllSponsors/>
