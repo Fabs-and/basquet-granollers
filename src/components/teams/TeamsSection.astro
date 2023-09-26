@@ -1,42 +1,15 @@
 ---
-import ButtonAnchor from "@components/ButtonAnchor.astro";
-
+import IndividualTeamDesktop from "@components/teams/IndividualTeamDesktop.astro";
 import { teams } from "@data/teamsSection.ts";
 ---
 
 <section class="teams-section-container">
   <h2>Equips</h2>
-  <div class="teams-container">
+  <div class="desktop-container">
     {
-      teams.map((team) => {
-        if (team.name === "Escola") {
-          console.log("mascot", team.mascot);
-          return (
-            <article class="team-article">
-              <img src={team.image} alt={team.alt} />
-              <div class="half-hidden">
-                <img class="mascot" src={team.mascot} alt={team.mascotAlt} />
-                <div class="flex-content">
-                  <h3>{team.name}</h3>
-                  <ButtonAnchor slug={team.slug} text={`Veure més`} />
-                </div>
-              </div>
-            </article>
-          );
-        } else {
-          return (
-            <article class="team-article">
-              <img src={team.image} alt={team.alt} />
-              <div class="half-hidden">
-                <div class="flex-content">
-                  <h3>{team.name}</h3>
-                  <ButtonAnchor slug={team.slug} text={`Veure més`} />
-                </div>
-              </div>
-            </article>
-          );
-        }
-      })
+      teams.map((team) => 
+        <IndividualTeamDesktop {team} />
+      )
     }
   </div>
 </section>
@@ -49,54 +22,10 @@ import { teams } from "@data/teamsSection.ts";
     flex-direction: column;
     gap: 2rem;
   }
-  .teams-container {
+  .desktop-container {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
     gap: 1rem;
-  }
-
-  .team-article {
-    position: relative;
-    width: 17.8125rem;
-    height: 19.3125rem;
-    border-top-left-radius: 2.9375rem;
-    overflow: hidden;
-  }
-
-  .half-hidden {
-    position: absolute;
-    padding-inline: 1.81rem;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(0deg, #18366c 0%, rgba(0, 26, 156, 0) 83.17%);
-    transform: translateY(20%);
-    transition: transform 0.2s ease-in;
-    display: flex;
-    align-items: end;
-  }
-
-  .half-hidden:hover {
-    transform: translateY(0);
-  }
-
-  .half-hidden .mascot {
-    position: absolute;
-
-    right: -1.5rem;
-    transform: translateY(17%);
-  }
-
-  .half-hidden:hover > .mascot {
-    transform: translateY(30%);
-  }
-
-  .flex-content {
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-    padding-bottom: 1rem;
   }
 </style>
