@@ -7,49 +7,90 @@ import { teams } from "@data/teamsSection.ts";
 <section class="teams-section-container">
   <h2>Equips</h2>
   <div class="desktop-container">
-    {
-      teams.map((team) => 
-        <IndividualTeamDesktop {team} />
-      )
-    }
+    {teams.map((team) => <IndividualTeamDesktop {team} />)}
   </div>
   <div class="responsive-container">
     {
-      teams.map((team) => 
-        <IndividualTeamResponsive {team} />
-      )
+      teams.map((team) => (
+        <div>
+          <IndividualTeamResponsive {team} />
+        </div>
+      ))
     }
-</section>
+  </div>
 
-<style>
-  .teams-section-container {
-    padding-block: 2rem;
-    padding-inline: var(--padding-inline);
-    display: flex;
-    flex-direction: column;
-    gap: 2rem;
-  }
-  .desktop-container {
-    align-self: center;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 1rem;
-  }
-
-  .responsive-container {
-    display: none;
-  }
-
-  @media (width < 1385px) {
+  <style>
+    .teams-section-container {
+      padding-block: 2rem;
+      padding-inline: var(--padding-inline);
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+    }
     .desktop-container {
-      display: none;
+      align-self: center;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 1rem;
     }
 
     .responsive-container {
-      display: flex;
-      flex-direction: column;
-      gap: 1rem;
+      display: none;
     }
-  }
-</style>
+
+    @media (width < 1385px) {
+      .desktop-container {
+        display: none;
+      }
+
+      h2 {
+        padding-inline: var(--padding-inline);
+      }
+      .teams-section-container {
+        padding-inline: 0rem;
+      }
+
+      .responsive-container {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        place-items: center;
+        gap: 1rem;
+      }
+
+      .responsive-container > :nth-child(1) {
+        justify-self: end;
+      }
+
+      .responsive-container > :nth-child(2) {
+        justify-self: start;
+      }
+
+      .responsive-container > :nth-child(3) {
+        justify-self: end;
+      }
+
+      .responsive-container > :nth-child(4) {
+        justify-self: start;
+      }
+    }
+
+    @media (width < 1025px) {
+      h2 {
+        padding-inline: var(--padding-inline-tablet);
+      }
+    }
+    @media (width < 754px) {
+       .responsive-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+    }
+    @media (width < 648px) {
+      h2 {
+        padding-inline: var(--padding-inline-mobile);
+      }
+    }
+  </style>
+</section>

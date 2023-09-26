@@ -24,7 +24,7 @@ const { team } = Astro.props;
 <style>
   .team-article-responsive {
     position: relative;
-    width: 23.4375rem;
+    width: 22.14806rem;
     height: 23.4375rem;
     border-top-left-radius: 2.9375rem;
     overflow: hidden;
@@ -70,5 +70,12 @@ const { team } = Astro.props;
     flex-direction: column;
     gap: 1rem;
     padding-bottom: 1rem;
+  }
+
+  @media (width < 754px) {
+    .team-article-responsive {
+      width: 23.4375rem;
+      height: 23.4375rem;
+    }
   }
 </style>
