@@ -1,5 +1,6 @@
 ---
 import IndividualTeamDesktop from "@components/teams/IndividualTeamDesktop.astro";
+import IndividualTeamResponsive from "@components/teams/IndividualTeamResponsive.astro";
 import { teams } from "@data/teamsSection.ts";
 ---
 
@@ -12,6 +13,12 @@ import { teams } from "@data/teamsSection.ts";
       )
     }
   </div>
+  <div class="responsive-container">
+    {
+      teams.map((team) => 
+        <IndividualTeamResponsive {team} />
+      )
+    }
 </section>
 
 <style>
@@ -23,9 +30,26 @@ import { teams } from "@data/teamsSection.ts";
     gap: 2rem;
   }
   .desktop-container {
+    align-self: center;
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-between;
+    justify-content: center;
     gap: 1rem;
+  }
+
+  .responsive-container {
+    display: none;
+  }
+
+  @media (width < 1385px) {
+    .desktop-container {
+      display: none;
+    }
+
+    .responsive-container {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
   }
 </style>
