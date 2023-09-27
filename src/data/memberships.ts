@@ -15,8 +15,6 @@ del club i dels avenços dels equips`,
       `Activitats familiars per als familiars`,
       `Invitació a l’acte de tancament
 de temporada (botifarrada CBG)`,
-      `Invitació a l’acte de tancament
-de temporada (botifarrada CBG)`,
       `Invitació a la trobada anual amics CBG`,
     ],
     image: ``,
