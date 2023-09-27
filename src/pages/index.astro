@@ -27,13 +27,13 @@ import { BASE_URL } from 'src/config';
 
 configure({BASE_URL: BASE_URL})
 
-const posts: Post[] = await fetchPosts(20);
+const posts: Post[] = await fetchPosts(10);
 
 // console.log(posts[1])
 
 const allCategories: Category[] = await fetchAllCategories(categoryFields);
 
-const title = 'El Putu Dapps';
+const title = 'Club Bàsquet Granollers';
 ---
 
 <BaseLayout {title}>

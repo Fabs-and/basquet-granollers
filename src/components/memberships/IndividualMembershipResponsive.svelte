@@ -1,22 +1,36 @@
 <script>
+  import {removeOpacity} from "../../svelte-actions/intersectionObserver"
   import ButtonAnchor from "@components/ButtonAnchor.svelte";
   import { membershipCheck } from "@assets/icons";
 
   import { sliderLeftArrowWhite, sliderRightArrowWhite } from "@assets/icons";
   export let memberships;
 
+  let carousel;
+  let scrollPosition;
+  const MEMBERSHIPARTICLEWIDTH = 299;
+  let scrollAmount = MEMBERSHIPARTICLEWIDTH;
+
+  function updateXScrollPosition() {
+    scrollPosition = carousel.scrollLeft;
+  }
+
   function goBack() {
-    console.log("goBack");
+    if (scrollPosition === 0) return;
+    scrollPosition = carousel.scrollLeft;
+    carousel.scrollLeft = scrollPosition - scrollAmount;
   }
 
   function goForward() {
-    console.log("goForward");
+   if (scrollPosition === carousel.scrollWidth - carousel.clientWidth) return;
+    scrollPosition = carousel.scrollLeft;
+    carousel.scrollLeft = scrollPosition + scrollAmount;
   }
 </script>
 
-<div class="membership-articles-container">
+<div class="membership-articles-container" bind:this={carousel} on:scroll={updateXScrollPosition}>
   {#each memberships as membership}
-    <article class="membership-article">
+    <article use:removeOpacity class="membership-article opacity">
       <div class="image-container">
         <img src="" alt="" />
         <h3 class="memebership-title">{membership.name}</h3>
