@@ -70,18 +70,12 @@
   }
   .membership-articles-container {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: 18.6875rem 18.6875rem 18.6875rem;
+    place-items: center;
+    justify-content: center;
     gap: 1.3rem;
   }
-
-  .membership-articles-container > :nth-child(1) {
-    justify-self: end;
-  }
-
-  .membership-articles-container > :nth-child(3) {
-    justify-self: start;
-  }
-
+  
   .membership-article {
     height: 51.75rem;
     width: 18.6875rem;
@@ -89,26 +83,26 @@
     border-top-left-radius: 2.9375rem;
     overflow: hidden;
   }
-
+  
   .memebership-title {
     position: absolute;
     left: 1.88rem;
     bottom: 1.88rem;
     z-index: 1;
   }
-
+  
   .image-container {
     position: relative;
     height: 13.125rem;
     background-color: gray;
   }
-
+  
   .image-container img {
     width: 100%;
     height: 100%;
     object-fit: cover;
   }
-
+  
   .membership-info-container {
     position: relative;
     height: 38.625rem;
@@ -116,7 +110,7 @@
     flex-direction: column;
     padding: 1.88rem;
   }
-
+  
   .membership-price {
     width: 100%;
     padding-bottom: 1.88rem;
@@ -127,33 +121,33 @@
     font-weight: 550;
     color: var(--clr-accent);
   }
-
+  
   .membership-advantages {
     padding-block: 1.88rem;
     display: flex;
     flex-direction: column;
     gap: 0.87rem;
   }
-
+  
   .button-anchor {
     position: absolute;
     left: 1.88rem;
     bottom: 1.88rem;
   }
-
+  
   .advantage-line {
     display: flex;
     gap: 0.63rem;
   }
-
+  
   .ball-img {
     position: absolute;
     opacity: 0.24;
     right: 0;
     bottom: 0;
   }
-
-  @media (width < 1105px) {
+  
+  @media (width < 978px) {
     .button-anchor {
       display: none;
     }
@@ -161,11 +155,11 @@
     .image-container {
       height: 10.125rem;
     }
-
+    
     .membership-info-container {
       height: 19.5rem;
     }
-
+    
     .membership-articles-container {
       width: 99.9vw;
       display: flex;
@@ -173,6 +167,8 @@
       overflow-x: scroll;
       scroll-behavior: smooth;
       scroll-snap-type: x mandatory;
+      justify-content: start;
+      padding-left: var(--padding-inline-tablet);
     }
 
     .membership-article {
@@ -183,6 +179,7 @@
       display: flex;
       justify-content: space-between;
       padding-top: 1.13rem;
+      padding-inline: var(--padding-inline-tablet);
     }
 
     .memberships-arrows-container {

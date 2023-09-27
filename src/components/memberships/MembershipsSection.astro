@@ -30,13 +30,13 @@ import { memberships } from "@data/memberships";
 
   .membership-section-container {
     background-color: var(--clr-primary);
-    /* padding-inline: var(--padding-inline); */
+    padding-inline: var(--padding-inline);
     padding-block: 2rem;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
   }
-
+  
   .section-title-container {
     display: flex;
     justify-content: space-between;
@@ -56,6 +56,20 @@ import { memberships } from "@data/memberships";
     }
     .responsive {
       display: block;
+    }
+
+    .membership-section-container {
+      padding-inline: 0rem;
+    }
+
+    .section-title-container {
+      padding-inline: var(--padding-inline)
+    }
+  }
+
+  @media (width < 978px) {
+     .section-title-container {
+      padding-inline: var(--padding-inline-tablet)
     }
   }
 </style>
