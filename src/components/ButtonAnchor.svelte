@@ -1,12 +1,15 @@
 <script>
+    import { componentIsHTMLElement } from "astro/runtime/server/render/dom.js";
+
   export let text;
   export let slug = '';
   export let isFilled = false;
   export let textColor;
   export let hoverTextColor;
   export let hidden;
+  export let buttonWidth;
 
-  console.log('hidden', hidden)
+  
 </script>
 
 
@@ -17,12 +20,13 @@
   .hidden {
     display: none;
   }
+  
   a {
     text-decoration: none;
     display: grid;
     place-items: center;
     height: var(--btn-height);
-    width: 10rem;
+    width: var(--btn-width-regular);
     border: 1px solid var(--clr-accent);
     border-radius: 1.75rem;
     color: var(--textColor);

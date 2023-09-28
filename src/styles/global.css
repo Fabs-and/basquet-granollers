@@ -45,9 +45,9 @@
 
   /*Buttons*/
   --btn-height: 2.69rem;
-  --btn-width-s: 2.69rem;
-  --btn-height-m: 2.69rem;
-  --btn-height-l: 2.69rem;
+  --btn-width-regular: 10rem;
+  --btn-width-sm: 9rem;
+  
 
   /*Font sizes*/
   --font-size-regular: 0.78125rem;

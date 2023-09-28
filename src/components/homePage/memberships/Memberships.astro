@@ -1,6 +1,5 @@
 ---
-import IndividualMemebership from "@components/memberships/IndividualMembership.astro";
-import MembershipItem from "@components/memberships/MembershipItem.svelte";
+import IndividualMemebership from "@components/homePage/memberships/IndividualMembership.svelte";
 
 import ButtonAnchor from "@components/ButtonAnchor.astro";
 
@@ -9,14 +8,15 @@ import Slider from "@components/Slider.svelte";
 ---
 
 <section class="g-page-section-with-slider-container">
-  <!-- <div class="section-title-container"> -->
-  <h2>Forma part de la família CBG</h2>
-  <!-- <div class="title-buttons-container">
-      <ButtonAnchor isFilled={true} text={`fes-te soci`} />
-      <ButtonAnchor text={`fes-te sponsor`} />
+  <div class="title-and-options-container">
+    <h2>Forma part de la família CBG</h2>
+    <div class="options-container">
+      <ButtonAnchor isFilled={true} text={`fes-te soci`} isSmallBtn={true}/>
+      <ButtonAnchor text={`fes-te sponsor`} isSmallBtn={true}/>
     </div>
   </div>
-  <div class="desktop">
+
+  <!-- <div class="desktop">
     <IndividualMemebership {memberships} />
   </div> -->
 
@@ -43,8 +43,7 @@ import Slider from "@components/Slider.svelte";
     background-color: var(--clr-primary);
   }
 
-  .section-title-container {
-    padding-inline: var(--padding-inline);
+  .title-and-options-container {
     display: flex;
     justify-content: space-between;
     padding-bottom: 2rem;
@@ -52,9 +51,9 @@ import Slider from "@components/Slider.svelte";
     gap: 1.5rem;
   }
 
-  .title-buttons-container {
+  .options-container {
     display: flex;
-    gap: 1.19rem;
+    gap: 1.5rem;
   }
 
   @media (width < 1062px) {
@@ -72,12 +71,9 @@ import Slider from "@components/Slider.svelte";
   }
 
   @media (width < 397px) {
-    .section-title-container {
-      padding-inline: 0.2rem;
-    }
-    .title-buttons-container {
+    .options-container{
       justify-content: space-between;
-      gap: 0.5rem;
+      padding-right: var(--padding-inline-mobile);
     }
   }
 </style>

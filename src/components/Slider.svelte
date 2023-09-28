@@ -1,6 +1,5 @@
 <script lang="ts">
   import { removeOpacity } from "../svelte-actions/intersectionObserver";
-  import type { Post } from "fetch-wordpress-api";
   import NewsItem from "./homePage/news/NewsItem.svelte";
   import ProjectItem from "./homePage/projects/ProjectItem.svelte";
   import MembershipItem from "./homePage/memberships/MembershipItem.svelte";

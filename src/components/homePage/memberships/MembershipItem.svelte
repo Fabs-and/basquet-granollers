@@ -4,8 +4,6 @@
 
   import { sliderLeftArrowWhite, sliderRightArrowWhite } from "@assets/icons";
   export let item;
-
-  console.log('item', item)
 </script>
 
 <article class="membership-article opacity">
