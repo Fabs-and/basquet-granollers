@@ -1,18 +1,25 @@
 <script lang="ts">
   import { removeOpacity } from "../svelte-actions/intersectionObserver";
   import type { Post } from "fetch-wordpress-api";
-  import IndividualNews from "./postCards/IndividualNews.svelte";
-  import ProjectItem from "./projects/ProjectItem.svelte";
+  import NewsItem from "./homePage/news/NewsItem.svelte";
+  import ProjectItem from "./homePage/projects/ProjectItem.svelte";
+  import MembershipItem from "./homePage/memberships/MembershipItem.svelte";
   import ButtonAnchor from "@components/ButtonAnchor.svelte";
   import { sliderLeftArrow, sliderRightArrow } from "@assets/icons";
 
   //Props
-  export let sliderItems:any;
+  export let sliderItems: any;
   export let childComponent;
   export let gap: string = "1rem";
   export let itemWidth = 0;
 
-  let component = childComponent === "individualNews" ? IndividualNews : ProjectItem;
+  console.log("childComponent", childComponent);
+  let component =
+    childComponent === "NewsItem"
+      ? NewsItem
+      : childComponent === "MembershipItem"
+      ? MembershipItem
+      : ProjectItem;
   let carousel: HTMLDivElement;
   let scrollPosition: number;
   let scrollAmount: number = itemWidth;
@@ -26,9 +33,8 @@
     scrollPosition = carousel.scrollLeft;
     carousel.scrollLeft = scrollPosition - scrollAmount;
   }
-  
+
   function goForward() {
-    console.log('hiiit')
     if (scrollPosition === carousel.scrollWidth - carousel.clientWidth) return;
     scrollPosition = carousel.scrollLeft;
     carousel.scrollLeft = scrollPosition + scrollAmount;
@@ -48,23 +54,21 @@
   {/each}
 </div>
 
-
-  <div class="slider-controls-container">
-    <ButtonAnchor
-      text={"veure totes"}
-      textColor={"var(--clr-accent)"}
-      hoverTextColor={"var(--clr-contrast)"}
-    />
-    <div class="arrows-container">
-      <button on:click={goBack}>
-        {@html sliderLeftArrow}
-      </button>
-      <button on:click={goForward}>
-        {@html sliderRightArrow}
-      </button>
-    </div>
+<div class="slider-controls-container">
+  <ButtonAnchor
+    text={"veure totes"}
+    textColor={"var(--clr-accent)"}
+    hoverTextColor={"var(--clr-contrast)"}
+  />
+  <div class="arrows-container">
+    <button on:click={goBack}>
+      {@html sliderLeftArrow}
+    </button>
+    <button on:click={goForward}>
+      {@html sliderRightArrow}
+    </button>
   </div>
-
+</div>
 
 <style>
   .slider-container {
@@ -75,12 +79,16 @@
     scroll-snap-type: x mandatory;
   }
 
+  .slider-container > :last-child {
+    padding-right: var(--padding-inline-mobile);
+  }
+
   .slider-controls-container {
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding-top: 2rem;
-    padding-right: var(--padding-inline-tablet);
+    padding-right: var(--padding-inline-mobile);
   }
 
   .arrows-container {

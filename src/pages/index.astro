@@ -6,12 +6,12 @@
 import BaseLayout from '@layouts/BaseLayout.astro';
 
 // Import components
-import HeroSection from '@components/heroSection/HeroSection.astro';
-import MainSponsors from '@components/sponsors/MainSponsors.astro';
-import AllSponsors from '@components/sponsors/AllSponsors.astro';
-import Projects from '@components/projects/Projects.astro';
-import TeamsSection from '@components/teams/TeamsSection.astro';
-import MembershipsSection from '@components/memberships/MembershipsSection.astro';
+import Hero from '@components/homePage/Hero.astro';
+import MainSponsors from '@components/homePage/sponsors/MainSponsors.astro';
+import AllSponsors from '@components/homePage/sponsors/AllSponsors.astro';
+import Projects from '@components/homePage/projects/Projects.astro';
+import TeamsSection from '@components/homePage/teams/Teams.astro';
+import Memberships from '@components/homePage/memberships/Memberships.astro';
 // Import api functions from utils
 import {
   configure,
@@ -37,10 +37,10 @@ const title = 'Club Bàsquet Granollers';
 ---
 
 <BaseLayout {title}>
-  <HeroSection/>
+  <Hero/>
   <MainSponsors/>
   <NewsSectionLayout {posts}/>
-  <!-- <MembershipsSection/> -->
+  <Memberships/>
   <!-- <TeamsSection/> -->
   <Projects/>
   <AllSponsors/>

@@ -1,5 +1,6 @@
 export const memberships = [
   {
+    id: 1,
     name: `Soci/Sòcia d'honor`,
     price: `150€`,
     advantages: [
@@ -21,6 +22,7 @@ de temporada (botifarrada CBG)`,
     imageAlt: ``,
   },
   {
+    id: 2,
     name: `Soci/Sòcia`,
     price: `85€`,
     advantages: [
@@ -39,6 +41,7 @@ de temporada (botifarrada CBG)`,
     imageAlt: ``,
   },
   {
+    id: 3,
     name: `Supporter`,
     price: `30€`,
     advantages: [

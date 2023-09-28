@@ -1,5 +1,5 @@
 <script lang="ts">
-  import {removeOpacity} from "../../svelte-actions/intersectionObserver";
+  import {removeOpacity} from "../../../svelte-actions/intersectionObserver";
   import { sliderLeftArrowWhite, sliderRightArrowWhite } from "@assets/icons";
   export let projects;
   import ProjectItem from "./ProjectItem.svelte";

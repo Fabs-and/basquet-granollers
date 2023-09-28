@@ -1,5 +1,5 @@
 ---
-import IndividualNews from "@components/postCards/IndividualNews.svelte";
+import IndividualNews from "@components/postCards/NewsItem.svelte";
 import NewsSection from "@components/postCards/NewsSection.svelte";
 import Slider from "@components/Slider.svelte";
 
@@ -18,12 +18,11 @@ const title = "CBG Notícies";
     <Slider
       client:visible
       sliderItems={posts}
-      childComponent="individualNews"
+      childComponent="NewsItem"
       itemWidth={312}
       gap={`1rem`}
-    >
-      <IndividualNews />
-    </Slider>
+    />
+   
   </div>
 </section>
 

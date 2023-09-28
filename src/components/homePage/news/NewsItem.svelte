@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { dateConverter } from "../../utils/helperFunctions";
+  import { dateConverter } from "../../../utils/helperFunctions";
 
   export let item = { title: { rendered: "" }, slug: "", date: "", image: "" };
   export let isFirstPost: boolean = false;

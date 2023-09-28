@@ -209,6 +209,6 @@ small {
 /* For samsung galaxies */
 /* @media (width < 374px) {
     .g-slider-container {
-      width: calc(100vw - var(--padding-inline-mobile));
+      width: calc(102vw - var(--padding-inline-mobile));
     }
   } */

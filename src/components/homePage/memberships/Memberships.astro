@@ -1,39 +1,46 @@
 ---
 import IndividualMemebership from "@components/memberships/IndividualMembership.astro";
-import IndividualMemebershipResponsive from "@components/memberships/IndividualMembershipResponsive.svelte";
+import MembershipItem from "@components/memberships/MembershipItem.svelte";
 
 import ButtonAnchor from "@components/ButtonAnchor.astro";
 
 import { memberships } from "@data/memberships";
+import Slider from "@components/Slider.svelte";
 ---
 
-<section class="membership-section-container">
-  <div class="section-title-container">
-    <h2>Forma part de la família CBG</h2>
-    <div class="title-buttons-container">
+<section class="g-page-section-with-slider-container">
+  <!-- <div class="section-title-container"> -->
+  <h2>Forma part de la família CBG</h2>
+  <!-- <div class="title-buttons-container">
       <ButtonAnchor isFilled={true} text={`fes-te soci`} />
       <ButtonAnchor text={`fes-te sponsor`} />
     </div>
   </div>
   <div class="desktop">
     <IndividualMemebership {memberships} />
+  </div> -->
+
+  <div class="g-slider-container">
+    <Slider
+      client:visible
+      sliderItems={memberships}
+      childComponent="MembershipItem"
+      itemWidth={315}
+      gap={`1rem`}
+    />
   </div>
   <!-- <div class="responsive"> -->
-  <!-- <IndividualMemebershipResponsive client:visible {memberships} /> -->
+  <!-- <MembershipItem client:visible {memberships} /> -->
+  <!-- </div> -->
   <!-- </div> -->
 </section>
-
 <style>
-  .responsive {
+  .g-slider-container {
     display: none;
   }
 
-  .membership-section-container {
+  .g-page-section-with-slider-container {
     background-color: var(--clr-primary);
-    padding-block: 2rem;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
   }
 
   .section-title-container {
@@ -54,12 +61,9 @@ import { memberships } from "@data/memberships";
     .desktop {
       display: none;
     }
-    .responsive {
-      display: block;
-    }
 
-    .membership-section-container {
-      padding-inline: 0rem;
+    .g-slider-container {
+      display: block;
     }
 
     .section-title-container {
