@@ -5,7 +5,7 @@ import Slider from "@components/Slider.svelte";
 import { projects } from "@data/projects.ts";
 ---
 
-<section class="projects-section-container">
+<section class="g-page-section-with-slider-container">
   <h2>Projectes</h2>
 
   <div class="desktop">
@@ -36,11 +36,6 @@ import { projects } from "@data/projects.ts";
     display: none;
   }
 
-  .projects-section-container {
-    padding-block: 2rem;
-    padding-left: var(--padding-inline);
-  }
-
   h2 {
     padding-bottom: 2rem;
   }
@@ -54,17 +49,8 @@ import { projects } from "@data/projects.ts";
     gap: 0.8rem;
   } */
 
-  @media (width < 1025px) {
-    .projects-section-container {
-      padding-left: var(--padding-inline-tablet);
-    }
-   
-  }
-
+ 
   @media (width < 648px) {
-    .projects-section-container {
-      padding-left: var(--padding-inline-mobile);
-    }
     .g-slider-container {
       display: block;
     }
