@@ -187,3 +187,14 @@ small {
   opacity: 0.5;
   transition: opacity 0.3s;
 }
+
+.g-slider-container {
+  width: calc(100vw - var(--padding-inline-tablet));
+ }
+
+  /* For samsung galaxies */
+  @media (width < 374px) {
+    .g-slider-container {
+      width: calc(100vw - var(--padding-inline-mobile));
+    }
+  }

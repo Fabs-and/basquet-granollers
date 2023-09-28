@@ -7,51 +7,66 @@ const { posts } = Astro.props;
 const title = "CBG Notícies";
 ---
 
-<section class="responsive-news">
-
+<section class="news-section-container">
   <h2>{title}</h2>
 
-  <div class="desktop">
+  <!-- <div class="desktop">
     <NewsSection client:visible {title} {posts} />
-  </div>
+  </div> -->
 
-  <div class="responsive">
-    <Slider client:visible {posts} childComponent="individualNews" itemWidth={312} gap={`1rem`}>
+  <div class="g-slider-container">
+    <Slider
+      client:visible
+      sliderItems={posts}
+      childComponent="individualNews"
+      itemWidth={312}
+      gap={`1rem`}
+    >
       <IndividualNews />
     </Slider>
   </div>
-
 </section>
 
 <style>
-  .responsive {
+  .g-slider-container {
     display: none;
   }
 
-  h2{
+  .news-section-container {
+    background-color: var(--clr-contrast);
+    color: var(--clr-primary);
+    padding-block: 2rem;
+    padding-left: var(--padding-inline);
+  }
+
+  h2 {
     padding-bottom: 2rem;
   }
-  @media (width < 1050px) {
-    .responsive-news {
-      width: 100vw;
-      background-color: var(--clr-contrast);
-      color: var(--clr-primary);
+
+  @media (width < 1025px) {
+    .news-section-container {
       padding-left: var(--padding-inline-tablet);
-      padding-block: 2rem;
+    }
+    .g-slider-container {
+      display: block;
     }
 
     .desktop {
       display: none;
     }
 
-    .responsive {
+    @media (width < 648px) {
+    .news-section-container {
+      padding-left: var(--padding-inline-mobile);
+    }
+    .g-slider-container {
       display: block;
     }
+    .desktop {
+      display: none;
+    }
+   
   }
 
-  @media (width < 374px) {
-    .responsive-news {
-      width: 104vw;
-    }
   }
 </style>

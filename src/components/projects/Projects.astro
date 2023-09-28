@@ -1,12 +1,14 @@
 ---
 import MobileCarousel from "./MobileCarousel.svelte";
+import ProjectItem from "@components/projects/ProjectItem.svelte";
+import Slider from "@components/Slider.svelte";
 import { projects } from "@data/projects.ts";
 ---
 
-<h2>Projectes</h2>
+<section class="projects-section-container">
+  <h2>Projectes</h2>
 
-<div class="desktop">
-  <div class="projects-container">
+  <div class="desktop">
     {
       projects.map((project) => (
         <a href={project.link}>
@@ -15,50 +17,62 @@ import { projects } from "@data/projects.ts";
       ))
     }
   </div>
-</div>
 
-<div class="mobile">
-  <MobileCarousel client:visible {projects} />
-</div>
+  <div class="g-slider-container">
+    <Slider
+      client:visible
+      sliderItems={projects}
+      childComponent={`ProjectItem`}
+      itemWidth={331}
+      gap={`1rem`}
+    >
+      <ProjectItem />
+    </Slider>
+  </div>
+</section>
 
 <style>
-  h2 {
-    padding-inline: var(--padding-inline);
-    padding-top: 2rem;
+  .g-slider-container {
+    display: none;
   }
 
-  .projects-container {
+  .projects-section-container {
+    padding-block: 2rem;
+    padding-left: var(--padding-inline);
+  }
+
+  h2 {
+    padding-bottom: 2rem;
+  }
+
+  /* .desktop {
     padding-inline: var(--padding-inline);
     padding-block: 2rem;
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(20rem, 1fr));
     justify-items: center;
-    /* align-items: center; */
     gap: 0.8rem;
-    /* place-content: center; */
-  }
+  } */
 
-  .mobile {
-    display: none;
-  }
   @media (width < 1025px) {
-    h2 {
-      padding-inline: var(--padding-inline-tablet);
+    .projects-section-container {
+      padding-left: var(--padding-inline-tablet);
     }
-    .projects-container {
-      padding-inline: var(--padding-inline-tablet);
-    }
+   
   }
 
   @media (width < 648px) {
-    h2 {
-      padding-inline: var(--padding-inline-mobile);
+    .projects-section-container {
+      padding-left: var(--padding-inline-mobile);
+    }
+    .g-slider-container {
+      display: block;
     }
     .desktop {
       display: none;
     }
-    .mobile {
-      display: block;
-    }
+   
   }
+
+  
 </style>

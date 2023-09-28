@@ -10,13 +10,13 @@ export function removeOpacity(node: Element) {
         }
 
         if (entry.isIntersecting) {
-          node.classList.remove("opacity");
+          node.classList.remove("g-opacity");
           // Stop observing the element once it has intersected
           // observer.unobserve(node);
         }
 
         if (!entry.isIntersecting) {
-          node.classList.add("opacity");
+          node.classList.add("g-opacity");
           // observer.unobserve(node);
         }
       });

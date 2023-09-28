@@ -1,7 +1,7 @@
 <script lang="ts">
   import { dateConverter } from "../../utils/helperFunctions";
 
-  export let post = { title: { rendered: "" }, slug: "", date: "", image: "" };
+  export let item = { title: { rendered: "" }, slug: "", date: "", image: "" };
   export let isFirstPost: boolean = false;
   export let isResponsive: boolean = false;
   const {
@@ -9,7 +9,7 @@
     slug,
     date,
     image,
-  } = post;
+  } = item;
 
   
 </script>

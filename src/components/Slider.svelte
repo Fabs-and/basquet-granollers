@@ -2,17 +2,21 @@
   import { removeOpacity } from "../svelte-actions/intersectionObserver";
   import type { Post } from "fetch-wordpress-api";
   import IndividualNews from "./postCards/IndividualNews.svelte";
+  import ProjectItem from "./projects/ProjectItem.svelte";
   import ButtonAnchor from "@components/ButtonAnchor.svelte";
   import { sliderLeftArrow, sliderRightArrow } from "@assets/icons";
-  export let posts: Post[];
+
+  //Props
+  export let sliderItems:any;
   export let childComponent;
   export let gap: string = "1rem";
-  let component = childComponent === "individualNews" ? IndividualNews : null;
+  export let itemWidth = 0;
+
+  let component = childComponent === "individualNews" ? IndividualNews : ProjectItem;
   let carousel: HTMLDivElement;
   let scrollPosition: number;
-  export let itemWidth = 0;
   let scrollAmount: number = itemWidth;
-  console.log('scrollAmount', scrollAmount)
+
   function updateXScrollPosition() {
     scrollPosition = carousel.scrollLeft;
   }
@@ -24,6 +28,7 @@
   }
   
   function goForward() {
+    console.log('hiiit')
     if (scrollPosition === carousel.scrollWidth - carousel.clientWidth) return;
     scrollPosition = carousel.scrollLeft;
     carousel.scrollLeft = scrollPosition + scrollAmount;
@@ -36,9 +41,9 @@
   bind:this={carousel}
   on:scroll={updateXScrollPosition}
 >
-  {#each posts as post (post.id)}
+  {#each sliderItems as sliderItem (sliderItem.id)}
     <div use:removeOpacity class="g-opacity">
-      <svelte:component this={component} {post} />
+      <svelte:component this={component} item={sliderItem} />
     </div>
   {/each}
 </div>

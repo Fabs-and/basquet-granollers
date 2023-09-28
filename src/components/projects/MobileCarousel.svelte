@@ -2,7 +2,7 @@
   import {removeOpacity} from "../../svelte-actions/intersectionObserver";
   import { sliderLeftArrowWhite, sliderRightArrowWhite } from "@assets/icons";
   export let projects;
-
+  import ProjectItem from "./ProjectItem.svelte";
   let carousel: HTMLDivElement;
   let scrollPosition: number;
   const PROJECTIMAGEWIDTH = 331;
@@ -64,12 +64,7 @@
     /* height: 100%; */
     /* flex-basis: auto; */
   }
-  .image {
-    width: 18.6875rem;
-    height: 11.0625rem;
-    object-fit: contain;
-    scroll-snap-align: start;
-  }
+  
 
   .projects-container-mobile a:last-child {
     padding-right: var(--padding-inline-mobile);
