@@ -1,27 +1,35 @@
 ---
 import IndividualNews from "@components/postCards/IndividualNews.svelte";
 import NewsSection from "@components/postCards/NewsSection.svelte";
-import NewsSectionResponsive from "@components/postCards/NewsSectionResponsive.svelte";
+import Slider from "@components/Slider.svelte";
 
 const { posts } = Astro.props;
 const title = "CBG Notícies";
 ---
 
 <section class="responsive-news">
+
   <h2>{title}</h2>
+
   <div class="desktop">
     <NewsSection client:visible {title} {posts} />
   </div>
+
   <div class="responsive">
-    <NewsSectionResponsive client:visible {posts} childComponent="individualNews">
+    <Slider client:visible {posts} childComponent="individualNews" itemWidth={312} gap={`1rem`}>
       <IndividualNews />
-    </NewsSectionResponsive>
+    </Slider>
   </div>
+
 </section>
 
 <style>
   .responsive {
     display: none;
+  }
+
+  h2{
+    padding-bottom: 2rem;
   }
   @media (width < 1050px) {
     .responsive-news {

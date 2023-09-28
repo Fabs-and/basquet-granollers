@@ -183,7 +183,7 @@ small {
   justify-content: space-evenly;
 }
 
-.opacity {
+.g-opacity {
   opacity: 0.5;
   transition: opacity 0.3s;
 }

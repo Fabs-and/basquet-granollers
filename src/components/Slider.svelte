@@ -1,18 +1,18 @@
 <script lang="ts">
-  import { removeOpacity } from "../../svelte-actions/intersectionObserver";
+  import { removeOpacity } from "../svelte-actions/intersectionObserver";
   import type { Post } from "fetch-wordpress-api";
-  import IndividualNews from "./IndividualNews.svelte";
+  import IndividualNews from "./postCards/IndividualNews.svelte";
   import ButtonAnchor from "@components/ButtonAnchor.svelte";
   import { sliderLeftArrow, sliderRightArrow } from "@assets/icons";
   export let posts: Post[];
   export let childComponent;
-
+  export let gap: string = "1rem";
   let component = childComponent === "individualNews" ? IndividualNews : null;
   let carousel: HTMLDivElement;
   let scrollPosition: number;
-  const INDIVIDUALNEWSWIDTH = 312;
-  let scrollAmount: number = INDIVIDUALNEWSWIDTH;
-
+  export let itemWidth = 0;
+  let scrollAmount: number = itemWidth;
+  console.log('scrollAmount', scrollAmount)
   function updateXScrollPosition() {
     scrollPosition = carousel.scrollLeft;
   }
@@ -22,7 +22,7 @@
     scrollPosition = carousel.scrollLeft;
     carousel.scrollLeft = scrollPosition - scrollAmount;
   }
-
+  
   function goForward() {
     if (scrollPosition === carousel.scrollWidth - carousel.clientWidth) return;
     scrollPosition = carousel.scrollLeft;
@@ -30,20 +30,21 @@
   }
 </script>
 
+<div
+  class="slider-container"
+  style="--gap: {gap}"
+  bind:this={carousel}
+  on:scroll={updateXScrollPosition}
+>
+  {#each posts as post (post.id)}
+    <div use:removeOpacity class="g-opacity">
+      <svelte:component this={component} {post} />
+    </div>
+  {/each}
+</div>
 
-  <div
-    class="responsive-news-container"
-    bind:this={carousel}
-    on:scroll={updateXScrollPosition}
-  >
-    {#each posts as post (post.id)}
-      <svelte:component this={component} {post}/>
-    {/each}
-  </div>
 
-
-<!-- <section class="responsive-news">
-  <div class="controls-container">
+  <div class="slider-controls-container">
     <ButtonAnchor
       text={"veure totes"}
       textColor={"var(--clr-accent)"}
@@ -58,39 +59,22 @@
       </button>
     </div>
   </div>
-</section> -->
+
 
 <style>
-
-  .responsive-news {
-    /* width: 99.9vw; */
-    /* width: 100%; */
-    width: 100vw;
-    background-color: var(--clr-contrast);
-    color: var(--clr-primary);
-    padding-left: var(--padding-inline-tablet);
-    padding-block: 2rem;
-    /* display: flex;
-    flex-direction: column;
-    gap: 2rem; */
-  }
-  .responsive-news-container {
+  .slider-container {
     display: flex;
-    overflow-x: scroll;
-    /* flex-direction: column; */
-    /* justify-content: flex-; */
-    justify-content: flex-start;
-    /*
-    gap: 1rem;
+    gap: var(--gap);
     overflow-x: scroll;
     scroll-behavior: smooth;
-    scroll-snap-type: x mandatory; */
+    scroll-snap-type: x mandatory;
   }
 
-  .controls-container {
+  .slider-controls-container {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    padding-top: 2rem;
     padding-right: var(--padding-inline-tablet);
   }
 
@@ -98,6 +82,4 @@
     display: flex;
     gap: 1rem;
   }
-
-
 </style>

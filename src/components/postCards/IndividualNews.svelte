@@ -1,7 +1,7 @@
 <script lang="ts">
   import { dateConverter } from "../../utils/helperFunctions";
 
-  export let post = {title: {rendered: ''}, slug: '', date: '', image: ''};
+  export let post = { title: { rendered: "" }, slug: "", date: "", image: "" };
   export let isFirstPost: boolean = false;
   export let isResponsive: boolean = false;
   const {
@@ -10,11 +10,15 @@
     date,
     image,
   } = post;
+
+  
 </script>
 
-<article
+<!-- <article
   class={isResponsive ? "isResponsive" : isFirstPost ? "isFirstPost" : "card"}
->
+> -->
+
+<article class="isResponsive">
   <a href={`/${slug}`}>
     <div class="image-container">
       <img src={image} alt={title} />
@@ -134,8 +138,8 @@
     width: 18.6875rem;
     flex-shrink: 0;
     border-top-left-radius: 2.9375rem;
-    /* overflow: hidden; */
-    /* scroll-snap-align: start; */
+    overflow: hidden;
+    scroll-snap-align: start;
   }
 
   .isResponsive a {
@@ -156,16 +160,11 @@
     height: 100%;
     object-fit: cover;
     /* object-position: start; */
-    /* transition: transform 0.3s; */
     margin: auto;
   }
 
-  .isResponsive img:hover {
-    /* transform: scale(1.1); */
-  }
-
   .isResponsive .info-container {
-    /* color: var(--clr-contrast);
+    color: var(--clr-contrast);
     width: 100%;
     background-color: var(--clr-secondary);
     height: 40%;
@@ -173,6 +172,6 @@
     padding-block: 0.5rem;
     display: flex;
     flex-direction: column;
-    justify-content: space-between; */
+    justify-content: space-between;
   }
 </style>
