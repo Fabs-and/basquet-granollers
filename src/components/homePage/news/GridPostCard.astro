@@ -4,7 +4,7 @@
 // import type { Category, Post } from 'src/types';
 
 // Import components
-import PostCard from "@components/postCards/PostCard.astro";
+import PostCard from "@components/homePage/news/PostCard.astro";
 
 import NewsSection from "@components/postCards/NewsSection.svelte";
 import IndividualNews from "@components/postCards/NewsItem.svelte";
@@ -85,7 +85,7 @@ function goToPreviousPosts() {
   </div>
 </section> -->
 
-<NewsSection client:load posts={posts}/>
+<!-- <NewsSection client:load posts={posts}/> -->
 
 <style>
   section.noticies-container {

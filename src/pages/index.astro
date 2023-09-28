@@ -10,7 +10,7 @@ import Hero from '@components/homePage/Hero.astro';
 import MainSponsors from '@components/homePage/sponsors/MainSponsors.astro';
 import AllSponsors from '@components/homePage/sponsors/AllSponsors.astro';
 import Projects from '@components/homePage/projects/Projects.astro';
-import TeamsSection from '@components/homePage/teams/Teams.astro';
+import Teams from '@components/homePage/teams/Teams.astro';
 import Memberships from '@components/homePage/memberships/Memberships.astro';
 // Import api functions from utils
 import {
@@ -41,7 +41,7 @@ const title = 'Club Bàsquet Granollers';
   <MainSponsors/>
   <NewsSectionLayout {posts}/>
   <Memberships/>
-  <!-- <TeamsSection/> -->
+  <!-- <Teams/> -->
   <Projects/>
   <AllSponsors/>
 </BaseLayout>

@@ -1,6 +1,6 @@
 <script lang="ts">
   import type { Post } from "fetch-wordpress-api";
-  import IndividualNews from "./IndividualNews.svelte";
+  import NewsItem from "@components/homePage/news/NewsItem.svelte";
   import { sliderLeftArrow, sliderRightArrow } from "@assets/icons";
   import ButtonAnchor from "@components/ButtonAnchor.svelte";
 
@@ -26,12 +26,12 @@
   }
 </script>
 
-<section class="news-section-container">
+<!-- <section class="news-section-container">
   <h2>{title}</h2>
   <div class="news-container">
     {#each visiblePosts as post, i (post.id)}
       {#if i === 0}
-        <IndividualNews post={firstPost} isFirstPost={true} />
+        <NewsItem post={firstPost} isFirstPost={true} />
       {/if}
     {/each}
 
@@ -39,7 +39,7 @@
       <div class="older-news">
         {#each visiblePosts as post, i (post.id)}
           {#if i > 0}
-            <IndividualNews {post} />
+            <NewsItem {post} />
           {/if}
         {/each}
       </div>
@@ -69,7 +69,7 @@
       </div>
     </div>
   </div>
-</section>
+</section> -->
 
 <style>
   section.news-section-container {
