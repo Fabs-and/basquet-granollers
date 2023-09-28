@@ -5,21 +5,34 @@
   import ProjectItem from "./homePage/projects/ProjectItem.svelte";
   import MembershipItem from "./homePage/memberships/MembershipItem.svelte";
   import ButtonAnchor from "@components/ButtonAnchor.svelte";
-  import { sliderLeftArrow, sliderRightArrow } from "@assets/icons";
+  import {
+    sliderLeftArrow,
+    sliderRightArrow,
+    sliderLeftArrowWhite,
+    sliderRightArrowWhite,
+  } from "@assets/icons";
 
   //Props
   export let sliderItems: any;
-  export let childComponent;
+  export let childComponent: string;
   export let gap: string = "1rem";
   export let itemWidth = 0;
 
-  console.log("childComponent", childComponent);
-  let component =
+  const component =
     childComponent === "NewsItem"
       ? NewsItem
       : childComponent === "MembershipItem"
       ? MembershipItem
       : ProjectItem;
+
+  const buttonText = childComponent === "NewsItem" ? "veure totes" : "contacta";
+
+  const textColor = childComponent === "NewsItem" && "var(--clr-accent)";
+
+  const arrowsColor = childComponent !== "NewsItem" && "white";
+
+  const forProjects = childComponent === "ProjectItem";
+
   let carousel: HTMLDivElement;
   let scrollPosition: number;
   let scrollAmount: number = itemWidth;
@@ -56,16 +69,25 @@
 
 <div class="slider-controls-container">
   <ButtonAnchor
-    text={"veure totes"}
-    textColor={"var(--clr-accent)"}
+    text={buttonText}
+    {textColor}
     hoverTextColor={"var(--clr-contrast)"}
+    hidden={childComponent === "ProjectItem"}
   />
-  <div class="arrows-container">
+  <div class="arrows-container" class:forProjects>
     <button on:click={goBack}>
-      {@html sliderLeftArrow}
+      {#if arrowsColor === "white"}
+        {@html sliderLeftArrowWhite}
+      {:else}
+        {@html sliderLeftArrow}
+      {/if}
     </button>
     <button on:click={goForward}>
-      {@html sliderRightArrow}
+      {#if arrowsColor === "white"}
+        {@html sliderRightArrowWhite}
+      {:else}
+        {@html sliderRightArrow}
+      {/if}
     </button>
   </div>
 </div>
@@ -94,5 +116,10 @@
   .arrows-container {
     display: flex;
     gap: 1rem;
+  }
+  
+  .forProjects {
+    width: 100%;
+    justify-content: space-between;
   }
 </style>

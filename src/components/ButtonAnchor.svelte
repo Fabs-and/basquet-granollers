@@ -4,13 +4,19 @@
   export let isFilled = false;
   export let textColor;
   export let hoverTextColor;
+  export let hidden;
+
+  console.log('hidden', hidden)
 </script>
 
 
-<a href={slug} style='--hoverTextColor:{hoverTextColor}; --textColor: {textColor}' class={isFilled ? 'isFilled' : ''}>{text.toUpperCase()}</a>
+<a href={slug} style='--hoverTextColor:{hoverTextColor}; --textColor: {textColor}' class:isFilled class:hidden>{text.toUpperCase()}</a>
 
 
 <style >
+  .hidden {
+    display: none;
+  }
   a {
     text-decoration: none;
     display: grid;
