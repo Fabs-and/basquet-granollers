@@ -5,8 +5,6 @@ import IndividualMemebershipResponsive from "@components/memberships/IndividualM
 import ButtonAnchor from "@components/ButtonAnchor.astro";
 
 import { memberships } from "@data/memberships";
-
-
 ---
 
 <section class="membership-section-container">
@@ -20,9 +18,9 @@ import { memberships } from "@data/memberships";
   <div class="desktop">
     <IndividualMemebership {memberships} />
   </div>
-  <div class="responsive">
-    <IndividualMemebershipResponsive client:visible {memberships} />
-  </div>
+  <!-- <div class="responsive"> -->
+  <!-- <IndividualMemebershipResponsive client:visible {memberships} /> -->
+  <!-- </div> -->
 </section>
 
 <style>
@@ -32,14 +30,14 @@ import { memberships } from "@data/memberships";
 
   .membership-section-container {
     background-color: var(--clr-primary);
-    padding-inline: var(--padding-inline);
     padding-block: 2rem;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
   }
-  
+
   .section-title-container {
+    padding-inline: var(--padding-inline);
     display: flex;
     justify-content: space-between;
     padding-bottom: 2rem;
@@ -52,7 +50,7 @@ import { memberships } from "@data/memberships";
     gap: 1.19rem;
   }
 
-  @media (width < 1388px) {
+  @media (width < 1062px) {
     .desktop {
       display: none;
     }
@@ -65,13 +63,17 @@ import { memberships } from "@data/memberships";
     }
 
     .section-title-container {
-      padding-inline: var(--padding-inline)
+      padding-inline: var(--padding-inline-mobile);
     }
   }
 
-  @media (width < 978px) {
-     .section-title-container {
-      padding-inline: var(--padding-inline-tablet)
+  @media (width < 397px) {
+    .section-title-container {
+      padding-inline: 0.2rem;
+    }
+    .title-buttons-container {
+      justify-content: space-between;
+      gap: 0.5rem;
     }
   }
 </style>

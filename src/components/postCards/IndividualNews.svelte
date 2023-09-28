@@ -1,7 +1,7 @@
 <script lang="ts">
   import { dateConverter } from "../../utils/helperFunctions";
 
-  export let post;
+  export let post = {title: {rendered: ''}, slug: '', date: '', image: ''};
   export let isFirstPost: boolean = false;
   export let isResponsive: boolean = false;
   const {
@@ -21,7 +21,7 @@
     </div>
     <div class="info-container">
       <h4>{@html title}</h4>
-      <p>{`Publicat ${dateConverter(date)}`}</p>
+      <p>{`Publicat `}</p>
     </div>
   </a>
 </article>
@@ -32,7 +32,7 @@
     font-weight: 560;
   }
 
-  .isFirstPost {
+  /* .isFirstPost {
     height: 33.1875rem;
     width: 60%;
     border-top-left-radius: 2.9375rem;
@@ -66,28 +66,28 @@
 
   .isFirstPost img:hover {
     transform: scale(1.1);
-  }
+  } */
 
   .isFirstPost .info-container {
     /* so the z-index has effect and the image does not overflow the info-container when hovered */
     /* position: relative;  */
-    color: var(--clr-contrast);
+    /* color: var(--clr-contrast);
     background-color: var(--clr-secondary);
     height: 20%;
     padding-inline: 1rem;
     padding-block: 0.5rem;
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
+    justify-content: space-between; */
   }
 
   article.card {
-    height: 25%;
-    overflow: hidden;
+    /* height: 25%;
+    overflow: hidden; */
     /* flex-shrink:0; */
   }
 
-  article.card a {
+  /* article.card a {
     color: var(--clr-primary);
     display: flex;
     gap: 1rem;
@@ -127,26 +127,26 @@
 
   a h4:hover {
     color: var(--clr-accent);
-  }
+  } */
 
   .isResponsive {
     height: 18rem;
     width: 18.6875rem;
     flex-shrink: 0;
     border-top-left-radius: 2.9375rem;
-    overflow: hidden;
-    scroll-snap-align: start;
+    /* overflow: hidden; */
+    /* scroll-snap-align: start; */
   }
 
   .isResponsive a {
     display: block;
     height: 100%;
-    width: 100%;
+    /* width: 100%; */
   }
 
   .isResponsive .image-container {
     height: 60%;
-    width: 100%;
+    /* width: 100%; */
     overflow: hidden;
     background-color: white;
     z-index: 0;
@@ -156,16 +156,16 @@
     height: 100%;
     object-fit: cover;
     /* object-position: start; */
-    transition: transform 0.3s;
+    /* transition: transform 0.3s; */
     margin: auto;
   }
 
   .isResponsive img:hover {
-    transform: scale(1.1);
+    /* transform: scale(1.1); */
   }
 
   .isResponsive .info-container {
-    color: var(--clr-contrast);
+    /* color: var(--clr-contrast);
     width: 100%;
     background-color: var(--clr-secondary);
     height: 40%;
@@ -173,6 +173,6 @@
     padding-block: 0.5rem;
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
+    justify-content: space-between; */
   }
 </style>

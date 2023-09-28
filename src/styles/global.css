@@ -38,7 +38,7 @@
   );
 
   --top-header-hg: 2.75rem;
-  --bottom-header-hg: 6.3125rem ;
+  --bottom-header-hg: 6.3125rem;
 
   --sponsors-main-hg: 7.875rem;
   --sponsors-all-hg: 72.0625rem;
@@ -86,8 +86,6 @@ body {
   line-height: var(--line-height-regular);
   color: var(--clr-contrast);
 }
-
-
 
 img {
   max-width: 100%;
@@ -187,4 +185,5 @@ small {
 
 .opacity {
   opacity: 0.5;
+  transition: opacity 0.3s;
 }
