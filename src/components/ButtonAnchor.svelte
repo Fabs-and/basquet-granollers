@@ -7,13 +7,13 @@
   export let textColor;
   export let hoverTextColor;
   export let hidden;
-  export let buttonWidth;
+  export let isSmallBtn;
 
   
 </script>
 
 
-<a href={slug} style='--hoverTextColor:{hoverTextColor}; --textColor: {textColor}' class:isFilled class:hidden>{text.toUpperCase()}</a>
+<a href={slug} style='--hoverTextColor:{hoverTextColor}; --textColor: {textColor}' class:isFilled class:hidden class:isSmallBtn>{text.toUpperCase()}</a>
 
 
 <style >
@@ -40,5 +40,9 @@
 
   .isFilled {
     background-color: var(--hoverTextColor);
+  }
+
+  .isSmallBtn {
+    width: var(--btn-width-sm);
   }
 </style>
