@@ -42,9 +42,13 @@
     object-fit: cover;
     margin: auto;
   }
-
+  
   .info-container {
     position: relative; /* so the z-index has effect  */
+    padding-inline: 1rem;
+    padding-block: 0.5rem;
+    color: var(--clr-contrast);
+    background-color: var(--clr-secondary);
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -78,10 +82,6 @@
   
   .isFeatured .info-container {
     height: 20%;
-    color: var(--clr-contrast);
-    background-color: var(--clr-secondary);
-    padding-inline: 1rem;
-    padding-block: 0.5rem;
   }
 
   .isDesktopNews {
@@ -94,6 +94,12 @@
     color: inherit;
     display: flex;
     gap: 1rem;
+  }
+
+  .isDesktopNews .info-container {
+    background-color: var(--clr-contrast);
+    color: var(--clr-primary);
+    padding: 0rem;
   }
 
   .isDesktopNews .image-container {

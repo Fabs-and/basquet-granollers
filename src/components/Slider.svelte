@@ -32,6 +32,7 @@
 
   const forProjects = childComponent === "ProjectItem";
 
+  const isSliderItem = childComponent === "NewsItem";
   let carousel: HTMLDivElement;
   let scrollPosition: number;
   let scrollAmount: number = itemWidth;
@@ -61,7 +62,7 @@
 >
   {#each sliderItems as sliderItem (sliderItem.id)}
     <div use:removeOpacity class="g-opacity">
-      <svelte:component this={component} item={sliderItem} />
+      <svelte:component this={component} item={sliderItem} {isSliderItem}/>
     </div>
   {/each}
 </div>
@@ -109,16 +110,22 @@
     justify-content: space-between;
     align-items: center;
     padding-top: 2rem;
-    padding-right: var(--padding-inline-mobile);
+    padding-right: var(--padding-inline-tablet);
   }
 
   .arrows-container {
     display: flex;
-    gap: 1rem;
+    gap: 0.6rem;
   }
   
   .forProjects {
     width: 100%;
     justify-content: space-between;
+  }
+
+  @media (width < 648px) {
+    .slider-controls-container {
+      padding-right: var(--padding-inline-mobile);
+    }
   }
 </style>
