@@ -40,6 +40,7 @@ import Slider from "@components/Slider.svelte";
   }
 
   .title-and-options-container {
+    padding-right: var(--padding-inline);
     display: flex;
     justify-content: space-between;
     padding-bottom: 2rem;
@@ -63,6 +64,18 @@ import Slider from "@components/Slider.svelte";
 
     .section-title-container {
       padding-inline: var(--padding-inline-mobile);
+    }
+  }
+
+  @media (width < 1025px) {
+    .title-and-options-container {
+      padding-right: var(--padding-inline-tablet);
+    }
+  }
+
+   @media (width < 648px) {
+    .title-and-options-container {
+      padding-right: var(--padding-inline-mobile);
     }
   }
 
