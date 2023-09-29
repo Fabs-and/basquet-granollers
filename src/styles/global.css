@@ -192,19 +192,25 @@ small {
   padding-block: 2rem;
   padding-left: var(--padding-inline);
 }
+.g-slider-container {
+  width: calc(100vw - var(--padding-inline));
+}
 
 @media (width < 1025px) {
   .g-page-section-with-slider-container {
     padding-left: var(--padding-inline-tablet);
   }
+  .g-slider-container {
+  width: calc(100vw - var(--padding-inline-tablet));
+}
 }
 @media (width < 648px) {
   .g-page-section-with-slider-container {
     padding-left: var(--padding-inline-mobile);
   }
-}
-.g-slider-container {
+  .g-slider-container {
   width: calc(100vw - var(--padding-inline-mobile));
+}
 }
 /* For samsung galaxies */
 /* @media (width < 374px) {

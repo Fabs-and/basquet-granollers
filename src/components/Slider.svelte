@@ -110,7 +110,7 @@
     justify-content: space-between;
     align-items: center;
     padding-top: 2rem;
-    padding-right: var(--padding-inline-tablet);
+    padding-right: var(--padding-inline);
   }
 
   .arrows-container {
@@ -122,6 +122,11 @@
     width: 100%;
     justify-content: space-between;
   }
+
+  @media (width < 1025px) {
+    .slider-controls-container {
+      padding-right: var(--padding-inline-tablet);
+    }}
 
   @media (width < 648px) {
     .slider-controls-container {
