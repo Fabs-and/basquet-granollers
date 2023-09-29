@@ -2,30 +2,26 @@
   import { dateConverter } from "../../../utils/helperFunctions";
 
   export let item = { title: { rendered: "" }, slug: "", date: "", image: "" };
-  export let isFirstPost: boolean = false;
-  export let isResponsive: boolean = false;
+
+  export let isFeatured: boolean = false;
+  export let isSliderItem: boolean = false;
+  export let isDesktopNews: boolean = false;
   const {
     title: { rendered: title },
     slug,
     date,
     image,
   } = item;
-
-  
 </script>
 
-<!-- <article
-  class={isResponsive ? "isResponsive" : isFirstPost ? "isFirstPost" : "card"}
-> -->
-
-<article class="isResponsive">
+<article class:isFeatured class:isSliderItem class:isDesktopNews>
   <a href={`/${slug}`}>
     <div class="image-container">
       <img src={image} alt={title} />
     </div>
     <div class="info-container">
       <h4>{@html title}</h4>
-      <p>{`Publicat `}</p>
+      <p>{`Publicat ${dateConverter(date)}`}</p>
     </div>
   </a>
 </article>
@@ -36,7 +32,32 @@
     font-weight: 560;
   }
 
-  /* .isFirstPost {
+  a {
+    display: block;
+    height: 100%;
+  }
+
+  img {
+    height: 100%;
+    object-fit: cover;
+    margin: auto;
+  }
+
+  .info-container {
+    position: relative;  /* so the z-index has effect  */
+    padding-inline: 1rem;
+    padding-block: 0.5rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+
+  .image-container {
+    background-color: white;
+    z-index: 0;
+  }
+
+  .isFeatured {
     height: 33.1875rem;
     width: 60%;
     border-top-left-radius: 2.9375rem;
@@ -44,96 +65,61 @@
     flex-shrink: 0;
   }
 
-  .isFirstPost a {
-    display: flex;
-    flex-direction: column;
-    height: 100%;
-    width: 100%;
-  }
-
-  .isFirstPost .image-container {
+  .isFeatured .image-container {
     height: 80%;
-    width: 100%;
-    overflow: hidden;
-    background-color: white;
-    flex-shrink: 0;
-    z-index: 0;
   }
 
-  .isFirstPost .image-container img {
-    width: 100%;
-    object-fit: cover;
+  .isFeatured .image-container img {
     object-position: top;
     transition: transform 0.3s;
-    margin: auto;
   }
 
-  .isFirstPost img:hover {
+  .isFeatured img:hover {
     transform: scale(1.1);
-  } */
+  }
 
-  .isFirstPost .info-container {
-    /* so the z-index has effect and the image does not overflow the info-container when hovered */
-    /* position: relative;  */
-    /* color: var(--clr-contrast);
-    background-color: var(--clr-secondary);
+  .isFeatured .info-container {
     height: 20%;
-    padding-inline: 1rem;
-    padding-block: 0.5rem;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between; */
+    color: var(--clr-contrast);
+    background-color: var(--clr-secondary);
   }
 
-  article.card {
-    /* height: 25%;
-    overflow: hidden; */
-    /* flex-shrink:0; */
-  }
-
-  /* article.card a {
-    color: var(--clr-primary);
-    display: flex;
-    gap: 1rem;
-    height: 100%;
-  }
-
-  .card .image-container {
-    width: 40%;
-    height: 7.375rem;
-    background-color: white;
+  .isDesktopNews {
+    height: 25%;
+    overflow: hidden;
     flex-shrink: 0;
   }
 
-  .card img {
+  .isDesktopNews a {
+    color: inherit;
+    display: flex;
+    gap: 1rem;
+  }
+
+  .isDesktopNews .image-container {
+    width: 40%;
+    height: 7.375rem;
+    flex-shrink: 0;
+  }
+
+  .isDesktopNews img {
     width: 100%;
-    height: 100%;
-    object-fit: cover;
     object-position: top;
   }
 
-  .card .info-container {
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-  }
-
-  .card p {
-    font-style: italic;
-    font-weight: 560;
+  .isDesktopNews p {
     position: absolute;
     width: 100%;
     bottom: 0;
-    z-index: 10;
+    z-index: 1;
     background-color: var(--clr-contrast);
   }
 
   a h4:hover {
     color: var(--clr-accent);
-  } */
+  }
 
-  .isResponsive {
+  .isSliderItem {
     height: 18rem;
     width: 18.6875rem;
     flex-shrink: 0;
@@ -142,36 +128,11 @@
     scroll-snap-align: start;
   }
 
-  .isResponsive a {
-    display: block;
-    height: 100%;
-    /* width: 100%; */
-  }
-
-  .isResponsive .image-container {
+  .isSliderItem .image-container {
     height: 60%;
-    /* width: 100%; */
-    overflow: hidden;
-    background-color: white;
-    z-index: 0;
   }
 
-  .isResponsive .image-container img {
-    height: 100%;
-    object-fit: cover;
-    /* object-position: start; */
-    margin: auto;
-  }
-
-  .isResponsive .info-container {
-    color: var(--clr-contrast);
-    width: 100%;
-    background-color: var(--clr-secondary);
+  .isSliderItem .info-container {
     height: 40%;
-    padding-inline: 1rem;
-    padding-block: 0.5rem;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
   }
 </style>

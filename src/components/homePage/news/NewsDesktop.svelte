@@ -3,15 +3,14 @@
   import NewsItem from "@components/homePage/news/NewsItem.svelte";
   import { sliderLeftArrow, sliderRightArrow } from "@assets/icons";
   import ButtonAnchor from "@components/ButtonAnchor.svelte";
-
+  import { featuredNews } from "@data/featuredNews";
   export let posts: Post[];
-  export let title: string;
 
   let position = 1;
-  const totalNews = Math.ceil(posts.length / 4);
 
-  $: visiblePosts = posts.slice(position * 4 - 4, position * 4);
-  $: firstPost = visiblePosts[0];
+  const totalNews = Math.ceil(posts.length / 3);
+
+  $: visiblePosts = posts.slice(position * 3 - 3, position * 3);
 
   function goBack() {
     if (position > 1) {
@@ -26,21 +25,14 @@
   }
 </script>
 
-<!-- <section class="news-section-container">
-  <h2>{title}</h2>
+<section class="news-section-container">
   <div class="news-container">
-    {#each visiblePosts as post, i (post.id)}
-      {#if i === 0}
-        <NewsItem post={firstPost} isFirstPost={true} />
-      {/if}
-    {/each}
+    <NewsItem item={featuredNews[0]} isFeatured={true} />
 
     <div class="older-news-and-slider-controls-container">
       <div class="older-news">
         {#each visiblePosts as post, i (post.id)}
-          {#if i > 0}
-            <NewsItem {post} />
-          {/if}
+          <NewsItem item={post} isDesktopNews={true} />
         {/each}
       </div>
       <div class="position-controls-and-button-container">
@@ -69,7 +61,7 @@
       </div>
     </div>
   </div>
-</section> -->
+</section>
 
 <style>
   section.news-section-container {

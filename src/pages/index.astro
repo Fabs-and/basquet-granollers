@@ -12,13 +12,14 @@ import AllSponsors from '@components/homePage/sponsors/AllSponsors.astro';
 import Projects from '@components/homePage/projects/Projects.astro';
 import Teams from '@components/homePage/teams/Teams.astro';
 import Memberships from '@components/homePage/memberships/Memberships.astro';
+import News from '@components/homePage/news/News.astro';
 // Import api functions from utils
 import {
   configure,
   fetchAllCategories,
   fetchPosts,
 } from 'fetch-wordpress-api';
-import NewsSectionLayout from '@layouts/NewsSectionLayout.astro';
+
 import type { Category, Post } from 'fetch-wordpress-api';
 // Import global (not global stores) variables/constants
 import { postFields, categoryFields } from 'src/data/apiGlobalConsts';
@@ -39,7 +40,7 @@ const title = 'Club Bàsquet Granollers';
 <BaseLayout {title}>
   <Hero/>
   <MainSponsors/>
-  <!-- <NewsSectionLayout {posts}/> -->
+  <News {posts}/>
   <!-- <Memberships/> -->
   <!-- <Teams/> -->
   <!-- <Projects/> -->

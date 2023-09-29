@@ -1,6 +1,5 @@
 ---
-import IndividualNews from "@components/postCards/NewsItem.svelte";
-import NewsSection from "@components/postCards/NewsSection.svelte";
+import NewsDesktop from "@components/homePage/news/NewsDesktop.svelte";
 import Slider from "@components/Slider.svelte";
 
 const { posts } = Astro.props;
@@ -8,11 +7,11 @@ const title = "CBG Notícies";
 ---
 
 <section class="g-page-section-with-slider-container">
-  <h2>{title}</h2>
+  <h2>CBG Notícies</h2>
 
-  <!-- <div class="desktop">
-    <NewsSection client:visible {title} {posts} />
-  </div> -->
+  <div class="desktop">
+    <NewsDesktop client:visible {posts} />
+  </div>
 
   <div class="g-slider-container">
     <Slider
@@ -22,7 +21,6 @@ const title = "CBG Notícies";
       itemWidth={312}
       gap={`1rem`}
     />
-   
   </div>
 </section>
 
