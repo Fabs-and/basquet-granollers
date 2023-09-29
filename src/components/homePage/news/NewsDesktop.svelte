@@ -7,30 +7,51 @@
   export let posts: Post[];
 
   let position = 1;
+  let currentIndex = 0;
+  let prevIndex = 0;
+  let direction = "";
 
-  const totalNews = Math.ceil(posts.length / 3);
+  const totalSlides = Math.ceil(posts.length / 3);
 
-  $: visiblePosts = posts.slice(position * 3 - 3, position * 3);
+  // const numberOfSlides = posts.
 
-  function goBack() {
+ async function goBack() {
     if (position > 1) {
       position--;
+    } else {
+      position = totalSlides;
     }
+    direction = "prev";
+    prevIndex = currentIndex;
+    currentIndex = currentIndex === 0 ? totalSlides - 1 : currentIndex - 1;
   }
 
-  function goForward() {
-    if (position < totalNews) {
+ async function goForward() {
+    if (position < totalSlides) {
       position++;
+    } else {
+      position = 1;
     }
+    direction = "next";
+    prevIndex = currentIndex; 
+    currentIndex = currentIndex === totalSlides - 1 ? 0 : currentIndex + 1;
   }
 </script>
 
 <div class="desktop-news-container">
   <NewsItem item={featuredNews[0]} isFeatured={true} />
   <div class="desktop-news-and-controls">
-    <div class="news">
-      {#each visiblePosts as post, i (post.id)}
-        <NewsItem item={post} isDesktopNews={true} />
+    <div class="carousel">
+      {#each Array(totalSlides) as _, i (i)}
+        <div
+          class="news {direction}"
+          class:active={currentIndex === i}
+          class:outgoing={prevIndex === i && currentIndex !== i}
+        >
+          {#each posts.slice(i * 3, i * 3 + 3) as post (post.id)}
+            <NewsItem item={post} isDesktopNews={true} />
+          {/each}
+        </div>
       {/each}
     </div>
     <div class="controls">
@@ -44,7 +65,7 @@
           >
           /
           <span class="second-number"
-            >{totalNews < 10 ? `0${totalNews}` : totalNews}</span
+            >{totalSlides < 10 ? `0${totalSlides}` : totalSlides}</span
           >
         </span>
         <button on:click={goForward}>
@@ -72,14 +93,45 @@
     flex-direction: column;
     height: inherit;
     justify-content: space-between;
+    width: 100%;
+    overflow: hidden;
+  }
+
+  .carousel {
+    position: relative;
+    flex-shrink: 0;
+    flex: 1;
   }
 
   .news {
+    position: absolute;
+    /* left: 0; */
+    display: none;
     overflow: hidden;
-    display: flex;
+    /* display: flex; */
     flex-direction: column;
-    flex: 1;
     gap: 2rem;
+  }
+
+  .news.active,
+  .news.outgoing {
+    display: flex;
+  }
+
+  .news.next.active {
+    animation: slide-in-from-left 0.45s forwards ease-in;
+  }
+
+  .news.next.outgoing {
+    animation: slide-out-to-right 0.45s forwards ease-in;
+  }
+
+  .news.prev.active {
+    animation: slide-in-from-right 0.45s forwards ease-in;
+  }
+
+  .news.prev.outgoing {
+    animation: slide-out-to-left 0.45s forwards ease-in;
   }
 
   .controls {
@@ -101,5 +153,41 @@
 
   .first-number {
     color: var(--clr-accent);
+  }
+
+  @keyframes slide-in-from-right {
+    0% {
+      transform: translateX(100%);
+    }
+    100% {
+      transform: translateX(0);
+    }
+  }
+
+  @keyframes slide-in-from-left {
+    0% {
+      transform: translateX(-100%);
+    }
+    100% {
+      transform: translateX(0);
+    }
+  }
+
+  @keyframes slide-out-to-right {
+    0% {
+      transform: translateX(0);
+    }
+    100% {
+      transform: translateX(100%);
+    }
+  }
+
+  @keyframes slide-out-to-left {
+    0% {
+      transform: translateX(0);
+    }
+    100% {
+      transform: translateX(-100%);
+    }
   }
 </style>
