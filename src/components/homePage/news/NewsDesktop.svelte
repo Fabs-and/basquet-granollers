@@ -25,96 +25,75 @@
   }
 </script>
 
-<section class="news-section-container">
-  <div class="news-container">
-    <NewsItem item={featuredNews[0]} isFeatured={true} />
-
-    <div class="older-news-and-slider-controls-container">
-      <div class="older-news">
-        {#each visiblePosts as post, i (post.id)}
-          <NewsItem item={post} isDesktopNews={true} />
-        {/each}
+<div class="desktop-news-container">
+  <NewsItem item={featuredNews[0]} isFeatured={true} />
+  <div class="desktop-news-and-controls">
+    <div class="news">
+      {#each visiblePosts as post, i (post.id)}
+        <NewsItem item={post} isDesktopNews={true} />
+      {/each}
+    </div>
+    <div class="controls">
+      <div class="arrows-container">
+        <button on:click={goBack}>
+          {@html sliderLeftArrow}
+        </button>
+        <span class="position-indicator">
+          <span class="first-number">
+            {position < 10 ? `0${position}` : position}</span
+          >
+          /
+          <span class="second-number"
+            >{totalNews < 10 ? `0${totalNews}` : totalNews}</span
+          >
+        </span>
+        <button on:click={goForward}>
+          {@html sliderRightArrow}
+        </button>
       </div>
-      <div class="position-controls-and-button-container">
-        <div class="position-controls-container">
-          <button on:click={goBack}>
-            {@html sliderLeftArrow}
-          </button>
-          <span class="position-indicator">
-            <span class="first-number">
-              {position < 10 ? `0${position}` : position}</span
-            >
-            /
-            <span class="second-number"
-              >{totalNews < 10 ? `0${totalNews}` : totalNews}</span
-            >
-          </span>
-          <button on:click={goForward}>
-            {@html sliderRightArrow}
-          </button>
-        </div>
-        <ButtonAnchor
-          text={"veure totes"}
-          textColor={"var(--clr-accent)"}
-          hoverTextColor={"var(--clr-contrast)"}
-        />
-      </div>
+      <ButtonAnchor
+        text={"veure totes"}
+        textColor={"var(--clr-accent)"}
+        hoverTextColor={"var(--clr-contrast)"}
+      />
     </div>
   </div>
-</section>
+</div>
 
 <style>
-  section.news-section-container {
-    height: 47rem;
-    padding-inline: var(--padding-inline);
-    padding-block: 3rem;
-    background-color: var(--clr-contrast);
-    color: var(--clr-primary);
-    display: flex;
-    flex-direction: column;
-    gap: 2rem;
-  }
-
-  div.news-container {
+  .desktop-news-container {
     display: flex;
     gap: 1rem;
-    max-height: 80%;
-    width: 100%;
-    align-items: center;
+    padding-right: var(--padding-inline);
   }
 
-  div.older-news-and-slider-controls-container {
+  .desktop-news-and-controls {
     display: flex;
     flex-direction: column;
-    height: 100%;
-    flex: 1;
+    height: inherit;
     justify-content: space-between;
   }
 
-  .older-news {
+  .news {
     overflow: hidden;
-    flex: 1;
     display: flex;
     flex-direction: column;
+    flex: 1;
     gap: 2rem;
   }
 
-  .position-controls-and-button-container {
+  .controls {
     display: flex;
     justify-content: space-between;
     align-items: center;
   }
 
-  .position-controls-container {
+  .arrows-container {
     display: flex;
     align-items: center;
     gap: 1rem;
   }
 
-  button {
-    display: flex;
-    /* align-items: center; */
-  }
   .position-indicator {
     font-size: 0.78125rem;
     font-weight: 550;

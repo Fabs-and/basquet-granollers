@@ -44,19 +44,17 @@
   }
 
   .info-container {
-    position: relative;  /* so the z-index has effect  */
-    padding-inline: 1rem;
-    padding-block: 0.5rem;
+    position: relative; /* so the z-index has effect  */
     display: flex;
     flex-direction: column;
     justify-content: space-between;
   }
-
+  
   .image-container {
     background-color: white;
     z-index: 0;
   }
-
+  
   .isFeatured {
     height: 33.1875rem;
     width: 60%;
@@ -64,24 +62,26 @@
     overflow: hidden;
     flex-shrink: 0;
   }
-
+  
   .isFeatured .image-container {
     height: 80%;
   }
-
+  
   .isFeatured .image-container img {
     object-position: top;
     transition: transform 0.3s;
   }
-
+  
   .isFeatured img:hover {
     transform: scale(1.1);
   }
-
+  
   .isFeatured .info-container {
     height: 20%;
     color: var(--clr-contrast);
     background-color: var(--clr-secondary);
+    padding-inline: 1rem;
+    padding-block: 0.5rem;
   }
 
   .isDesktopNews {
