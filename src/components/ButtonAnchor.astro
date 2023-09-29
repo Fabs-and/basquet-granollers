@@ -17,29 +17,14 @@ const {
 ---
 
 <a
+class="button-anchor"
   href={slug}
   class:list={[{ isFilled: isFilled},{ isSmallBtn: isSmallBtn }]}
   >{text.toUpperCase()}</a
 >
 
 <style define:vars={{ textColor, hoverTextColor }}>
-  a {
-    text-decoration: none;
-    display: grid;
-    place-items: center;
-    height: var(--btn-height);
-    width: var(--btn-width-regular);
-    border: 1px solid var(--clr-accent);
-    border-radius: 1.75rem;
-    color: var(--textColor);
-  }
-
-  a:hover {
-    cursor: pointer;
-    background-color: var(--clr-accent);
-    color: var(--hoverTextColor);
-  }
-
+  
   .isFilled {
     background-color: var(--clr-accent);
   }

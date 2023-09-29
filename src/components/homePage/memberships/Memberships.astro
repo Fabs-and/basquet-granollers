@@ -1,18 +1,27 @@
 ---
-import IndividualMemebership from "@components/homePage/memberships/IndividualMembership.svelte";
+
+  import IndividualMemebership from "@components/homePage/memberships/IndividualMembership.svelte";
 
 import ButtonAnchor from "@components/ButtonAnchor.svelte";
-
 import { memberships } from "@data/memberships";
 import Slider from "@components/Slider.svelte";
+
+const buttonText = "fes-te soci";
+let isSelected = true;
+
+function toggleSelected() {
+  isSelected = !isSelected;
+}
 ---
 
 <section class="g-page-section-with-slider-container">
   <div class="title-and-options-container">
     <h2>Forma part de la família CBG</h2>
     <div class="options-container">
-      <ButtonAnchor isFilled={true} text={`fes-te soci`} isSmallBtn={true}/>
-      <ButtonAnchor text={`fes-te sponsor`} isSmallBtn={true}/>
+      <button>{buttonText.toUpperCase()}</button>
+      <ButtonAnchor isFilled={isSelected} text={`fes-te soci`} isSmallBtn={true}/>
+
+      <ButtonAnchor isFilled={!isSelected} text={`fes-te sponsor`} isSmallBtn={true}/>
     </div>
   </div>
 

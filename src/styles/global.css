@@ -47,7 +47,6 @@
   --btn-height: 2.69rem;
   --btn-width-regular: 10rem;
   --btn-width-sm: 9.5rem;
-  
 
   /*Font sizes*/
   --font-size-regular: 0.78125rem;
@@ -201,16 +200,16 @@ small {
     padding-left: var(--padding-inline-tablet);
   }
   .g-slider-container {
-  width: calc(100vw - var(--padding-inline-tablet));
-}
+    width: calc(100vw - var(--padding-inline-tablet));
+  }
 }
 @media (width < 648px) {
   .g-page-section-with-slider-container {
     padding-left: var(--padding-inline-mobile);
   }
   .g-slider-container {
-  width: calc(100vw - var(--padding-inline-mobile));
-}
+    width: calc(100vw - var(--padding-inline-mobile));
+  }
 }
 /* For samsung galaxies */
 /* @media (width < 374px) {
@@ -218,3 +217,21 @@ small {
       width: calc(102vw - var(--padding-inline-mobile));
     }
   } */
+
+/*Button Classes*/
+.button-anchor {
+  text-decoration: none;
+  display: grid;
+  place-items: center;
+  height: var(--btn-height);
+  width: var(--btn-width-regular);
+  border: 1px solid var(--clr-accent);
+  border-radius: 1.75rem;
+  color: var(--textColor);
+}
+
+.button-anchor:hover {
+  cursor: pointer;
+  background-color: var(--clr-accent);
+  color: var(--hoverTextColor);
+}
