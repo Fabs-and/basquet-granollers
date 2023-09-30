@@ -14,7 +14,7 @@
   <article class="membership-info-container">
     <div class="membership-price">
       <p>
-        <span class="price-number">{item.price}</span> 
+        <span class="price-number">{item.price}</span>
       </p>
     </div>
     <div class="membership-advantages">
@@ -37,24 +37,9 @@
 </article>
 
 <style>
-  .memberships-slider-controls-container {
-    display: none;
-  }
-
-  .memberships-arrows-container {
-    display: none;
-  }
-  .membership-articles-container {
-    display: grid;
-    grid-template-columns: 18.6875rem 18.6875rem 18.6875rem;
-    place-items: center;
-    justify-content: center;
-    gap: 1.3rem;
-  }
-
   .membership-article {
     height: 51.75rem;
-    width: 18.6875rem;
+    width: 24.1875rem;
     background-color: var(--clr-secondary);
     border-top-left-radius: 2.9375rem;
     overflow: hidden;
@@ -123,6 +108,15 @@
     bottom: 0;
   }
 
+  @media (width < 1374px) {
+    .membership-article {
+      width: 18.3875rem;
+      justify-content: center;
+      gap: 1.3rem;
+    }
+
+   
+  }
   @media (width < 978px) {
     .button-anchor {
       display: none;
@@ -136,32 +130,13 @@
       height: 19.5rem;
     }
 
-    .membership-articles-container {
-      width: 99.9vw;
-      display: flex;
-      gap: 1rem;
-      overflow-x: scroll;
-      scroll-behavior: smooth;
-      scroll-snap-type: x mandatory;
-      justify-content: start;
-      padding-left: var(--padding-inline-tablet);
-    }
+   
 
     .membership-article {
       height: 29.625rem;
       flex-shrink: 0;
     }
-    .memberships-slider-controls-container {
-      display: flex;
-      justify-content: space-between;
-      padding-top: 1.13rem;
-      padding-inline: var(--padding-inline-tablet);
-    }
-
-    .memberships-arrows-container {
-      display: flex;
-      gap: 0.56rem;
-    }
+  
   }
 
   @media (width < 1076px) {

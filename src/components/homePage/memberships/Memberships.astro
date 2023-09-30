@@ -1,5 +1,5 @@
 ---
-import IndividualMemebership from "@components/homePage/memberships/IndividualMembership.svelte";
+import MembershipItem from "@components/homePage/memberships/MembershipItem.svelte";
 
 import ButtonAnchor from "@components/ButtonAnchor.svelte";
 import { memberships } from "@data/memberships";
@@ -14,7 +14,7 @@ function toggleSelected() {
 
 <script>
   const buttons = document.querySelectorAll(".options");
-  
+
   buttons[0].classList.add("selected");
 
   buttons.forEach((button) => {
@@ -25,7 +25,6 @@ function toggleSelected() {
       button.classList.add("selected");
     });
   });
-
 </script>
 
 <section class="g-page-section-with-slider-container">
@@ -38,15 +37,18 @@ function toggleSelected() {
       <button class="button-anchor options"
         >{"fes-te sponsor".toUpperCase()}</button
       >
-      <!-- <ButtonAnchor isFilled={isSelected} text={`fes-te soci`} isSmallBtn={true}/>
-
-      <ButtonAnchor isFilled={!isSelected} text={`fes-te sponsor`} isSmallBtn={true}/> -->
     </div>
   </div>
 
-  <!-- <div class="desktop">
-    <IndividualMemebership {memberships} />
-  </div> -->
+  <div class="desktop">
+    {
+      memberships.map((membership) => (
+        <div>
+          <MembershipItem client:visible item={membership} />
+        </div>
+      ))
+    }
+  </div>
 
   <div class="g-slider-container">
     <Slider
@@ -59,6 +61,14 @@ function toggleSelected() {
   </div>
 </section>
 <style>
+  .desktop {
+    padding-right: var(--padding-inline);
+    display: grid;
+    grid-template-columns: 24.1875rem 24.1875rem 24.1875rem;
+    place-items: center;
+    justify-content: space-between;
+    /* gap: 1.3rem; */
+  }
   .g-slider-container {
     display: none;
   }
@@ -88,23 +98,47 @@ function toggleSelected() {
     background-color: var(--clr-accent);
   }
 
-  @media (width < 1062px) {
+  @media (width < 1374px) {
+    .desktop {
+      grid-template-columns: 18.3875rem 18.3875rem 18.3875rem;
+      justify-content: center;
+      gap: 1rem;
+    }
+
+    .g-page-section-with-slider-container {
+      padding-inline: 0rem;
+    }
+
+    .desktop {
+      padding-right: 0rem;
+    }
+
+    .title-and-options-container {
+      padding-inline: var(--padding-inline);
+    }
+  }
+  @media (width < 1122px) {
+  }
+  @media (width < 1025px) {
+    .title-and-options-container {
+      padding-inline: var(--padding-inline-tablet);
+    }
+  }
+
+  @media (width < 932px) {
     .desktop {
       display: none;
     }
-
     .g-slider-container {
       display: block;
     }
 
-    .section-title-container {
-      padding-inline: var(--padding-inline-mobile);
+    .g-page-section-with-slider-container {
+      padding-left: var(--padding-inline-tablet);
     }
-  }
 
-  @media (width < 1025px) {
     .title-and-options-container {
-      padding-right: var(--padding-inline-tablet);
+      padding-left: 0rem;
     }
   }
 
