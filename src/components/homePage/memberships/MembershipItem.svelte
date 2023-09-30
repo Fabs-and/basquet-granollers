@@ -117,11 +117,12 @@
 
    
   }
-  @media (width < 978px) {
-    .button-anchor {
+  @media (width < 932px) {
+     .button-anchor {
       display: none;
     }
 
+    /*
     .image-container {
       height: 10.125rem;
     }
@@ -135,7 +136,7 @@
     .membership-article {
       height: 29.625rem;
       flex-shrink: 0;
-    }
+    } */
   
   }
 
