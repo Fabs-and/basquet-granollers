@@ -1,12 +1,10 @@
 ---
-
-  import IndividualMemebership from "@components/homePage/memberships/IndividualMembership.svelte";
+import IndividualMemebership from "@components/homePage/memberships/IndividualMembership.svelte";
 
 import ButtonAnchor from "@components/ButtonAnchor.svelte";
 import { memberships } from "@data/memberships";
 import Slider from "@components/Slider.svelte";
 
-const buttonText = "fes-te soci";
 let isSelected = true;
 
 function toggleSelected() {
@@ -14,14 +12,35 @@ function toggleSelected() {
 }
 ---
 
+<script>
+  const buttons = document.querySelectorAll(".options");
+  
+  buttons[0].classList.add("selected");
+
+  buttons.forEach((button) => {
+    button.addEventListener("click", () => {
+      buttons.forEach((button) => {
+        button.classList.remove("selected");
+      });
+      button.classList.add("selected");
+    });
+  });
+
+</script>
+
 <section class="g-page-section-with-slider-container">
   <div class="title-and-options-container">
     <h2>Forma part de la família CBG</h2>
     <div class="options-container">
-      <button>{buttonText.toUpperCase()}</button>
-      <ButtonAnchor isFilled={isSelected} text={`fes-te soci`} isSmallBtn={true}/>
+      <button class="button-anchor options"
+        >{"fes-te soci".toUpperCase()}</button
+      >
+      <button class="button-anchor options"
+        >{"fes-te sponsor".toUpperCase()}</button
+      >
+      <!-- <ButtonAnchor isFilled={isSelected} text={`fes-te soci`} isSmallBtn={true}/>
 
-      <ButtonAnchor isFilled={!isSelected} text={`fes-te sponsor`} isSmallBtn={true}/>
+      <ButtonAnchor isFilled={!isSelected} text={`fes-te sponsor`} isSmallBtn={true}/> -->
     </div>
   </div>
 
@@ -61,6 +80,13 @@ function toggleSelected() {
     display: flex;
     gap: 1.5rem;
   }
+  .button-anchor {
+    width: var(--btn-width-sm);
+    transition: all 0.3s ease-in-out;
+  }
+  .selected {
+    background-color: var(--clr-accent);
+  }
 
   @media (width < 1062px) {
     .desktop {
@@ -82,14 +108,14 @@ function toggleSelected() {
     }
   }
 
-   @media (width < 648px) {
+  @media (width < 648px) {
     .title-and-options-container {
       padding-right: var(--padding-inline-mobile);
     }
   }
 
   @media (width < 397px) {
-    .options-container{
+    .options-container {
       gap: 0rem;
       width: 100%;
       justify-content: space-between;
