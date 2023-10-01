@@ -1,8 +1,8 @@
 ---
 import MembershipItem from "@components/homePage/memberships/MembershipItem.svelte";
-
+import SponsorItem from "@components/homePage/memberships/SponsorItem.svelte";
 import ButtonAnchor from "@components/ButtonAnchor.svelte";
-import { memberships } from "@data/memberships";
+import { memberships, sponsors } from "@data/memberships";
 import Slider from "@components/Slider.svelte";
 
 let isSelected = true;
@@ -13,37 +13,40 @@ function toggleSelected() {
 ---
 
 <script>
-  document.addEventListener('DOMContentLoaded', (event) => {
-    const membershipsButton = document.getElementById('btn-memberships');
-    const sponsorsButton = document.getElementById('btn-sponsors');
-    const membershipsDiv = document.querySelector('.memberships');
-    const sponsorsDiv = document.querySelector('.sponsors');
+  document.addEventListener("DOMContentLoaded", (event) => {
+    const membershipsButton = document.getElementById("btn-memberships");
+    const sponsorsButton = document.getElementById("btn-sponsors");
+    const membershipsDiv = document.querySelector(".memberships");
+    const sponsorsDiv = document.querySelector(".sponsors");
 
-    membershipsButton!.classList.add('selected');
+    membershipsButton!.classList.add("selected");
 
     function toggleSection(event: MouseEvent) {
-      const isMembershipsButton = (event.target as HTMLElement)?.id === 'btn-memberships';
+      const isMembershipsButton =
+        (event.target as HTMLElement)?.id === "btn-memberships";
 
-      if (membershipsDiv instanceof HTMLElement && sponsorsDiv instanceof HTMLElement) {
-        membershipsDiv.style.display = isMembershipsButton ? 'block' : 'none';
+      if (
+        membershipsDiv instanceof HTMLElement &&
+        sponsorsDiv instanceof HTMLElement
+      ) {
+        membershipsDiv.style.display = isMembershipsButton ? "block" : "none";
 
-        sponsorsDiv.style.display = isMembershipsButton ? 'none' : 'block';
+        sponsorsDiv.style.display = isMembershipsButton ? "none" : "block";
       }
 
-      document.querySelectorAll('.options').forEach(button => {
+      document.querySelectorAll(".options").forEach((button) => {
         if (button instanceof HTMLElement) {
-          button.classList.remove('selected');
+          button.classList.remove("selected");
         }
       });
 
       if (event.target instanceof HTMLElement) {
-        event.target.classList.add('selected');
+        event.target.classList.add("selected");
       }
     }
 
-
-    membershipsButton!.addEventListener('click', toggleSection);
-    sponsorsButton!.addEventListener('click', toggleSection);
+    membershipsButton!.addEventListener("click", toggleSection);
+    sponsorsButton!.addEventListener("click", toggleSection);
   });
 </script>
 
@@ -52,8 +55,6 @@ function toggleSelected() {
     <h2>Forma part de la família CBG</h2>
     <div class="options-container">
       <button id="btn-memberships" class="button-anchor options"
-     
-
         >{"fes-te soci".toUpperCase()}</button
       >
       <button id="btn-sponsors" class="button-anchor options"
@@ -63,7 +64,7 @@ function toggleSelected() {
   </div>
 
   <div class="memberships">
-    <div class="membership-desktop">
+    <!-- <div class="membership-desktop">
       {
         memberships.map((membership) => (
           <div>
@@ -71,9 +72,9 @@ function toggleSelected() {
           </div>
         ))
       }
-    </div>
+    </div> -->
 
-    <!-- <div class="g-slider-container">
+    <!-- <div class="g-slider-container meberships-slider">
     <Slider
     client:visible
     sliderItems={memberships}
@@ -86,18 +87,25 @@ function toggleSelected() {
 
   <div class="sponsors">
     <div class="sponsors-desktop">
-      
+      {
+        sponsors.map((sponsor) => (
+          <div>
+            <SponsorItem client:visible item={sponsor} />
+          </div>
+        ))
+      }
+    </div>
+
+    <div class="g-slider-container sponsors-slider">
+      <Slider
+      client:visible
+      sliderItems={sponsors}
+      childComponent="SponsorItem"
+      itemWidth={315}
+      gap={`1rem`}
+      />
     </div>
   </div>
-  <!-- <div class="g-slider-container">
-    <Slider
-    client:visible
-    sliderItems={sponsors}
-    childComponent="SponsorItem"
-    itemWidth={315}
-    gap={`1rem`}
-    />
-  </div> -->
 </section>
 <style>
   .membership-desktop {
@@ -105,13 +113,25 @@ function toggleSelected() {
     display: grid;
     grid-template-columns: 24.1875rem 24.1875rem 24.1875rem;
     place-items: center;
-    justify-content: space-between;
+    justify-content: center;
     /* gap: 1.3rem; */
+  }
+
+  .sponsors-desktop {
+    padding-right: var(--padding-inline);
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(24.1875rem, 1fr));
+    place-items: center;
+    /* justify-content: space-between; */
+    gap: 1.3rem;
   }
   .g-slider-container {
     display: none;
   }
 
+  .sponsors-slider {
+    display: none;
+  }
   .g-page-section-with-slider-container {
     background-color: var(--clr-primary);
   }
@@ -137,11 +157,25 @@ function toggleSelected() {
     background-color: var(--clr-accent);
   }
 
+  @media (width < 1399px) {
+    .sponsors-desktop > div:nth-child(odd) {
+      justify-self: end;
+    }
+
+    .sponsors-desktop > div:nth-child(even) {
+      justify-self: start;
+    }
+  }
+
   @media (width < 1374px) {
     .membership-desktop {
       grid-template-columns: 18.3875rem 18.3875rem 18.3875rem;
       justify-content: center;
       gap: 1rem;
+    }
+
+    .sponsors-desktop {
+      padding-inline: var(--padding-inline);
     }
 
     .g-page-section-with-slider-container {
@@ -162,6 +196,10 @@ function toggleSelected() {
     .title-and-options-container {
       padding-inline: var(--padding-inline-tablet);
     }
+
+    .sponsors-desktop {
+      padding-inline: 0rem;
+    }
   }
 
   @media (width < 932px) {
@@ -176,11 +214,24 @@ function toggleSelected() {
       padding-left: var(--padding-inline-tablet);
     }
 
+    .sponsors-desktop {
+      padding-right: var(--padding-inline-tablet);
+    }
+
     .title-and-options-container {
       padding-left: 0rem;
     }
   }
 
+  @media (width < 859px) {
+    .sponsors-desktop {
+      display: none;
+    }
+
+    .sponsors-slider {
+      display: block;
+    }
+  }
   @media (width < 648px) {
     .title-and-options-container {
       padding-right: var(--padding-inline-mobile);

@@ -3,6 +3,7 @@
   import NewsItem from "./homePage/news/NewsItem.svelte";
   import ProjectItem from "./homePage/projects/ProjectItem.svelte";
   import MembershipItem from "./homePage/memberships/MembershipItem.svelte";
+  import SponsorItem from "./homePage/memberships/SponsorItem.svelte";
   import ButtonAnchor from "@components/ButtonAnchor.svelte";
   import {
     sliderLeftArrow,
@@ -22,6 +23,8 @@
       ? NewsItem
       : childComponent === "MembershipItem"
       ? MembershipItem
+      : childComponent === "SponsorItem"
+      ? SponsorItem
       : ProjectItem;
 
   const buttonText = childComponent === "NewsItem" ? "veure totes" : "contacta";
@@ -62,7 +65,7 @@
 >
   {#each sliderItems as sliderItem (sliderItem.id)}
     <div use:removeOpacity class="g-opacity">
-      <svelte:component this={component} item={sliderItem} {isSliderItem}/>
+      <svelte:component this={component} item={sliderItem} {isSliderItem} />
     </div>
   {/each}
 </div>
@@ -117,7 +120,7 @@
     display: flex;
     gap: 0.6rem;
   }
-  
+
   .forProjects {
     width: 100%;
     justify-content: space-between;
@@ -126,7 +129,8 @@
   @media (width < 1025px) {
     .slider-controls-container {
       padding-right: var(--padding-inline-tablet);
-    }}
+    }
+  }
 
   @media (width < 648px) {
     .slider-controls-container {
