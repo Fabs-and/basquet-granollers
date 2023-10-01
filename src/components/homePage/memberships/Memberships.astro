@@ -64,7 +64,7 @@ function toggleSelected() {
   </div>
 
   <div class="memberships">
-    <!-- <div class="membership-desktop">
+    <div class="membership-desktop">
       {
         memberships.map((membership) => (
           <div>
@@ -72,9 +72,9 @@ function toggleSelected() {
           </div>
         ))
       }
-    </div> -->
+    </div>
 
-    <!-- <div class="g-slider-container meberships-slider">
+    <div class="g-slider-container meberships-slider">
     <Slider
     client:visible
     sliderItems={memberships}
@@ -82,7 +82,7 @@ function toggleSelected() {
     itemWidth={315}
     gap={`1rem`}
     />
-  </div> -->
+  </div>
   </div>
 
   <div class="sponsors">
@@ -113,7 +113,7 @@ function toggleSelected() {
     display: grid;
     grid-template-columns: 24.1875rem 24.1875rem 24.1875rem;
     place-items: center;
-    justify-content: center;
+    justify-content: space-between;
     /* gap: 1.3rem; */
   }
 
@@ -122,7 +122,7 @@ function toggleSelected() {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(24.1875rem, 1fr));
     place-items: center;
-    /* justify-content: space-between; */
+    justify-content: space-between;
     gap: 1.3rem;
   }
   .g-slider-container {
