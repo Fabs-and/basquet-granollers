@@ -64,7 +64,7 @@ function toggleSelected() {
   </div>
 
   <div class="memberships">
-    <!-- <div class="membership-desktop">
+    <div class="membership-desktop">
       {
         memberships.map((membership) => (
           <div>
@@ -72,17 +72,17 @@ function toggleSelected() {
           </div>
         ))
       }
-    </div> -->
+    </div>
 
-    <!-- <div class="g-slider-container meberships-slider">
-    <Slider
-    client:visible
-    sliderItems={memberships}
-    childComponent="MembershipItem"
-    itemWidth={315}
-    gap={`1rem`}
-    />
-  </div> -->
+    <div class="g-slider-container meberships-slider">
+      <Slider
+        client:visible
+        sliderItems={memberships}
+        childComponent="MembershipItem"
+        itemWidth={315}
+        gap={`1rem`}
+      />
+    </div>
   </div>
 
   <div class="sponsors">
@@ -98,11 +98,11 @@ function toggleSelected() {
 
     <div class="g-slider-container sponsors-slider">
       <Slider
-      client:visible
-      sliderItems={sponsors}
-      childComponent="SponsorItem"
-      itemWidth={315}
-      gap={`1rem`}
+        client:visible
+        sliderItems={sponsors}
+        childComponent="SponsorItem"
+        itemWidth={315}
+        gap={`1rem`}
       />
     </div>
   </div>
