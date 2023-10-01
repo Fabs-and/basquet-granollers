@@ -59,42 +59,6 @@ de temporada (botifarrada CBG)`,
 
 export const sponsors = [
   {
-    id: 4,
-    name: `Pista gran`,
-    price: `10.000€`,
-    advantages: [
-      `Logotip pista central`,
-      `2 pancartes publicitàries`,
-      `Marcador digital pavelló CGB`,
-      `Retransmissió Ràdio 7 Vallès`,
-      `Logotip a mitjans online`,
-    ],
-  },
-  {
-    id: 5,
-    name: `Primer equip`,
-    price: `6.000€`,
-    advantages: [
-      `Logotip samarreta o pantaló`,
-      `2 pancartes publicitàries`,
-      `Marcador digital pavelló CGB`,
-      `Retransmissió Ràdio 7 Vallès`,
-      `Logotip a mitjans online`,
-    ],
-  },
-  {
-    id: 6,
-    name: `Cadira de rodes`,
-    price: `3.500€`,
-    advantages: [
-      `Logotip equipació`,
-      `1 pancarta estàtica preferent`,
-      `Marcador digital pavelló CGB`,
-      `Logotip a mitjans online`,
-      `Cartell entrada pavelló`,
-    ],
-  },
-  {
     id: 1,
     name: `Pista gran`,
     price: `10.000€`,
@@ -120,6 +84,42 @@ export const sponsors = [
   },
   {
     id: 3,
+    name: `Cadira de rodes`,
+    price: `3.500€`,
+    advantages: [
+      `Logotip equipació`,
+      `1 pancarta estàtica preferent`,
+      `Marcador digital pavelló CGB`,
+      `Logotip a mitjans online`,
+      `Cartell entrada pavelló`,
+    ],
+  },
+  {
+    id: 4,
+    name: `Pista gran`,
+    price: `10.000€`,
+    advantages: [
+      `Logotip pista central`,
+      `2 pancartes publicitàries`,
+      `Marcador digital pavelló CGB`,
+      `Retransmissió Ràdio 7 Vallès`,
+      `Logotip a mitjans online`,
+    ],
+  },
+  {
+    id: 5,
+    name: `Primer equip`,
+    price: `6.000€`,
+    advantages: [
+      `Logotip samarreta o pantaló`,
+      `2 pancartes publicitàries`,
+      `Marcador digital pavelló CGB`,
+      `Retransmissió Ràdio 7 Vallès`,
+      `Logotip a mitjans online`,
+    ],
+  },
+  {
+    id: 6,
     name: `Cadira de rodes`,
     price: `3.500€`,
     advantages: [

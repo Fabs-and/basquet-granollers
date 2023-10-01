@@ -74,7 +74,7 @@ function toggleSelected() {
       }
     </div>
 
-    <div class="g-slider-container meberships-slider">
+    <div class="g-slider-container memberships-slider">
       <Slider
         client:visible
         sliderItems={memberships}
@@ -108,12 +108,16 @@ function toggleSelected() {
   </div>
 </section>
 <style>
+  /*By default sponsors is hidden until the button is clicked*/
+  .sponsors { 
+    display: none;
+  }
   .membership-desktop {
     padding-right: var(--padding-inline);
     display: grid;
     grid-template-columns: 24.1875rem 24.1875rem 24.1875rem;
     place-items: center;
-    justify-content: center;
+    justify-content: space-between;
     /* gap: 1.3rem; */
   }
 
@@ -125,7 +129,7 @@ function toggleSelected() {
     /* justify-content: space-between; */
     gap: 1.3rem;
   }
-  .g-slider-container {
+  .memberships-slider {
     display: none;
   }
 
@@ -171,6 +175,7 @@ function toggleSelected() {
     .membership-desktop {
       grid-template-columns: 18.3875rem 18.3875rem 18.3875rem;
       justify-content: center;
+      padding-right: 0rem;
       gap: 1rem;
     }
 
@@ -180,10 +185,6 @@ function toggleSelected() {
 
     .g-page-section-with-slider-container {
       padding-inline: 0rem;
-    }
-
-    .membership-desktop {
-      padding-right: 0rem;
     }
 
     .title-and-options-container {
@@ -206,7 +207,7 @@ function toggleSelected() {
     .membership-desktop {
       display: none;
     }
-    .g-slider-container {
+    .memberships-slider{
       display: block;
     }
 

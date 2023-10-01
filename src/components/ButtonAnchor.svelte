@@ -1,13 +1,13 @@
 <script>
     import { componentIsHTMLElement } from "astro/runtime/server/render/dom.js";
 
-  export let text;
+  export let text = '';
   export let slug = '';
   export let isFilled = false;
-  export let textColor;
-  export let hoverTextColor;
-  export let hidden;
-  export let isSmallBtn;
+  export let textColor = '';
+  export let hoverTextColor = '';
+  export let hidden = false;
+  export let isSmallBtn = false;
 
   
 </script>
