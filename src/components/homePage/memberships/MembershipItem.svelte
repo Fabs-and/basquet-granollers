@@ -1,7 +1,8 @@
 <script>
   import ButtonAnchor from "@components/ButtonAnchor.svelte";
+  import Dialog from "@components/Dialog.svelte";
   import { membershipCheck } from "@assets/icons";
-
+  import {toggleDialog} from "@utils/helperFunctions";
   import {
     sliderLeftArrowWhite,
     sliderRightArrowWhite,
@@ -15,14 +16,14 @@
     expanded = !expanded;
   }
 
-  function toggleDialog() {
-    const dialog = document.querySelector("dialog");
-    if (dialog.open) {
-      dialog.close();
-    } else {
-      dialog.showModal();
-    }
-  }
+  // function toggleDialog() {
+  //   const dialog = document.querySelector("dialog");
+  //   if (dialog.open) {
+  //     dialog.close();
+  //   } else {
+  //     dialog.showModal();
+  //   }
+  // }
 </script>
 
 <article class="membership-article opacity" class:expanded>
@@ -50,25 +51,23 @@
     <div class="ball-img">
       <img src="membership-ball.png" alt="" class="" />
     </div>
-    <button class="llegir-mes" on:click={toggleDialog}>
+    <button class="llegir-mes" on:click={toggleExpand}>
       {expanded ? `Llegir menys` : `Llegir més`}
     </button>
   </article>
 </article>
 
-<dialog id="dialog">
+<!-- <dialog id="dialog">
   <button class="modal-button" on:click={toggleDialog}
     >{@html closeModalIcon}</button
   >
   <div class="dialog-container">
     <h3>Vols ser Soci/sòcia d'honor?</h3>
-    <!-- <br /> -->
     <br />
     <div>
       <p>Envia'ns un correu electrònic a:</p>
       <p class="g-text-clr-accent">somcbg@cbgranollers.cat</p>
     </div>
-    <!-- <br /> -->
     <div>
       <p>O bé, vine a les oficines:</p>
       <p class="g-text-clr-accent">
@@ -76,29 +75,25 @@
       </p>
     </div>
   </div>
-</dialog>
+</dialog> -->
 
 <style>
-  .modal-button {
+  /* .modal-button {
     position: absolute;
     top: -1.7rem;
     right: -2rem;
-  }
+  } */
 
   .expanded {
     height: 47.63rem !important;
   }
-  h3 {
-    text-wrap: balance;
-  }
+/*   
   dialog {
     overflow: visible;
     margin: auto;
     color: var(--clr-secondary);
     padding-inline: 3.5rem;
     padding-block: 2.69rem;
-    /* width: 37.5rem; */
-    /* height: 21.25rem; */
     max-width: 60vw;
     z-index: 100;
     background-color: var(--clr-contrast);
@@ -117,9 +112,9 @@
   }
 
   dialog::backdrop {
-  /*Opacity property does not work with backdrop*/
+  Opacity property does not work with backdrop
   background-color: rgba(0, 0, 0, 0.5);  
-}
+} */
   .expanded .llegir-mes {
     bottom: -15.62rem;
   }

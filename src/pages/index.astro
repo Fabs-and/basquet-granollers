@@ -25,6 +25,7 @@ import type { Category, Post } from 'fetch-wordpress-api';
 import { postFields, categoryFields } from 'src/data/apiGlobalConsts';
 
 import { BASE_URL } from 'src/config';
+import Dialog from '@components/Dialog.svelte';
 
 configure({BASE_URL: BASE_URL})
 
@@ -46,4 +47,5 @@ const title = 'Club Bàsquet Granollers';
   <!-- <Projects/> -->
   <AllSponsors/>
 </BaseLayout>
+
 

@@ -52,3 +52,13 @@ export function categoryMapper(
   return categories;
 }
 
+export function toggleDialog() {
+  const dialog = document.querySelector("dialog");
+  if (dialog === null) return;
+  if (dialog.open) {
+    dialog.close();
+  } else {
+    dialog.showModal();
+  }
+}
+

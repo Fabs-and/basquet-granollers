@@ -5,12 +5,14 @@
   import MembershipItem from "./homePage/memberships/MembershipItem.svelte";
   import SponsorItem from "./homePage/memberships/SponsorItem.svelte";
   import ButtonAnchor from "@components/ButtonAnchor.svelte";
+  import Dialog from "@components/Dialog.svelte";
   import {
     sliderLeftArrow,
     sliderRightArrow,
     sliderLeftArrowWhite,
     sliderRightArrowWhite,
   } from "@assets/icons";
+    import { toggleDialog } from "@utils/helperFunctions";
 
   //Props
   export let sliderItems: any;
@@ -71,12 +73,16 @@
 </div>
 
 <div class="slider-controls-container">
+  {#if component === NewsItem}
   <ButtonAnchor
     text={buttonText}
     {textColor}
     hoverTextColor={"var(--clr-contrast)"}
     hidden={childComponent === "ProjectItem"}
   />
+  {:else}
+    <button on:click={toggleDialog} class="button-anchor"> {buttonText.toUpperCase()} </button>
+  {/if}
   <div class="arrows-container" class:forProjects>
     <button on:click={goBack}>
       {#if arrowsColor === "white"}
