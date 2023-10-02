@@ -36,7 +36,7 @@
 <style>
   dialog {
     overflow: visible;
-    position: fixed;
+    /* position: fixed; */
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
@@ -47,6 +47,10 @@
     background-color: var(--clr-contrast);
     border-radius: 0.4rem;
     border: none;
+  }
+
+  .modal-button {
+    z-index: 2000;
   }
 
   .modal-button {
