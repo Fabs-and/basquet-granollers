@@ -55,7 +55,10 @@ function toggleSelected() {
             sponsorsDiv.classList.add("active");
           }, 450);
          
+            sponsorsButton!.classList.add("selected");
 
+          // sponsorsDiv.style.display = "none";
+          membershipsButton!.classList.remove("selected");
         }
       }
     }
@@ -148,7 +151,7 @@ function toggleSelected() {
     grid-template-columns: 24.1875rem 24.1875rem 24.1875rem;
     place-items: center;
     justify-content: space-between;
-    gap: 1.3rem;
+    /* gap: 1.3rem; */
   }
 
   .sponsors-desktop {

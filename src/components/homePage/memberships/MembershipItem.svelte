@@ -4,9 +4,15 @@
 
   import { sliderLeftArrowWhite, sliderRightArrowWhite } from "@assets/icons";
   export let item;
+
+  let expanded = false;
+
+  function toggleExpand() {
+    expanded = !expanded;
+  }
 </script>
 
-<article class="membership-article opacity">
+<article class="membership-article opacity" class:expanded>
   <div class="image-container">
     <img src="" alt="" />
     <h3 class="memebership-title">{item.name}</h3>
@@ -33,10 +39,26 @@
     <div class="ball-img">
       <img src="membership-ball.png" alt="" class="" />
     </div>
+    <button class="llegir-mes" on:click={toggleExpand}> {expanded ? `Llegir menys` : `Llegir més`} </button>
   </article>
 </article>
 
 <style>
+  .expanded {
+    height: 47.63rem !important;
+  }
+
+  
+  .expanded .llegir-mes {
+    bottom: -15.62rem;
+  }
+  .membership-article.expanded::before {
+    content: none;
+  }
+
+  .llegir-mes {
+    display: none;
+  }
   .membership-article {
     height: 51.75rem;
     width: 24.1875rem;
@@ -44,6 +66,7 @@
     border-top-left-radius: 2.9375rem;
     overflow: hidden;
     scroll-snap-align: start;
+    transition: height 0.3s ease;
   }
 
   .memebership-title {
@@ -115,15 +138,12 @@
       justify-content: center;
       gap: 1.3rem;
     }
-
-   
   }
   @media (width < 932px) {
-     .button-anchor {
+    .button-anchor {
       display: none;
     }
 
-    /*
     .image-container {
       height: 10.125rem;
     }
@@ -132,13 +152,39 @@
       height: 19.5rem;
     }
 
-   
-
     .membership-article {
       height: 29.625rem;
       flex-shrink: 0;
-    } */
-  
+      position: relative;
+    }
+
+    .membership-article::before {
+      content: "";
+      position: absolute;
+      bottom: 0;
+      background: linear-gradient(
+        0deg,
+        #084395 19.71%,
+        rgba(8, 67, 149, 0) 124.82%
+      );
+      z-index: 1;
+      width: 100%; /* specify a width */
+      height: 9.6875rem;
+    }
+
+    .llegir-mes {
+      display: block;
+      position: absolute;
+      bottom: 1.88rem;
+      left: 3.5rem;
+      z-index: 2;
+      color: var(--clr-accent);
+      text-decoration: underline;
+    }
+
+    .ball-img {
+      display: none;
+    }
   }
 
   @media (width < 1076px) {
