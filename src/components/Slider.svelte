@@ -5,7 +5,7 @@
   import MembershipItem from "./homePage/memberships/MembershipItem.svelte";
   import SponsorItem from "./homePage/memberships/SponsorItem.svelte";
   import ButtonAnchor from "@components/ButtonAnchor.svelte";
-  import Dialog from "@components/Dialog.svelte";
+  
   import {
     sliderLeftArrow,
     sliderRightArrow,
@@ -80,7 +80,7 @@
     hoverTextColor={"var(--clr-contrast)"}
     hidden={childComponent === "ProjectItem"}
   />
-  {:else}
+  {:else if component === MembershipItem}
     <button on:click={toggleDialog} class="button-anchor"> {buttonText.toUpperCase()} </button>
   {/if}
   <div class="arrows-container" class:forProjects>

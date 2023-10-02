@@ -1,6 +1,6 @@
 <script>
   import ButtonAnchor from "@components/ButtonAnchor.svelte";
-  import Dialog from "@components/Dialog.svelte";
+
   import { membershipCheck } from "@assets/icons";
   import {toggleDialog} from "@utils/helperFunctions";
   import {
@@ -16,14 +16,6 @@
     expanded = !expanded;
   }
 
-  // function toggleDialog() {
-  //   const dialog = document.querySelector("dialog");
-  //   if (dialog.open) {
-  //     dialog.close();
-  //   } else {
-  //     dialog.showModal();
-  //   }
-  // }
 </script>
 
 <article class="membership-article opacity" class:expanded>
@@ -57,64 +49,11 @@
   </article>
 </article>
 
-<!-- <dialog id="dialog">
-  <button class="modal-button" on:click={toggleDialog}
-    >{@html closeModalIcon}</button
-  >
-  <div class="dialog-container">
-    <h3>Vols ser Soci/sòcia d'honor?</h3>
-    <br />
-    <div>
-      <p>Envia'ns un correu electrònic a:</p>
-      <p class="g-text-clr-accent">somcbg@cbgranollers.cat</p>
-    </div>
-    <div>
-      <p>O bé, vine a les oficines:</p>
-      <p class="g-text-clr-accent">
-        dimarts, dimecres o divendres de 17 a 20 h.
-      </p>
-    </div>
-  </div>
-</dialog> -->
-
 <style>
-  /* .modal-button {
-    position: absolute;
-    top: -1.7rem;
-    right: -2rem;
-  } */
-
   .expanded {
     height: 47.63rem !important;
   }
-/*   
-  dialog {
-    overflow: visible;
-    margin: auto;
-    color: var(--clr-secondary);
-    padding-inline: 3.5rem;
-    padding-block: 2.69rem;
-    max-width: 60vw;
-    z-index: 100;
-    background-color: var(--clr-contrast);
-    border-radius: 0.4rem;
-    border: none;
-  }
-  .dialog-container {
-    display: flex;
-    flex-direction: column;
-    gap: 1.25rem;
-  }
-  .dialog-container p {
-    font-size: var(--font-size-h4);
-    font-weight: 560;
-    line-height: 1.5625rem;
-  }
 
-  dialog::backdrop {
-  Opacity property does not work with backdrop
-  background-color: rgba(0, 0, 0, 0.5);  
-} */
   .expanded .llegir-mes {
     bottom: -15.62rem;
   }

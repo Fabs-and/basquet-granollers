@@ -18,7 +18,8 @@ import { projects } from "@data/projects.ts";
     }
   </div>
 
-  <div class="g-slider-container">
+
+  <div class="g-slider-container mobile">
     <Slider
       client:visible
       sliderItems={projects}
@@ -30,7 +31,7 @@ import { projects } from "@data/projects.ts";
 </section>
 
 <style>
-  .g-slider-container {
+  .mobile {
     display: none;
   }
 
@@ -64,7 +65,7 @@ import { projects } from "@data/projects.ts";
   }
 
   @media (width < 648px) {
-    .g-slider-container {
+    .mobile {
       display: block;
     }
     .projects-desktop {
