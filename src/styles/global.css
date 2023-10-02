@@ -235,3 +235,7 @@ small {
   background-color: var(--clr-accent);
   color: var(--hoverTextColor);
 }
+
+.g-text-clr-accent {
+  color: var(--clr-accent);
+}
