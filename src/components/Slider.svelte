@@ -80,7 +80,7 @@
     hoverTextColor={"var(--clr-contrast)"}
     hidden={childComponent === "ProjectItem"}
   />
-  {:else if component === MembershipItem}
+  {:else if component === MembershipItem || component === SponsorItem}
     <button on:click={toggleDialog} class="button-anchor"> {buttonText.toUpperCase()} </button>
   {/if}
   <div class="arrows-container" class:forProjects>
