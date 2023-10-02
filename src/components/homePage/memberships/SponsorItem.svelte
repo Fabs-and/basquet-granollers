@@ -46,6 +46,7 @@
     flex-direction: column;
     padding-block: 1.38rem;
     gap: 1.13rem;
+    scroll-snap-align: start;
   }
 
   .sponsor-price {

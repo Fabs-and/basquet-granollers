@@ -43,6 +43,7 @@
     background-color: var(--clr-secondary);
     border-top-left-radius: 2.9375rem;
     overflow: hidden;
+    scroll-snap-align: start;
   }
 
   .memebership-title {

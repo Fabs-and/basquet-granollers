@@ -29,19 +29,34 @@ function toggleSelected() {
         membershipsDiv instanceof HTMLElement &&
         sponsorsDiv instanceof HTMLElement
       ) {
-        membershipsDiv.style.display = isMembershipsButton ? "block" : "none";
+        if (isMembershipsButton) {
+          sponsorsDiv.classList.remove("active");
+          sponsorsDiv.classList.add("outgoing");
 
-        sponsorsDiv.style.display = isMembershipsButton ? "none" : "block";
-      }
+          setTimeout(() => {
+            sponsorsDiv.style.display = "none";
+            membershipsDiv.style.display = "block";
+            membershipsDiv.classList.remove("outgoing");
+            membershipsDiv.classList.add("active");
 
-      document.querySelectorAll(".options").forEach((button) => {
-        if (button instanceof HTMLElement) {
-          button.classList.remove("selected");
+          }, 450);
+          membershipsButton!.classList.add("selected");
+
+          // sponsorsDiv.style.display = "none";
+          sponsorsButton!.classList.remove("selected");
+        } else {
+          membershipsDiv.classList.remove("active");
+          membershipsDiv.classList.add("outgoing");
+
+          setTimeout(() => {
+            membershipsDiv.style.display = "none";
+            sponsorsDiv.style.display = "block";
+            sponsorsDiv.classList.remove("outgoing");
+            sponsorsDiv.classList.add("active");
+          }, 450);
+         
+
         }
-      });
-
-      if (event.target instanceof HTMLElement) {
-        event.target.classList.add("selected");
       }
     }
 
@@ -75,14 +90,14 @@ function toggleSelected() {
     </div>
 
     <div class="g-slider-container meberships-slider">
-    <Slider
-    client:visible
-    sliderItems={memberships}
-    childComponent="MembershipItem"
-    itemWidth={315}
-    gap={`1rem`}
-    />
-  </div>
+      <Slider
+        client:visible
+        sliderItems={memberships}
+        childComponent="MembershipItem"
+        itemWidth={315}
+        gap={`1rem`}
+      />
+    </div>
   </div>
 
   <div class="sponsors">
@@ -98,23 +113,42 @@ function toggleSelected() {
 
     <div class="g-slider-container sponsors-slider">
       <Slider
-      client:visible
-      sliderItems={sponsors}
-      childComponent="SponsorItem"
-      itemWidth={315}
-      gap={`1rem`}
+        client:visible
+        sliderItems={sponsors}
+        childComponent="SponsorItem"
+        itemWidth={315}
+        gap={`1rem`}
       />
     </div>
   </div>
 </section>
 <style>
+
+
+
+  .memberships.active {
+    animation: slide-in-from-left 0.45s forwards ease-in;
+  }
+
+  .memberships.outgoing {
+    animation: slide-out-to-left 0.45s forwards ease-in;
+  }
+
+  .sponsors.active {
+    animation: slide-in-from-right 0.45s forwards ease-in;
+  }
+
+  .sponsors.outgoing {
+    animation: slide-out-to-right 0.45s forwards ease-in;
+  }
+
   .membership-desktop {
     padding-right: var(--padding-inline);
     display: grid;
     grid-template-columns: 24.1875rem 24.1875rem 24.1875rem;
     place-items: center;
     justify-content: space-between;
-    /* gap: 1.3rem; */
+    gap: 1.3rem;
   }
 
   .sponsors-desktop {
@@ -130,6 +164,10 @@ function toggleSelected() {
   }
 
   .sponsors-slider {
+    display: none;
+  }
+
+  .sponsors {
     display: none;
   }
   .g-page-section-with-slider-container {
@@ -157,6 +195,41 @@ function toggleSelected() {
     background-color: var(--clr-accent);
   }
 
+  @keyframes slide-in-from-right {
+    0% {
+      transform: translateX(100%);
+    }
+    100% {
+      transform: translateX(0);
+    }
+  }
+
+  @keyframes slide-in-from-left {
+    0% {
+      transform: translateX(-100%);
+    }
+    100% {
+      transform: translateX(0);
+    }
+  }
+
+  @keyframes slide-out-to-right {
+    0% {
+      transform: translateX(0);
+    }
+    100% {
+      transform: translateX(100%);
+    }
+  }
+
+  @keyframes slide-out-to-left {
+    0% {
+      transform: translateX(0);
+    }
+    100% {
+      transform: translateX(-100%);
+    }
+  }
   @media (width < 1399px) {
     .sponsors-desktop > div:nth-child(odd) {
       justify-self: end;
