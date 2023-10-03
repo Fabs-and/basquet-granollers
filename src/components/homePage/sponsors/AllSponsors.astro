@@ -69,6 +69,7 @@ import { mainSponsorsBlue, otherSponsors } from "@data/sponsors";
   }
 
   .inner-containers {
+    width: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -96,7 +97,7 @@ import { mainSponsorsBlue, otherSponsors } from "@data/sponsors";
   }
 
   p {
-    width: 10rem;
+    width: inherit;
     text-align: center;
     position: relative;
   }
@@ -104,45 +105,31 @@ import { mainSponsorsBlue, otherSponsors } from "@data/sponsors";
   p::before {
     content: "";
     height: 1px;
-    width: 350%;
+    width: 44%;
     background-color: #d8d8d8;
     position: absolute;
     top: 50%;
-    right: 0;
-    margin-right: 10rem;
+    right: 56%;
+    /* margin-right: 10rem; */
   }
 
    p::after {
     content: "";
     height: 1px;
-    width: 350%;
+    width: 44%;
     background-color: #d8d8d8;
     position: absolute;
     top: 50%;
-    left: 0;
-    margin-left: 10rem;
+    left: 56%;
+    /* margin-left: 10rem; */
   } 
 
-  @media (width < 1200px) {
-     p::before {
-    width: 280%;
-  }
 
-   p::after {
-    width: 280%;
-  } 
-  }
 @media (width < 1025px) {
       .other-sponsors-container {
       padding-inline: 2rem;
     }
-     p::before {
-    width: 150%;
-  }
 
-   p::after {
-    width: 150%;
-  } 
   }
   @media (width < 680px) {
     .main-sponsors-container {
@@ -156,12 +143,5 @@ import { mainSponsorsBlue, otherSponsors } from "@data/sponsors";
       gap: 1.5rem;
     }
 
-      p::before {
-    width: 60%;
-  }
-
-   p::after {
-    width: 60%;
-  } 
   }
 </style>
