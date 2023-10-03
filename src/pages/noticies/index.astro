@@ -1,0 +1,143 @@
+---
+// Import utils
+import {
+  fetchAllCategories,
+  fetchPostsInCategory,
+  Category,
+  fetchPosts,
+} from "fetch-wordpress-api";
+
+// Import types
+import type { Post } from "fetch-wordpress-api";
+
+// Import Layouts
+import BaseLayout from "@layouts/BaseLayout.astro";
+import GridPostCard from "@components/homePage/news/GridPostCard.astro";
+import { dateConverter } from "@utils/helperFunctions";
+
+const noticies = await fetchPosts(8);
+---
+
+<BaseLayout pageTitle={`Notícies del Club Bàsquet Granollers`}>
+  <section class="noticies-page-container">
+    <h1>Notícies del Club Bàsquet Granollers</h1>
+    <h3>Totes les notícies</h3>
+    <div class="noticies-container">
+      {
+        noticies.map((noticia: Post) => (
+          <article class="noticia">
+            <a href={`noticies/${noticia.slug}`}>
+              <div class="image-container">
+                <img src={noticia.image} alt={noticia.title.rendered} />
+              </div>
+              <div class="info-container">
+                <h4>
+                  <Fragment set:html={noticia.title.rendered} />
+                </h4>
+                <p>{`Publicat ${dateConverter(noticia.date)}`}</p>
+              </div>
+            </a>
+          </article>
+        ))
+      }
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+   .noticies-page-container h3 {
+    color: var(--clr-accent);
+    padding-top: 0.5rem;
+  }
+  .noticies-page-container {
+    padding-block: 2rem;
+    padding-inline: var(--padding-inline);
+    background-color: var(--clr-contrast);
+    color: var(--clr-primary);
+  }
+
+  .noticies-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1rem;
+    padding-top: 2rem;
+    /* padding-inline: var(--padding-inline); */
+  }
+   .noticies-page-container p {
+    font-style: italic;
+    font-weight: 560;
+  }
+
+   .noticies-page-container a {
+    display: block;
+    height: 100%;
+  }
+
+   .noticies-page-container img {
+    height: 100%;
+    object-fit: cover;
+    margin: auto;
+  }
+
+   .noticies-page-container .info-container {
+    position: relative; /* so the z-index has effect  */
+    padding-inline: 1rem;
+    padding-block: 0.5rem;
+    color: var(--clr-contrast);
+    background-color: var(--clr-secondary);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+
+   .noticies-page-container .image-container {
+    background-color: white;
+    z-index: 0;
+  }
+
+   .noticia {
+    height: 21.87rem;
+    width: 24.25rem;
+    flex-shrink: 0;
+    /* border-top-left-radius: 2.9375rem; */
+    /* overflow: hidden; */
+    /* scroll-snap-align: start; */
+  }
+
+  .noticia .image-container {
+    height: 70%;
+  }
+
+  .noticia .info-container {
+    height: 30%;
+  }
+
+  @media (width < 1025px) {
+    .noticies-page-container {
+      padding-inline: var(--padding-inline-tablet);
+    }
+
+    .noticia {
+      width: 21.625rem;
+      height: 20.93rem;
+    }
+  }
+
+  
+  @media (width < 648px) {
+    .noticies-page-container {
+      padding-inline: var(--padding-inline-mobile);
+    }
+
+    
+  }
+
+  @media (width < 375px) {
+    .noticia {
+      width: 100%;
+      height: 19.74rem;
+    }
+    
+  }
+</style>

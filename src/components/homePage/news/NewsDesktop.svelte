@@ -15,7 +15,7 @@
 
   // const numberOfSlides = posts.
 
- async function goBack() {
+  async function goBack() {
     if (position > 1) {
       position--;
     } else {
@@ -26,14 +26,14 @@
     currentIndex = currentIndex === 0 ? totalSlides - 1 : currentIndex - 1;
   }
 
- async function goForward() {
+  async function goForward() {
     if (position < totalSlides) {
       position++;
     } else {
       position = 1;
     }
     direction = "next";
-    prevIndex = currentIndex; 
+    prevIndex = currentIndex;
     currentIndex = currentIndex === totalSlides - 1 ? 0 : currentIndex + 1;
   }
 </script>
@@ -73,6 +73,7 @@
         </button>
       </div>
       <ButtonAnchor
+        slug={"/noticies"}
         text={"veure totes"}
         textColor={"var(--clr-accent)"}
         hoverTextColor={"var(--clr-contrast)"}

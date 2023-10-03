@@ -11,6 +11,7 @@ export const postFields: PostFields[] = [
   'slug',
   'categories',
   'date',
+  'id'
 ];
 
 export const categoryFields: CategoryFields[] = ['id', 'name', 'slug'];

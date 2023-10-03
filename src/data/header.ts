@@ -16,7 +16,7 @@ export const bottomHeaderLinks = [
       },
     ],
   },
-  { name: `Noticies`, slug: "noticies" },
+  { name: `Noticies`, slug: "/noticies" },
   {
     title: `Equips`,
     links: [

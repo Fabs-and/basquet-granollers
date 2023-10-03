@@ -1,0 +1,46 @@
+---
+// Import utils
+import {
+  fetchAllCategories,
+  fetchPostsInCategory,
+  Category,
+  fetchPosts,
+} from "fetch-wordpress-api";
+
+// Import types
+import type { Post } from "fetch-wordpress-api";
+
+// Import Layouts
+import BaseLayout from "@layouts/BaseLayout.astro";
+import GridPostCard from "@components/homePage/news/GridPostCard.astro";
+
+// Import global (not global stores) variables/constants
+import { postFields, categoryFields } from "src/data/apiGlobalConsts";
+import PostLayout from "@layouts/PostLayout.astro";
+
+
+export async function getStaticPaths() {
+  const noticies = await fetchPosts(8);
+  return noticies.map((noticia: Post) => {
+    return {
+      params: { noticia: `noticies/${noticia.slug}` },
+      props: {
+        title: noticia.title.rendered,
+        content: noticia.content.rendered,
+        id: noticia.id,
+        date: noticia.date,
+      },
+    };
+  });
+}
+
+const noticia = Astro.props;
+
+console.log('this is noticis', noticia)
+---
+
+<BaseLayout pageTitle={noticia.title}>
+  <section>
+     <PostLayout {noticia} />
+  </section>
+</BaseLayout>
