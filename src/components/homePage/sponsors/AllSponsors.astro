@@ -4,34 +4,31 @@ import { mainSponsorsBlue, otherSponsors } from "@data/sponsors";
 
 <section class="sponsors-outter-container">
   <div class="inner-containers">
-    <p>
-      Patrocinadors principals
-    </p>
+    <p>Patrocinadors principals</p>
     <nav>
-        <ul class="main-sponsors-container">
-          {
-            mainSponsorsBlue.map((mainSponsor) => (
-              <li>
-                <a
-                  href={mainSponsor.link}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  <img src={mainSponsor.logo} alt={mainSponsor.alt}
-                  loading="lazy" 
-                  />
-                  
-                </a>
-              </li>
-            ))
-          }
-        </ul>
-      </nav>
+      <ul class="main-sponsors-container">
+        {
+          mainSponsorsBlue.map((mainSponsor) => (
+            <li>
+              <a
+                href={mainSponsor.link}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <img
+                  src={mainSponsor.logo}
+                  alt={mainSponsor.alt}
+                  loading="lazy"
+                />
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+    </nav>
   </div>
   <div class="inner-containers">
-    <p>
-      Patrocinadors equips
-    </p>
+    <p>Patrocinadors equips</p>
     <nav>
       <ul class="other-sponsors-container">
         {
@@ -46,7 +43,7 @@ import { mainSponsorsBlue, otherSponsors } from "@data/sponsors";
                   class="other-sponsors-images"
                   src={otherSponsor.logo}
                   alt={otherSponsor.alt}
-                  loading="lazy" 
+                  loading="lazy"
                 />
               </a>
             </li>
@@ -86,8 +83,8 @@ import { mainSponsorsBlue, otherSponsors } from "@data/sponsors";
     display: flex;
     flex-wrap: wrap;
     padding-inline: var(--padding-inline);
-    justify-content: center; 
-    gap:1.5rem;  
+    justify-content: center;
+    gap: 1.5rem;
   }
 
   .other-sponsors-images {
@@ -113,7 +110,7 @@ import { mainSponsorsBlue, otherSponsors } from "@data/sponsors";
     /* margin-right: 10rem; */
   }
 
-   p::after {
+  p::after {
     content: "";
     height: 1px;
     width: 44%;
@@ -122,15 +119,36 @@ import { mainSponsorsBlue, otherSponsors } from "@data/sponsors";
     top: 50%;
     left: 56%;
     /* margin-left: 10rem; */
-  } 
+  }
 
+  @media (width < 1211px) {
+    p::before {
+      right: 60%;
+      width: 40%;
+    }
+    p::after {
+      left: 60%;
+      width: 40%;
+    }
+  }
 
-@media (width < 1025px) {
-      .other-sponsors-container {
+  @media (width < 1025px) {
+    .other-sponsors-container {
       padding-inline: 2rem;
     }
-
   }
+
+  @media (width < 766px) {
+    p::before {
+      right: 63%;
+      width: 37%;
+    }
+    p::after {
+      left: 63%;
+      width: 37%;
+    }
+  }
+
   @media (width < 680px) {
     .main-sponsors-container {
       padding-inline: var(--padding-inline-mobile);
@@ -142,6 +160,27 @@ import { mainSponsorsBlue, otherSponsors } from "@data/sponsors";
       justify-content: center;
       gap: 1.5rem;
     }
+  }
 
+  @media (width < 596px) {
+   p::before {
+      right: 66%;
+      width: 34%;
+    }
+    p::after {
+      left: 66%;
+      width: 34%;
+    }
+  }
+
+  @media (width < 458px) {
+   p::before {
+      right: 71%;
+      width: 29%;
+    }
+    p::after {
+      left: 71%;
+      width: 29%;
+    }
   }
 </style>
