@@ -29,8 +29,8 @@ import {
     </nav>
   </section>
 
-  <section class="footer-bottom-section">
-    <div class="bottom-footer">
+  <section class="bottom-footer-section">
+    <div class="bottom-footer-desktop">
       <BottomFooter {bottomFooterLinks} {copyright} />
     </div>
     <div class="tablet">
@@ -53,6 +53,9 @@ import {
     padding-block: 4.5rem;
   }
 
+  .bottom-footer-desktop {
+    padding-block: 2rem;
+  }
   .top-footer {
     /* min-height: var(--footer-top-section-hg); */
     display: flex;
@@ -65,13 +68,13 @@ import {
     display: none;
   }
 
-  .footer-bottom-section {
+  .bottom-footer-section {
     padding-inline: var(--padding-inline);
   }
 
   @media (width < 965px) {
     .top-footer,
-    .bottom-footer {
+    .bottom-footer-desktop {
       display: none;
     }
    
@@ -80,13 +83,17 @@ import {
     }
 
     .footer-top-section,
-    .footer-bottom-section {
+    .bottom-footer-section {
       padding-inline: var(--padding-inline-tablet);
     }
 
     .footer-top-section {
       padding-block: 3.19rem;
     }
+
+    .bottom-footer-desktop {
+    padding-block: 2rem;
+  }
   }
 
   @media (width < 648px) {
@@ -95,7 +102,7 @@ import {
     }
 
     .footer-top-section,
-    .footer-bottom-section {
+    .bottom-footer-section {
       padding-inline: var(--padding-inline-mobile);
     }
 
