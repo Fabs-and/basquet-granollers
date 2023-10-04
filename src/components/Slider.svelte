@@ -38,6 +38,8 @@
   const forProjects = childComponent === "ProjectItem";
 
   const isSliderItem = childComponent === "NewsItem";
+  const slug = childComponent === "NewsItem" ? "/noticies" : "";
+
   let carousel: HTMLDivElement;
   let scrollPosition: number;
   let scrollAmount: number = itemWidth;
@@ -76,6 +78,7 @@
   {#if component === NewsItem}
   <ButtonAnchor
     text={buttonText}
+    {slug}
     {textColor}
     hoverTextColor={"var(--clr-contrast)"}
     hidden={childComponent === "ProjectItem"}

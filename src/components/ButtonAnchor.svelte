@@ -7,7 +7,7 @@
   export let textColor;
   export let hoverTextColor;
   export let hidden;
-  export let isSmallBtn;
+  export let isSmallBtn =false;
 
   
 </script>
