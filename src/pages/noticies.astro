@@ -45,6 +45,14 @@ const noticies = await fetchPosts(8);
 </BaseLayout>
 
 <style>
+  h1 {
+ 
+    font-weight: 800;
+
+    padding-bottom: 1rem;
+  }
+
+  
    .noticies-page-container h3 {
     color: var(--clr-accent);
     padding-top: 0.5rem;
@@ -130,7 +138,10 @@ const noticies = await fetchPosts(8);
       padding-inline: var(--padding-inline-mobile);
     }
 
-    
+    h1 {
+         font-size: 2.5rem;
+             line-height: 2.5rem;
+    }
   }
 
   @media (width < 375px) {
