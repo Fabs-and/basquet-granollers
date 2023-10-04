@@ -25,6 +25,9 @@
   --padding-inline-tablet: 2rem;
   --padding-inline-mobile: 1.56rem;
   --padding-inline-header: 3.6rem;
+  --padding-inline-internal-page: 18.88rem;
+  --padding-inline-internal-page-tablet: 3.37rem;
+  --padding-inline-internal-page-mobile: 1.62rem;
   --header-hg: 3rem;
   --footer-top-section-hg: 17.6875rem;
 
@@ -238,4 +241,57 @@ small {
 
 .g-text-clr-accent {
   color: var(--clr-accent);
+}
+
+.g-date-style {
+  font-style: italic;
+  font-weight: 560;
+}
+
+.g-visibly-hidden {
+  position: absolute;
+  clip: rect(1px, 1px, 1px, 1px);
+  padding: 0;
+  border: 0;
+  height: 1px;
+  width: 1px;
+  overflow: hidden;
+}
+
+/*Internal Pages styles*/
+.g-h2-internal-page {
+  font-size: 3.375rem;
+  line-height: 3.2rem;
+  font-weight: 800;
+  padding-bottom: 1rem;
+  text-align: left;
+  text-wrap: balance;
+}
+
+.g-headings-internal-page {
+  font-size: 1.625rem;
+  color: var(--clr-accent);
+  font-weight: 800;
+  text-align: left;
+}
+
+/*Button Classes*/
+.button-anchor-internals {
+  text-decoration: none;
+  display: grid;
+  place-items: center;
+  height: var(--btn-height);
+  width: fit-content;
+  padding-inline: 1rem;
+  font-weight: 560;
+  border: 1px solid var(--clr-accent);
+  border-radius: 1.75rem;
+  color: var(--clr-accent);
+  align-self: center;
+}
+
+.button-anchor-internals:hover {
+  cursor: pointer;
+  background-color: var(--clr-accent);
+  color: var(--clr-contrast);
 }

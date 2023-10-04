@@ -3,31 +3,26 @@
 // import { Endpoints, CategoryFields } from 'src/types';
 
 // Import Layouts
-import BaseLayout from '@layouts/BaseLayout.astro';
+import BaseLayout from "@layouts/BaseLayout.astro";
 
 // Import components
-import Hero from '@components/homePage/Hero.astro';
-import MainSponsors from '@components/homePage/sponsors/MainSponsors.astro';
-import AllSponsors from '@components/homePage/sponsors/AllSponsors.astro';
-import Projects from '@components/homePage/projects/Projects.astro';
-import Teams from '@components/homePage/teams/Teams.astro';
-import Memberships from '@components/homePage/memberships/Memberships.astro';
-import News from '@components/homePage/news/News.astro';
+import Hero from "@components/homePage/Hero.astro";
+import MainSponsors from "@components/homePage/sponsors/MainSponsors.astro";
+import AllSponsors from "@components/homePage/sponsors/AllSponsors.astro";
+import Projects from "@components/homePage/projects/Projects.astro";
+import Teams from "@components/homePage/teams/Teams.astro";
+import Memberships from "@components/homePage/memberships/Memberships.astro";
+import News from "@components/homePage/news/News.astro";
 // Import api functions from utils
-import {
-  configure,
-  fetchAllCategories,
-  fetchPosts,
-} from 'fetch-wordpress-api';
+import { configure, fetchAllCategories, fetchPosts } from "fetch-wordpress-api";
 
-import type { Category, Post } from 'fetch-wordpress-api';
+import type { Category, Post } from "fetch-wordpress-api";
 // Import global (not global stores) variables/constants
-import { postFields, categoryFields } from 'src/data/apiGlobalConsts';
+import { postFields, categoryFields } from "src/data/apiGlobalConsts";
 
-import { BASE_URL } from 'src/config';
+import { BASE_URL } from "src/config";
 
-
-configure({BASE_URL: BASE_URL})
+configure({ BASE_URL: BASE_URL });
 
 const posts: Post[] = await fetchPosts(8);
 
@@ -35,17 +30,20 @@ const posts: Post[] = await fetchPosts(8);
 
 const allCategories: Category[] = await fetchAllCategories(categoryFields);
 
-const title = 'Club Bàsquet Granollers';
+import { title } from "@data/websiteTitle";
 ---
 
 <BaseLayout {title}>
-  <Hero/>
-  <MainSponsors/>
-  <News {posts}/>
-  <Memberships/>
-  <Teams/>
-  <Projects/>
-  <AllSponsors/>
+  <Hero />
+  <h1 class="g-visibly-hidden">{title}</h1>
+  <MainSponsors />
+  <News {posts} />
+  <Memberships />
+  <Teams />
+  <Projects />
+  <AllSponsors />
 </BaseLayout>
 
-
+<style>
+ 
+</style>

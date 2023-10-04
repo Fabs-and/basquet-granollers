@@ -1,21 +1,108 @@
 ---
 // Import utils functions
-import { divForP } from '@utils/helperFunctions';
+import { dateConverter, formatHTMLContent } from "@utils/helperFunctions";
 
 const { post } = Astro.props;
 
-const { title, content } = post;
+const { title, content, image, date } = post;
 ---
 
-<section class='page-container'>
-  <h1 set:html={title} />
-  <Fragment set:html={divForP(content)} />
+<section class="page-container">
+  <article>
+    <header class="article-header">
+      <div class="article-header-text">
+        <h1 set:html={title} />
+        <p class="g-date-style">{`Publicat ${dateConverter(date)}`}</p>
+      </div>
+      {image && <img class="g-opacity" src={image} alt={title} />}
+    </header>
+    <div class="article-content">
+      <Fragment set:html={formatHTMLContent(content)} />
+    </div>
+  </article>
 </section>
 
 <style>
   .page-container {
-    display: grid;
-    place-items: center;
+    background-color: var(--clr-contrast);
+    padding-inline: var(--padding-inline);
+    color: var(--clr-primary);
+  }
+  .article-content {
+    margin-inline: calc(var(--padding-inline) * -1);
+    padding-inline: var(--padding-inline-internal-page);
+    padding-block: 2.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    /* align-items: center; */
+    text-align: justify;
+  }
+
+  .article-content img {
+    object-fit: contain;
+  }
+
+  .article-content li {
+    display: block !important;
+  }
+
+  .article-header {
+    position: relative;
+    height: 19.0625rem;
+    background: #181e29;
+    margin-inline: calc(var(--padding-inline) * -1);
+  }
+
+  .article-header-text {
+    color: var(--clr-contrast);
+    position: relative;
+    padding-inline: var(--padding-inline-internal-page);
+    padding-block: 4.37rem;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    height: 100%;
+    text-align: center;
+    text-wrap: balance;
+  }
+
+
+  .article-header img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    /* object-position: left top; */
+  }
+
+  @media (width < 1181px) {
+    .page-container {
+      padding-inline: var(--padding-inline-tablet);
+    }
+
+    .article-content,
+    .article-header-text {
+      padding-inline: var(--padding-inline-internal-page-tablet);
+    }
+
+    .article-header-text: {
+      padding-inline: 10rem;
+    }
+  }
+
+  @media (width < 1181px) {
+  }
+
+  @media (width < 779px) {
+    .article-content,
+    .article-header-text {
+      margin-inline: 0rem;
+      padding-inline: 0rem;
+    }
   }
 </style>
-

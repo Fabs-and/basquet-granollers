@@ -15,23 +15,18 @@
 </script>
 
 <article class:isFeatured class:isSliderItem class:isDesktopNews>
-  <a href={`/${slug}`}>
+  <a href={`/noticies/${slug}`}>
     <div class="image-container">
       <img src={image} alt={title} />
     </div>
     <div class="info-container">
       <h4>{@html title}</h4>
-      <p>{`Publicat ${dateConverter(date)}`}</p>
+      <p class='g-date-style'>{`Publicat ${dateConverter(date)}`}</p>
     </div>
   </a>
 </article>
 
 <style>
-  p {
-    font-style: italic;
-    font-weight: 560;
-  }
-
   a {
     display: block;
     height: 100%;
