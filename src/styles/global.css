@@ -83,7 +83,7 @@ body {
   /* position: relative; */
   max-width: var(--regular-width);
   background-color: var(--clr-primary);
-  font-family: "obviously", sans-serif;
+  font-family: "obviously";
   font-size: var(--font-size-regular);
   line-height: var(--line-height-regular);
   color: var(--clr-contrast);
