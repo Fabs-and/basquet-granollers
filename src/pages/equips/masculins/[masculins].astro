@@ -1,0 +1,19 @@
+---
+import { masculins } from "../../../data/teamsPage";
+
+export async function getStaticPaths() {
+  return masculins.map((team) => ({
+    params: { 
+      masculins: team.name 
+    },
+    props: { 
+      name: team.name, 
+      players: team.players 
+    },
+  }));
+}
+---
+
+
+
+<style></style>
