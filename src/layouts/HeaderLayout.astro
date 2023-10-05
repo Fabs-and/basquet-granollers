@@ -1,10 +1,10 @@
 ---
-import TopHeader from '@components/header/topHeader/TopHeader.astro'
-import TopHeaderResponsive from '@components/header/topHeader/TopHeaderResponsive.astro'
+import TopHeader from "@components/header/topHeader/TopHeader.astro";
+import TopHeaderResponsive from "@components/header/topHeader/TopHeaderResponsive.astro";
 
-import BottomHeader from '@components/header/bottomHeader/BottomHeader.astro'
-import BottomHeaderResponsive from '@components/header/bottomHeader/BottomHeaderResponsive.astro'
-import HeaderLineSeparator from '@components/header/HeaderLineSeparator.astro'
+import BottomHeader from "@components/header/bottomHeader/BottomHeader.astro";
+import BottomHeaderResponsive from "@components/header/bottomHeader/BottomHeaderResponsive.astro";
+import HeaderLineSeparator from "@components/header/HeaderLineSeparator.astro";
 ---
 
 <header>
@@ -32,18 +32,18 @@ import HeaderLineSeparator from '@components/header/HeaderLineSeparator.astro'
 <style>
   header {
     position: sticky;
-    top:0;
+    top: 0;
     z-index: 10;
   }
   .top-header {
     min-height: var(--top-header-hg);
     background-color: var(--clr-primary);
   }
- 
+
   .bottom-header {
     min-height: var(--bottom-header-hg);
     background-color: var(--clr-contrast);
-    opacity: 0.9;
+    background-color: rgba(243, 243, 243, 0.9);
     position: relative;
   }
   .responsive {
@@ -53,13 +53,14 @@ import HeaderLineSeparator from '@components/header/HeaderLineSeparator.astro'
   .separator-line {
     height: var(--header-separator-line-hg);
   }
-   @media (width < 1025px) {
-    .top-header, .bottom-header {
+  @media (width < 1025px) {
+    .top-header,
+    .bottom-header {
       display: none;
     }
-     .separator-line {
-    height: var(--header-separator-line-responsive-hg);
-  }
+    .separator-line {
+      height: var(--header-separator-line-responsive-hg);
+    }
     .bottom-header {
       padding-inline: var(--padding-inline-tablet);
     }
@@ -68,7 +69,7 @@ import HeaderLineSeparator from '@components/header/HeaderLineSeparator.astro'
     }
   }
 
-   @media (width < 648px) {
+  @media (width < 648px) {
     .top {
       display: none;
     }
