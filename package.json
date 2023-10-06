@@ -11,10 +11,10 @@
   },
   "dependencies": {
     "@astrojs/netlify": "^3.0.2",
-    "@astrojs/node": "^6.0.2",
-    "@astrojs/svelte": "^4.0.2",
-    "astro": "^3.2.2",
-    "fetch-wordpress-api": "^1.0.21",
+    "@astrojs/node": "^6.0.3",
+    "@astrojs/svelte": "^4.0.3",
+    "astro": "^3.2.3",
+    "fetch-wordpress-api": "^1.0.24",
     "svelte": "^4.2.1"
   },
   "devDependencies": {

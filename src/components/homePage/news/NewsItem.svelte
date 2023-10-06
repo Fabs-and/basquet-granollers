@@ -27,6 +27,15 @@
 </article>
 
 <style>
+  p {
+    position: absolute;
+    bottom: 0;
+    background-color: var(--clr-secondary);
+    width: 100%;
+    font-weight: 500;
+    /* z-index: 2000; */
+    padding-block: 0.5rem;
+  }
   a {
     display: block;
     height: 100%;

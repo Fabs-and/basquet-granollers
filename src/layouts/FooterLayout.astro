@@ -49,15 +49,17 @@ import {
 
   .footer-top-section {
     background-color: var(--clr-footer);
-    padding-inline: var(--padding-inline);
     padding-block: 4.5rem;
+    padding-inline: var(--padding-inline)
   }
-
+  
   .bottom-footer-desktop {
     padding-block: 2rem;
+    padding-inline: var(--padding-inline);
   }
   .top-footer {
     /* min-height: var(--footer-top-section-hg); */
+   
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -112,6 +114,19 @@ import {
    
     .mobile {
       display: block;
+    }
+  }
+
+  @media (width > 1400px) {
+    .top-footer {
+      width: 1400px;
+      margin:auto;
+      padding-inline: var(--padding-inline);
+    }
+
+    .bottom-footer-section {
+    
+      padding-inline: 0rem;
     }
   }
 </style>

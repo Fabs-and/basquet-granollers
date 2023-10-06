@@ -6,27 +6,28 @@ import { projects } from "@data/projects.ts";
 ---
 
 <section class="g-page-section-with-slider-container">
-  <h2>Projectes</h2>
+  <div class="g-section-container">
+    <h2>Projectes</h2>
 
-  <div class="projects-desktop">
-    {
-      projects.map((project) => (
-        <a href={project.link}>
-          <img class="image" src={project.image} alt={project.alt} />
-        </a>
-      ))
-    }
-  </div>
+    <div class="projects-desktop">
+      {
+        projects.map((project) => (
+          <a href={project.link}>
+            <img class="image" src={project.image} alt={project.alt} />
+          </a>
+        ))
+      }
+    </div>
 
-
-  <div class="g-slider-container mobile">
-    <Slider
-      client:visible
-      sliderItems={projects}
-      childComponent={`ProjectItem`}
-      itemWidth={331}
-      gap={`1rem`}
-    />
+    <div class="g-slider-container mobile">
+      <Slider
+        client:visible
+        sliderItems={projects}
+        childComponent={`ProjectItem`}
+        itemWidth={331}
+        gap={`1rem`}
+      />
+    </div>
   </div>
 </section>
 

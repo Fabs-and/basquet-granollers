@@ -81,13 +81,17 @@ html {
 
 body {
   /* position: relative; */
-  max-width: var(--regular-width);
   background-color: var(--clr-primary);
-  font-family: "obviously";
+  font-family: "obviously", sans-serif;
   font-size: var(--font-size-regular);
   line-height: var(--line-height-regular);
   color: var(--clr-contrast);
 }
+
+/* main {
+  max-width: var(--regular-width);
+  margin: auto;
+} */
 
 img {
   max-width: 100%;
@@ -207,6 +211,11 @@ small {
   .g-slider-container {
     width: calc(100vw - var(--padding-inline-tablet));
   }
+
+  .g-internal-page {
+  padding-inline: var(--padding-inline-tablet)
+}
+
 }
 @media (width < 648px) {
   .g-page-section-with-slider-container {
@@ -215,6 +224,10 @@ small {
   .g-slider-container {
     width: calc(100vw - var(--padding-inline-mobile));
   }
+  .g-internal-page {
+  padding-inline: var(--padding-mobile)
+}
+
 }
 /* For samsung galaxies */
 /* @media (width < 374px) {
@@ -297,3 +310,17 @@ small {
   background-color: var(--clr-accent);
   color: var(--clr-contrast);
 }
+
+.g-internal-page {
+  background-color: var(--clr-contrast);
+  color: var(--clr-primary);
+  padding-inline: var(--padding-inline);
+  padding-block: 4.5rem;
+}
+
+ .g-section-container {
+    max-width: 1400px;
+    margin: 0 auto;
+    
+  }
+
