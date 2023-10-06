@@ -1,25 +1,25 @@
 export const teams = [
   {
     name: `Femenins`,
-    slug: `/`,
+    slug: `/equips/femenins`,
     image: `/teams/femenins.png`,
     alt: `Femenins`,
   },
   {
     name: `Masculins`,
-    slug: `/`,
+    slug: `/equips/masculins`,
     image: `/teams/masculins.png`,
     alt: `Masculins`,
   },
   {
     name: `Bàsquet en cadira de rodes`,
-    slug: `/`,
+    slug: `/equips/cadira-de-rodes`,
     image: `/teams/cadira-de-rodes.png`,
     alt: `Bàsquet en cadira de rodes`,
   },
   {
     name: `Escola`,
-    slug: `/`,
+    slug: `/equips/escola-de-basquet`,
     image: `/teams/escola-de-basquet.png`,
     alt: `Escola de bàsquet`,
     mascot: `mascota.png`,

@@ -1,12 +1,14 @@
 ---
 import BaseLayout from '@layouts/BaseLayout.astro';
-const { teamsImages } = Astro.props;
+const { teamsImages, teamCategory } = Astro.props;
+
+const category = teamCategory === `femenins` || teamCategory === `masculins` ? `Equips ${teamCategory}` : teamCategory
 ---
 
-<BaseLayout title="Equips masculins del Club Bàsquet Granollers">
+<BaseLayout title=`${category} del Club Bàsquet Granollers`>
   <section class="g-internal-page">
     <div class="g-section-container">
-      <h1>Equips masculins</h1>
+      <h1>{category}</h1>
       <h2>Temporada 2022-2023</h2>
       <div class="images-container">
         {
@@ -27,11 +29,13 @@ const { teamsImages } = Astro.props;
 <style>
   h1 {
     font-weight: 600;
+    padding-bottom: 1.6rem;
+    /* font-size: 3.375rem; */
   }
 
   h2 {
     color: var(--clr-accent);
-    margin-top: -0.56rem;
+    /* margin-top: 0.44rem; */
   }
   .g-section-container {
     padding-inline: var(--padding-inline);
@@ -42,8 +46,9 @@ const { teamsImages } = Astro.props;
     flex-wrap: wrap;
     justify-content: center;
     gap: 1rem;
-    }
-
+    padding-top: 4.5rem;
+  }
+  
   .image-container {
     width: 24rem;
     height: 18.4rem;
@@ -57,25 +62,32 @@ const { teamsImages } = Astro.props;
     height: 100%;
     object-fit: cover;
   }
-
+  
   @media (width < 1025px) {
     .g-section-container {
       padding-inline: var(--padding-inline-tablet);
     }
   }
   @media (width < 648px){
-      .g-section-container {
+    .g-section-container {
       padding-inline: var(--padding-inline-mobile);
     }
-
+    
     .images-container {
-      padding-block: 2.13rem;
+      padding-top: 2.13rem;
     }
-
+    .image-container {
+      width:20rem;
+      height: 15.4rem;
+      
+      /* flex-shrink: 0; */
+    }
     h1 {
       font-size: 1.625rem;
+      line-height: 2rem;
+      padding-bottom: 0.5rem;
     }
-
+    
     h2 {
       font-size: 1.375rem;
     }
