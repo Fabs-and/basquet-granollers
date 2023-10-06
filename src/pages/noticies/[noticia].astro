@@ -20,6 +20,7 @@ import PostLayout from "@layouts/PostLayout.astro";
 
 export async function getStaticPaths() {
   const noticies = await fetchPosts(8);
+
   return noticies.map((noticia: Post) => {
     return {
       params: { noticia: noticia.slug },
@@ -36,6 +37,7 @@ export async function getStaticPaths() {
 
 const noticia = Astro.props;
 
+console.log('noticies 1', noticia)
 ---
 
 <BaseLayout pageTitle={noticia.title}>

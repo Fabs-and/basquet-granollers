@@ -1,0 +1,83 @@
+---
+import BaseLayout from '@layouts/BaseLayout.astro';
+const { teamsImages } = Astro.props;
+---
+
+<BaseLayout title="Equips masculins del Club Bàsquet Granollers">
+  <section class="g-internal-page">
+    <div class="g-section-container">
+      <h1>Equips masculins</h1>
+      <h2>Temporada 2022-2023</h2>
+      <div class="images-container">
+        {
+          teamsImages.map((image: string) => (
+            <div class="image-container">
+              <img
+                src={image}
+                alt="Equips masculins del Club Bàsquet Granollers"
+              />
+            </div>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  h1 {
+    font-weight: 600;
+  }
+
+  h2 {
+    color: var(--clr-accent);
+    margin-top: -0.56rem;
+  }
+  .g-section-container {
+    padding-inline: var(--padding-inline);
+  }
+
+  .images-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1rem;
+    }
+
+  .image-container {
+    width: 24rem;
+    height: 18.4rem;
+    border-top-left-radius: 2.9375rem;
+    overflow: hidden;
+    /* flex-shrink: 0; */
+  }
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  @media (width < 1025px) {
+    .g-section-container {
+      padding-inline: var(--padding-inline-tablet);
+    }
+  }
+  @media (width < 648px){
+      .g-section-container {
+      padding-inline: var(--padding-inline-mobile);
+    }
+
+    .images-container {
+      padding-block: 2.13rem;
+    }
+
+    h1 {
+      font-size: 1.625rem;
+    }
+
+    h2 {
+      font-size: 1.375rem;
+    }
+  }
+</style>

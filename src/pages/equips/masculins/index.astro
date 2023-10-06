@@ -1,0 +1,13 @@
+---
+import BaseLayout from "@layouts/BaseLayout.astro";
+import TeamsLayout from "@layouts/TeamsLayout.astro";
+import { masculins } from "../../../data/teamsPage";
+import { fetchImagesInPageBySlug } from "fetch-wordpress-api";
+import { teams } from "@data/teamsSection";
+
+const teamsImages = await fetchImagesInPageBySlug(
+  "equips-masculins-temporada-22-23",
+);
+---
+
+<TeamsLayout {teamsImages} />

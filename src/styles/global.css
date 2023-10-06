@@ -319,7 +319,6 @@ small {
 .g-internal-page {
   background-color: var(--clr-contrast);
   color: var(--clr-primary);
-  padding-inline: var(--padding-inline);
   padding-block: 4.5rem;
 }
 
@@ -328,3 +327,9 @@ small {
     margin: 0 auto;
   }
 
+  @media (width < 1025px){
+    .g-internal-page {
+      padding-block: 2rem;
+    }
+  }
+  @media (width < 648px){}
