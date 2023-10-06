@@ -2,7 +2,7 @@
   import ButtonAnchor from "@components/ButtonAnchor.svelte";
 
   import { membershipCheck } from "@assets/icons";
-  import {toggleDialog} from "@utils/helperFunctions";
+  import { toggleDialog } from "@utils/helperFunctions";
   import {
     sliderLeftArrowWhite,
     sliderRightArrowWhite,
@@ -15,7 +15,6 @@
   function toggleExpand() {
     expanded = !expanded;
   }
-
 </script>
 
 <article class="membership-article opacity" class:expanded>
@@ -27,6 +26,7 @@
     <div class="membership-price">
       <p>
         <span class="price-number">{item.price}</span>
+        / any
       </p>
     </div>
     <div class="membership-advantages">
@@ -51,11 +51,11 @@
 
 <style>
   .expanded {
-    height: 47.63rem !important;
+    height: 51.13rem !important;
   }
 
   .expanded .llegir-mes {
-    bottom: -15.62rem;
+    bottom: -19.62rem;
   }
   .membership-article.expanded::before {
     content: none;
@@ -140,8 +140,16 @@
   @media (width < 1374px) {
     .membership-article {
       width: 18.3875rem;
+      height: 56.13rem;
       justify-content: center;
       gap: 1.3rem;
+    }
+
+    .button-anchor {
+      bottom: -2.69rem;
+    }
+    .ball-img {
+      bottom: -4.38rem;
     }
   }
   @media (width < 932px) {

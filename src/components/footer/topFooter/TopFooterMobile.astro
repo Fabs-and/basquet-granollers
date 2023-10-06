@@ -6,16 +6,17 @@ const { topFooterLinks, topFooterImportantLinks } = Astro.props;
 ---
 
 <article class="mobile-first-article">
-  <Accordion {topFooterLinks}/>
+  <Accordion {topFooterLinks} />
 </article>
 
 <article class="mobile-second-article">
-  <ImportantLinksContainer {topFooterImportantLinks}/>
+  <ImportantLinksContainer {topFooterImportantLinks} />
 </article>
 
 <style>
   .mobile-first-article {
     /* padding-top: 4.85rem; */
+    font-size: 0.6875rem;
     display: flex;
     flex-direction: column;
     gap: 1.8rem;
@@ -28,6 +29,5 @@ const { topFooterLinks, topFooterImportantLinks } = Astro.props;
     /* padding-bottom: 4.85rem; */
     width: 13.7rem;
     /* margin: auto; */
-
   }
 </style>

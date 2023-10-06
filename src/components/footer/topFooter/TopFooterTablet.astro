@@ -1,17 +1,16 @@
 ---
 import Accordion from "./Accordion.astro";
-import ImportantLinksContainer
- from "./ImportantLinksContainer.astro";
- 
+import ImportantLinksContainer from "./ImportantLinksContainer.astro";
+
 const { topFooterLinks, topFooterImportantLinks } = Astro.props;
 ---
 
 <div class="articles-container">
   <article class="tablet-first-article">
-    <Accordion {topFooterLinks}/>
+    <Accordion {topFooterLinks} />
   </article>
   <article class="tablet-second-article">
-    <ImportantLinksContainer {topFooterImportantLinks}/>
+    <ImportantLinksContainer {topFooterImportantLinks} />
   </article>
 </div>
 
@@ -19,6 +18,7 @@ const { topFooterLinks, topFooterImportantLinks } = Astro.props;
   .articles-container {
     display: flex;
     justify-content: space-between;
+    font-size: 0.6875rem;
     /* padding-block: 2rem; */
   }
 
