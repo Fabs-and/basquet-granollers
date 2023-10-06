@@ -31,7 +31,7 @@ const { topFooterLinks } = Astro.props;
   details summary {
     cursor: pointer;
     position: relative;
-    transition: margin 0.45s ease-out;
+    transition: margin 0.55s ease-out;
   }
 
   details[open] summary {
@@ -41,14 +41,14 @@ const { topFooterLinks } = Astro.props;
   
   summary::before {
   	position: absolute;
-    top: -20%;
+    top: -9%;
     left: 4.5rem;
     content: url('../../../collapsibleArrow.svg');
     display: inline-flex;
     justify-content: center;
     align-items: center;
     transform: rotate(0);
-    transform-origin: 50% 42%;
+    transform-origin: 50% 44%;
     transition: 0.45s transform ease-in-out;
   }
 

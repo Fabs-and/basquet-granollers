@@ -51,11 +51,11 @@
 
 <style>
   .expanded {
-    height: 51.13rem !important;
+    height: 52.13rem !important;
   }
 
   .expanded .llegir-mes {
-    bottom: -19.62rem;
+    bottom: -20.62rem;
   }
   .membership-article.expanded::before {
     content: none;
