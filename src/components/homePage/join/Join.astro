@@ -69,65 +69,68 @@ function toggleSelected() {
   });
 </script>
 
-<HomePageSectionLayout sectionTitle="Forma part de la família CBG" noHeading={true}>
+<HomePageSectionLayout
+  sectionTitle="Forma part de la família CBG"
+  noHeading={true}
+>
   <div class="title-and-options-container">
-      <h2>Forma part de la família CBG</h2>
-      <div class="options-container">
-        <button id="btn-memberships" class="button-anchor options"
-          >{"fes-te soci".toUpperCase()}</button
-        >
-        <button id="btn-sponsors" class="button-anchor options"
-          >{"fes-te sponsor".toUpperCase()}</button
-        >
-      </div>
+    <h2>Forma part de la família CBG</h2>
+    <div class="options-container">
+      <button id="btn-memberships" class="button-anchor options"
+        >{"fes-te soci".toUpperCase()}</button
+      >
+      <button id="btn-sponsors" class="button-anchor options"
+        >{"fes-te sponsor".toUpperCase()}</button
+      >
+    </div>
+  </div>
+
+  <div class="memberships">
+    <div class="membership-desktop">
+      {
+        memberships.map((membership) => (
+          <div>
+            <MembershipItem client:visible item={membership} />
+          </div>
+        ))
+      }
     </div>
 
-    <div class="memberships">
-      <div class="membership-desktop">
-        {
-          memberships.map((membership) => (
-            <div>
-              <MembershipItem client:visible item={membership} />
-            </div>
-          ))
-        }
-      </div>
+    <div class="g-slider-container meberships-slider">
+      <Slider
+        client:visible
+        sliderItems={memberships}
+        childComponent="MembershipItem"
+        itemWidth={315}
+        gap={`1rem`}
+      />
+    </div>
+  </div>
 
-      <div class="g-slider-container meberships-slider">
-        <Slider
-          client:visible
-          sliderItems={memberships}
-          childComponent="MembershipItem"
-          itemWidth={315}
-          gap={`1rem`}
-        />
-      </div>
+  <div class="sponsors">
+    <div class="sponsors-desktop">
+      {
+        sponsors.map((sponsor) => (
+          <div>
+            <SponsorshipItem client:visible item={sponsor} />
+          </div>
+        ))
+      }
     </div>
 
-    <div class="sponsors">
-      <div class="sponsors-desktop">
-        {
-          sponsors.map((sponsor) => (
-            <div>
-              <SponsorshipItem client:visible item={sponsor} />
-            </div>
-          ))
-        }
-      </div>
-
-      <div class="g-slider-container sponsors-slider">
-        <Slider
-          client:visible
-          sliderItems={sponsors}
-          childComponent="SponsorshipItem"
-          itemWidth={315}
-          gap={`1rem`}
-        />
-      </div>
+    <div class="g-slider-container sponsors-slider">
+      <Slider
+        client:visible
+        sliderItems={sponsors}
+        childComponent="SponsorshipItem"
+        itemWidth={315}
+        gap={`1rem`}
+      />
     </div>
-  </HomePageSectionLayout>
+  </div>
+</HomePageSectionLayout>
 
-  <Dialog />
+<Dialog />
 <!-- 
 <section class="g-page-section-with-slider-container">
   <div class="g-section-container">
@@ -165,7 +168,10 @@ function toggleSelected() {
   .sponsors-desktop {
     padding-right: var(--padding-inline);
     display: grid;
-    grid-template-columns:  repeat(auto-fit, minmax(var(--membership-item-wd-big), 1fr));
+    grid-template-columns: repeat(
+      auto-fit,
+      minmax(var(--membership-item-wd-big), 1fr)
+    );
     place-items: center;
     justify-content: space-between;
     gap: 1.3rem;
@@ -186,7 +192,7 @@ function toggleSelected() {
     padding-right: var(--padding-inline);
     display: flex;
     justify-content: space-between;
-    padding-bottom: 2rem;
+    padding-bottom: var(--padding-heading-big);
     flex-wrap: wrap;
     gap: 1.5rem;
   }
@@ -250,14 +256,16 @@ function toggleSelected() {
 
   @media (width < 1374px) {
     .membership-desktop {
-      grid-template-columns: var(--membership-item-wd-medium) var(--membership-item-wd-medium) var(--membership-item-wd-medium);
+      grid-template-columns:
+        var(--membership-item-wd-medium) var(--membership-item-wd-medium)
+        var(--membership-item-wd-medium);
       justify-content: center;
       gap: 1rem;
     }
   }
 
   @media (width < 1025px) {
-    .title-and-options-container,  {
+    .title-and-options-container {
       padding-inline: var(--padding-inline-tablet);
     }
 
@@ -269,6 +277,10 @@ function toggleSelected() {
     .sponsors-desktop {
       padding-inline: 0rem;
       padding-right: var(--padding-inline-tablet);
+    }
+
+    .title-and-options-container {
+      padding-bottom: var(--padding-heading-medium);
     }
   }
 
@@ -304,8 +316,8 @@ function toggleSelected() {
   @media (width < 648px) {
     .title-and-options-container {
       padding-right: var(--padding-inline-mobile);
+      padding-bottom: var(--padding-heading-small);
     }
-
   }
 
   @media (width < 397px) {

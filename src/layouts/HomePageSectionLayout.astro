@@ -11,10 +11,14 @@ const { sectionTitle, textColor, backgroundColor, noHeading } = Astro.props;
 
 <style define:vars={{ textColor, backgroundColor }}>
   .page-section-container {
-    padding-block: 2rem;
+    padding-top: var(--padding-section-big);
     padding-left: var(--padding-inline);
     color: var(--textColor);
     background-color: var(--backgroundColor);
+  }
+
+  h2 {
+    padding-bottom: var(--padding-heading-big);
   }
 
   .section-container {
@@ -25,12 +29,22 @@ const { sectionTitle, textColor, backgroundColor, noHeading } = Astro.props;
   @media (width < 1025px) {
     .page-section-container {
       padding-left: var(--padding-inline-tablet);
+      padding-top: var(--padding-section-medium);
+    }
+
+    h2 {
+      padding-bottom: var(--padding-heading-medium);
     }
   }
 
   @media (width < 648px) {
     .page-section-container {
       padding-left: var(--padding-inline-mobile);
+      padding-top: var(--padding-section-medium);
+    }
+
+    h2 {
+      padding-bottom: var(--padding-heading-small);
     }
   }
 </style>

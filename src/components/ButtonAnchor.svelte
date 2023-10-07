@@ -6,10 +6,9 @@
   export let isFilled = false;
   export let textColor;
   export let hoverTextColor;
-  export let hidden;
+  export let hidden = false;
   export let isSmallBtn =false;
 
-  
 </script>
 
 
@@ -17,6 +16,13 @@
 
 
 <style >
+  .button-anchor {
+    color: var(--textColor);
+  }
+
+  .button-anchor:hover {
+    color: var(--hoverTextColor);
+  }
   .hidden {
     display: none;
   }

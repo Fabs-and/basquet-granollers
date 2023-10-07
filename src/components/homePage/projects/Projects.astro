@@ -45,6 +45,7 @@ import { projects } from "@data/projects.ts";
     grid-template-columns: repeat(auto-fill, minmax(20rem, 1fr));
     justify-items: center;
     gap: 1rem;
+    padding-bottom: var(--padding-section-big);
   }
 
   img {
@@ -57,15 +58,23 @@ import { projects } from "@data/projects.ts";
   @media (width < 1025px) {
     .projects-desktop {
       padding-right: var(--padding-inline-tablet);
+      padding-bottom: var(--padding-section-medium)
     }
   }
 
   @media (width < 720px) {
     .mobile {
       display: block;
+      padding-bottom: var(--padding-section-medium);
     }
     .projects-desktop {
       display: none;
+    }
+  }
+
+  @media (width < 648px) {
+    .mobile {
+      padding-bottom: var(--padding-section-small);
     }
   }
 </style>

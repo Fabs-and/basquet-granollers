@@ -57,6 +57,14 @@
 --membership-item-wd-medium: 18.3875rem;
 --membership-item-wd-small: 24rem;
 
+
+--padding-section-big: 4.5rem;
+--padding-section-medium: 2.62rem;
+--padding-section-small: 2rem;
+--padding-heading-big: 2.62rem;
+--padding-heading-medium: 1.75rem;
+--padding-heading-small: 1.5rem;
+
   /*Font sizes*/
   --font-size-regular: 0.78125rem;
   --font-size-h1: 3.375rem;
@@ -206,18 +214,12 @@ small {
   transition: opacity 0.3s;
 }
 
-.g-page-section-with-slider-container {
-  padding-block: 2rem;
-  padding-left: var(--padding-inline);
-}
+
 .g-slider-container {
   width: calc(100vw - var(--padding-inline));
 }
 
 @media (width < 1025px) {
-  .g-page-section-with-slider-container {
-    padding-left: var(--padding-inline-tablet);
-  }
   .g-slider-container {
     width: calc(100vw - var(--padding-inline-tablet));
   }
@@ -228,9 +230,6 @@ small {
 
 }
 @media (width < 648px) {
-  .g-page-section-with-slider-container {
-    padding-left: var(--padding-inline-mobile);
-  }
   .g-slider-container {
     width: calc(100vw - var(--padding-inline-mobile));
   }
