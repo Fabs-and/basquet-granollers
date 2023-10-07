@@ -1,7 +1,7 @@
 ---
-import MembershipItem from "@components/homePage/memberships/MembershipItem.svelte";
+import MembershipItem from "@components/homePage/join/MembershipItem.svelte";
 import HomePageSectionLayout from "@layouts/HomePageSectionLayout.astro";
-import SponsorItem from "@components/homePage/memberships/SponsorItem.svelte";
+import SponsorshipItem from "@components/homePage/join/SponsorshipItem.svelte";
 import ButtonAnchor from "@components/ButtonAnchor.svelte";
 import { memberships, sponsors } from "@data/memberships";
 import Slider from "@components/Slider.svelte";
@@ -109,7 +109,7 @@ function toggleSelected() {
         {
           sponsors.map((sponsor) => (
             <div>
-              <SponsorItem client:visible item={sponsor} />
+              <SponsorshipItem client:visible item={sponsor} />
             </div>
           ))
         }
@@ -119,7 +119,7 @@ function toggleSelected() {
         <Slider
           client:visible
           sliderItems={sponsors}
-          childComponent="SponsorItem"
+          childComponent="SponsorshipItem"
           itemWidth={315}
           gap={`1rem`}
         />

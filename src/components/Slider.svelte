@@ -2,8 +2,8 @@
   import { removeOpacity } from "../svelte-actions/intersectionObserver";
   import NewsItem from "./homePage/news/NewsItem.svelte";
   import ProjectItem from "./homePage/projects/ProjectItem.svelte";
-  import MembershipItem from "./homePage/memberships/MembershipItem.svelte";
-  import SponsorItem from "./homePage/memberships/SponsorItem.svelte";
+  import MembershipItem from "./homePage/join/MembershipItem.svelte";
+  import SponsorshipItem from "./homePage/join/SponsorshipItem.svelte";
   import ButtonAnchor from "@components/ButtonAnchor.svelte";
   
   import {
@@ -25,8 +25,8 @@
       ? NewsItem
       : childComponent === "MembershipItem"
       ? MembershipItem
-      : childComponent === "SponsorItem"
-      ? SponsorItem
+      : childComponent === "SponsorshipItem"
+      ? SponsorshipItem
       : ProjectItem;
 
   const buttonText = childComponent === "NewsItem" ? "veure totes" : "contacta";
@@ -83,7 +83,7 @@
     hoverTextColor={"var(--clr-contrast)"}
     hidden={childComponent === "ProjectItem"}
   />
-  {:else if component === MembershipItem || component === SponsorItem}
+  {:else if component === MembershipItem || component === SponsorshipItem}
     <button on:click={toggleDialog} class="button-anchor"> {buttonText.toUpperCase()} </button>
   {/if}
   <div class="arrows-container" class:forProjects>

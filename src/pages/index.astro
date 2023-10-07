@@ -11,7 +11,7 @@ import MainSponsors from "@components/homePage/sponsors/MainSponsors.astro";
 import AllSponsors from "@components/homePage/sponsors/AllSponsors.astro";
 import Projects from "@components/homePage/projects/Projects.astro";
 import Teams from "@components/homePage/teams/Teams.astro";
-import Memberships from "@components/homePage/memberships/Memberships.astro";
+import Join from "@components/homePage/join/Join.astro";
 import News from "@components/homePage/news/News.astro";
 // Import api functions from utils
 import { configure, fetchAllCategories, fetchPosts } from "fetch-wordpress-api";
@@ -38,7 +38,7 @@ import { title } from "@data/websiteTitle";
   <h1 class="g-visibly-hidden">{title}</h1>
   <MainSponsors />
   <News {posts} />
-  <Memberships />
+  <Join />
   <Teams needsHeading={true}/>
   <Projects />
   <AllSponsors />
