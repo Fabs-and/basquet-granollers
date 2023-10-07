@@ -1,20 +1,25 @@
 ---
-import TeamItemDesktop from "@components/homePage/teams/TeamItemDesktop.astro";
-import TeamItemResponsive from "@components/homePage/teams/TeamItemResponsive.astro";
-import { teams } from "@data/teamsSection.ts";
+import TeamItem from "@components/homePage/teams/TeamItem.astro";
+
+import { fetchImagesInPageBySlug } from "fetch-wordpress-api";
+// import { teams } from "@data/teamsSection.ts";
+
+const teams = await fetchImagesInPageBySlug('equips1')
+
+
 ---
 
 <section class="teams-section-container">
   <div class="g-section-container">
-    <h2>Equips</h2>
+    <h2>Els equips del Club Bàsquet Granollers</h2>
     <div class="desktop-container">
-      {teams.map((team) => <TeamItemDesktop {team} />)}
+      {teams.reverse().map((team) => <TeamItem {team}/>)}
     </div>
     <div class="responsive-container">
       {
         teams.map((team) => (
           <div>
-            <TeamItemResponsive {team} />
+            <TeamItem {team} />
           </div>
         ))
       }
@@ -23,6 +28,9 @@ import { teams } from "@data/teamsSection.ts";
 </section>
 
 <style>
+  .g-section-container {
+    padding-inline: 0rem !important;
+  }
   .teams-section-container {
     padding-block: 2rem;
     padding-inline: var(--padding-inline);

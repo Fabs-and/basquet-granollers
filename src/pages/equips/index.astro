@@ -1,0 +1,17 @@
+---
+import BaseLayout from "@layouts/BaseLayout.astro";
+import Headings from "@components/internal-pages/headings.astro";
+import { fetchImagesInPageBySlug } from "fetch-wordpress-api";
+
+const equips = await fetchImagesInPageBySlug("equips1");
+
+console.log('equips', equips);
+---
+
+<BaseLayout title="Equips del Club Bàsquet Granollers">
+  <section class="g-internal-page">
+    <div class="g-section-container">
+      <Headings title="Equips del Club Bàsquet Granollers" />
+    </div>
+  </section>
+</BaseLayout>
