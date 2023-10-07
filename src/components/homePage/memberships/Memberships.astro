@@ -1,5 +1,6 @@
 ---
 import MembershipItem from "@components/homePage/memberships/MembershipItem.svelte";
+import HomePageSectionLayout from "@layouts/HomePageSectionLayout.astro";
 import SponsorItem from "@components/homePage/memberships/SponsorItem.svelte";
 import ButtonAnchor from "@components/ButtonAnchor.svelte";
 import { memberships, sponsors } from "@data/memberships";
@@ -68,9 +69,8 @@ function toggleSelected() {
   });
 </script>
 
-<section class="g-page-section-with-slider-container">
-  <div class="g-section-container">
-    <div class="title-and-options-container">
+<HomePageSectionLayout sectionTitle="Forma part de la família CBG" noHeading={true}>
+  <div class="title-and-options-container">
       <h2>Forma part de la família CBG</h2>
       <div class="options-container">
         <button id="btn-memberships" class="button-anchor options"
@@ -125,10 +125,16 @@ function toggleSelected() {
         />
       </div>
     </div>
-  </div>
-</section>
+  </HomePageSectionLayout>
 
-<Dialog />
+  <Dialog />
+<!-- 
+<section class="g-page-section-with-slider-container">
+  <div class="g-section-container">
+    
+  </div>
+</section> -->
+
 <style>
   .memberships.active {
     animation: slide-in-from-left 0.45s forwards ease-in;
@@ -147,18 +153,19 @@ function toggleSelected() {
   }
 
   .membership-desktop {
-    padding-right: var(--padding-inline);
+    /* padding-right: var(--padding-inline); */
     display: grid;
-    grid-template-columns: 24.1875rem 24.1875rem 24.1875rem;
+    grid-template-columns: repeat(3, var(--membership-item-wd-big));
     place-items: center;
     justify-content: space-between;
+    padding-right: var(--padding-inline);
     /* gap: 1.3rem; */
   }
 
   .sponsors-desktop {
     padding-right: var(--padding-inline);
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(24.1875rem, 1fr));
+    grid-template-columns:  repeat(auto-fit, minmax(var(--membership-item-wd-big), 1fr));
     place-items: center;
     justify-content: space-between;
     gap: 1.3rem;
@@ -173,9 +180,6 @@ function toggleSelected() {
 
   .sponsors {
     display: none;
-  }
-  .g-page-section-with-slider-container {
-    background-color: var(--clr-primary);
   }
 
   .title-and-options-container {
@@ -246,35 +250,25 @@ function toggleSelected() {
 
   @media (width < 1374px) {
     .membership-desktop {
-      grid-template-columns: 18.3875rem 18.3875rem 18.3875rem;
+      grid-template-columns: var(--membership-item-wd-medium) var(--membership-item-wd-medium) var(--membership-item-wd-medium);
       justify-content: center;
       gap: 1rem;
-    }
-
-    .sponsors-desktop {
-      padding-inline: var(--padding-inline);
-    }
-
-    .g-page-section-with-slider-container {
-      padding-inline: 0rem;
-    }
-
-    .membership-desktop {
-      padding-right: 0rem;
-    }
-
-    .title-and-options-container {
-      padding-inline: var(--padding-inline);
     }
   }
 
   @media (width < 1025px) {
-    .title-and-options-container {
+    .title-and-options-container,  {
       padding-inline: var(--padding-inline-tablet);
+    }
+
+    .membership-desktop {
+      padding-inline: 0rem;
+      padding-right: var(--padding-inline-tablet);
     }
 
     .sponsors-desktop {
       padding-inline: 0rem;
+      padding-right: var(--padding-inline-tablet);
     }
   }
 
@@ -284,14 +278,6 @@ function toggleSelected() {
     }
     .g-slider-container {
       display: block;
-    }
-
-    .g-page-section-with-slider-container {
-      padding-left: var(--padding-inline-tablet);
-    }
-
-    .sponsors-desktop {
-      padding-right: var(--padding-inline-tablet);
     }
 
     .title-and-options-container {
@@ -320,9 +306,6 @@ function toggleSelected() {
       padding-right: var(--padding-inline-mobile);
     }
 
-    .g-page-section-with-slider-container {
-      padding-left: var(--padding-inline-mobile);
-    }
   }
 
   @media (width < 397px) {

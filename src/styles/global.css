@@ -51,6 +51,12 @@
   --btn-width-regular: 10rem;
   --btn-width-sm: 9.5rem;
 
+
+  /**/
+--membership-item-wd-big: 24.1875rem;
+--membership-item-wd-medium: 18.3875rem;
+--membership-item-wd-small: 24rem;
+
   /*Font sizes*/
   --font-size-regular: 0.78125rem;
   --font-size-h1: 3.375rem;
@@ -250,7 +256,6 @@ small {
   width: var(--btn-width-regular);
   border: 1px solid var(--clr-accent);
   border-radius: 1.75rem;
-  color: var(--textColor);
 }
 
 .button-anchor:hover {

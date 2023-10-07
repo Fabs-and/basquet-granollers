@@ -14,6 +14,7 @@ const {
   hoverTextColor: string;
   isSmallBtn: boolean; // Define the new prop here
 };
+
 ---
 
 <a
@@ -24,7 +25,9 @@ class="button-anchor"
 >
 
 <style define:vars={{ textColor, hoverTextColor }}>
-  
+  .button-anchor {
+    color: var(--textColor)
+  }
   .isFilled {
     background-color: var(--clr-accent);
   }

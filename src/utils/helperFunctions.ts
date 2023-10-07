@@ -117,7 +117,7 @@ export function formatHTMLContent(str: string) {
       return `<a${attributes}>${uppercaseContent}</a>`;
     },
   );
-  
+
   return newStr;
 }
 
@@ -167,4 +167,9 @@ export function toggleDialog() {
   } else {
     dialog.showModal();
   }
+}
+
+export function containsWord(str: string, word: string) {
+  const regex = new RegExp(`\\b${word}\\b`, "i");
+  return regex.test(str);
 }

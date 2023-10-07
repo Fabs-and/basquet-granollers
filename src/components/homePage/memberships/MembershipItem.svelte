@@ -66,7 +66,7 @@
   }
   .membership-article {
     height: 51.75rem;
-    width: 24.1875rem;
+    width: var(--membership-item-wd-big);
     background-color: var(--clr-secondary);
     border-top-left-radius: 2.9375rem;
     overflow: hidden;
@@ -139,7 +139,7 @@
 
   @media (width < 1374px) {
     .membership-article {
-      width: 18.3875rem;
+      width: var(--membership-item-wd-medium);
       height: 56.13rem;
       justify-content: center;
       gap: 1.3rem;
@@ -151,6 +151,10 @@
     .ball-img {
       bottom: -4.38rem;
     }
+  }
+
+  @media (width < 1110px) {
+
   }
   @media (width < 932px) {
     .button-anchor {

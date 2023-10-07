@@ -1,14 +1,25 @@
 ---
 import ButtonAnchor from "@components/ButtonAnchor.astro";
+import { containsWord } from "@utils/helperFunctions";
+
 const { team } = Astro.props;
 
 const { title, url, alt } = team;
 
+const wordSlugPairs = [
+  { word: "masculins", slug: "/equips/masculins" },
+  { word: "femenins", slug: "/equips/femenins" },
+  { word: "escola", slug: "/equips/escola-de-basquet" },
+  { word: "cadira", slug: "/equips/cadira-de-rodes" },
+];
 
+const foundPair = wordSlugPairs.find((pair) => containsWord(title, pair.word));
+
+const slug = foundPair ? foundPair.slug : "/equips/cos-tecnic";
 ---
 
 <article class="team-article">
-  <a class="responsive-anchor">
+  <a href={slug} class="responsive-anchor">
     <img src={`${url}`} alt={alt} />
     <div class="half-hidden">
       {
@@ -23,7 +34,11 @@ const { title, url, alt } = team;
       <div class="flex-content">
         <h3>{title}</h3>
         <div class="button">
-          <ButtonAnchor slug={team.slug} text={`Veure més`} />
+          <ButtonAnchor
+            textColor="var(--clr-contrast)"
+            slug={slug}
+            text={`Veure més`}
+          />
         </div>
       </div>
     </div>
@@ -41,6 +56,12 @@ const { title, url, alt } = team;
 
   h3 {
     text-wrap: balance;
+  }
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
   }
 
   .half-hidden {
@@ -92,11 +113,6 @@ const { title, url, alt } = team;
     .half-hidden:hover .mascot {
       transform: translateY(17%);
     }
-    img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-    }
 
     .mascot {
       /* position: absolute; */
@@ -132,9 +148,11 @@ const { title, url, alt } = team;
     }
   }
 
-  @media (width < 376px) {
+  @media (width < 425px) {
     .team-article {
       width: 100vw;
+      height: auto;
+      margin-left: calc(var(--padding-inline-mobile) * -1);
     }
   }
 </style>

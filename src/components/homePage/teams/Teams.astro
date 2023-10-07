@@ -1,57 +1,39 @@
 ---
 import TeamItem from "@components/homePage/teams/TeamItem.astro";
-
+import HomePageSectionLayout from "@layouts/HomePageSectionLayout.astro";
 import { fetchImagesInPageBySlug } from "fetch-wordpress-api";
 
-
+const { needsHeading } = Astro.props;
 const teams = await fetchImagesInPageBySlug("equips1");
 ---
 
-<section class="teams-section-container">
-  <div class="g-section-container">
-    <h2>Els equips del Club Bàsquet Granollers</h2>
-    <div class="teams-container">
-      {
-        teams.reverse().map((team) => (
-          <div>
-            <TeamItem {team} />
-          </div>
-        ))
-      }
-    </div>
+<HomePageSectionLayout sectionTitle="Els equips del Club Bàsquet Granollers">
+  <div class="teams-container">
+    {
+      teams.reverse().map((team) => (
+        <div>
+          <TeamItem {team} />
+        </div>
+      ))
+    }
   </div>
-</section>
+</HomePageSectionLayout>
+<!-- <section class="g-page-section-with-slider-container">
+  <div class="g-section-container">
+    {needsHeading && <h2>Els equips del Club Bàsquet Granollers</h2>}
+  </div>
+</section> -->
 
 <style>
-  .teams-section-container {
-    padding-block: 2rem;
-    padding-inline: var(--padding-inline);
-  }
-
-  .g-section-container {
-    padding-inline: 0rem !important;
-  }
-
-  h2 {
-    padding-bottom: 2rem;
-  }
-
   .teams-container {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
     gap: 1rem;
+    padding-right: var(--padding-inline);
   }
 
   @media (width < 1385px) {
-    .teams-section-container {
-      padding-inline: 0rem;
-    }
-
-    h2 {
-      padding-inline: var(--padding-inline);
-    }
-
     .teams-container {
       display: grid;
       grid-template-columns: repeat(2, 1fr);
@@ -77,9 +59,9 @@ const teams = await fetchImagesInPageBySlug("equips1");
   }
 
   @media (width < 1025px) {
-    h2 {
-      padding-inline: var(--padding-inline-tablet);
-    }
+   .teams-container {
+    padding-right: var(--padding-inline-tablet);
+   }
   }
   @media (width < 754px) {
     .teams-container {
@@ -89,14 +71,9 @@ const teams = await fetchImagesInPageBySlug("equips1");
     }
   }
   @media (width < 648px) {
-    h2 {
-      padding-inline: var(--padding-inline-mobile);
-    }
+     .teams-container {
+    padding-right: var(--padding-inline-mobile);
+   }
   }
 
-  @media (width > 1400px) {
-    .g-section-container {
-      padding-inline: 3rem;
-    }
-  }
 </style>

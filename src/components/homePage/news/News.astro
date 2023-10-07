@@ -1,15 +1,17 @@
 ---
 import NewsDesktop from "@components/homePage/news/NewsDesktop.svelte";
+import HomePageSectionLayout from "@layouts/HomePageSectionLayout.astro";
 import Slider from "@components/Slider.svelte";
 
 const { posts } = Astro.props;
 const title = "CBG Notícies";
 ---
 
-<section class="g-page-section-with-slider-container">
-  <div class="g-section-container">
-  <h2>CBG Notícies</h2>
-
+<HomePageSectionLayout
+  sectionTitle="CBG Notícies"
+  textColor={`var(--clr-primary)`}
+  backgroundColor={`var(--clr-contrast)`}
+>
   <div class="news-desktop">
     <NewsDesktop client:visible {posts} />
   </div>
@@ -23,9 +25,7 @@ const title = "CBG Notícies";
       gap={`1rem`}
     />
   </div>
-
-  </div>
-</section>
+</HomePageSectionLayout>
 
 <style>
   .g-slider-container {
@@ -37,7 +37,6 @@ const title = "CBG Notícies";
     color: var(--clr-primary);
   }
 
- 
   h2 {
     padding-bottom: 2rem;
   }

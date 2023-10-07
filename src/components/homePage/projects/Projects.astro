@@ -1,43 +1,38 @@
 ---
+
+import HomePageSectionLayout from "@layouts/HomePageSectionLayout.astro";
 import MobileCarousel from "./MobileCarousel.svelte";
 import ProjectItem from "@components/projects/ProjectItem.svelte";
 import Slider from "@components/Slider.svelte";
 import { projects } from "@data/projects.ts";
 ---
 
-<section class="g-page-section-with-slider-container">
-  <div class="g-section-container">
-    <h2>Projectes</h2>
 
-    <div class="projects-desktop">
-      {
-        projects.map((project) => (
-          <a href={project.link}>
-            <img class="image" src={project.image} alt={project.alt} />
-          </a>
-        ))
-      }
-    </div>
-
-    <div class="g-slider-container mobile">
-      <Slider
-        client:visible
-        sliderItems={projects}
-        childComponent={`ProjectItem`}
-        itemWidth={331}
-        gap={`1rem`}
-      />
-    </div>
+<HomePageSectionLayout sectionTitle="Projects">
+  <div class="projects-desktop">
+    {
+      projects.map((project) => (
+        <a href={project.link}>
+          <img class="image" src={project.image} alt={project.alt} />
+        </a>
+      ))
+    }
   </div>
-</section>
+  
+  <div class="g-slider-container mobile">
+    <Slider
+      client:visible
+      sliderItems={projects}
+      childComponent={`ProjectItem`}
+      itemWidth={331}
+      gap={`1rem`}
+    />
+  </div>
+</HomePageSectionLayout>
 
 <style>
   .mobile {
     display: none;
-  }
-
-  h2 {
-    padding-bottom: 2rem;
   }
 
   a {
@@ -65,7 +60,7 @@ import { projects } from "@data/projects.ts";
     }
   }
 
-  @media (width < 648px) {
+  @media (width < 720px) {
     .mobile {
       display: block;
     }
