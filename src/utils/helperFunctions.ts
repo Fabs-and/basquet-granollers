@@ -173,3 +173,14 @@ export function containsWord(str: string, word: string) {
   const regex = new RegExp(`\\b${word}\\b`, "i");
   return regex.test(str);
 }
+
+export function extractSubheading(str: string) {
+  // Use a regular expression to match the desired content
+  const match = str.match(/Subtítol:&nbsp;(.+?)<\/p>/);
+
+  // If there's no match, return null immediately
+  if (!match) return null;
+
+  // Extract the matched content
+  return match[1].replace(/&nbsp;/g, " ").trim();
+}
