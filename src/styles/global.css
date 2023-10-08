@@ -51,19 +51,17 @@
   --btn-width-regular: 10rem;
   --btn-width-sm: 9.5rem;
 
-
   /**/
---membership-item-wd-big: 24.1875rem;
---membership-item-wd-medium: 18.3875rem;
---membership-item-wd-small: 24rem;
+  --membership-item-wd-big: 24.1875rem;
+  --membership-item-wd-medium: 18.3875rem;
+  --membership-item-wd-small: 24rem;
 
-
---padding-section-big: 4.5rem;
---padding-section-medium: 2.62rem;
---padding-section-small: 2rem;
---padding-heading-big: 2.62rem;
---padding-heading-medium: 1.75rem;
---padding-heading-small: 1.5rem;
+  --padding-section-big: 4.5rem;
+  --padding-section-medium: 2.62rem;
+  --padding-section-small: 2rem;
+  --padding-heading-big: 2.62rem;
+  --padding-heading-medium: 1.75rem;
+  --padding-heading-small: 1.5rem;
 
   /*Font sizes*/
   --font-size-regular: 0.78125rem;
@@ -214,30 +212,10 @@ small {
   transition: opacity 0.3s;
 }
 
-
 .g-slider-container {
   width: calc(100vw - var(--padding-inline));
 }
 
-@media (width < 1025px) {
-  .g-slider-container {
-    width: calc(100vw - var(--padding-inline-tablet));
-  }
-
-  .g-internal-page {
-  padding-inline: var(--padding-inline-tablet)
-}
-
-}
-@media (width < 648px) {
-  .g-slider-container {
-    width: calc(100vw - var(--padding-inline-mobile));
-  }
-  .g-internal-page {
-  padding-inline: var(--padding-mobile)
-}
-
-}
 /* For samsung galaxies */
 /* @media (width < 374px) {
     .g-slider-container {
@@ -248,7 +226,7 @@ small {
 /*Button Classes*/
 .button-anchor {
   text-decoration: none;
-  padding-bottom:0.1rem;
+  padding-bottom: 0.1rem;
   display: grid;
   place-items: center;
   height: var(--btn-height);
@@ -323,17 +301,31 @@ small {
 .g-internal-page {
   background-color: var(--clr-contrast);
   color: var(--clr-primary);
-  padding-block: 4.5rem;
+  padding-block: var(--padding-section-big);
+  padding-inline: var(--padding-inline);
 }
 
- .g-section-container {
-    max-width: 1400px;
-    margin: 0 auto;
+.g-section-container {
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+@media (width < 1025px) {
+  .g-internal-page {
+    padding-inline: var(--padding-inline-tablet);
+    padding-block: var(--padding-section-medium);
   }
 
-  @media (width < 1025px){
-    .g-internal-page {
-      padding-block: 2rem;
-    }
+  .g-slider-container {
+    width: calc(100vw - var(--padding-inline-tablet));
   }
-  @media (width < 648px){}
+}
+@media (width < 648px) {
+  .g-internal-page {
+    padding-block: var(--padding-section-small);
+    padding-inline: var(--padding-inline-mobile);
+  }
+  .g-slider-container {
+    width: calc(100vw - var(--padding-inline-mobile));
+  }
+}

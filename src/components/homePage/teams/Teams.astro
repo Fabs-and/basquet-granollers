@@ -3,11 +3,11 @@ import TeamItem from "@components/homePage/teams/TeamItem.astro";
 import HomePageSectionLayout from "@layouts/HomePageSectionLayout.astro";
 import { fetchImagesInPageBySlug } from "fetch-wordpress-api";
 
-const { needsHeading } = Astro.props;
+const { noHeading } = Astro.props;
 const teams = await fetchImagesInPageBySlug("equips1");
 ---
 
-<HomePageSectionLayout sectionTitle="Els equips del Club Bàsquet Granollers">
+<HomePageSectionLayout sectionTitle="Els equips del Club Bàsquet Granollers" {noHeading}>
   <div class="teams-container">
     {
       teams.reverse().map((team) => (
