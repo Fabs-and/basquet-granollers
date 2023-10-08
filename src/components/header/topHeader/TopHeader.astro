@@ -1,31 +1,55 @@
 ---
-import { topHeaderCallToAction } from "src/data/header";
 import SocialMediaMenu from "@components/SocialMediaMenu.astro";
+
+const { topHeaderContent } = Astro.props;
+
+const { text1, link1 } = topHeaderContent[0];
+const { text2, link2 } = topHeaderContent[1];
 ---
 
-<p>
-  {topHeaderCallToAction.toUpperCase() }
-  <a href="" class="underline-links"> AQUÍ</a>
-</p>
-<div>
-  <SocialMediaMenu />
+<div class="top-header-content">
+  <div class="text-content">
+    {
+      text1 && !link1 ? (
+        <p>{text1.toUpperCase()}</p>
+      ) : text1 && link1 ? (
+        <a href={link1} class="underline-links" target="_blank">
+          {text1.toUpperCase()}
+        </a>
+      ) : null
+    }
+  </div>
+  <div class="text-content">
+    {
+      text2 && !link2 ? (
+        <p>{text2.toUpperCase()}</p>
+      ) : text2 && link2 ? (
+        <a href={link2} class="underline-links" target="_blank">
+          {text2.toUpperCase()}
+        </a>
+      ) : null
+    }
+  </div>
+  <div class="social-menu">
+    <SocialMediaMenu />
+  </div>
 </div>
 
 <style>
-  p {
-    /* font-family: "obviously-medium"; */
-    text-align: center;
+  .top-header-content {
     font-size: 0.78125rem;
-    line-height: var(--top-header-hg);
     font-weight: 500;
     font-style: italic;
+    width: 100%;
+    min-height: var(--top-header-hg);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-left: 12.14rem;
+    padding-right: var(--padding-inline);
   }
 
-  div {
-    margin-top: 0.28rem;
-    position: absolute;
-    top: 0;
-    right: var(--padding-inline);
-    transform: translate(0,50%);
+  .social-menu {
+    order: 3;
   }
 </style>

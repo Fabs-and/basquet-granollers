@@ -174,6 +174,7 @@ export function containsWord(str: string, word: string) {
   return regex.test(str);
 }
 
+/*For internal pages*/
 export function extractSubheading(str: string) {
   // Use a regular expression to match the desired content
   const match = str.match(/Subtítol:&nbsp;(.+?)<\/p>/);
@@ -183,4 +184,25 @@ export function extractSubheading(str: string) {
 
   // Extract the matched content
   return match[1].replace(/&nbsp;/g, " ").trim();
+}
+
+/*Home page*/
+export function extractTopHeaderContent(str: string) {
+  const text1Match = str.match(/Text1:\s*(.+?)<br/);
+  const link1Match = str.match(/Link1:\s*(.+?)<\/p>/);
+  const text2Match = str.match(/Text2:\s*(.+?)<br/);
+  const link2Match = str.match(/Link2:\s*(.+?)<\/p>/);
+
+  if (!text1Match && !text2Match) return null;
+
+  return [
+    {
+      text1: text1Match ? text1Match[1].trim() : null,
+      link1: link1Match ? link1Match[1].trim() : null,
+    },
+    {
+      text2: text2Match ? text2Match[1].trim() : null,
+      link2: link2Match ? link2Match[1].trim() : null,
+    },
+  ];
 }
