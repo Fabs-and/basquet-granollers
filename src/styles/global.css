@@ -99,7 +99,7 @@ body {
   background-color: var(--clr-primary);
   font-family: "obviously", sans-serif;
   font-size: var(--font-size-regular);
-  font-weight: 300;
+  /* font-weight: 300; */
   line-height: var(--line-height-regular);
   color: var(--clr-contrast);
 }

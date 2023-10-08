@@ -85,13 +85,13 @@ const slug = foundPair ? foundPair.slug : "/equips/cos-tecnic";
   .half-hidden .mascot {
     position: absolute;
     right: -1.5rem;
-    bottom: 0rem;
+    bottom: -2.5rem;
     transform: translateY(17%);
     transition: transform 0.2s ease-in-out;
   }
 
   .half-hidden:hover .mascot {
-    transform: translateY(30%);
+    transform: translateY(20%);
   }
 
   .flex-content {
@@ -100,7 +100,12 @@ const slug = foundPair ? foundPair.slug : "/equips/cos-tecnic";
     gap: 1rem;
     padding-bottom: 1rem;
   }
-
+  
+  .mascot {
+    /* position: absolute; */
+    width: 9rem;
+    object-fit: contain;
+  }
   @media (width < 1385px) {
     .team-article {
       width: 22.14806rem;
@@ -114,11 +119,6 @@ const slug = foundPair ? foundPair.slug : "/equips/cos-tecnic";
       transform: translateY(17%);
     }
 
-    .mascot {
-      /* position: absolute; */
-      width: 11rem;
-      object-fit: contain;
-    }
     .half-hidden .mascot {
       right: -1rem;
       bottom: -5rem;

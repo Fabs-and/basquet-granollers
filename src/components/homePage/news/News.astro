@@ -32,36 +32,23 @@ const title = "CBG Notícies";
     display: none;
   }
 
-  .g-page-section-with-slider-container {
-    background-color: var(--clr-contrast);
-    color: var(--clr-primary);
-  }
-
-  h2 {
-    padding-bottom: 2rem;
-  }
+ 
 
   @media (width < 1068px) {
-    .g-slider-container {
-      display: block;
-        @media (width < 648px) {
-      .g-slider-container {
-        padding-bottom: var(--padding-section-big);
-      }
-    }
-  }
-    }
-
     .news-desktop {
       display: none;
     }
-
-    @media (width < 1025px) {
-      .g-slider-container {
-        padding-bottom: var(--padding-section-medium);
-      }
+    .g-slider-container {
+      display: block;
     }
   }
+
+  @media (width < 1025px) {
+    .g-slider-container {
+      padding-bottom: var(--padding-section-medium);
+    }
+  }
+
   @media (width < 648px) {
     .g-slider-container {
       padding-bottom: var(--padding-section-small);

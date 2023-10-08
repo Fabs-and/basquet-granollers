@@ -1,32 +1,32 @@
 ---
 import { mainSponsorsWhite } from "@data/sponsors";
 ---
-<section class="main-sponsors-flex-container">
-    <p class="main-sponsors-title">Patrocinadors principals</p>
-    <nav>
-      <ul class="main-sponsors-container">
-        {
-          mainSponsorsWhite.map((sponsor) => (
-            <li>
-              <a href={sponsor.link} target="_blank" rel="noopener noreferrer">
-                <img src={sponsor.logo} alt={sponsor.alt}
-                  loading="lazy" 
-                 />
-              </a>
-            </li>
-          ))
-        }
-      </ul>
-    </nav>
-  </section>
 
-  <style>
-    .main-sponsors-flex-container {
+<section class="main-sponsors-flex-container">
+  <p class="main-sponsors-title">Patrocinadors principals</p>
+  <nav>
+    <ul class="main-sponsors-container">
+      {
+        mainSponsorsWhite.map((sponsor) => (
+          <li>
+            <a href={sponsor.link} target="_blank" rel="noopener noreferrer">
+              <img src={sponsor.logo} alt={sponsor.alt} loading="lazy" />
+            </a>
+          </li>
+        ))
+      }
+    </ul>
+  </nav>
+</section>
+
+<style>
+  .main-sponsors-flex-container {
     display: flex;
     align-items: center;
     justify-content: center;
     gap: 3.05rem;
-    height: var(--sponsors-main-hg)
+    height: var(--sponsors-main-hg);
+    padding-inline: var(--padding-inline-tablet)
   }
 
   .main-sponsors-title {
@@ -42,20 +42,20 @@ import { mainSponsorsWhite } from "@data/sponsors";
     gap: 3.05rem;
   }
 
-    @media (width < 680px) {
+  @media (width < 680px) {
     .main-sponsors-title {
       height: fit-content;
       padding: 0rem;
       border-right: none;
-
-      
     }
     .main-sponsors-flex-container {
       flex-direction: column;
+    padding-inline: var(--padding-inline-mobile);
+
       gap: 1rem;
     }
     ul {
       gap: 2rem;
     }
   }
-  </style>
+</style>

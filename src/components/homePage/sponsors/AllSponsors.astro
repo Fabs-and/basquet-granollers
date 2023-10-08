@@ -62,6 +62,7 @@ import { mainSponsorsBlue, otherSponsors } from "@data/sponsors";
     flex-direction: column;
     align-items: center;
     padding-block: 3rem;
+    padding-inline: var(--padding-inline);
     gap: 2.5rem;
   }
 
@@ -82,7 +83,7 @@ import { mainSponsorsBlue, otherSponsors } from "@data/sponsors";
   .other-sponsors-container {
     display: flex;
     flex-wrap: wrap;
-    padding-inline: var(--padding-inline);
+    /* padding-inline: var(--padding-inline); */
     justify-content: center;
     gap: 1.5rem;
   }
@@ -94,7 +95,7 @@ import { mainSponsorsBlue, otherSponsors } from "@data/sponsors";
   }
 
   p {
-    width: inherit;
+    width: 100vw;
     text-align: center;
     position: relative;
   }
@@ -102,56 +103,41 @@ import { mainSponsorsBlue, otherSponsors } from "@data/sponsors";
   p::before {
     content: "";
     height: 1px;
-    width: 44%;
+    width:  calc(50% - 6rem);
     background-color: #d8d8d8;
     position: absolute;
     top: 50%;
-    right: 56%;
-    /* margin-right: 10rem; */
+    left: 0;
   }
 
   p::after {
     content: "";
     height: 1px;
-    width: 44%;
+    width: calc(50% - 6rem);
     background-color: #d8d8d8;
     position: absolute;
     top: 50%;
-    left: 56%;
-    /* margin-left: 10rem; */
+    right: 0;
   }
 
-  @media (width < 1211px) {
-    p::before {
-      right: 60%;
-      width: 40%;
-    }
-    p::after {
-      left: 60%;
-      width: 40%;
-    }
-  }
+ 
 
   @media (width < 1025px) {
-    .other-sponsors-container {
-      padding-inline: 2rem;
+       .sponsors-outter-container {
+      padding-inline: var(--padding-inline-tablet);
     }
+
   }
 
-  @media (width < 766px) {
-    p::before {
-      right: 63%;
-      width: 37%;
-    }
-    p::after {
-      left: 63%;
-      width: 37%;
-    }
-  }
 
   @media (width < 680px) {
-    .main-sponsors-container {
+    .sponsors-outter-container {
       padding-inline: var(--padding-inline-mobile);
+
+    }
+
+
+    .main-sponsors-container {
       gap: 2rem;
     }
     .other-sponsors-container {
@@ -159,28 +145,6 @@ import { mainSponsorsBlue, otherSponsors } from "@data/sponsors";
       align-items: center;
       justify-content: center;
       gap: 1.5rem;
-    }
-  }
-
-  @media (width < 596px) {
-   p::before {
-      right: 66%;
-      width: 34%;
-    }
-    p::after {
-      left: 66%;
-      width: 34%;
-    }
-  }
-
-  @media (width < 458px) {
-   p::before {
-      right: 71%;
-      width: 29%;
-    }
-    p::after {
-      left: 71%;
-      width: 29%;
     }
   }
 </style>
