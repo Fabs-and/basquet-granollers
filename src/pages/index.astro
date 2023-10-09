@@ -24,7 +24,7 @@ import { BASE_URL } from "src/config";
 
 configure({ BASE_URL: BASE_URL });
 
-const posts: Post[] = await fetchPosts(8);
+
 
 // console.log(posts[1])
 
@@ -37,7 +37,7 @@ import { title } from "@data/websiteTitle";
   <Hero />
   <h1 class="g-visibly-hidden">{title}</h1>
   <MainSponsors />
-  <News {posts} />
+  <News />
   <Join />
   <Teams needsHeading={true}/>
   <Projects />

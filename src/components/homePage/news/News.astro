@@ -1,10 +1,12 @@
 ---
+import type { Post } from "fetch-wordpress-api";
 import NewsDesktop from "@components/homePage/news/NewsDesktop.svelte";
 import HomePageSectionLayout from "@layouts/HomePageSectionLayout.astro";
 import Slider from "@components/Slider.svelte";
-
-const { posts } = Astro.props;
+import { fetchPosts} from 'fetch-wordpress-api'
 const title = "CBG Notícies";
+
+const news: Post[] = await fetchPosts(8);
 ---
 
 <HomePageSectionLayout
@@ -13,13 +15,13 @@ const title = "CBG Notícies";
   backgroundColor={`var(--clr-contrast)`}
 >
   <div class="news-desktop">
-    <NewsDesktop client:visible {posts} />
+    <NewsDesktop client:visible {news} />
   </div>
 
   <div class="g-slider-container">
     <Slider
       client:visible
-      sliderItems={posts}
+      sliderItems={news}
       childComponent="NewsItem"
       itemWidth={312}
       gap={`1rem`}
@@ -49,6 +51,10 @@ const title = "CBG Notícies";
     }
   }
 
+
+function fetchPosts(arg0: number): Post[] | PromiseLike<Post[]> {
+throw new Error("Function not implemented.");
+}
   @media (width < 648px) {
     .g-slider-container {
       padding-bottom: var(--padding-section-small);

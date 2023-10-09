@@ -3,17 +3,16 @@
   import NewsItem from "@components/homePage/news/NewsItem.svelte";
   import { sliderLeftArrow, sliderRightArrow } from "@assets/icons";
   import ButtonAnchor from "@components/ButtonAnchor.svelte";
-  import { featuredNews } from "@data/featuredNews";
-  export let posts: Post[];
+  
+  export let news: Post[];
 
   let position = 1;
   let currentIndex = 0;
   let prevIndex = 0;
   let direction = "";
 
-  const totalSlides = Math.ceil(posts.length / 3);
+  const totalSlides = Math.ceil(news.length / 3);
 
-  // const numberOfSlides = posts.
 
   async function goBack() {
     if (position > 1) {
@@ -39,7 +38,7 @@
 </script>
 
 <div class="desktop-news-container">
-  <NewsItem item={featuredNews[0]} isFeatured={true} />
+  <NewsItem item={news[0]} isFeatured={true} />
   <div class="desktop-news-and-controls">
     <div class="carousel">
       {#each Array(totalSlides) as _, i (i)}
@@ -48,8 +47,8 @@
           class:active={currentIndex === i}
           class:outgoing={prevIndex === i && currentIndex !== i}
         >
-          {#each posts.slice(i * 3, i * 3 + 3) as post (post.id)}
-            <NewsItem item={post} isDesktopNews={true} />
+          {#each news.slice(i * 3, i * 3 + 3) as newsItem (newsItem.id)}
+            <NewsItem item={newsItem} isDesktopNews={true} />
           {/each}
         </div>
       {/each}

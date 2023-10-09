@@ -1,23 +1,25 @@
-<script lang="ts">
+<script>
   import { dateConverter } from "../../../utils/helperFunctions";
 
-  export let item = { title: { rendered: "" }, slug: "", date: "", image: "" };
+  export let item;;
 
-  export let isFeatured: boolean = false;
-  export let isSliderItem: boolean = false;
-  export let isDesktopNews: boolean = false;
+  export let isFeatured = false;
+  export let isSliderItem = false;
+  export let isDesktopNews= false;
   const {
     title: { rendered: title },
     slug,
     date,
     image,
-  } = item;
+  } = item;;
+
+
 </script>
 
 <article class:isFeatured class:isSliderItem class:isDesktopNews>
   <a href={`/noticies/${slug}`}>
     <div class="image-container">
-      <img src={image} alt={title} />
+      <img src={image.url} alt={image.alt} />
     </div>
     <div class="info-container">
       <h4>{@html title}</h4>
