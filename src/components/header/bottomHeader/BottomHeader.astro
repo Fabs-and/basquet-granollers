@@ -3,19 +3,20 @@ import { bottomHeaderLinks } from "src/data/header";
 import { logo } from "@assets/logo";
 import DropDownMenu from "@components/header/bottomHeader/DropDownMenu.astro";
 import { collapsibleArrowHeader, magnifyingGlass } from "@assets/icons";
+import { displayButtonHistory, displaySearchIcon, extractNavigation } from "@utils/helperFunctions";
 
-const { bottomHeaderContent} = Astro.props;
+const { content} = Astro.props;
 
-// console.log('bottomHeaderContent', bottomHeaderContent)
+const bottomHeaderContent = extractNavigation(content);
+
+console.log(bottomHeaderContent)
+const isButtonHeader = displayButtonHistory(content);
+
+const isSearchIcon = displaySearchIcon(content);
+
+console.log(isButtonHeader, isSearchIcon)
 
 ---
-
-
-<!-- {
-  bottomHeaderContent.map((item) => {
-
-  })
-} -->
 
   <a class="logo" href="/"
     ><img
@@ -42,12 +43,12 @@ const { bottomHeaderContent} = Astro.props;
 </nav>
 
 <div class="history-search-container">
-  <a href="" class="button-anchor">
+  {isButtonHeader && <a href="" class="button-anchor">
     {`La història`.toUpperCase()}
-  </a>
-  <div class="search-icon">
+  </a>}
+  {isSearchIcon && <div class="search-icon">
     <Fragment set:html={magnifyingGlass} />
-  </div>
+  </div>}
 </div>
 
 <style>

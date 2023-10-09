@@ -256,5 +256,16 @@ export function extractNavigation(content: string): NavItem[] {
   }
 
   return navigation;
+}
 
+export function displayButtonHistory(content: string) {
+  const regex =
+    /<li>\s*<strong>\s*Botó\s+de\s+la\s+història\s*:\s*s[ií]\s*<\/strong>\s*<\/li>/i;
+  return regex.test(content);
+}
+
+export function displaySearchIcon(content: string) {
+ const regex =
+   /<li>\s*<strong>\s*Barra\s+de\s+cerca\s*:\s*s[ií]\s*<\/strong>\s*<\/li>/i;
+    return regex.test(content);
 }

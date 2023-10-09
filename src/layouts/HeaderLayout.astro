@@ -14,16 +14,13 @@ const {
   content: { rendered: content },
 } = page[0];
 
-const topHeaderContent = extractTopHeaderContent(content);
-
-const bottomHeaderContent = extractNavigation(content)
 
 ---
 
 <header>
   <section class="header-top-section">
     <div class="top-header">
-      <TopHeader {topHeaderContent} />
+      <TopHeader {content} />
     </div>
     <div class="top-header responsive top">
       <TopHeaderResponsive />
@@ -31,7 +28,7 @@ const bottomHeaderContent = extractNavigation(content)
   </section>
   <section class="header-bottom-section">
     <div class="bottom-header">
-      <BottomHeader {bottomHeaderContent}/>
+      <BottomHeader {content}/>
     </div>
     <div class="bottom-header responsive">
       <BottomHeaderResponsive />
