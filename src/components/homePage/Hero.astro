@@ -44,6 +44,7 @@ const totalDots = Array(slides.length).fill(0);
   updateSlide();
 </script>
 
+{ slides.length > 0 &&
 <section class="hero-section">
   {
     slides.map((slide, index) => {
@@ -71,14 +72,16 @@ const totalDots = Array(slides.length).fill(0);
     })
   }
 
-  {<div class="carousel-dots">
+  {
+  totalDots.length > 1 &&
+  <div class="carousel-dots">
     { 
       totalDots.map((_, index) => (
         <button class="carousel-dot" data-index={index} />
       ))
     }
   </div>}
-</section>
+</section>}
 
 <style>
   .hero-section {

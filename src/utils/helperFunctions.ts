@@ -265,9 +265,9 @@ export function displayButtonHistory(content: string) {
 }
 
 export function displaySearchIcon(content: string) {
- const regex =
-   /<li>\s*<strong>\s*Barra\s+de\s+cerca\s*:\s*s[ií]\s*<\/strong>\s*<\/li>/i;
-    return regex.test(content);
+  const regex =
+    /<li>\s*<strong>\s*Barra\s+de\s+cerca\s*:\s*s[ií]\s*<\/strong>\s*<\/li>/i;
+  return regex.test(content);
 }
 
 export interface DescriptionAndLink {
@@ -275,12 +275,14 @@ export interface DescriptionAndLink {
   link: string | null;
 }
 
-export function extractSlideDescriptionAndLink(str: string): DescriptionAndLink {
+export function extractSlideDescriptionAndLink(
+  str: string,
+): DescriptionAndLink {
   const descriptionMatch = str.match(
-    /<strong>Descripció:&nbsp;<\/strong>(.+?)<\/p>/,
+    /<strong>\s*Descripci[oó]\s*:\s*(?:&nbsp;)?\s*<\/strong>\s*(.+?)\s*<\/p>/i,
   );
   const linkMatch = str.match(
-    /<strong>Link a la pàgina o post: <\/strong>(.+?)<\/p>/,
+    /<strong>\s*Link\s+a\s+la\s+p[aà]gina\s+o\s+post:\s*<\/strong>\s*(.+?)\s*<\/p>/i,
   );
 
   return {
