@@ -22,9 +22,6 @@ const {
     <div class="top-header">
       <TopHeader {content} />
     </div>
-    <div class="top-header responsive top">
-      <TopHeaderResponsive />
-    </div>
   </section>
   <section class="header-bottom-section">
     <div class="bottom-header">
@@ -64,15 +61,14 @@ const {
     height: var(--header-separator-line-hg);
   }
   @media (width < 1065px) {
-    .top-header,
     .bottom-header {
       display: none;
+      padding-inline: var(--padding-inline-tablet);
     }
     .separator-line {
       height: var(--header-separator-line-responsive-hg);
     }
     .bottom-header {
-      padding-inline: var(--padding-inline-tablet);
     }
     .responsive {
       display: block;
@@ -80,7 +76,7 @@ const {
   }
 
   @media (width < 648px) {
-    .top {
+    .top-header {
       display: none;
     }
 

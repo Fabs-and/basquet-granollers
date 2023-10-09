@@ -6,8 +6,8 @@ const { content } = Astro.props;
 
 const topHeaderContent = extractTopHeaderContent(content);
 
-const { text1, link1 } = topHeaderContent[0];
-const { text2, link2 } = topHeaderContent[1];
+const { text1, link1 } = topHeaderContent![0];
+const { text2, link2 } = topHeaderContent![1];
 ---
 
 <div class="top-header-content">
@@ -55,4 +55,16 @@ const { text2, link2 } = topHeaderContent[1];
   .social-menu {
     order: 3;
   }
+
+  @media(width < 1025px) {
+    .social-menu {
+      display: none;
+    }
+
+    .top-header-content {
+      padding: 0rem;
+      justify-content: space-around;
+    }
+  }
+
 </style>
