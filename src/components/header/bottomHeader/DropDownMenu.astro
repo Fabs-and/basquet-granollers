@@ -4,33 +4,38 @@ import { collapsibleArrowHeader } from "@assets/icons";
 ---
 
 <script>
-  function handleClick(this: any) {
-    let divArrow = this.querySelector(".rotate");
-    divArrow.classList.toggle("rotated");
+  document.addEventListener("DOMContentLoaded", (event) => {
+    let buttons = document.querySelectorAll("#drop-down-menu");
+    function handleClick(this: any) {
+      let divArrow = this.querySelector(".rotate");
+      divArrow.classList.toggle("rotated");
 
-    let dropDown = this.nextElementSibling;
-    dropDown!.style.display === "flex"
-      ? (dropDown!.style.display = "none")
-      : (dropDown!.style.display = "flex");
-  }
-  let buttons = document.querySelectorAll("#drop-down-menu");
+      let dropDown =
+        this.nextElementSibling.nextElementSibling.querySelector(
+          ".dropdown-content",
+        ); // Adjusted this line
+      dropDown.classList.toggle("show");
 
-  // Check if the device does not support hover
-  if (window.matchMedia("(hover: none)").matches) {
-    // Add the event listener to each button
-    buttons.forEach(function (button) {
-      button.addEventListener("click", handleClick);
-    });
-  } else {
-    // Remove the event listener from each button
-    buttons.forEach(function (button) {
-      button.removeEventListener("click", handleClick);
-    });
-  }
+      this.setAttribute("aria-expanded", dropDown.classList.contains("show"));
+    }
+
+    // Check if the device does not support hover
+    if (window.matchMedia("(hover: none)").matches) {
+      // Add the event listener to each button
+      buttons.forEach(function (button) {
+        button.addEventListener("click", handleClick);
+      });
+    } else {
+      // Remove the event listener from each button
+      buttons.forEach(function (button) {
+        button.removeEventListener("click", handleClick);
+      });
+    }
+  });
 </script>
 
 <div class="dropdown">
-  <button id="drop-down-menu">
+  <button id="drop-down-menu" aria-haspopup="true" aria-expanded="false">
     {item.name.toUpperCase()}
     <div class="rotate">
       <Fragment set:html={collapsibleArrowHeader} />
@@ -108,7 +113,7 @@ import { collapsibleArrowHeader } from "@assets/icons";
     display: block;
   }
   .show {
-    display: block;
+    display: flex;
   }
 
   .rotate {
