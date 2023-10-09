@@ -1,6 +1,7 @@
 // import types
 import type { Category } from "fetch-wordpress-api";
 
+import { load } from "cheerio";
 // Replace <div> for <p>
 export function formatHTMLContent(str: string) {
   const divTag = /<div>/g;
@@ -205,4 +206,54 @@ export function extractTopHeaderContent(str: string) {
       link2: link2Match ? link2Match[1].trim() : null,
     },
   ];
+}
+
+export interface NavItem {
+  name: string;
+  link?: string;
+  dropdown?: NavItem[];
+}
+
+export function extractNavigation(content: string): NavItem[] {
+  // Updated regular expression to match each line in the navigation section
+  const regex = /(?:&gt;)?Nom: (.*?)(?:, Link: (.*?))?(?:<br \/>\n|<\/p>)/g;
+  let match;
+  const navigation: NavItem[] = [];
+  let currentDropdown: NavItem | null = null;
+
+  // Find the navigation section between "Navegació" and "Botó de la història"
+  const navStart = content.indexOf(
+    "Navegació (A triar entre totes les pàgines creades. Màxim 6 pàgines)",
+  );
+  const navEnd = content.indexOf("Botó de la història: si");
+  const navSection = content.slice(navStart, navEnd);
+
+  // Iterate through all matches of the regex
+  while ((match = regex.exec(navSection)) !== null) {
+    const fullMatch = match[0];
+    const name = match[1].trim();
+    const link = match[2] ? match[2].trim() : "";
+
+    if (fullMatch.startsWith("&gt;")) {
+      // It's a dropdown item
+      const dropdownItem = { name, link };
+      if (currentDropdown && currentDropdown.dropdown) {
+        currentDropdown.dropdown.push(dropdownItem);
+      }
+    } else {
+      // It's a main navigation item
+      if (link) {
+        // It's a regular nav item
+        navigation.push({ name, link });
+        currentDropdown = null; // Reset the current dropdown
+      } else {
+        // It's a dropdown label
+        currentDropdown = { name, dropdown: [] };
+        navigation.push(currentDropdown);
+      }
+    }
+  }
+
+  return navigation;
+
 }
