@@ -3,10 +3,16 @@ import type { Post } from "fetch-wordpress-api";
 import NewsDesktop from "@components/homePage/news/NewsDesktop.svelte";
 import HomePageSectionLayout from "@layouts/HomePageSectionLayout.astro";
 import Slider from "@components/Slider.svelte";
-import { fetchPosts} from 'fetch-wordpress-api'
+import { fetchPosts, fetchPostsInCategory} from 'fetch-wordpress-api'
+
 const title = "CBG Notícies";
 
+
 const news: Post[] = await fetchPosts(8);
+
+const featuredNews = await fetchPostsInCategory(41);
+
+
 ---
 
 <HomePageSectionLayout
@@ -15,7 +21,7 @@ const news: Post[] = await fetchPosts(8);
   backgroundColor={`var(--clr-contrast)`}
 >
   <div class="news-desktop">
-    <NewsDesktop client:visible {news} />
+    <NewsDesktop client:visible featuredNews={featuredNews[0]} {news} />
   </div>
 
   <div class="g-slider-container">

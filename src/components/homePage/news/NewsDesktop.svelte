@@ -5,7 +5,10 @@
   import ButtonAnchor from "@components/ButtonAnchor.svelte";
   
   export let news: Post[];
+  export let featuredNews: Post;
 
+  news = news.filter((newsItem) => newsItem.id !== featuredNews.id);
+  
   let position = 1;
   let currentIndex = 0;
   let prevIndex = 0;
@@ -38,7 +41,7 @@
 </script>
 
 <div class="desktop-news-container">
-  <NewsItem item={news[0]} isFeatured={true} />
+  <NewsItem item={featuredNews} isFeatured={true} />
   <div class="desktop-news-and-controls">
     <div class="carousel">
       {#each Array(totalSlides) as _, i (i)}
