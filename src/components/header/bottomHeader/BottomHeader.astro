@@ -4,11 +4,18 @@ import { logo } from "@assets/logo";
 import DropDownMenu from "@components/header/bottomHeader/DropDownMenu.astro";
 import { collapsibleArrowHeader, magnifyingGlass } from "@assets/icons";
 
+const { bottomHeaderContent} = Astro.props;
+
+// console.log('bottomHeaderContent', bottomHeaderContent)
 
 ---
 
 
+<!-- {
+  bottomHeaderContent.map((item) => {
 
+  })
+} -->
 
   <a class="logo" href="/"
     ><img
@@ -21,12 +28,12 @@ import { collapsibleArrowHeader, magnifyingGlass } from "@assets/icons";
 <nav class="nav">
   <ul>
     {
-      bottomHeaderLinks.map((category) => (
+      bottomHeaderContent.map((item) => (
         <li>
-          {category.title ? (
-            <DropDownMenu {category}/>
+          {item.dropdown ? (
+            <DropDownMenu {item}/>
           ) : (
-            <a href={category.slug}>{category.name!.toUpperCase()}</a>
+            <a href={item.link}>{item.name!.toUpperCase()}</a>
           )}
         </li>
       ))

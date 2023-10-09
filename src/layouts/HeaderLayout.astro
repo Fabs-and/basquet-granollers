@@ -18,8 +18,6 @@ const topHeaderContent = extractTopHeaderContent(content);
 
 const bottomHeaderContent = extractNavigation(content)
 
-console.log('bottomHeaderContent', bottomHeaderContent[0].dropdown)
-
 ---
 
 <header>
@@ -33,7 +31,7 @@ console.log('bottomHeaderContent', bottomHeaderContent[0].dropdown)
   </section>
   <section class="header-bottom-section">
     <div class="bottom-header">
-      <BottomHeader />
+      <BottomHeader {bottomHeaderContent}/>
     </div>
     <div class="bottom-header responsive">
       <BottomHeaderResponsive />

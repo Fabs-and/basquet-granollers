@@ -1,5 +1,5 @@
 ---
-const { category } = Astro.props;
+const { item } = Astro.props;
 import { collapsibleArrowHeader } from "@assets/icons";
 ---
 
@@ -7,7 +7,7 @@ import { collapsibleArrowHeader } from "@assets/icons";
   function handleClick(this: any) {
     let divArrow = this.querySelector(".rotate");
     divArrow.classList.toggle("rotated");
- 
+
     let dropDown = this.nextElementSibling;
     dropDown!.style.display === "flex"
       ? (dropDown!.style.display = "none")
@@ -28,27 +28,23 @@ import { collapsibleArrowHeader } from "@assets/icons";
     });
   }
 </script>
-</script>
 
 <div class="dropdown">
   <button id="drop-down-menu">
-    {category.title.toUpperCase()}
+    {item.name.toUpperCase()}
     <div class="rotate">
       <Fragment set:html={collapsibleArrowHeader} />
     </div>
   </button>
-  <ul id="myDropdown" class="dropdown-content">
-    <li>
-      <a href="#">Estatuts</a>
-    </li>
-    <a href="#">Codi Ètic</a>
-    <li>
-      <a href="#">Protocol prevenció violències sexuals</a>
-    </li>
-    <li><a href="#">Lorem Ipsum</a></li>
-    <li><a href="#">Lorem Ipsum</a></li>
-    <li><a href="#">Lorem Ipsum</a></li>
-  </ul>
+  <nav>
+    <ul id="myDropdown" class="dropdown-content">
+      {item.dropdown.map((dropDownItem) => 
+      <li>
+         <a href={dropDownItem.link}>{dropDownItem.name!.toUpperCase()}</a>
+      </li>
+      )}
+    </ul>
+  </nav>
 </div>
 
 <style>

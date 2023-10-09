@@ -216,7 +216,8 @@ export interface NavItem {
 
 export function extractNavigation(content: string): NavItem[] {
   // Updated regular expression to match each line in the navigation section
-  const regex = /(?:&gt;)?Nom: (.*?)(?:, Link: (.*?))?(?:<br \/>\n|<\/p>)/g;
+  const regex =
+    /(?:&gt;)?\s*nom:\s*(.*?)(?:,\s*link:\s*(.*?))?(?:<br \/>\n|<\/p>)/gi;
   let match;
   const navigation: NavItem[] = [];
   let currentDropdown: NavItem | null = null;
