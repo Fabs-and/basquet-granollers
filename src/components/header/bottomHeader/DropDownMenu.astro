@@ -36,13 +36,16 @@ import { collapsibleArrowHeader } from "@assets/icons";
       <Fragment set:html={collapsibleArrowHeader} />
     </div>
   </button>
+  <div class="bridge"></div>
   <nav>
     <ul id="myDropdown" class="dropdown-content">
-      {item.dropdown.map((dropDownItem) => 
-      <li>
-         <a href={dropDownItem.link}>{dropDownItem.name!.toUpperCase()}</a>
-      </li>
-      )}
+      {
+        item.dropdown.map((dropDownItem) => (
+          <li>
+            <a href={dropDownItem.link}>{dropDownItem.name!.toUpperCase()}</a>
+          </li>
+        ))
+      }
     </ul>
   </nav>
 </div>
@@ -66,6 +69,14 @@ import { collapsibleArrowHeader } from "@assets/icons";
     }
   }
 
+  .bridge {
+    position: absolute;
+    top: 100%; /* Adjusted to the bottom of the button */
+    left: 0;
+    width: 100%;
+    height: 2.5rem; /* Height of the gap - adjust as needed */
+    background-color: transparent; /* Make it invisible */
+  }
   .dropdown-content {
     display: none;
     flex-direction: column;
