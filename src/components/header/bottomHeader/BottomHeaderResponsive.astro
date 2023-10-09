@@ -5,6 +5,11 @@ import { magnifyingGlass, hamburgerMenuIcon } from "@assets/icons";
 import Accordion from "@components/footer/topFooter/Accordion.astro";
 import { bottomHeaderLinks } from "@data/header";
 import DropDownAccordion from "./DropDownAccordion.astro";
+import {  extractNavigation } from "@utils/helperFunctions";
+
+const { content} = Astro.props;
+
+const bottomHeaderContent = extractNavigation(content);
 ---
 
 <script>
@@ -28,6 +33,7 @@ import DropDownAccordion from "./DropDownAccordion.astro";
     button.addEventListener("click", handleClick);
   });
 </script>
+
 <div class="flex-container">
   <button class="dropdown-menu">
     <Fragment set:html={hamburgerMenuIcon} />
@@ -46,13 +52,13 @@ import DropDownAccordion from "./DropDownAccordion.astro";
 
 <ul id="myDropdown" class="dropdown-content-responsive">
   {
-    bottomHeaderLinks.map((category) => (
+    bottomHeaderContent.map((item) => (
       <li>
-        {category.title ? (
-          <DropDownAccordion {category} />
+        {item.dropdown ? (
+          <DropDownAccordion {item} />
         ) : (
-          <a href={category.slug}>
-            <h5>{category.name!.toUpperCase()}</h5>
+          <a href={item.link}>
+            <h5>{item.name!.toUpperCase()}</h5>
           </a>
         )}
       </li>

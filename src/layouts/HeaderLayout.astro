@@ -1,6 +1,5 @@
 ---
-import TopHeader from "@components/header/topHeader/TopHeader.astro";
-import TopHeaderResponsive from "@components/header/topHeader/TopHeaderResponsive.astro";
+import TopHeader from "@components/header/TopHeader.astro";
 
 import BottomHeader from "@components/header/bottomHeader/BottomHeader.astro";
 import BottomHeaderResponsive from "@components/header/bottomHeader/BottomHeaderResponsive.astro";
@@ -19,16 +18,14 @@ const {
 
 <header>
   <section class="header-top-section">
-    <div class="top-header">
       <TopHeader {content} />
-    </div>
   </section>
   <section class="header-bottom-section">
     <div class="bottom-header">
       <BottomHeader {content}/>
     </div>
     <div class="bottom-header responsive">
-      <BottomHeaderResponsive />
+      <BottomHeaderResponsive {content}/>
     </div>
   </section>
   <div class="separator-line">
@@ -42,7 +39,7 @@ const {
     top: 0;
     z-index: 10;
   }
-  .top-header {
+  .header-top-section {
     min-height: var(--top-header-hg);
     background-color: var(--clr-primary);
   }
@@ -68,15 +65,14 @@ const {
     .separator-line {
       height: var(--header-separator-line-responsive-hg);
     }
-    .bottom-header {
-    }
+
     .responsive {
       display: block;
     }
   }
 
   @media (width < 648px) {
-    .top-header {
+    .header-top-section {
       display: none;
     }
 

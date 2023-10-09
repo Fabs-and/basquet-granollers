@@ -1,16 +1,16 @@
 ---
-const { category } = Astro.props;
+const { item } = Astro.props;
 ---
 
 <details>
   <summary>
-    <h5>{category.title.toUpperCase()}</h5>
+    <h5>{item.name.toUpperCase()}</h5>
   </summary>
   <ul class="links-container">
     {
-      category.links.map((link) => (
+      item.dropdown.map((dropDownItem) => (
         <li>
-          <a href={link.slug}>{link.name}</a>
+          <a href={dropDownItem.link}>{dropDownItem.name}</a>
         </li>
       ))
     }
