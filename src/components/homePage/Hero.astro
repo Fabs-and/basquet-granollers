@@ -1,6 +1,9 @@
 ---
-import { slides } from "@data/hero-carousel";
 import ButtonAnchor from "@components/ButtonAnchor.astro";
+import { fetchPostsInCategory } from "fetch-wordpress-api";
+
+import { extractSlideDescriptionAndLink } from "@utils/helperFunctions";
+const slides = await fetchPostsInCategory(40);
 
 const totalDots = Array(slides.length).fill(0);
 ---
@@ -21,15 +24,15 @@ const totalDots = Array(slides.length).fill(0);
   }
 
   function handleDotClick(event) {
-    const clickedDotIndex = parseInt(event.target.getAttribute('data-index'));
+    const clickedDotIndex = parseInt(event.target.getAttribute("data-index"));
     if (!isNaN(clickedDotIndex)) {
       currentSlideIndex = clickedDotIndex;
       updateSlide();
     }
   }
 
-  dots.forEach(dot => {
-    dot.addEventListener('click', handleDotClick);
+  dots.forEach((dot) => {
+    dot.addEventListener("click", handleDotClick);
   });
 
   setInterval(() => {
@@ -43,32 +46,38 @@ const totalDots = Array(slides.length).fill(0);
 
 <section class="hero-section">
   {
-    slides.map((slide, index) => (
-      <div data-index={index} class="slide">
-        <img
-          src={slide.image}
-          class="hidden"
-          alt={slide.imageAlt}
-          loading="lazy"
-        />
-        <div class="hero-info-container">
-          <div class="hero-info-flex">
-            <h2>{slide.title}</h2>
-            <p>{slide.description}</p>
-            <ButtonAnchor slug={slide.link} text={slide.buttonText} />
+    slides.map((slide, index) => {
+      const { description, link } = extractSlideDescriptionAndLink(
+        slide.content.rendered,
+      );
+
+      return (
+        <div data-index={index} class="slide">
+          <img
+            src={slide.image.url}
+            class="hidden"
+            alt={slide.image.alt}
+            loading="lazy"
+          />
+          <div class="hero-info-container">
+            <div class="hero-info-flex">
+              <h2>{slide.title.rendered}</h2>
+              <p>{description}</p>
+              <ButtonAnchor slug={link} text={`veure més`} />
+            </div>
           </div>
         </div>
-      </div>
-    ))
+      );
+    })
   }
 
-  <div class="carousel-dots">
-    {
+  {<div class="carousel-dots">
+    { 
       totalDots.map((_, index) => (
         <button class="carousel-dot" data-index={index} />
       ))
     }
-  </div>
+  </div>}
 </section>
 
 <style>
@@ -158,7 +167,7 @@ const totalDots = Array(slides.length).fill(0);
 
   @media (width < 1025px) {
     .hero-info-container {
-      padding-inline: var(--padding-inline-tablet)
+      padding-inline: var(--padding-inline-tablet);
     }
   }
 

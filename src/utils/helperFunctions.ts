@@ -269,3 +269,22 @@ export function displaySearchIcon(content: string) {
    /<li>\s*<strong>\s*Barra\s+de\s+cerca\s*:\s*s[ií]\s*<\/strong>\s*<\/li>/i;
     return regex.test(content);
 }
+
+export interface DescriptionAndLink {
+  description: string | null;
+  link: string | null;
+}
+
+export function extractSlideDescriptionAndLink(str: string): DescriptionAndLink {
+  const descriptionMatch = str.match(
+    /<strong>Descripció:&nbsp;<\/strong>(.+?)<\/p>/,
+  );
+  const linkMatch = str.match(
+    /<strong>Link a la pàgina o post: <\/strong>(.+?)<\/p>/,
+  );
+
+  return {
+    description: descriptionMatch ? descriptionMatch[1].trim() : null,
+    link: linkMatch ? linkMatch[1].trim() : null,
+  };
+}
