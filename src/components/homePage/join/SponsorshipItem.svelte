@@ -9,7 +9,7 @@
 <article class="sponsor-article opacity">
   <div class="sponsor-title">
     <small>Patrocinador</small>
-    <h3>{item.name}</h3>
+    <h3>{item.title}</h3>
   </div>
   <div class="sponsor-price">
     <p>

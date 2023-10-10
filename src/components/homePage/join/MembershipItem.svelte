@@ -12,8 +12,8 @@
 
 <article class="membership-article opacity" class:expanded>
   <div class="image-container">
-    <img src="" alt="" />
-    <h3 class="memebership-title">{item.name}</h3>
+    <img src={item.image} alt="" loading='lazy'/>
+    <h3 class="memebership-title">{item.title}</h3>
   </div>
   <article class="membership-info-container">
     <div class="membership-price">

@@ -3,7 +3,7 @@ import MembershipItem from "@components/homePage/join/MembershipItem.svelte";
 import HomePageSectionLayout from "@layouts/HomePageSectionLayout.astro";
 import SponsorshipItem from "@components/homePage/join/SponsorshipItem.svelte";
 import ButtonAnchor from "@components/ButtonAnchor.svelte";
-import { memberships, sponsors } from "@data/memberships";
+// import { memberships, sponsors } from "@data/memberships";
 import Slider from "@components/Slider.svelte";
 import Dialog from "@components/Dialog.astro";
 import { fetchPageBySlug } from "fetch-wordpress-api";
@@ -13,8 +13,8 @@ let isSelected = true;
 
 const joinPage = await fetchPageBySlug("la-familia-cbg/")
 
-const membershipsInfo = extractMembershipsOptions(joinPage[0].content.rendered);
-const sponsorshipsInfo = extractSponsorshipsOptions(joinPage[0].content.rendered);
+const memberships = extractMembershipsOptions(joinPage[0].content.rendered);
+const sponsors = extractSponsorshipsOptions(joinPage[0].content.rendered);
 
 function toggleSelected() {
   isSelected = !isSelected;
