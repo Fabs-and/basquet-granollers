@@ -81,6 +81,7 @@
   }
 
   .image-container img {
+    opacity: 0.5;
     width: 100%;
     height: 100%;
     object-fit: cover;
