@@ -9,7 +9,7 @@
 
 {#if item.image}
   <article class="slider-item">
-    <a href={item.slug}>
+    <a href={`/projectes/${item.slug}`}>
       <img class="image" src={item.image.url} alt={item.image.alt} />
     </a>
   </article>

@@ -15,7 +15,7 @@ import BaseLayout from "@layouts/BaseLayout.astro";
 import GridPostCard from "@components/homePage/news/GridPostCard.astro";
 import { dateConverter } from "@utils/helperFunctions";
 
-const noticies = await fetchPosts(8);
+const noticies = await fetchPostsInCategory(19);
 
 ---
 
@@ -27,16 +27,16 @@ const noticies = await fetchPosts(8);
       {
         noticies.map((noticia: Post) => (
           <article class="noticia">
-            <a href={`${noticia.slug}`}>
+            <a href={`/noticies/${noticia.slug}`}>
               <div class="image-container">
-                <img
+               {noticia.image && <img
                   src={noticia.image.url}
                   alt={
                     noticia.image.alt
                       ? noticia.image.alt
                       : noticia.title.rendered
                   }
-                />
+                />}
               </div>
               <div class="info-container">
                 <h4>

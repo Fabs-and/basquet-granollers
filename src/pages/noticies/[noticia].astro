@@ -1,10 +1,7 @@
 ---
 // Import utils
 import {
-  fetchAllCategories,
   fetchPostsInCategory,
-  Category,
-  fetchPosts,
 } from "fetch-wordpress-api";
 
 // Import types
@@ -12,14 +9,12 @@ import type { Post } from "fetch-wordpress-api";
 
 // Import Layouts
 import BaseLayout from "@layouts/BaseLayout.astro";
-import GridPostCard from "@components/homePage/news/GridPostCard.astro";
 
 // Import global (not global stores) variables/constants
-import { postFields, categoryFields } from "src/data/apiGlobalConsts";
 import PostLayout from "@layouts/PostLayout.astro";
 
 export async function getStaticPaths() {
-  const noticies = await fetchPosts(8);
+  const noticies = await fetchPostsInCategory(19);
 
   return noticies.map((noticia: Post) => {
     return {
@@ -37,7 +32,7 @@ export async function getStaticPaths() {
 
 const noticia = Astro.props;
 
-console.log('noticies 1', noticia)
+
 ---
 
 <BaseLayout pageTitle={noticia.title}>

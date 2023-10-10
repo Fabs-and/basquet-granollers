@@ -14,7 +14,7 @@ const { title, content, image, date } = post;
         <h1 set:html={title} />
         <p class="g-date-style">{`Publicat ${dateConverter(date)}`}</p>
       </div>
-      {image && <img class="g-opacity" src={image} alt={title} />}
+      {image && <img class="g-opacity" src={image.url} alt={image.alt && image.alt} />}
     </header>
     <div class="article-content">
       <Fragment set:html={formatHTMLContent(content)} />

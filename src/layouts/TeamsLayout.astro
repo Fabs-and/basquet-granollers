@@ -4,6 +4,8 @@ import Headings from '@components/internal-pages/headings.astro'
 const { teamsImages, teamCategory } = Astro.props;
 
 const category = teamCategory === `femenins` || teamCategory === `masculins` ? `Equips ${teamCategory}` : teamCategory
+
+console.log('teamsImages', teamsImages);
 ---
 
 <BaseLayout title=`${category} del Club Bàsquet Granollers`>
@@ -17,8 +19,8 @@ const category = teamCategory === `femenins` || teamCategory === `masculins` ? `
           teamsImages.map((image: string) => (
             <div class="image-container">
               <img
-                src={image}
-                alt="Equips masculins del Club Bàsquet Granollers"
+                src={image.url}
+                alt={image.alt && image.alt}
               />
             </div>
           ))
