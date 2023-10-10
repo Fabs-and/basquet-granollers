@@ -27,7 +27,7 @@ const noticies = await fetchPostsInCategory(19);
       {
         noticies.map((noticia: Post) => (
           <article class="noticia">
-            <a href={`/noticies/${noticia.slug}`}>
+            <a href={`${noticia.slug}`}>
               <div class="image-container">
                {noticia.image && <img
                   src={noticia.image.url}
