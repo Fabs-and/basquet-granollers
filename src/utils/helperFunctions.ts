@@ -296,7 +296,8 @@ function addApostrophe(str: string) {
 }
 
 //The next regex works for the next two functions
-const imageRegex = /src="([^"]*)"/gi;
+const imageURLRegex = /src="([^"]*)"/gi;
+const imageAltRegex = /alt="([^"]*)"/gi;
 const titleRegex =
   /(?:&gt;|&nbsp;)*\s*T[ií]tol:\s*<\/strong>\s*(?:&nbsp;)*(.*?)(?:&nbsp;)*(?:<br \/>\n|<\/p>)/gi;
 const priceRegex =
@@ -312,18 +313,20 @@ export function extractMembershipsOptions(content: string) {
   let memberships = [];
 
   let match;
-  while ((match = imageRegex.exec(membershipsSection)) !== null) {
-    const image = match[1];
+  while ((match = imageURLRegex.exec(membershipsSection)) !== null) {
+    const imageURL = match[1];
+    const imageAltMatch = imageAltRegex.exec(membershipsSection);
     const titleMatch = titleRegex.exec(membershipsSection);
     const priceMatch = priceRegex.exec(membershipsSection);
     const advantagesMatch = advantagesRegex.exec(membershipsSection);
 
-    if (titleMatch && priceMatch && advantagesMatch) {
+    if (imageAltMatch && titleMatch && priceMatch && advantagesMatch) {
+      const imageAlt = addApostrophe(imageAltMatch[1]);
       const title = addApostrophe(titleMatch[1]);
       const price = addApostrophe(priceMatch[1]);
       const advantages = addApostrophe(advantagesMatch[1]).split("<br />\n");
 
-      memberships.push({ image, title, price, advantages });
+      memberships.push({ image: {url: imageURL, alt: imageAlt}, title, price, advantages });
     }
   }
   return memberships;

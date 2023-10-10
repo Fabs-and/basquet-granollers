@@ -12,7 +12,7 @@
 
 <article class="membership-article opacity" class:expanded>
   <div class="image-container">
-    <img src={item.image} alt="" loading='lazy'/>
+    <img src={item.image.url} alt={item.image.alt} loading='lazy'/>
     <h3 class="memebership-title">{item.title}</h3>
   </div>
   <article class="membership-info-container">
