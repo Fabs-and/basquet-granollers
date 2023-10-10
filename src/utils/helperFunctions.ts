@@ -290,3 +290,64 @@ export function extractSlideDescriptionAndLink(
     link: linkMatch ? linkMatch[1].trim() : null,
   };
 }
+
+function addApostrophe(str: string) {
+  return str.replace(/&#8217;/g, "'");
+}
+
+//The next regex works for the next two functions
+const imageRegex = /src="([^"]*)"/gi;
+const titleRegex =
+  /(?:&gt;|&nbsp;)*\s*T[ií]tol:\s*<\/strong>\s*(?:&nbsp;)*(.*?)(?:&nbsp;)*(?:<br \/>\n|<\/p>)/gi;
+const priceRegex =
+  /(?:&gt;|&nbsp;)*\s*Preu:\s*<\/strong>\s*(?:&nbsp;)*(.*?)(?:&nbsp;)*(?:<br \/>\n|<\/p>)/gi;
+const advantagesRegex =
+  /(?:&gt;|&nbsp;)*\s*Avantatges:\s*(?:<\/strong>\s*<br \/>\s*\n|<br \/>\s*\n\s*<\/strong>)([\s\S]*?)(?:&nbsp;)*<\/p>/gis;
+
+export function extractMembershipsOptions(content: string) {
+  const membershipsStart = content.indexOf("MEMBRES");
+  const membershipsEnd = content.indexOf("SPONSORS");
+  const membershipsSection = content.slice(membershipsStart, membershipsEnd);
+
+  let memberships = [];
+
+  let match;
+  while ((match = imageRegex.exec(membershipsSection)) !== null) {
+    const image = match[1];
+    const titleMatch = titleRegex.exec(membershipsSection);
+    const priceMatch = priceRegex.exec(membershipsSection);
+    const advantagesMatch = advantagesRegex.exec(membershipsSection);
+
+    if (titleMatch && priceMatch && advantagesMatch) {
+      const title = addApostrophe(titleMatch[1]);
+      const price = addApostrophe(priceMatch[1]);
+      const advantages = addApostrophe(advantagesMatch[1]).split("<br />\n");
+
+      memberships.push({ image, title, price, advantages });
+    }
+  }
+  return memberships;
+}
+
+export function extractSponsorshipsOptions(content: string) {
+  const sponsorshipsStart = content.indexOf("MEMBRES");
+  const membershipsEnd = content.length;
+  const sponsorshipsSection = content.slice(sponsorshipsStart, membershipsEnd);
+
+  let sponsorships = [];
+
+  let match;
+  while ((match = titleRegex.exec(sponsorshipsSection)) !== null) {
+    const title = addApostrophe(match[1]);
+    const priceMatch = priceRegex.exec(sponsorshipsSection);
+    const advantagesMatch = advantagesRegex.exec(sponsorshipsSection);
+
+    if (priceMatch && advantagesMatch) {
+      const price = addApostrophe(priceMatch[1]);
+      const advantages = addApostrophe(advantagesMatch[1]).split("<br />\n");
+
+      sponsorships.push({ title, price, advantages });
+    }
+  }
+  return sponsorships;
+}
