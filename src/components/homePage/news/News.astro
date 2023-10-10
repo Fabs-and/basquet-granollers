@@ -8,7 +8,7 @@ import { fetchPosts, fetchPostsInCategory} from 'fetch-wordpress-api'
 const title = "CBG Notícies";
 
 
-const news: Post[] = await fetchPosts(8);
+const news: Post[] = await fetchPostsInCategory(19);
 
 const featuredNews = await fetchPostsInCategory(41);
 

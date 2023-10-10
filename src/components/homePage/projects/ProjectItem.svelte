@@ -1,12 +1,19 @@
 <script>
-  export let item = { title: { rendered: "" }, slug: "", date: "", image: "" };
+  export let item = {
+    title: { rendered: "" },
+    slug: "",
+    date: "",
+    image: { url: "", title: "", alt: "" },
+  };
 </script>
 
-<article class="slider-item">
-  <a href={item.link}>
-    <img class="image" src={item.image} alt={item.alt} />
-  </a>
-</article>
+{#if item.image}
+  <article class="slider-item">
+    <a href={item.slug}>
+      <img class="image" src={item.image.url} alt={item.image.alt} />
+    </a>
+  </article>
+{/if}
 
 <style>
   .slider-item {

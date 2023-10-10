@@ -13,9 +13,9 @@
     "@astrojs/netlify": "^3.0.2",
     "@astrojs/node": "^6.0.3",
     "@astrojs/svelte": "^4.0.3",
-    "astro": "^3.2.3",
+    "astro": "^3.2.4",
     "cheerio": "1.0.0-rc.12",
-    "fetch-wordpress-api": "^1.0.28",
+    "fetch-wordpress-api": "^1.0.29",
     "svelte": "^4.2.1"
   },
   "devDependencies": {

@@ -1,24 +1,33 @@
 ---
-
 import HomePageSectionLayout from "@layouts/HomePageSectionLayout.astro";
 import MobileCarousel from "./MobileCarousel.svelte";
 import ProjectItem from "@components/projects/ProjectItem.svelte";
 import Slider from "@components/Slider.svelte";
-import { projects } from "@data/projects.ts";
----
+// import { projects } from "@data/projects.ts";
+import { fetchPostsInCategory } from "fetch-wordpress-api";
 
+const projects = await fetchPostsInCategory(42);
+---
 
 <HomePageSectionLayout sectionTitle="Projects">
   <div class="projects-desktop">
     {
-      projects.map((project) => (
-        <a href={project.link}>
-          <img class="image" src={project.image} alt={project.alt} />
-        </a>
-      ))
+      projects.map((project) =>
+        project.image ? (
+          <a href={project.slug}>
+            <div class="image-container">
+              <img
+                class="image"
+                src={project.image.url}
+                alt={project.image.alt}
+              />
+            </div>
+          </a>
+        ) : null,
+      )
     }
   </div>
-  
+
   <div class="g-slider-container mobile">
     <Slider
       client:visible
@@ -37,7 +46,8 @@ import { projects } from "@data/projects.ts";
 
   a {
     display: block;
-    width: 100%;
+    background: var(--clr-contrast);
+    /* width: 100%; */
   }
   .projects-desktop {
     padding-right: var(--padding-inline);
@@ -47,18 +57,22 @@ import { projects } from "@data/projects.ts";
     gap: 1rem;
     padding-bottom: var(--padding-section-big);
   }
-
+  
+  .image-container {
+    max-width: 24.1875rem;
+    max-height: 14.375rem;
+    overflow: hidden;
+  }
   img {
-    object-fit: contain;
+    object-fit: cover;
     object-position: top center;
-    width: 100%;
-    height: 100%;
+    margin: auto;
   }
 
   @media (width < 1025px) {
     .projects-desktop {
       padding-right: var(--padding-inline-tablet);
-      padding-bottom: var(--padding-section-medium)
+      padding-bottom: var(--padding-section-medium);
     }
   }
 

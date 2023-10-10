@@ -1,29 +1,29 @@
 <script>
   import { dateConverter } from "../../../utils/helperFunctions";
 
-  export let item;;
+  export let item;
 
   export let isFeatured = false;
   export let isSliderItem = false;
-  export let isDesktopNews= false;
+  export let isDesktopNews = false;
   const {
     title: { rendered: title },
     slug,
     date,
     image,
-  } = item;;
-
-
+  } = item;
 </script>
 
 <article class:isFeatured class:isSliderItem class:isDesktopNews>
   <a href={`/noticies/${slug}`}>
     <div class="image-container">
-      <img src={image.url} alt={image.alt} />
+      {#if image}
+        <img src={image.url} alt={image.alt} />
+      {/if}
     </div>
     <div class="info-container">
       <h4>{@html title}</h4>
-      <p class='g-date-style'>{`Publicat ${dateConverter(date)}`}</p>
+      <p class="g-date-style">{`Publicat ${dateConverter(date)}`}</p>
     </div>
   </a>
 </article>
@@ -48,7 +48,7 @@
     object-fit: cover;
     margin: auto;
   }
-  
+
   .info-container {
     position: relative; /* so the z-index has effect  */
     padding-inline: 1rem;
@@ -59,12 +59,12 @@
     flex-direction: column;
     justify-content: space-between;
   }
-  
+
   .image-container {
     background-color: white;
     z-index: 0;
   }
-  
+
   .isFeatured {
     height: 33.1875rem;
     width: 60%;
@@ -72,20 +72,20 @@
     overflow: hidden;
     flex-shrink: 0;
   }
-  
+
   .isFeatured .image-container {
     height: 80%;
   }
-  
+
   .isFeatured .image-container img {
     object-position: top;
     transition: transform 0.3s;
   }
-  
+
   .isFeatured img:hover {
     transform: scale(1.1);
   }
-  
+
   .isFeatured .info-container {
     height: 20%;
   }
