@@ -5,27 +5,38 @@ import TopFooterMobile from "@components/footer/topFooter/TopFooterMobile.astro"
 import BottomFooter from "@components/footer/bottomFooter/BottomFooter.astro";
 import BottomFooterTablet from "@components/footer/bottomFooter/BottomFooterTablet.astro";
 import BottomFooterMobile from "@components/footer/bottomFooter/BottomFooterMobile.astro";
-
+import {extractTopFooterInfo, extractBottomFooterInfo} from "@utils/helperFunctions";
 import {
   bottomFooterLinks,
-  topFooterLinks,
   topFooterImportantLinks,
   copyright,
 } from "src/data/footer";
+import { fetchPageBySlug } from "fetch-wordpress-api";
+
+const footerData = await fetchPageBySlug("peu-de-pagina");
+
+const {content: {rendered: content}} = footerData[0];
+
+const topFooterLinks = extractTopFooterInfo(content);
+
+const bottomFooterLinks = extractBottomFooterInfo(content);
+
+
+
 ---
 
 <footer>
   <section class="footer-top-section">
     <nav class="top-footer">
-      <TopFooter {topFooterLinks} {topFooterImportantLinks} />
+      <TopFooter {topFooterLinks}/>
     </nav>
 
     <nav class="top-footer tablet">
-      <TopFooterTablet {topFooterLinks} {topFooterImportantLinks} />
+      <TopFooterTablet {topFooterLinks}  />
     </nav>
 
     <nav class="top-footer mobile">
-      <TopFooterMobile {topFooterLinks} {topFooterImportantLinks} />
+      <TopFooterMobile {topFooterLinks} />
     </nav>
   </section>
 

@@ -1,15 +1,13 @@
 ---
-const {topFooterImportantLinks} = Astro.props
+const {fixedLinks} = Astro.props
 ---
 
 <ul class='top-footer-articles'>
   {
-    topFooterImportantLinks.map((link) => (
+    fixedLinks.map((link) => (
       <li>
         <a
-          href={`/${link.slug}`}
-          target='_blank'
-          rel='noopener noreferrer'
+          href={`${link.link}`}
         >
           <h5>{link.name.toUpperCase()}</h5>
         </a>

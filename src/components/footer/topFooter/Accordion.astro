@@ -1,17 +1,17 @@
 ---
-const { topFooterLinks } = Astro.props;
+const { generalLinks } = Astro.props;
 ---
 
  {
-  topFooterLinks.map((category) => (
+  generalLinks.map((item) => (
     <details >
       <summary>
-        <h5>{category.title.toUpperCase()}</h5>
+        <h5>{item.title.toUpperCase()}</h5>
       </summary>
       <ul class='links-container'>
-          {category.links.map((link) => (
+          {item.content.map((link) => (
             <li>
-              <a href={link.slug}>{link.name}</a>
+              <a href={link.link}>{link.name}</a>
             </li>
           ))}
       </ul>   

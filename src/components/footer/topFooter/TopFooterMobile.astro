@@ -2,15 +2,19 @@
 import Accordion from "./Accordion.astro";
 import ImportantLinksContainer from "./ImportantLinksContainer.astro";
 
-const { topFooterLinks, topFooterImportantLinks } = Astro.props;
+
+const { topFooterLinks } = Astro.props;
+
+const { generalLinks, fixedLinks } = topFooterLinks;
+
 ---
 
 <article class="mobile-first-article">
-  <Accordion {topFooterLinks} />
+  <Accordion {generalLinks} />
 </article>
 
 <article class="mobile-second-article">
-  <ImportantLinksContainer {topFooterImportantLinks} />
+  <ImportantLinksContainer {fixedLinks} />
 </article>
 
 <style>
