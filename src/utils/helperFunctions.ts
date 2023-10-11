@@ -291,7 +291,7 @@ export function extractSlideDescriptionAndLink(
   };
 }
 
-function addApostrophe(str: string) {
+export function addApostrophe(str: string) {
   return str.replace(/&#8217;/g, "'");
 }
 
