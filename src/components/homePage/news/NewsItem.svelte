@@ -106,6 +106,7 @@
     background-color: var(--clr-contrast);
     color: var(--clr-primary);
     padding: 0rem;
+    height: 7.375rem;
   }
 
   .isDesktopNews .image-container {
