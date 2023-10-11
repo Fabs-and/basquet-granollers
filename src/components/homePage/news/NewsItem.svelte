@@ -148,4 +148,8 @@
   .isSliderItem .info-container {
     height: 40%;
   }
+
+  .isSliderItem p {
+    font-weight: 400;
+  }
 </style>
