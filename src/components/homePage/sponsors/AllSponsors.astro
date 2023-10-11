@@ -1,5 +1,12 @@
 ---
-import { mainSponsorsBlue, otherSponsors } from "@data/sponsors";
+
+import { fetchImagesInPageBySlug } from "fetch-wordpress-api";
+
+const mainSponsorsBlue = await fetchImagesInPageBySlug('patrocinadors-principals-logos-blaus');
+
+const otherSponsors = await fetchImagesInPageBySlug('altres-patrocinadors');
+
+console.log('otherSponsors', otherSponsors);
 ---
 
 <section class="sponsors-outter-container">
@@ -11,12 +18,12 @@ import { mainSponsorsBlue, otherSponsors } from "@data/sponsors";
           mainSponsorsBlue.map((mainSponsor) => (
             <li>
               <a
-                href={mainSponsor.link}
+                href={mainSponsor.caption}
                 target="_blank"
                 rel="noopener noreferrer"
               >
                 <img
-                  src={mainSponsor.logo}
+                  src={mainSponsor.url}
                   alt={mainSponsor.alt}
                   loading="lazy"
                 />
@@ -35,13 +42,13 @@ import { mainSponsorsBlue, otherSponsors } from "@data/sponsors";
           otherSponsors.map((otherSponsor) => (
             <li>
               <a
-                href={otherSponsor.link}
+                href={otherSponsor.caption}
                 target="_blank"
                 rel="noopener noreferrer"
               >
                 <img
                   class="other-sponsors-images"
-                  src={otherSponsor.logo}
+                  src={otherSponsor.url}
                   alt={otherSponsor.alt}
                   loading="lazy"
                 />

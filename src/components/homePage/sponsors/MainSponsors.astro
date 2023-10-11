@@ -1,5 +1,9 @@
 ---
-import { mainSponsorsWhite } from "@data/sponsors";
+import { fetchImagesInPageBySlug } from "fetch-wordpress-api";
+
+const mainSponsorsWhite = await fetchImagesInPageBySlug('patrocinadors-principals-logos-blancs');
+
+
 ---
 
 <section class="main-sponsors-flex-container">
@@ -7,10 +11,10 @@ import { mainSponsorsWhite } from "@data/sponsors";
   <nav>
     <ul class="main-sponsors-container">
       {
-        mainSponsorsWhite.map((sponsor) => (
+        mainSponsorsWhite.reverse().map((sponsor) => (
           <li>
-            <a href={sponsor.link} target="_blank" rel="noopener noreferrer">
-              <img src={sponsor.logo} alt={sponsor.alt} loading="lazy" />
+            <a href={sponsor.caption} target="_blank" rel="noopener noreferrer">
+              <img src={sponsor.url} alt={sponsor.alt} loading="lazy" />
             </a>
           </li>
         ))
@@ -42,6 +46,7 @@ import { mainSponsorsWhite } from "@data/sponsors";
     gap: 3.05rem;
   }
 
+  
   @media (width < 680px) {
     .main-sponsors-title {
       height: fit-content;
