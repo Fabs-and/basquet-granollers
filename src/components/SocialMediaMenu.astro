@@ -1,22 +1,35 @@
----
-import { socialMediaLinks } from '../data/socialMediaLinks';
+<!-- ---
+import { fetchImagesInPageBySlug } from "fetch-wordpress-api";
+
+const socialMediaLinks = await fetchImagesInPageBySlug("xarxes-socials");
 ---
 
 <nav>
   <ul>
     {
       socialMediaLinks.map((socialMediaLink) => {
-        const { name, link, description, icon } = socialMediaLink;
+        const name = socialMediaLink.title.toLowerCase().includes("instagram")
+          ? "Instagram"
+          : socialMediaLink.title.toLowerCase().includes("facebook")
+          ? "Facebook"
+          : socialMediaLink.title.toLowerCase().includes("twitter")
+          ? "Twitter"
+          : socialMediaLink.title.toLowerCase().includes("youtube")
+          ? "Youtube"
+          : socialMediaLink.title.toLowerCase().includes("twitch")
+          ? "Twitch"
+          : "TikTok";
+
+        const { url, caption, alt } = socialMediaLink;
         return (
           <li>
             <a
               title={name}
-              href={link}
-              aria-label={description}
-              target='_blank'
-              rel='noopener noreferrer'
+              href={caption}
+              target="_blank"
+              rel="noopener noreferrer"
             >
-              <Fragment set:html={icon} />
+              <img src={url} alt={alt} />
             </a>
           </li>
         );
@@ -33,12 +46,11 @@ import { socialMediaLinks } from '../data/socialMediaLinks';
   ul {
     display: flex;
     justify-content: space-between;
-    align-items:center;
+    align-items: center;
   }
 
   a {
     display: flex;
     align-items: center;
   }
-  
-</style>
+</style> -->
