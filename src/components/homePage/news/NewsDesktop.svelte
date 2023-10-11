@@ -200,4 +200,10 @@
       padding-bottom: var(--padding-section-medium);
     }
   }
+
+   @media (width > 1400px) {
+    .desktop-news-container {
+      padding-right: 0rem;
+    }
+  }
 </style>

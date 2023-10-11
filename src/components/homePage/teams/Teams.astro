@@ -7,7 +7,10 @@ const { noHeading } = Astro.props;
 const teams = await fetchImagesInPageBySlug("equips1");
 ---
 
-<HomePageSectionLayout sectionTitle="Els equips del Club Bàsquet Granollers" {noHeading}>
+<HomePageSectionLayout
+  sectionTitle="Els equips del Club Bàsquet Granollers"
+  {noHeading}
+>
   <div class="teams-container">
     {
       teams.reverse().map((team) => (
@@ -19,17 +22,15 @@ const teams = await fetchImagesInPageBySlug("equips1");
   </div>
 </HomePageSectionLayout>
 
-
 <style>
   .teams-container {
     display: flex;
     flex-wrap: wrap;
-    justify-content: center;
-    gap: 1rem;
+    justify-content: space-between;
     padding-right: var(--padding-inline);
   }
 
-  @media (width < 1385px) {
+  @media (width < 1400px) {
     .teams-container {
       display: grid;
       grid-template-columns: repeat(2, 1fr);
@@ -55,9 +56,9 @@ const teams = await fetchImagesInPageBySlug("equips1");
   }
 
   @media (width < 1025px) {
-   .teams-container {
-    padding-right: var(--padding-inline-tablet);
-   }
+    .teams-container {
+      padding-right: var(--padding-inline-tablet);
+    }
   }
   @media (width < 754px) {
     .teams-container {
@@ -67,9 +68,17 @@ const teams = await fetchImagesInPageBySlug("equips1");
     }
   }
   @media (width < 648px) {
-     .teams-container {
-    padding-right: var(--padding-inline-mobile);
-   }
+    .teams-container {
+      padding-right: var(--padding-inline-mobile);
+    }
   }
 
+   @media (width > 1400px) {
+    .teams-container {
+      padding-right: 0rem;
+      justify-content: center;
+      gap: 1.25rem;
+
+    }
+  }
 </style>

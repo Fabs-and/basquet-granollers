@@ -57,7 +57,7 @@ const projects = await fetchPostsInCategory(42);
     gap: 1rem;
     padding-bottom: var(--padding-section-big);
   }
-  
+
   .image-container {
     max-width: 24.1875rem;
     max-height: 14.375rem;
@@ -89,6 +89,12 @@ const projects = await fetchPostsInCategory(42);
   @media (width < 648px) {
     .mobile {
       padding-bottom: var(--padding-section-small);
+    }
+  }
+
+  @media (width > 1400px) {
+    .projects-desktop {
+      padding-right: 0rem;
     }
   }
 </style>
