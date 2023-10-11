@@ -12,6 +12,7 @@ import {
   copyright,
 } from "src/data/footer";
 import { fetchPageBySlug } from "fetch-wordpress-api";
+import HomePageSectionLayout from "./HomePageSectionLayout.astro";
 
 const footerData = await fetchPageBySlug("peu-de-pagina");
 
@@ -27,9 +28,11 @@ const bottomFooterLinks = extractBottomFooterInfo(content);
 
 <footer>
   <section class="footer-top-section">
-    <nav class="top-footer">
-      <TopFooter {topFooterLinks}/>
-    </nav>
+    <HomePageSectionLayout>
+      <nav class="top-footer">
+        <TopFooter {topFooterLinks}/>
+      </nav>
+    </HomePageSectionLayout>
 
     <nav class="top-footer tablet">
       <TopFooterTablet {topFooterLinks}  />
@@ -129,11 +132,11 @@ const bottomFooterLinks = extractBottomFooterInfo(content);
   }
 
   @media (width > 1400px) {
-    .top-footer {
-      width: 1400px;
+    /* .top-footer {
+      max-width: 1400px;
       margin:auto;
       padding-inline: var(--padding-inline);
-    }
+    } */
 
     .bottom-footer-section {
     
