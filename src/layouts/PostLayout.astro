@@ -1,35 +1,50 @@
 ---
 // Import utils functions
 import { dateConverter, formatHTMLContent } from "@utils/helperFunctions";
+import BaseLayout from "./BaseLayout.astro";
 
-const { post } = Astro.props;
+const { post, pageTitle } = Astro.props;
 
 const { title, content, image, date } = post;
 ---
 
-<section class="page-container">
-  <article>
-    <header class="article-header">
-      <div class="article-header-text">
-        <h1 set:html={title} />
-        <p class="g-date-style">{`Publicat ${dateConverter(date)}`}</p>
+<BaseLayout title={pageTitle}>
+  <section class="page-container">
+    <article>
+      <header class="article-header">
+        <div class="article-header-text">
+          <h1 set:html={title} />
+          <p class="g-date-style">{`Publicat ${dateConverter(date)}`}</p>
+        </div>
+        {
+          image && (
+            <img
+              class="g-opacity"
+              src={image.url}
+              alt={image.alt && image.alt}
+            />
+          )
+        }
+      </header>
+      <div class="article-content">
+        <Fragment set:html={formatHTMLContent(content)} />
       </div>
-      {image && <img class="g-opacity" src={image.url} alt={image.alt && image.alt} />}
-    </header>
-    <div class="article-content">
-      <Fragment set:html={formatHTMLContent(content)} />
-    </div>
-  </article>
-</section>
+    </article>
+  </section>
+</BaseLayout>
 
 <style>
+  h1 {
+    font-size: 2.75rem;
+    font-weight: 600;
+  }
   .page-container {
     background-color: var(--clr-contrast);
     padding-inline: var(--padding-inline);
     color: var(--clr-primary);
   }
 
-    .article-header {
+  .article-header {
     position: relative;
     height: 19.0625rem;
     background: #181e29;
@@ -50,9 +65,10 @@ const { title, content, image, date } = post;
     text-align: center;
     justify-content: center;
     text-wrap: balance;
-    gap: 1rem;
+    gap: 2.62rem;
+    max-width: 1206px;
+    margin: auto;
   }
-
 
   .article-header img {
     position: absolute;
@@ -71,6 +87,8 @@ const { title, content, image, date } = post;
     gap: 0.5rem;
     /* align-items: center; */
     text-align: justify;
+    max-width: 1206px;
+    margin: auto;
   }
 
   .article-content img {
@@ -81,9 +99,8 @@ const { title, content, image, date } = post;
     display: block !important;
   }
 
-
-
   @media (width < 1181px) {
+  
     .page-container {
       padding-inline: var(--padding-inline-tablet);
     }
@@ -104,7 +121,7 @@ const { title, content, image, date } = post;
 
   @media (width < 648px) {
     h1 {
-      font-size: 2.75rem;
+      font-size: 2.25rem;
       line-height: 2.75rem;
     }
     .page-container {
@@ -117,11 +134,10 @@ const { title, content, image, date } = post;
 
     .article-header-text {
       padding-inline: var(--padding-inline-mobile);
+      gap: 1.38rem;
     }
     .article-content {
       padding-inline: calc(var(--padding-inline-mobile) * -1);
     }
   }
-
-  
 </style>

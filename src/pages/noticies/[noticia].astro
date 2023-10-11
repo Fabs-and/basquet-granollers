@@ -35,6 +35,6 @@ const noticia = Astro.props;
 
 ---
 
-<BaseLayout pageTitle={noticia.title}>
-    <PostLayout post={noticia} />
-</BaseLayout>
+
+<PostLayout post={noticia} pageTitle={noticia.title}/>
+
