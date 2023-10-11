@@ -1,0 +1,15 @@
+---
+import PlayersLayout from "@layouts/PlayersLayout.astro";
+import { fetchImagesInPageBySlug } from "fetch-wordpress-api";
+
+// const maleTeam = fetchImagesInPageBySlug("equips/masculins/senior");
+
+const maleTeam = ''
+---
+
+<!-- Get also the heading and subHeading from the Wordpress -->
+<PlayersLayout
+  heading={`Equips masculins`}
+  subHeading={`Primer Equip`}
+  team={maleTeam}
+/>

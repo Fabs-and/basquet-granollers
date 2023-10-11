@@ -14,29 +14,30 @@ import type { Post } from "fetch-wordpress-api";
 import BaseLayout from "@layouts/BaseLayout.astro";
 import GridPostCard from "@components/homePage/news/GridPostCard.astro";
 import { dateConverter } from "@utils/helperFunctions";
+import InternalPageLayout from "@layouts/InternalPageLayout.astro";
+import Headings from "@components/internal-pages/headings.astro";
 
-const noticies = await fetchPostsInCategory(19);
+const noticies = await fetchPostsInCategory(19,[],21);
 
 ---
 
-<BaseLayout pageTitle={`Notícies del Club Bàsquet Granollers`}>
-  <section class="noticies-page-container">
-    <h1>Notícies del Club Bàsquet Granollers</h1>
-    <h3>Totes les notícies</h3>
+<InternalPageLayout title={`Notícies del Club Bàsquet Granollers`} heading={`Notícies del club Bàsquet Granollers`} subHeading={`Totes les notícies`}>
     <div class="noticies-container">
       {
         noticies.map((noticia: Post) => (
           <article class="noticia">
             <a href={`${noticia.slug}`}>
               <div class="image-container">
-               {noticia.image && <img
-                  src={noticia.image.url}
-                  alt={
-                    noticia.image.alt
-                      ? noticia.image.alt
-                      : noticia.title.rendered
-                  }
-                />}
+                {noticia.image && (
+                  <img
+                    src={noticia.image.url}
+                    alt={
+                      noticia.image.alt
+                        ? noticia.image.alt
+                        : noticia.title.rendered
+                    }
+                  />
+                )}
               </div>
               <div class="info-container">
                 <h4>
@@ -49,63 +50,50 @@ const noticies = await fetchPostsInCategory(19);
         ))
       }
     </div>
-  </section>
-</BaseLayout>
+</InternalPageLayout>
 
 <style>
-  h1 {
-    font-weight: 800;
-
-    padding-bottom: 1rem;
+  h4  { 
+    font-weight: 500;
   }
-
-  .noticies-page-container h3 {
-    color: var(--clr-accent);
-    padding-top: 0.5rem;
-  }
-  .noticies-page-container {
-    padding-block: 2rem;
-    padding-inline: var(--padding-inline);
-    background-color: var(--clr-contrast);
-    color: var(--clr-primary);
-  }
-
   .noticies-container {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
     gap: 1rem;
-    padding-top: 2rem;
     /* padding-inline: var(--padding-inline); */
   }
-  .noticies-page-container p {
+  
+  p {
+    position: absolute;
+    bottom: 0;
+    background-color: var(--clr-secondary);
+    padding-bottom: 0.5rem;
     font-style: italic;
-    font-weight: 560;
+    width: 100%;
+    z-index: 20;
   }
 
-  .noticies-page-container a {
+  a {
     display: block;
     height: 100%;
   }
 
-  .noticies-page-container img {
+  img {
     height: 100%;
     object-fit: cover;
     margin: auto;
   }
 
-  .noticies-page-container .info-container {
+  .info-container {
     position: relative; /* so the z-index has effect  */
     padding-inline: 1rem;
     padding-block: 0.5rem;
     color: var(--clr-contrast);
     background-color: var(--clr-secondary);
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
   }
 
-  .noticies-page-container .image-container {
+  .image-container {
     background-color: white;
     z-index: 0;
   }
@@ -119,18 +107,14 @@ const noticies = await fetchPostsInCategory(19);
   }
 
   .noticia .image-container {
-    height: 70%;
+    height: 67%;
   }
 
   .noticia .info-container {
-    height: 30%;
+    height: 33%;
   }
 
   @media (width < 1025px) {
-    .noticies-page-container {
-      padding-inline: var(--padding-inline-tablet);
-    }
-
     .noticia {
       width: 21.625rem;
       height: 20.93rem;
@@ -138,10 +122,6 @@ const noticies = await fetchPostsInCategory(19);
   }
 
   @media (width < 648px) {
-    .noticies-page-container {
-      padding-inline: var(--padding-inline-mobile);
-    }
-
     h1 {
       font-size: 2.5rem;
       line-height: 2.5rem;
