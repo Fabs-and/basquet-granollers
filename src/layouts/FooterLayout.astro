@@ -28,7 +28,7 @@ const bottomFooterLinks = extractBottomFooterInfo(content);
 
 <footer>
   <section class="footer-top-section">
-    <HomePageSectionLayout>
+    <HomePageSectionLayout noHeading={true}>
       <nav class="top-footer">
         <TopFooter {topFooterLinks}/>
       </nav>
@@ -62,8 +62,8 @@ const bottomFooterLinks = extractBottomFooterInfo(content);
   }
 
   .footer-top-section {
+    padding-bottom: var(--padding-section-big);
     background-color: var(--clr-footer);
-    padding-block: 4.5rem;
     padding-inline: var(--padding-inline)
   }
   
@@ -103,9 +103,7 @@ const bottomFooterLinks = extractBottomFooterInfo(content);
       padding-inline: var(--padding-inline-tablet);
     }
 
-    .footer-top-section {
-      padding-block: 3.19rem;
-    }
+ 
 
     .bottom-footer-desktop {
     padding-block: 2rem;
@@ -122,9 +120,6 @@ const bottomFooterLinks = extractBottomFooterInfo(content);
       padding-inline: var(--padding-inline-mobile);
     }
 
-    .footer-top-section {
-      padding-block: 2rem;
-    }
    
     .mobile {
       display: block;
