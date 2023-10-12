@@ -1,7 +1,7 @@
 <script>
   import { membershipCheck } from "@assets/icons";
   import { toggleDialog } from "@utils/helperFunctions";
-  export let item ={};
+  export let item = {};
 
   let expanded = false;
 
@@ -12,8 +12,8 @@
 
 <article class="membership-article opacity" class:expanded>
   <div class="image-container">
-    <img src={item.image.url} alt={item.image.alt} loading='lazy'/>
-    <h3 class="memebership-title">{item.title}</h3>
+    <img src={item.image.url} alt={item.image.alt} loading="lazy" />
+    <h3 class="membership-title">{item.title}</h3>
   </div>
   <article class="membership-info-container">
     <div class="membership-price">
@@ -67,7 +67,7 @@
     transition: height 0.3s ease;
   }
 
-  .memebership-title {
+  .membership-title {
     position: absolute;
     left: 1.88rem;
     bottom: 1.88rem;
@@ -147,15 +147,18 @@
     }
   }
 
-  @media (width < 1110px) {
-
-  }
   @media (width < 932px) {
     .membership-article {
       width: var(--slider-item-width);
       height: 29.625rem;
       flex-shrink: 0;
       position: relative;
+    }
+
+    .membership-title {
+  
+      bottom: 1.31rem;
+   
     }
 
     .button-anchor {
@@ -169,7 +172,6 @@
     .membership-info-container {
       height: 19.5rem;
     }
-
 
     .membership-article::before {
       content: "";
