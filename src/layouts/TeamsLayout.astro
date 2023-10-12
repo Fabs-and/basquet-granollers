@@ -8,9 +8,9 @@ const { teamsImages, heading, subHeading, title } = Astro.props;
 <InternalPageLayout {title} {heading} {subHeading}>
   <div class="images-container">
     {
-      teamsImages.map((image) => (
+      teamsImages.map((image, i) => (
         <div class="image-container">
-          <img src={image.url} alt={image.alt && image.alt} />
+          <img src={image.url} alt={image.alt && image.alt} loading={i < 3 ? "eager" : "lazy"}  />
         </div>
       ))
     }

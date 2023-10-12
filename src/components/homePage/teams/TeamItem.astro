@@ -20,7 +20,7 @@ const slug = foundPair ? foundPair.slug : "/equips/cos-tecnic";
 
 <article class="team-article">
   <a href={slug} class="responsive-anchor">
-    <img src={`${url}`} alt={alt} />
+    <img src={`${url}`} alt={alt} loading="lazy" />
     <div class="half-hidden">
       {
         title === "Escola de bàsquet" && (
@@ -28,6 +28,7 @@ const slug = foundPair ? foundPair.slug : "/equips/cos-tecnic";
             class="mascot"
             src={`/mascota.png`}
             alt={`La mascota del club. Una granota de dibuix vestida amb l'equipació del Bàsquet Granollers`}
+            loading="lazy"
           />
         )
       }

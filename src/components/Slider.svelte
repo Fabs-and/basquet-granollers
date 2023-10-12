@@ -68,7 +68,7 @@
   on:scroll={updateXScrollPosition}
 >
   {#each sliderItems as sliderItem, i (sliderItem.id)}
-    <div use:removeOpacity class:g-opacity={i > 0}>
+    <div use:removeOpacity={i} class:g-opacity={i > 0}>
       <svelte:component this={component} item={sliderItem} {isSliderItem} />
     </div>
   {/each}

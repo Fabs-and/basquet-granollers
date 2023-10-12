@@ -13,12 +13,12 @@ const { heading, subHeading, team } = Astro.props;
       {subHeading}>
     <div class="players-container">
       {
-        masculins[0].players.map((player) => (
+        masculins[0].players.map((player, i) => (
           <article class="player">
             <div class="image-container">
               <img
                 src={player.image ? player.image : "/player-avatar.png"}
-                alt=""
+                alt="" loading={i < 3 ? "eager" : "lazy"}
               />
             </div>
             <div class="info-container">

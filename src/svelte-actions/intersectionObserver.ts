@@ -1,4 +1,7 @@
-export function removeOpacity(node: Element) {
+export function removeOpacity(node: Element, index: number) {
+  // Return early if this is the first element
+  if (index === 0) return;
+
   let firstObservation = true;
 
   const observer = new IntersectionObserver(
@@ -11,17 +14,11 @@ export function removeOpacity(node: Element) {
 
         if (entry.isIntersecting) {
           node.classList.remove("g-opacity");
-          // Stop observing the element once it has intersected
-          // observer.unobserve(node);
-        }
-
-        if (!entry.isIntersecting) {
+        } else {
           node.classList.add("g-opacity");
-          // observer.unobserve(node);
         }
       });
     },
-
     {
       rootMargin: "0px",
       threshold: 0.3,

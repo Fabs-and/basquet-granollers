@@ -18,7 +18,7 @@
   <a href={`/noticies/${slug}`}>
     <div class="image-container">
       {#if image}
-        <img src={image.url} alt={image.alt} />
+        <img src={image.url} alt={image.alt} loading="lazy"/>
       {/if}
     </div>
     <div class="info-container">
