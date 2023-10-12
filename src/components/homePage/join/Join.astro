@@ -7,11 +7,14 @@ import ButtonAnchor from "@components/ButtonAnchor.svelte";
 import Slider from "@components/Slider.svelte";
 import Dialog from "@components/Dialog.astro";
 import { fetchPageBySlug } from "fetch-wordpress-api";
-import { extractMembershipsOptions, extractSponsorshipsOptions } from "@utils/helperFunctions";
+import {
+  extractMembershipsOptions,
+  extractSponsorshipsOptions,
+} from "@utils/helperFunctions";
 
 let isSelected = true;
 
-const joinPage = await fetchPageBySlug("la-familia-cbg/")
+const joinPage = await fetchPageBySlug("la-familia-cbg/");
 
 const memberships = extractMembershipsOptions(joinPage[0].content.rendered);
 const sponsors = extractSponsorshipsOptions(joinPage[0].content.rendered);
@@ -209,7 +212,6 @@ function toggleSelected() {
     gap: 1.5rem;
   }
   .button-anchor {
-    width: var(--btn-width-sm);
     transition: all 0.3s ease-in-out;
   }
   .selected {
@@ -325,25 +327,35 @@ function toggleSelected() {
       padding-right: var(--padding-inline-mobile);
       padding-bottom: var(--padding-heading-small);
     }
-  }
-
-  @media (width < 397px) {
     .options-container {
-      gap: 0rem;
-      width: 100%;
-      justify-content: space-between;
+      gap: 0.48rem;
+      /* width: 100%; */
+      /* justify-content: space-between; */
+    }
+
+    .button-anchor {
+      width: var(--btn-width-small);
     }
   }
+
+
 
   @media (width > 1400px) {
     .membership-desktop {
       padding-right: 0rem;
     }
-    
+
     .sponsors-desktop {
-      padding-right: 0rem;}
+      padding-right: 0rem;
+    }
     .title-and-options-container {
       padding-right: 0rem;
+    }
+  }
+
+  @media (width < 375px) {
+    .options-container {
+      gap: 0rem;
     }
   }
 </style>

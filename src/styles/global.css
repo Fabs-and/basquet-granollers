@@ -48,8 +48,8 @@
 
   /*Buttons*/
   --btn-height: 2.69rem;
-  --btn-width-regular: 10rem;
-  --btn-width-sm: 9.5rem;
+  --btn-width-regular: 11rem;
+  --btn-width-small: 9.8rem;
 
   /**/
   --membership-item-wd-big: 24.1875rem;
@@ -233,6 +233,7 @@ small {
   width: var(--btn-width-regular);
   border: 1px solid var(--clr-accent);
   border-radius: 1.75rem;
+  font-weight: 500;
 }
 
 .button-anchor:hover {

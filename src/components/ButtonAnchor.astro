@@ -12,7 +12,6 @@ const {
   slug: string;
   textColor: string;
   hoverTextColor: string;
-  isSmallBtn: boolean; // Define the new prop here
 };
 
 ---
@@ -20,7 +19,7 @@ const {
 <a
 class="button-anchor"
   href={slug}
-  class:list={[{ isFilled: isFilled},{ isSmallBtn: isSmallBtn }]}
+  class:list={[{ isFilled: isFilled}]}
   >{text.toUpperCase()}</a
 >
 
@@ -32,7 +31,4 @@ class="button-anchor"
     background-color: var(--clr-accent);
   }
 
-  .isSmallBtn {
-    width: var(--btn-width-sm);
-  }
 </style>
