@@ -7,6 +7,7 @@ import svelte from "@astrojs/svelte";
 // https://astro.build/config
 export default defineConfig({
   adapter: netlify(),
-  output: "hybrid",
+  //By default Astro will build your site as a static site, but you can also build it as a server-rendered site by setting the output option to server. Change to hybrid to by default being a static site generated
+  output: "server",
   integrations: [svelte()]
 });
