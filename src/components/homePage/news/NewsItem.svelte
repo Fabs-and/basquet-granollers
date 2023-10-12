@@ -36,7 +36,7 @@
     width: 100%;
     font-weight: 500;
     /* z-index: 2000; */
-    padding-block: 0.5rem;
+    /* padding-top: 0rem; */
   }
   a {
     display: block;
@@ -72,9 +72,12 @@
     overflow: hidden;
     flex-shrink: 0;
   }
-
+  .isFeatured p {
+    padding-bottom: 0.5rem;
+    padding-top: 0.1rem;
+  }
   .isFeatured .image-container {
-    height: 80%;
+    height: 78%;
   }
 
   .isFeatured .image-container img {
@@ -87,7 +90,7 @@
   }
 
   .isFeatured .info-container {
-    height: 20%;
+    height: 22%;
   }
 
   .isDesktopNews {
@@ -151,5 +154,6 @@
 
   .isSliderItem p {
     font-weight: 400;
+    padding-bottom: 0.5rem;
   }
 </style>

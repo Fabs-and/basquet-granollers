@@ -2,17 +2,15 @@
 import BaseLayout from "@layouts/BaseLayout.astro";
 import Headings from "@components/internal-pages/headings.astro";
 import { masculins } from "@data/teamsPage";
+import InternalPageLayout from "./InternalPageLayout.astro";
 
 const { heading, subHeading, team } = Astro.props;
 
 // change masculins for team
 ---
 
-<BaseLayout pageTitle={`Equips masculins del Club Bàsquet Granollers`}>
-  <section class="equips-page">
-    <Headings
-      {heading}
-      {subHeading}/>
+<InternalPageLayout  pageTitle={`Equips masculins del Club Bàsquet Granollers`}  {heading}
+      {subHeading}>
     <div class="players-container">
       {
         masculins[0].players.map((player) => (
@@ -31,20 +29,14 @@ const { heading, subHeading, team } = Astro.props;
         ))
       }
     </div>
-  </section>
-</BaseLayout>
+</InternalPageLayout>
 
 <style>
   h2 {
     color: var(--clr-accent);
     padding-top: 1.62rem;
   }
-  .equips-page {
-    background-color: var(--clr-contrast);
-    color: var(--clr-primary);
-    padding-block: 4.5rem;
-    padding-inline: var(--padding-inline);
-  }
+
   .name {
     font-size: 1.25rem;
     font-weight: 700;
@@ -54,7 +46,7 @@ const { heading, subHeading, team } = Astro.props;
     font-size: 0.78rem;
   }
   .players-container {
-    padding-block: var(--padding-section-big);
+    /* padding-block: var(--padding-section-big); */
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
@@ -108,10 +100,6 @@ const { heading, subHeading, team } = Astro.props;
   @media (width < 648px) {
     .equips-page {
       padding-inline: var(--padding-inline-mobile);
-      padding-block: var(--padding-section-big);
-    }
-
-    .players-container {
       padding-block: var(--padding-section-big);
     }
 

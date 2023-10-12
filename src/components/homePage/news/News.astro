@@ -3,16 +3,13 @@ import type { Post } from "fetch-wordpress-api";
 import NewsDesktop from "@components/homePage/news/NewsDesktop.svelte";
 import HomePageSectionLayout from "@layouts/HomePageSectionLayout.astro";
 import Slider from "@components/Slider.svelte";
-import { fetchPosts, fetchPostsInCategory} from 'fetch-wordpress-api'
+import { fetchPosts, fetchPostsInCategory } from "fetch-wordpress-api";
 
 const title = "CBG Notícies";
-
 
 const news: Post[] = await fetchPostsInCategory(19);
 
 const featuredNews = await fetchPostsInCategory(41);
-
-
 ---
 
 <HomePageSectionLayout
@@ -40,8 +37,6 @@ const featuredNews = await fetchPostsInCategory(41);
     display: none;
   }
 
- 
-
   @media (width < 1068px) {
     .news-desktop {
       display: none;
@@ -57,15 +52,9 @@ const featuredNews = await fetchPostsInCategory(41);
     }
   }
 
-
-function fetchPosts(arg0: number): Post[] | PromiseLike<Post[]> {
-throw new Error("Function not implemented.");
-}
   @media (width < 648px) {
     .g-slider-container {
       padding-bottom: var(--padding-section-small);
     }
   }
-
-   
 </style>
