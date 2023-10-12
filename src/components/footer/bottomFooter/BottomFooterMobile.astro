@@ -11,20 +11,22 @@ const { bottomFooterLinks, copyright } = Astro.props;
     <BottomFooterLinks {bottomFooterLinks} />
   </div>
 
-  <Copyright/>
+  <Copyright />
 
-    <SocialMediaMenu />
+  <SocialMediaMenu />
 </div>
 
 <style>
   .footer-main-container {
     height: var(--footer-bottom-section-tablet-hg);
-    align-items: center;
+    font-size: 0.75rem;
+    /* align-items: center; */
+    /* width: 100%; */
   }
 
   .mobile {
+    width: 100%;
     display: flex;
-    justify-content: space-around;
-    width: 16rem;
+    justify-content: space-between;
   }
 </style>

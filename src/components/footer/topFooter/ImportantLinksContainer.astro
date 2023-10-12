@@ -17,7 +17,25 @@ const {fixedLinks} = Astro.props
 </ul>
 
 <style>
-  ul {
-    width: 13.75rem;
+ 
+
+  h5 {
+    font-weight: 500;
+    /* font-size: 1.125rem; */
   }
+
+    /* Add padding to the bottom of all <li> elements */
+  .top-footer-articles li {
+    padding-bottom: 1.8rem; /* or whatever value you prefer */
+  }
+
+  /* Remove padding from the bottom of the last <li> element */
+  .top-footer-articles li:last-child {
+    padding-bottom: 0;
+  }
+
+  @media (width < 965px) {
+    h5 {
+    font-size: 1.125rem;
+  }}
 </style>

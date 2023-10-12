@@ -328,4 +328,8 @@ small {
   .g-slider-container {
     width: calc(100vw - var(--padding-inline-mobile));
   }
+
+  .top-footer-articles {
+    height: auto;
+  }
 }
