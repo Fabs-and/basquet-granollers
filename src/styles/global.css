@@ -67,6 +67,7 @@
 
   /*Font sizes*/
   --font-size-regular: 0.78125rem;
+  --font-size-regular: 0.75rem;
   --font-size-h1: 3.375rem;
   --font-size-h2: 2.25rem;
   --font-size-h2-medium: 1.625rem;
@@ -331,6 +332,12 @@ small {
     font-size: var(--font-size-h3-medium);
     /* line-height: var(--line-height-h2-medium); */
   }
+
+  /* body {
+
+  font-size: var(--font-size-regular-medium);
+  } */
+
   .g-internal-page {
     padding-inline: var(--padding-inline-tablet);
     padding-block: var(--padding-section-medium);
