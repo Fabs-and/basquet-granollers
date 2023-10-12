@@ -7,9 +7,9 @@ import { bottomHeaderLinks } from "@data/header";
 import DropDownAccordion from "./DropDownAccordion.astro";
 import {  extractNavigation } from "@utils/helperFunctions";
 
-const { content} = Astro.props;
+const { navigation, isSearchIcon } = Astro.props;
 
-const bottomHeaderContent = extractNavigation(content);
+
 ---
 
 <script>
@@ -34,7 +34,8 @@ const bottomHeaderContent = extractNavigation(content);
   });
 </script>
 
-<div class="flex-container">
+<div class={`flex-container ${!isSearchIcon ? 'reverse-order' : ''}`}>
+
   <button class="dropdown-menu">
     <Fragment set:html={hamburgerMenuIcon} />
   </button>
@@ -45,14 +46,15 @@ const bottomHeaderContent = extractNavigation(content);
     href="/"><Fragment set:html={logoSmall} /></a
   >
 
-  <div class="search-icon">
+ { isSearchIcon && <div class="search-icon">
     <Fragment set:html={magnifyingGlass} />
-  </div>
+  </div>}
 </div>
 
-<ul id="myDropdown" class="dropdown-content-responsive">
+<ul id="myDropdown" class={`dropdown-content-responsive ${!isSearchIcon ? 'reverse-transition' : ''}`}>
+
   {
-    bottomHeaderContent.map((item) => (
+    navigation.map((item) => (
       <li>
         {item.dropdown ? (
           <DropDownAccordion {item} />
@@ -66,6 +68,12 @@ const bottomHeaderContent = extractNavigation(content);
   }
 </ul>
 <style>
+  .reverse-order {
+    flex-direction: row-reverse;
+}
+  .reverse-transition {
+    --transition-direction: 100%;
+  }
   .dropdown-content-responsive {
     position: fixed;
     display: flex;
@@ -81,7 +89,7 @@ const bottomHeaderContent = extractNavigation(content);
     padding-block: 2.06rem;
     flex-direction:column;
     gap: 1.87rem;
-    transform: translateX(-100%);
+    transform: translateX(var(--transition-direction, -100%));
     transition: transform 0.2s ease-in-out;
   }
 

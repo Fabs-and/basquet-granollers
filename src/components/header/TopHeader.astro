@@ -2,9 +2,9 @@
 import SocialMediaMenu from "@components/SocialMediaMenu.astro";
 import { extractTopHeaderContent } from "@utils/helperFunctions";
 
-const { content } = Astro.props;
+const { topHeaderContent } = Astro.props;
 
-const topHeaderContent = extractTopHeaderContent(content);
+
 
 const { text1, link1 } = topHeaderContent![0];
 const { text2, link2 } = topHeaderContent![1];

@@ -5,13 +5,9 @@ import DropDownMenu from "@components/header/bottomHeader/DropDownMenu.astro";
 import { collapsibleArrowHeader, magnifyingGlass } from "@assets/icons";
 import { displayButtonHistory, displaySearchIcon, extractNavigation } from "@utils/helperFunctions";
 
-const { content} = Astro.props;
+const { navigation, isButtonHeader, isSearchIcon } = Astro.props;
 
-const bottomHeaderContent = extractNavigation(content);
 
-const isButtonHeader = displayButtonHistory(content);
-
-const isSearchIcon = displaySearchIcon(content);
 
 
 
@@ -28,7 +24,7 @@ const isSearchIcon = displaySearchIcon(content);
 <nav class="nav">
   <ul>
     {
-      bottomHeaderContent.map((item) => (
+      navigation.map((item) => (
         <li>
           {item.dropdown ? (
             <DropDownMenu {item}/>

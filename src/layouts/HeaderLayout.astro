@@ -5,7 +5,7 @@ import BottomHeader from "@components/header/bottomHeader/BottomHeader.astro";
 import BottomHeaderResponsive from "@components/header/bottomHeader/BottomHeaderResponsive.astro";
 import HeaderLineSeparator from "@components/header/HeaderLineSeparator.astro";
 import { fetchPageBySlug } from "fetch-wordpress-api";
-import { extractNavigation, extractTopHeaderContent } from "@utils/helperFunctions";
+import { displayButtonHistory, displaySearchIcon, extractNavigation, extractTopHeaderContent } from "@utils/helperFunctions";
 
 const page = await fetchPageBySlug("capcalera", ["content"]);
 
@@ -13,19 +13,25 @@ const {
   content: { rendered: content },
 } = page[0];
 
+const topHeaderContent = extractTopHeaderContent(content);
 
+const navigation = extractNavigation(content);
+
+const isButtonHeader = displayButtonHistory(content);
+
+const isSearchIcon = displaySearchIcon(content);
 ---
 
 <header>
   <section class="header-top-section">
-      <TopHeader {content} />
+      <TopHeader {topHeaderContent} />
   </section>
   <section class="header-bottom-section">
     <div class="bottom-header">
-      <BottomHeader {content}/>
+      <BottomHeader {navigation} {isButtonHeader} {isSearchIcon}/>
     </div>
     <div class="bottom-header responsive">
-      <BottomHeaderResponsive {content}/>
+      <BottomHeaderResponsive {navigation} {isSearchIcon}/>
     </div>
   </section>
   <div class="separator-line">
