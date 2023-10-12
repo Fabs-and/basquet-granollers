@@ -13,7 +13,7 @@ const { title, content, image, date } = post;
     <article>
       <header class="article-header">
         <div class="article-header-text">
-          <h1 set:html={title} />
+          <h1 set:html={formatHTMLContent(title)} />
           <p class="g-date-style">{`Publicat ${dateConverter(date)}`}</p>
         </div>
         {

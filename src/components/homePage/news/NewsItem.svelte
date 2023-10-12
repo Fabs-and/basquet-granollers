@@ -1,5 +1,5 @@
 <script>
-  import { dateConverter } from "../../../utils/helperFunctions";
+  import { dateConverter, formatHTMLContent } from "../../../utils/helperFunctions";
 
   export let item;
 
@@ -22,7 +22,7 @@
       {/if}
     </div>
     <div class="info-container">
-      <h4>{@html title}</h4>
+      <h4>{@html formatHTMLContent(title)}</h4>
       <p class="g-date-style">{`Publicat ${dateConverter(date)}`}</p>
     </div>
   </a>

@@ -48,6 +48,9 @@ export function formatHTMLContent(str: string) {
     '<a$1 style="color: var(--clr-primary); text-decoration: underline">',
   );
 
+  // Replace right accents with apostrophes
+  newStr = newStr.replace(/(\b)´(\b)/g, "$1'$2");
+  
   // Replace heading tags and adjust capitalization
   newStr = newStr.replace(
     /<(\/?)h([1-6])([^>]*)>(.*?)<\/h\2>/g,
@@ -79,6 +82,7 @@ export function formatHTMLContent(str: string) {
           });
         return `<${closingSlash}h${newLevel}${restWithoutClassOrStyle} class="${className}">${adjustedContent}</h${newLevel}>`;
       }
+
       return match; // Return the original match if the new level is out of range
     },
   );
@@ -367,8 +371,6 @@ const nameLinkRegex =
   /Nom:(?:\s|&nbsp;)*<\/strong>(?:\s|&nbsp;)*(.*?)(?:\s|&nbsp;)*<strong>, Link:(?:\s|&nbsp;)*<\/strong>(?:\s|&nbsp;)*(.*?)(?:\s|&nbsp;)*<\/p>/gis;
 
 export function extractTopFooterInfo(content: string) {
-  
-
   const generalLinksStart = content.indexOf(
     "Links Generals (Fins a tres elements)",
   );
@@ -383,12 +385,15 @@ export function extractTopFooterInfo(content: string) {
     const contentItems = [];
 
     for (const nameLinkMatch of sectionContent.matchAll(nameLinkRegex)) {
-      contentItems.push({ name: addApostrophe(nameLinkMatch[1]), link: addApostrophe(nameLinkMatch[2]) });
+      contentItems.push({
+        name: addApostrophe(nameLinkMatch[1]),
+        link: addApostrophe(nameLinkMatch[2]),
+      });
     }
 
     generalLinks.push({ title: sectionTitle, content: contentItems });
   }
- 
+
   const fixedLinksStart = content.indexOf("Links Fixes");
   const fixedLinksEnd = content.indexOf("PEU DE PÀGINA INFERIOR");
 
@@ -397,13 +402,16 @@ export function extractTopFooterInfo(content: string) {
   const fixedLinks = [];
 
   for (const nameLinkMatch of fixedLinksSection.matchAll(nameLinkRegex)) {
-    fixedLinks.push({ name: addApostrophe(nameLinkMatch[1]), link: addApostrophe(nameLinkMatch[2]) });
+    fixedLinks.push({
+      name: addApostrophe(nameLinkMatch[1]),
+      link: addApostrophe(nameLinkMatch[2]),
+    });
   }
 
   return { generalLinks, fixedLinks };
 }
 
-export function extractBottomFooterInfo(content: string) { 
+export function extractBottomFooterInfo(content: string) {
   const linksStart = content.indexOf("PEU DE PÀGINA INFERIOR");
   const linksEnd = content.length;
 
@@ -412,7 +420,10 @@ export function extractBottomFooterInfo(content: string) {
   const links = [];
 
   for (const nameLinkMatch of linksSection.matchAll(nameLinkRegex)) {
-    links.push({ name: addApostrophe(nameLinkMatch[1]), link: addApostrophe(nameLinkMatch[2]) });
+    links.push({
+      name: addApostrophe(nameLinkMatch[1]),
+      link: addApostrophe(nameLinkMatch[2]),
+    });
   }
 
   return links;
