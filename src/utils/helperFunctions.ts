@@ -313,17 +313,17 @@ export function addApostrophe(str: string) {
   return str.replace(/&#8217;/g, "'");
 }
 
-//The next regex works for the next two functions
-const imageURLRegex = /src="([^"]*)"/gi;
-const imageAltRegex = /alt="([^"]*)"/gi;
-const titleRegex =
-  /(?:&gt;|&nbsp;)*\s*T[ií]tol:\s*<\/strong>\s*(?:&nbsp;)*(.*?)(?:&nbsp;)*(?:<br \/>\n|<\/p>)/gi;
-const priceRegex =
-  /(?:&gt;|&nbsp;)*\s*Preu:\s*<\/strong>\s*(?:&nbsp;)*(.*?)(?:&nbsp;)*(?:<br \/>\n|<\/p>)/gi;
-const advantagesRegex =
-  /(?:&gt;|&nbsp;)*\s*Avantatges:\s*(?:<\/strong>\s*<br \/>\s*\n|<br \/>\s*\n\s*<\/strong>)([\s\S]*?)(?:&nbsp;)*<\/p>/gis;
+
 
 export function extractMembershipsOptions(content: string) {
+  const imageURLRegex = /src="([^"]*)"/gi;
+  const imageAltRegex = /alt="([^"]*)"/gi;
+  const titleRegex =
+    /(?:&gt;|&nbsp;)*\s*T[ií]tol:\s*<\/strong>\s*(?:&nbsp;)*(.*?)(?:&nbsp;)*(?:<br \/>\n|<\/p>)/gi;
+  const priceRegex =
+    /(?:&gt;|&nbsp;)*\s*Preu:\s*<\/strong>\s*(?:&nbsp;)*(.*?)(?:&nbsp;)*(?:<br \/>\n|<\/p>)/gi;
+  const advantagesRegex =
+    /(?:&gt;|&nbsp;)*\s*Avantatges:\s*(?:<\/strong>\s*<br \/>\s*\n|<br \/>\s*\n\s*<\/strong>)([\s\S]*?)(?:&nbsp;)*<\/p>/gis;
   const membershipsStart = content.indexOf("MEMBRES");
   const membershipsEnd = content.indexOf("SPONSORS");
   const membershipsSection = content.slice(membershipsStart, membershipsEnd);
@@ -356,6 +356,12 @@ export function extractMembershipsOptions(content: string) {
 }
 
 export function extractSponsorshipsOptions(content: string) {
+  const titleRegex =
+    /(?:&gt;|&nbsp;)*\s*T[ií]tol:\s*<\/strong>\s*(?:&nbsp;)*(.*?)(?:&nbsp;)*(?:<br \/>\n|<\/p>)/gi;
+  const priceRegex =
+    /(?:&gt;|&nbsp;)*\s*Preu:\s*<\/strong>\s*(?:&nbsp;)*(.*?)(?:&nbsp;)*(?:<br \/>\n|<\/p>)/gi;
+  const advantagesRegex =
+    /(?:&gt;|&nbsp;)*\s*Avantatges:\s*(?:<\/strong>\s*<br \/>\s*\n|<br \/>\s*\n\s*<\/strong>)([\s\S]*?)(?:&nbsp;)*<\/p>/gis;
   const sponsorshipsStart = content.indexOf("MEMBRES");
   const membershipsEnd = content.length;
   const sponsorshipsSection = content.slice(sponsorshipsStart, membershipsEnd);
