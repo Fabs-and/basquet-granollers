@@ -137,7 +137,7 @@
 
   .isSliderItem {
     height: 18rem;
-    width: 18.6875rem;
+    width: var(--slider-item-width);
     flex-shrink: 0;
     border-top-left-radius: 2.9375rem;
     overflow: hidden;

@@ -151,6 +151,13 @@
 
   }
   @media (width < 932px) {
+    .membership-article {
+      width: var(--slider-item-width);
+      height: 29.625rem;
+      flex-shrink: 0;
+      position: relative;
+    }
+
     .button-anchor {
       display: none;
     }
@@ -163,11 +170,6 @@
       height: 19.5rem;
     }
 
-    .membership-article {
-      height: 29.625rem;
-      flex-shrink: 0;
-      position: relative;
-    }
 
     .membership-article::before {
       content: "";

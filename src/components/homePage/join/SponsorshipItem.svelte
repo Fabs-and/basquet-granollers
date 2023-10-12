@@ -71,7 +71,7 @@
 
   @media (width < 859px) {
     .sponsor-article {
-      width: 18.6875rem;
+      width: var(--slider-item-width);
       height: 100%;
     }
 

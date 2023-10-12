@@ -17,7 +17,7 @@
 
 <style>
   .slider-item {
-    width: 18.6875rem;
+    width: var(--slider-item-width);
     height: 11.0625rem;
     flex-shrink: 0;
     scroll-snap-align: start;
