@@ -24,7 +24,7 @@ export function removeOpacity(node: Element) {
 
     {
       rootMargin: "0px",
-      threshold: 0.7,
+      threshold: 0.5,
     },
   );
 

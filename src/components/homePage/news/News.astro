@@ -18,7 +18,11 @@ const featuredNews = await fetchPostsInCategory(41);
   backgroundColor={`var(--clr-contrast)`}
 >
   <div class="news-desktop">
-    <NewsDesktop client:visible featuredNews={featuredNews[0]} {news} />
+    <NewsDesktop
+      client:visible
+      featuredNews={featuredNews[0] ? featuredNews[0] : news[0]}
+      {news}
+    />
   </div>
 
   <div class="g-slider-container">
