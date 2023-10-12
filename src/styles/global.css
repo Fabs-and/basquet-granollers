@@ -278,18 +278,22 @@ small {
 }
 
 /*Button Classes*/
+
 .button-anchor-internals {
   text-decoration: none;
   display: grid;
   place-items: center;
-  height: var(--btn-height);
-  width: fit-content;
+  min-height: var(--btn-height);
   padding-inline: 1rem;
   font-weight: 560;
+  padding-block: 0.5rem;
   border: 1px solid var(--clr-accent);
   border-radius: 1.75rem;
   color: var(--clr-accent);
-  align-self: center;
+  max-width: 20.4375rem;
+  margin-block: 2rem;
+  margin-inline: auto;
+  text-align: center;
 }
 
 .button-anchor-internals:hover {

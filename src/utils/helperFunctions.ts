@@ -50,7 +50,7 @@ export function formatHTMLContent(str: string) {
 
   // Replace right accents with apostrophes
   newStr = newStr.replace(/(\b)´(\b)/g, "$1'$2");
-  
+
   // Replace heading tags and adjust capitalization
   newStr = newStr.replace(
     /<(\/?)h([1-6])([^>]*)>(.*?)<\/h\2>/g,
@@ -122,6 +122,19 @@ export function formatHTMLContent(str: string) {
       return `<a${attributes}>${uppercaseContent}</a>`;
     },
   );
+
+  // Set width to 100% for iframe tags
+  newStr = newStr.replace(/<iframe([^>]+)>/g, (match, p1) => {
+    // Check if width attribute already exists
+    const widthAttrMatch = p1.match(/\bwidth="[^"]*"/);
+    if (widthAttrMatch) {
+      // Replace value of existing width attribute
+      return match.replace(widthAttrMatch[0], 'width="100%"');
+    } else {
+      // Add width attribute if it doesn't exist
+      return `<iframe width="100%"${p1}>`;
+    }
+  });
 
   return newStr;
 }
@@ -259,6 +272,7 @@ export function extractNavigation(content: string): NavItem[] {
     }
   }
 
+  
   return navigation;
 }
 
