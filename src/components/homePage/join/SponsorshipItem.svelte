@@ -1,7 +1,7 @@
 <script>
   import ButtonAnchor from "@components/ButtonAnchor.svelte";
   import { membershipCheck } from "@assets/icons";
-
+   import { toggleDialog } from "@utils/helperFunctions";
   import { sliderLeftArrowWhite, sliderRightArrowWhite } from "@assets/icons";
   export let item;
 </script>
@@ -26,9 +26,7 @@
       </div>
     {/each}
   </div>
-  <div class="button-anchor">
-    <ButtonAnchor text={`veure més`} />
-  </div>
+   <button on:click={toggleDialog} class="button-anchor"> CONTACTA </button>
 </article>
 
 <style>
