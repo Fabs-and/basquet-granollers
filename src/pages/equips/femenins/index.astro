@@ -6,7 +6,8 @@ const teamsImages = await fetchImagesInPageBySlug(
   "equips-femenins-temporada-22-23",
 );
 
-const teamCategory = "femenins";
+const title = "Els equips femenins del club Bàsquet Granollers";
+const heading = "Els equips femenins";
 ---
 
-<TeamsLayout {teamsImages} {teamCategory} />
+<TeamsLayout {teamsImages} {title} {heading} />

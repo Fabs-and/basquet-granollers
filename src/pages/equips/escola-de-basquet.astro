@@ -6,7 +6,8 @@ const teamsImages = await fetchImagesInPageBySlug(
   "escola-de-basquet-temporada-22-23/",
 );
 
-const teamCategory = "Escola de bàsquet	";
+const title = "L'equip de l'escola de bàsquet del club Bàsquet Granollers";
+const heading = "L'equip de l'escola de bàsquet";
 ---
 
-<TeamsLayout {teamsImages} {teamCategory} />
+<TeamsLayout {teamsImages} {title} {heading} />
