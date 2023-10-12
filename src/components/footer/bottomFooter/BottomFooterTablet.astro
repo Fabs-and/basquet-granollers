@@ -9,7 +9,7 @@ const { bottomFooterLinks } = Astro.props;
 
 ---
 
-<div class="footer-main-container">
+
   <div class="tablet">
     <BottomFooterLinks {bottomFooterLinks} />
 
@@ -18,13 +18,9 @@ const { bottomFooterLinks } = Astro.props;
   <div class="copyright">
     <Copyright/>
   </div>
-</div>
+
 
 <style>
-  .footer-main-container {
-    height: var(--footer-bottom-section-hg);
-  }
-  
   .tablet {
     display: flex;
     align-items: center;

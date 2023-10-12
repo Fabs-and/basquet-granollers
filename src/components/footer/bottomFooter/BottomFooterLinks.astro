@@ -2,22 +2,26 @@
 const { bottomFooterLinks } = Astro.props;
 ---
 
-
-  {
-    bottomFooterLinks.map((link) => (
-      <a
-        class="underline-links"
-        href={`${link.link}`}
-      >
-        {link.name}
-      </a>
-    ))
-  }
-
+{
+  bottomFooterLinks.map((link) => (
+    <a class="underline-links" href={`${link.link}`}>
+      {link.name}
+    </a>
+  ))
+}
 
 <style>
+  a {
+    font-size: 0.5625rem;
+  }
+
   a:not(:last-child) {
     margin-right: 1.62rem;
-    font-size: 0.75rem;
+  }
+
+  @media (width < 1025px) {
+      a {
+    font-size: 0.75rem;;
+  }
   }
 </style>

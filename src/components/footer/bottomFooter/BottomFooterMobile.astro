@@ -6,7 +6,7 @@ import Copyright from "./Copyright.astro";
 const { bottomFooterLinks, copyright } = Astro.props;
 ---
 
-<div class="footer-main-container">
+
   <div class="mobile">
     <BottomFooterLinks {bottomFooterLinks} />
   </div>
@@ -14,15 +14,9 @@ const { bottomFooterLinks, copyright } = Astro.props;
   <Copyright />
 
   <SocialMediaMenu />
-</div>
+
 
 <style>
-  .footer-main-container {
-    height: var(--footer-bottom-section-tablet-hg);
-    font-size: 0.75rem;
-    /* align-items: center; */
-    /* width: 100%; */
-  }
 
   .mobile {
     width: 100%;

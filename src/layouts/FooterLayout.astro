@@ -31,17 +31,15 @@ const bottomFooterLinks = extractBottomFooterInfo(content);
 <footer>
   <section class="footer-top-section">
     <HomePageSectionLayout noHeading={true}>
-      <div class="desktop">
-        <nav class="top-footer">
-          <TopFooter {topFooterLinks} />
-        </nav>
-      </div>
+      <nav class="top-footer-desktop">
+        <TopFooter {topFooterLinks} />
+      </nav>
 
-      <nav class="top-footer tablet">
+      <nav class="top-footer-tablet">
         <TopFooterTablet {topFooterLinks} />
       </nav>
 
-      <nav class="top-footer mobile">
+      <nav class="top-footer-mobile">
         <TopFooterMobile {topFooterLinks} />
       </nav>
     </HomePageSectionLayout>
@@ -51,10 +49,10 @@ const bottomFooterLinks = extractBottomFooterInfo(content);
     <div class="bottom-footer-desktop">
       <BottomFooter {bottomFooterLinks} {copyright} />
     </div>
-    <div class="tablet">
+    <div class="bottom-footer-tablet">
       <BottomFooterTablet {bottomFooterLinks} {copyright} />
     </div>
-    <div class="mobile">
+    <div class="bottom-footer-mobile">
       <BottomFooterMobile {bottomFooterLinks} {copyright} />
     </div>
   </section>
@@ -71,11 +69,11 @@ const bottomFooterLinks = extractBottomFooterInfo(content);
     padding-right: var(--padding-inline);
   }
 
-  .bottom-footer-desktop {
+  .bottom-footer-section {
     padding-block: 2rem;
     padding-inline: var(--padding-inline);
   }
-  .top-footer {
+  .top-footer-desktop {
     /* min-height: var(--footer-top-section-hg); */
 
     display: flex;
@@ -83,8 +81,10 @@ const bottomFooterLinks = extractBottomFooterInfo(content);
     justify-content: space-between;
   }
 
-  .tablet,
-  .mobile {
+  .top-footer-tablet,
+  .bottom-footer-tablet,
+  .top-footer-mobile,
+  .bottom-footer-mobile {
     display: none;
   }
 
@@ -93,43 +93,41 @@ const bottomFooterLinks = extractBottomFooterInfo(content);
   }
 
   @media (width < 1025px) {
-  
     .footer-top-section {
       padding-right: var(--padding-inline-tablet);
       padding-bottom: var(--padding-section-medium);
     }
-    .footer-top-section {
-    }
-
-  }
-  @media (width < 965px) {
-    .top-footer,
-    .bottom-footer-desktop {
-      display: none;
-    }
-
-    .tablet {
-      display: block;
-    }
-    .desktop {
-      display: none;
-    }
- 
     .bottom-footer-section {
       padding-inline: var(--padding-inline-tablet);
     }
 
-    
-    .block-footer-desktop {
-      padding-block: 2rem;
+    .bottom-footer-desktop {
+      display: none;
+    }
+    .bottom-footer-tablet {
+      display: flex;
+      flex-direction: column;
+      gap: 2.12rem;
+    }
+  }
+  @media (width < 896px) {
+    .top-footer-desktop {
+      display: none;
+    }
+
+    .top-footer-tablet {
+      display: block;
     }
   }
 
   @media (width < 648px) {
-    .tablet {
+    .top-footer-tablet {
       display: none;
     }
 
+    .bottom-footer-tablet {
+      display: none;
+    }
 
     .bottom-footer-section {
       padding-inline: var(--padding-inline-mobile);
@@ -137,15 +135,20 @@ const bottomFooterLinks = extractBottomFooterInfo(content);
 
     .footer-top-section {
       padding-bottom: var(--padding-section-small);
-
     }
-    .mobile {
+
+    .bottom-footer-mobile {
+      display: flex;
+      flex-direction: column;
+      gap: 2.12rem;
+    }
+    .top-footer-mobile {
       display: block;
     }
   }
 
   @media (width > 1400px) {
-    .top-footer {
+    .top-footer-desktop {
       padding-right: 0rem;
     }
 
@@ -153,7 +156,7 @@ const bottomFooterLinks = extractBottomFooterInfo(content);
       padding-inline: 0rem;
     }
     .bottom-footer-section {
-      padding-inline: 0rem;
+      padding-inline: var(--padding-inline);
     }
   }
 </style>
