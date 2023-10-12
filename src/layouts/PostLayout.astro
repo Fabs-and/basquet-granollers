@@ -46,24 +46,23 @@ const { title, content, image, date } = post;
 
   .article-header {
     position: relative;
-    min-height: 19.0625rem;
     background: #181e29;
     margin-inline: calc(var(--padding-inline) * -1);
-   
+    
   }
-
+  
   .article-header-text {
     color: var(--clr-contrast);
     position: relative;
     padding-inline: var(--padding-inline-internal-page);
     /* padding-block: 4.37rem; */
     padding-block: 2rem;
+    min-height: 19.0625rem;
     z-index: 2;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: space-between;
-    height: fit-content;
     text-align: center;
     justify-content: center;
     text-wrap: balance;
