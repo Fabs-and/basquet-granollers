@@ -43,6 +43,10 @@
 </article>
 
 <style>
+  h3 {
+    font-size: 1.875rem;
+    font-weight: 600;
+  }
   .expanded {
     height: 52.13rem !important;
   }
@@ -148,6 +152,9 @@
   }
 
   @media (width < 932px) {
+    h3 {
+      font-size: 1.375rem;
+    }
     .membership-article {
       width: var(--slider-item-width);
       height: 29.625rem;
