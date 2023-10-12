@@ -123,19 +123,19 @@
   }
 
   .news.next.active {
-    animation: slide-in-from-left 0.45s forwards ease-in;
-  }
-
-  .news.next.outgoing {
-    animation: slide-out-to-right 0.45s forwards ease-in;
-  }
-
-  .news.prev.active {
     animation: slide-in-from-right 0.45s forwards ease-in;
   }
 
-  .news.prev.outgoing {
+  .news.next.outgoing {
     animation: slide-out-to-left 0.45s forwards ease-in;
+  }
+
+  .news.prev.active {
+    animation: slide-in-from-left 0.45s forwards ease-in;
+  }
+
+  .news.prev.outgoing {
+    animation: slide-out-to-right 0.45s forwards ease-in;
   }
 
   .controls {
