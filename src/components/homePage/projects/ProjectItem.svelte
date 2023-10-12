@@ -21,6 +21,7 @@
     height: 11.0625rem;
     flex-shrink: 0;
     scroll-snap-align: start;
+    background-color: var(--clr-contrast);
   }
 
   a {
@@ -29,8 +30,8 @@
   }
 
   .image {
+    width: 100%;
     height: 100%;
-    object-fit: contain;
-    margin: auto;
+    object-fit: cover;
   }
 </style>
