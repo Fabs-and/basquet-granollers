@@ -40,6 +40,7 @@ const { text2, link2 } = topHeaderContent![1];
 
 <style>
   .top-header-content {
+    position: relative;
     font-size: 0.78125rem;
     font-weight: 500;
     font-style: italic;
@@ -47,13 +48,18 @@ const { text2, link2 } = topHeaderContent![1];
     min-height: var(--top-header-hg);
     display: flex;
     align-items: center;
-    justify-content: space-between;
     padding-left: 12.14rem;
     padding-right: var(--padding-inline);
   }
 
+  .text-content {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+  }
   .social-menu {
-    order: 3;
+    position: absolute;
+    right: var(--padding-inline);
   }
 
   @media(width < 1025px) {

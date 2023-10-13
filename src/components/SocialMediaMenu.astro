@@ -1,7 +1,8 @@
-<!-- ---
+---
 import { fetchImagesInPageBySlug } from "fetch-wordpress-api";
 
 const socialMediaLinks = await fetchImagesInPageBySlug("xarxes-socials");
+
 ---
 
 <nav>
@@ -12,7 +13,7 @@ const socialMediaLinks = await fetchImagesInPageBySlug("xarxes-socials");
           ? "Instagram"
           : socialMediaLink.title.toLowerCase().includes("facebook")
           ? "Facebook"
-          : socialMediaLink.title.toLowerCase().includes("twitter")
+          : socialMediaLink.title.toLowerCase().includes("x.com")
           ? "Twitter"
           : socialMediaLink.title.toLowerCase().includes("youtube")
           ? "Youtube"
@@ -20,7 +21,10 @@ const socialMediaLinks = await fetchImagesInPageBySlug("xarxes-socials");
           ? "Twitch"
           : "TikTok";
 
-        const { url, caption, alt } = socialMediaLink;
+          let { url, caption, alt } = socialMediaLink;
+          if (name === "TikTok") {
+            caption = `https://www.tiktok.com/${caption}`;
+          }
         return (
           <li>
             <a
@@ -53,4 +57,4 @@ const socialMediaLinks = await fetchImagesInPageBySlug("xarxes-socials");
     display: flex;
     align-items: center;
   }
-</style> -->
+</style>
