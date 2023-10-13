@@ -1,0 +1,13 @@
+---
+import TeamsLayout from "@layouts/TeamsLayout.astro";
+import { fetchImagesInPageBySlug } from "fetch-wordpress-api";
+
+const teamsImages = await fetchImagesInPageBySlug(
+  "entrenadors-i-entrenadores-temporada-22-23/",
+);
+
+const title = "El cos tècnic del club Bàsquet Granollers";
+const heading = "El cos tècnic";
+---
+
+<TeamsLayout {teamsImages} {title} {heading} />

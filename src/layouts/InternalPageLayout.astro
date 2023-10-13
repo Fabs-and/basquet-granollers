@@ -1,0 +1,41 @@
+---
+import BaseLayout from "./BaseLayout.astro";
+import Headings from "@components/internal-pages/headings.astro";
+const { title, heading, subHeading } = Astro.props;
+---
+
+<BaseLayout {title}>
+  <section class="internal-page">
+    <div class="max-width-page">
+        <Headings {heading} {subHeading}/>
+      <slot/>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .internal-page {
+    background-color: var(--clr-contrast);
+    color: var(--clr-primary);
+    padding-block: var(--padding-section-big);
+    padding-inline: var(--padding-inline);
+  }
+
+  .max-width-page {
+    max-width: 1206px;
+    margin: 0 auto;
+  }
+
+  @media (width < 1025px) {
+    .internal-page {
+    padding-block: var(--padding-section-medium);
+    padding-inline: var(--padding-inline-tablet);
+  }
+  }
+  @media (width < 648px) {
+    .internal-page {
+    padding-block: var(--padding-section-small);
+    padding-inline: var(--padding-inline-mobile);
+  }
+  }
+</style>

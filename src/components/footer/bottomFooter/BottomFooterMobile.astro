@@ -1,0 +1,26 @@
+---
+import SocialMediaMenu from "@components/SocialMediaMenu.astro";
+import BottomFooterLinks from "./BottomFooterLinks.astro";
+import Copyright from "./Copyright.astro";
+
+const { bottomFooterLinks, copyright } = Astro.props;
+---
+
+
+  <div class="mobile">
+    <BottomFooterLinks {bottomFooterLinks} />
+  </div>
+
+  <Copyright />
+
+  <SocialMediaMenu />
+
+
+<style>
+
+  .mobile {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+  }
+</style>

@@ -1,0 +1,105 @@
+---
+import HomePageSectionLayout from "@layouts/HomePageSectionLayout.astro";
+import MobileCarousel from "./MobileCarousel.svelte";
+import ProjectItem from "@components/projects/ProjectItem.svelte";
+import Slider from "@components/Slider.svelte";
+// import { projects } from "@data/projects.ts";
+import { fetchPostsInCategory } from "fetch-wordpress-api";
+
+const projects = await fetchPostsInCategory(42);
+---
+
+<HomePageSectionLayout sectionTitle="Projectes">
+  <div class="projects-desktop">
+    {
+      projects.map((project) =>
+        project.image ? (
+          <article class="project-item">
+            <a href={`/projectes/${project.slug}`}>
+                <img
+                  class="image"
+                  src={project.image.url}
+                  alt={project.image.alt}
+                />
+            </a>
+          </article>
+        ) : null,
+      )
+    }
+  </div>
+
+  <div class="g-slider-container mobile">
+    <Slider
+      client:visible
+      sliderItems={projects}
+      childComponent={`ProjectItem`}
+      itemWidth={331}
+      gap={`1rem`}
+    />
+  </div>
+</HomePageSectionLayout>
+
+<style>
+  .mobile {
+    display: none;
+  }
+
+  a {
+    display: block;
+    height: 100%;
+  }
+  .projects-desktop {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    padding-right: var(--padding-inline);
+    /* 
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(20rem, 1fr));
+    justify-items: center; */
+    gap: 1rem;
+    padding-bottom: var(--padding-section-big);
+  }
+  
+  
+  
+  .project-item {
+    background: var(--clr-contrast);
+    width: 24.1875rem;
+    height: 14.375rem;
+  }
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  @media (width < 1025px) {
+    .projects-desktop {
+      padding-right: var(--padding-inline-tablet);
+      padding-bottom: var(--padding-section-medium);
+    }
+  }
+
+  @media (width < 720px) {
+    .mobile {
+      display: block;
+      padding-bottom: var(--padding-section-medium);
+    }
+    .projects-desktop {
+      display: none;
+    }
+  }
+
+  @media (width < 648px) {
+    .mobile {
+      padding-bottom: var(--padding-section-small);
+    }
+  }
+
+  @media (width > 1400px) {
+    .projects-desktop {
+      padding-right: 0rem;
+    }
+  }
+</style>

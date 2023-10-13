@@ -1,0 +1,135 @@
+---
+// Import types
+// import { Endpoints, CategoryFields } from 'src/types';
+// import type { Category, Post } from 'src/types';
+
+// Import components
+import PostCard from "@components/homePage/news/PostCard.astro";
+
+import NewsSection from "@components/postCards/NewsSection.svelte";
+import IndividualNews from "@components/postCards/NewsItem.svelte";
+// Import api functions from utils
+import { fetchAllCategories } from "fetch-wordpress-api";
+
+import type {
+  Endpoints,
+  CategoryFields,
+  Category,
+  Post,
+} from "fetch-wordpress-api";
+// Import utils functions
+import { categoryMapper } from "@utils/helperFunctions";
+import ButtonAnchor from "@components/ButtonAnchor.astro";
+import { sliderLeftArrow, sliderRightArrow } from "@assets/icons";
+
+const { posts, allCategories } = Astro.props as {
+  posts: Post[];
+  allCategories: Category[];
+};
+
+const firstPost = posts.at(0);
+// console.log("firstPost", firstPost);
+const isFirstPost = true;
+// let currentIndex = 0;
+---
+
+<!-- <script define:vars={{currentIndex: currentIndex}}>
+  const leftArrow = document.querySelector("#left-arrow");
+  console.log('left-arrow', leftArrow);
+  // console.log('currentIndex', currentIndex);
+function goToPreviousPosts() {
+  if (currentIndex - 4 >= 0) {
+    currentIndex -= 4;
+  }
+  console.log('clickeeed')
+}
+
+  leftArrow.addEventListener("click",function() { return console.log('clickeeed')});
+</script> -->
+<!-- <section class="noticies-container">
+  <h2>CBG Notícies</h2>
+  <div class="postCard-container">
+    <IndividualNews post={firstPost} {isFirstPost}/>
+
+    <div class="older-posts">
+      {
+        posts.map((post: Post, i) => {
+          if (i > 0 && i < 4) {
+            return (
+               <IndividualNews {post}/>
+            );
+          }
+        })
+      }
+      <div class="position-container">
+        <div class="position-controls-container">
+          <button id="left-arrow">
+            <Fragment set:html={sliderLeftArrow} />
+          </button>
+          <span class="position-indicator">
+            <span class="first-number"> 01</span>
+             /
+            <span class="second-number"> 04</span>
+          </span>
+          <button id="right-arrow">
+            <Fragment set:html={sliderRightArrow} />
+          </button>
+        </div>
+        <ButtonAnchor
+          text={"veure totes"}
+          textColor={"var(--clr-accent)"}
+          hoverTextColor={"var(--clr-contrast)"}
+        />
+      </div>
+    </div>
+  </div>
+</section> -->
+
+<!-- <NewsSection client:load posts={posts}/> -->
+
+<style>
+  section.noticies-container {
+    padding-inline: var(--padding-inline);
+    background-color: var(--clr-contrast);
+    color: var(--clr-primary);
+  }
+
+  div.postCard-container {
+    display: flex;
+    padding-block: 2rem;
+    gap: 1rem;
+  }
+
+  div.older-posts {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    /* margin-inline-start: 2rem; */
+  }
+
+  .position-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    /* gap: 1rem; */
+  }
+
+  .position-controls-container {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  .position-indicator {
+    font-size: 0.78125rem;
+    font-weight: 550;
+  }
+
+  .first-number {
+    color: var(--clr-accent);
+  }
+
+  .button:hover {
+    fill: var(--clr-accent);
+  }
+</style>

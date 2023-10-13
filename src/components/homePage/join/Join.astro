@@ -1,0 +1,359 @@
+---
+import MembershipItem from "@components/homePage/join/MembershipItem.svelte";
+import HomePageSectionLayout from "@layouts/HomePageSectionLayout.astro";
+import SponsorshipItem from "@components/homePage/join/SponsorshipItem.svelte";
+import ButtonAnchor from "@components/ButtonAnchor.svelte";
+// import { memberships, sponsors } from "@data/memberships";
+import Slider from "@components/Slider.svelte";
+import Dialog from "@components/Dialog.astro";
+import { fetchPageBySlug } from "fetch-wordpress-api";
+import {
+  extractMembershipsOptions,
+  extractSponsorshipsOptions,
+} from "@utils/helperFunctions";
+
+let isSelected = true;
+
+const joinPage = await fetchPageBySlug("la-familia-cbg/");
+
+const memberships = extractMembershipsOptions(joinPage[0].content.rendered);
+const sponsors = extractSponsorshipsOptions(joinPage[0].content.rendered);
+
+function toggleSelected() {
+  isSelected = !isSelected;
+}
+---
+
+<script>
+  document.addEventListener("DOMContentLoaded", (event) => {
+    const membershipsButton = document.getElementById("btn-memberships");
+    const sponsorsButton = document.getElementById("btn-sponsors");
+    const membershipsDiv = document.querySelector(".memberships");
+    const sponsorsDiv = document.querySelector(".sponsors");
+
+    membershipsButton!.classList.add("selected");
+
+    function toggleSection(event: MouseEvent) {
+      const isMembershipsButton =
+        (event.target as HTMLElement)?.id === "btn-memberships";
+
+      if (
+        membershipsDiv instanceof HTMLElement &&
+        sponsorsDiv instanceof HTMLElement
+      ) {
+        if (isMembershipsButton) {
+          sponsorsDiv.classList.remove("active");
+          sponsorsDiv.classList.add("outgoing");
+
+          setTimeout(() => {
+            sponsorsDiv.style.display = "none";
+            membershipsDiv.style.display = "block";
+            membershipsDiv.classList.remove("outgoing");
+            membershipsDiv.classList.add("active");
+          }, 450);
+          membershipsButton!.classList.add("selected");
+
+          // sponsorsDiv.style.display = "none";
+          sponsorsButton!.classList.remove("selected");
+        } else {
+          membershipsDiv.classList.remove("active");
+          membershipsDiv.classList.add("outgoing");
+
+          setTimeout(() => {
+            membershipsDiv.style.display = "none";
+            sponsorsDiv.style.display = "block";
+            sponsorsDiv.classList.remove("outgoing");
+            sponsorsDiv.classList.add("active");
+          }, 450);
+
+          sponsorsButton!.classList.add("selected");
+
+          // sponsorsDiv.style.display = "none";
+          membershipsButton!.classList.remove("selected");
+        }
+      }
+    }
+
+    membershipsButton!.addEventListener("click", toggleSection);
+    sponsorsButton!.addEventListener("click", toggleSection);
+  });
+</script>
+
+<HomePageSectionLayout
+  sectionTitle="Forma part de la família CBG"
+  noHeading={true}
+>
+  <div class="title-and-options-container">
+    <h2>Forma part de la família CBG</h2>
+    <div class="options-container">
+      <button id="btn-memberships" class="button-anchor options"
+        >{"fes-te soci".toUpperCase()}</button
+      >
+      <button id="btn-sponsors" class="button-anchor options"
+        >{"fes-te sponsor".toUpperCase()}</button
+      >
+    </div>
+  </div>
+
+  <div class="memberships">
+    <div class="membership-desktop">
+      {
+        memberships.map((membership) => (
+          <div>
+            <MembershipItem client:visible item={membership} />
+          </div>
+        ))
+      }
+    </div>
+
+    <div class="g-slider-container meberships-slider">
+      <Slider
+        client:visible
+        sliderItems={memberships}
+        childComponent="MembershipItem"
+        itemWidth={315}
+        gap={`1rem`}
+      />
+    </div>
+  </div>
+
+  <div class="sponsors">
+    <div class="sponsors-desktop">
+      {
+        sponsors.map((sponsor) => (
+          <div>
+            <SponsorshipItem client:visible item={sponsor} />
+          </div>
+        ))
+      }
+    </div>
+
+    <div class="g-slider-container sponsors-slider">
+      <Slider
+        client:visible
+        sliderItems={sponsors}
+        childComponent="SponsorshipItem"
+        itemWidth={315}
+        gap={`1rem`}
+      />
+    </div>
+  </div>
+</HomePageSectionLayout>
+
+<Dialog />
+<!-- 
+<section class="g-page-section-with-slider-container">
+  <div class="g-section-container">
+    
+  </div>
+</section> -->
+
+<style>
+  .memberships.active {
+    animation: slide-in-from-left 0.45s forwards ease-in;
+  }
+
+  .memberships.outgoing {
+    animation: slide-out-to-left 0.45s forwards ease-in;
+  }
+
+  .sponsors.active {
+    animation: slide-in-from-right 0.45s forwards ease-in;
+  }
+
+  .sponsors.outgoing {
+    animation: slide-out-to-right 0.45s forwards ease-in;
+  }
+
+  .membership-desktop {
+    /* padding-right: var(--padding-inline); */
+    display: grid;
+    grid-template-columns: repeat(3, var(--membership-item-wd-big));
+    place-items: center;
+    justify-content: space-between;
+    padding-right: var(--padding-inline);
+    /* gap: 1.3rem; */
+  }
+
+  .sponsors-desktop {
+    padding-right: var(--padding-inline);
+    display: grid;
+    grid-template-columns: repeat(
+      auto-fit,
+      minmax(var(--membership-item-wd-big), 1fr)
+    );
+    place-items: center;
+    justify-content: space-between;
+    gap: 1.3rem;
+  }
+  .g-slider-container {
+    display: none;
+  }
+
+  .sponsors-slider {
+    display: none;
+  }
+
+  .sponsors {
+    display: none;
+  }
+
+  .title-and-options-container {
+    padding-right: var(--padding-inline);
+    display: flex;
+    justify-content: space-between;
+    padding-bottom: var(--padding-heading-big);
+    flex-wrap: wrap;
+    gap: 1.5rem;
+  }
+
+  .options-container {
+    display: flex;
+    gap: 1.5rem;
+  }
+  .button-anchor {
+    transition: all 0.3s ease-in-out;
+  }
+  .selected {
+    background-color: var(--clr-accent);
+  }
+
+  @keyframes slide-in-from-right {
+    0% {
+      transform: translateX(100%);
+    }
+    100% {
+      transform: translateX(0);
+    }
+  }
+
+  @keyframes slide-in-from-left {
+    0% {
+      transform: translateX(-100%);
+    }
+    100% {
+      transform: translateX(0);
+    }
+  }
+
+  @keyframes slide-out-to-right {
+    0% {
+      transform: translateX(0);
+    }
+    100% {
+      transform: translateX(100%);
+    }
+  }
+
+  @keyframes slide-out-to-left {
+    0% {
+      transform: translateX(0);
+    }
+    100% {
+      transform: translateX(-100%);
+    }
+  }
+  @media (width < 1399px) {
+    .sponsors-desktop > div:nth-child(odd) {
+      justify-self: end;
+    }
+
+    .sponsors-desktop > div:nth-child(even) {
+      justify-self: start;
+    }
+  }
+
+  @media (width < 1374px) {
+    .membership-desktop {
+      grid-template-columns:
+        var(--membership-item-wd-medium) var(--membership-item-wd-medium)
+        var(--membership-item-wd-medium);
+      justify-content: center;
+      gap: 1rem;
+    }
+  }
+
+  @media (width < 1025px) {
+    .title-and-options-container {
+      padding-inline: var(--padding-inline-tablet);
+    }
+
+    .membership-desktop {
+      padding-inline: 0rem;
+      padding-right: var(--padding-inline-tablet);
+    }
+
+    .sponsors-desktop {
+      padding-inline: 0rem;
+      padding-right: var(--padding-inline-tablet);
+    }
+
+    .title-and-options-container {
+      padding-bottom: var(--padding-heading-medium);
+    }
+  }
+
+  @media (width < 932px) {
+    .membership-desktop {
+      display: none;
+    }
+    .g-slider-container {
+      display: block;
+    }
+
+    .title-and-options-container {
+      padding-left: 0rem;
+    }
+  }
+
+  @media (width < 859px) {
+    .sponsors-desktop {
+      display: none;
+    }
+
+    .sponsors-slider {
+      display: block;
+    }
+
+    .memberships.active,
+    .memberships.outgoing,
+    .sponsors.active,
+    .sponsors.outgoing {
+      animation: none !important;
+    }
+  }
+  @media (width < 648px) {
+    .title-and-options-container {
+      padding-right: var(--padding-inline-mobile);
+      padding-bottom: var(--padding-heading-small);
+    }
+    .options-container {
+      gap: 0.48rem;
+      /* width: 100%; */
+      /* justify-content: space-between; */
+    }
+
+    .button-anchor {
+      width: var(--btn-width-small);
+    }
+  }
+
+  @media (width > 1400px) {
+    .membership-desktop {
+      padding-right: 0rem;
+    }
+
+    .sponsors-desktop {
+      padding-right: 0rem;
+    }
+    .title-and-options-container {
+      padding-right: 0rem;
+    }
+  }
+
+  @media (width < 375px) {
+    .options-container {
+      gap: 0rem;
+    }
+  }
+</style>

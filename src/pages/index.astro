@@ -1,15 +1,46 @@
 ---
+// Import types
+// import { Endpoints, CategoryFields } from 'src/types';
+
+// Import Layouts
+import BaseLayout from "@layouts/BaseLayout.astro";
+
+// Import components
+import Hero from "@components/homePage/Hero.astro";
+import MainSponsors from "@components/homePage/sponsors/MainSponsors.astro";
+import AllSponsors from "@components/homePage/sponsors/AllSponsors.astro";
+import Projects from "@components/homePage/projects/Projects.astro";
+import Teams from "@components/homePage/teams/Teams.astro";
+import Join from "@components/homePage/join/Join.astro";
+import News from "@components/homePage/news/News.astro";
+// Import api functions from utils
+import { configure, fetchAllCategories, fetchPosts } from "fetch-wordpress-api";
+
+import type { Category, Post } from "fetch-wordpress-api";
+// Import global (not global stores) variables/constants
+import { postFields, categoryFields } from "src/data/apiGlobalConsts";
+
+import { BASE_URL } from "src/config";
+
+configure({ BASE_URL: BASE_URL });
+
+
+
+// console.log(posts[1])
+
+const allCategories: Category[] = await fetchAllCategories(categoryFields);
+
+import { title } from "@data/websiteTitle";
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
-</html>
+<BaseLayout {title}>
+  <Hero />
+  <h1 class="g-visibly-hidden">{title}</h1>
+  <MainSponsors />
+  <News />
+  <Join />
+  <Teams needsHeading={true}/>
+  <Projects />
+  <AllSponsors />
+</BaseLayout>
+

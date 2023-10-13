@@ -1,0 +1,189 @@
+---
+import ButtonAnchor from "@components/ButtonAnchor.astro";
+import { fetchPostsInCategory } from "fetch-wordpress-api";
+
+import { extractSlideDescriptionAndLink } from "@utils/helperFunctions";
+const slides = await fetchPostsInCategory(40);
+
+const totalDots = Array(slides.length).fill(0);
+---
+
+<script>
+  let currentSlideIndex = 0;
+  const slides = document.querySelectorAll(".slide");
+  const dots = document.querySelectorAll(".carousel-dot");
+  const totalSlides = slides.length;
+
+  function updateSlide() {
+    slides.forEach((slide, index) => {
+      slide.classList.toggle("active", index === currentSlideIndex);
+    });
+    dots.forEach((dot, index) => {
+      dot.classList.toggle("active-dot", index === currentSlideIndex);
+    });
+  }
+
+  function handleDotClick(event) {
+    const clickedDotIndex = parseInt(event.target.getAttribute("data-index"));
+    if (!isNaN(clickedDotIndex)) {
+      currentSlideIndex = clickedDotIndex;
+      updateSlide();
+    }
+  }
+
+  dots.forEach((dot) => {
+    dot.addEventListener("click", handleDotClick);
+  });
+
+  setInterval(() => {
+    currentSlideIndex = (currentSlideIndex + 1) % totalSlides;
+    updateSlide();
+  }, 10000);
+
+  // Initial update
+  updateSlide();
+</script>
+
+{ slides.length > 0 &&
+<section class="hero-section">
+  {
+    slides.map((slide, index) => {
+      const { description, link } = extractSlideDescriptionAndLink(
+        slide.content.rendered,
+      );
+
+      return (
+        <div data-index={index} class="slide">
+          <img
+            src={slide.image.url}
+            class="hidden"
+            alt={slide.image.alt}
+          />
+          <div class="hero-info-container">
+            <div class="hero-info-flex">
+              <h2>{slide.title.rendered}</h2>
+              <p>{description}</p>
+              <ButtonAnchor slug={link} text={`veure més`} />
+            </div>
+          </div>
+        </div>
+      );
+    })
+  }
+
+  {
+  totalDots.length > 1 &&
+  <div class="carousel-dots">
+    { 
+      totalDots.map((_, index) => (
+        <button class="carousel-dot" data-index={index} />
+      ))
+    }
+  </div>}
+</section>}
+
+<style>
+  .hero-section {
+    position: relative;
+  }
+  .slide {
+    display: none;
+    height: 100%;
+  }
+
+  .slide.active {
+    display: block;
+  }
+
+  .carousel-dots {
+    position: absolute;
+    bottom: 2.5rem;
+    left: 18.5rem;
+    transform: translateX(-50%);
+    width: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .carousel-dot {
+    width: 0.6875rem;
+    height: 0.6875rem;
+    border-radius: 50%;
+    border: 1px solid var(--clr-accent);
+    /* background-color: var(--color-white);
+    cursor: pointer; */
+  }
+
+  .active-dot {
+    background-color: var(--clr-accent);
+  }
+  section {
+    position: relative;
+    margin-top: calc(
+      (var(--bottom-header-hg) + var(--header-separator-line-hg)) * -1
+    );
+    height: calc(100dvh - var(--top-header-hg));
+    overflow: hidden;
+  }
+
+  img {
+    height: inherit;
+    width: 100%;
+    object-fit: cover;
+  }
+
+  .hero-info-container {
+    position: absolute;
+    background-color: rgba(0, 0, 0, 0.65);
+    top: calc(var(--bottom-header-hg) + var(--header-separator-line-hg));
+    left: 0;
+    width: 37rem;
+    bottom: 0rem;
+    display: flex;
+    padding-inline: var(--padding-inline);
+    /* justify-content: center; */
+    align-items: center;
+  }
+
+  .hero-info-flex {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 100%;
+    gap: 1.5rem;
+    text-wrap: balance;
+  }
+
+  @media (width < 1184px) {
+    .hero-info-container {
+      width: 50%;
+    }
+
+    .carousel-dots {
+      left: 25%;
+      transform: translateX(-50%);
+    }
+  }
+
+  @media (width < 1025px) {
+    .hero-info-container {
+      padding-inline: var(--padding-inline-tablet);
+    }
+  }
+
+  @media (width < 648px) {
+    .hero-info-container {
+      padding-inline: var(--padding-inline-mobile);
+      width: 100%;
+    }
+    .carousel-dots {
+      left: var(--padding-inline-mobile);
+      transform: none;
+    }
+    section {
+      height: 100svh;
+    }
+  }
+</style>

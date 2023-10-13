@@ -1,0 +1,162 @@
+---
+import TopFooter from "@components/footer/topFooter/TopFooter.astro";
+import TopFooterTablet from "@components/footer/topFooter/TopFooterTablet.astro";
+import TopFooterMobile from "@components/footer/topFooter/TopFooterMobile.astro";
+import BottomFooter from "@components/footer/bottomFooter/BottomFooter.astro";
+import BottomFooterTablet from "@components/footer/bottomFooter/BottomFooterTablet.astro";
+import BottomFooterMobile from "@components/footer/bottomFooter/BottomFooterMobile.astro";
+import {
+  extractTopFooterInfo,
+  extractBottomFooterInfo,
+} from "@utils/helperFunctions";
+import {
+  bottomFooterLinks,
+  topFooterImportantLinks,
+  copyright,
+} from "src/data/footer";
+import { fetchPageBySlug } from "fetch-wordpress-api";
+import HomePageSectionLayout from "./HomePageSectionLayout.astro";
+
+const footerData = await fetchPageBySlug("peu-de-pagina");
+
+const {
+  content: { rendered: content },
+} = footerData[0];
+
+const topFooterLinks = extractTopFooterInfo(content);
+
+const bottomFooterLinks = extractBottomFooterInfo(content);
+---
+
+<footer>
+  <section class="footer-top-section">
+    <HomePageSectionLayout noHeading={true}>
+      <nav class="top-footer-desktop">
+        <TopFooter {topFooterLinks} />
+      </nav>
+
+      <nav class="top-footer-tablet">
+        <TopFooterTablet {topFooterLinks} />
+      </nav>
+
+      <nav class="top-footer-mobile">
+        <TopFooterMobile {topFooterLinks} />
+      </nav>
+    </HomePageSectionLayout>
+  </section>
+
+  <section class="bottom-footer-section">
+    <div class="bottom-footer-desktop">
+      <BottomFooter {bottomFooterLinks} {copyright} />
+    </div>
+    <div class="bottom-footer-tablet">
+      <BottomFooterTablet {bottomFooterLinks} {copyright} />
+    </div>
+    <div class="bottom-footer-mobile">
+      <BottomFooterMobile {bottomFooterLinks} {copyright} />
+    </div>
+  </section>
+</footer>
+
+<style>
+  footer {
+    font-size: var(--font-size-footer);
+  }
+
+  .footer-top-section {
+    padding-bottom: var(--padding-section-big);
+    background-color: var(--clr-footer);
+    padding-right: var(--padding-inline);
+  }
+
+  .bottom-footer-section {
+    padding-block: 2rem;
+    padding-inline: var(--padding-inline);
+  }
+  .top-footer-desktop {
+    /* min-height: var(--footer-top-section-hg); */
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .top-footer-tablet,
+  .bottom-footer-tablet,
+  .top-footer-mobile,
+  .bottom-footer-mobile {
+    display: none;
+  }
+
+  .bottom-footer-section {
+    /* padding-inline: var(--padding-inline); */
+  }
+
+  @media (width < 1025px) {
+    .footer-top-section {
+      padding-right: var(--padding-inline-tablet);
+      padding-bottom: var(--padding-section-medium);
+    }
+    .bottom-footer-section {
+      padding-inline: var(--padding-inline-tablet);
+    }
+
+    .bottom-footer-desktop {
+      display: none;
+    }
+    .bottom-footer-tablet {
+      display: flex;
+      flex-direction: column;
+      gap: 2.12rem;
+    }
+  }
+  @media (width < 896px) {
+    .top-footer-desktop {
+      display: none;
+    }
+
+    .top-footer-tablet {
+      display: block;
+    }
+  }
+
+  @media (width < 648px) {
+    .top-footer-tablet {
+      display: none;
+    }
+
+    .bottom-footer-tablet {
+      display: none;
+    }
+
+    .bottom-footer-section {
+      padding-inline: var(--padding-inline-mobile);
+    }
+
+    .footer-top-section {
+      padding-bottom: var(--padding-section-small);
+    }
+
+    .bottom-footer-mobile {
+      display: flex;
+      flex-direction: column;
+      gap: 2.12rem;
+    }
+    .top-footer-mobile {
+      display: block;
+    }
+  }
+
+  @media (width > 1400px) {
+    .top-footer-desktop {
+      padding-right: 0rem;
+    }
+
+    .footer-top-section {
+      padding-inline: 0rem;
+    }
+    .bottom-footer-section {
+      padding-inline: var(--padding-inline);
+    }
+  }
+</style>

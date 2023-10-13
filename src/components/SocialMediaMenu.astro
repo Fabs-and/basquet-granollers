@@ -1,0 +1,60 @@
+---
+import { fetchImagesInPageBySlug } from "fetch-wordpress-api";
+
+const socialMediaLinks = await fetchImagesInPageBySlug("xarxes-socials");
+
+---
+
+<nav>
+  <ul>
+    {
+      socialMediaLinks.map((socialMediaLink) => {
+        const name = socialMediaLink.title.toLowerCase().includes("instagram")
+          ? "Instagram"
+          : socialMediaLink.title.toLowerCase().includes("facebook")
+          ? "Facebook"
+          : socialMediaLink.title.toLowerCase().includes("x.com")
+          ? "Twitter"
+          : socialMediaLink.title.toLowerCase().includes("youtube")
+          ? "Youtube"
+          : socialMediaLink.title.toLowerCase().includes("twitch")
+          ? "Twitch"
+          : "TikTok";
+
+          let { url, caption, alt } = socialMediaLink;
+          if (name === "TikTok") {
+            caption = `https://www.tiktok.com/${caption}`;
+          }
+        return (
+          <li>
+            <a
+              title={name}
+              href={caption}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <img src={url} alt={alt} />
+            </a>
+          </li>
+        );
+      })
+    }
+  </ul>
+</nav>
+
+<style>
+  nav {
+    width: 11.0544rem;
+    height: 1.09956rem;
+  }
+  ul {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  a {
+    display: flex;
+    align-items: center;
+  }
+</style>

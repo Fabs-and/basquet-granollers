@@ -1,0 +1,58 @@
+---
+import type { Link } from "../../../types/footer";
+
+import ImportantLinksContainer from "./ImportantLinksContainer.astro";
+
+interface Props {
+  topFooterLinks: any[];
+  topFooterImportantLinks: Link[];
+}
+
+const { topFooterLinks } = Astro.props;
+
+const { generalLinks, fixedLinks } = topFooterLinks;
+
+
+---
+
+{
+  generalLinks.map((item) => (
+    <article class="top-footer-articles">
+      <header>
+        <h5>{item.title.toUpperCase()}</h5>
+      </header>
+
+      <ul class="links-container">
+        {item.content.map((link) => (
+          <li>
+            <a href={link.link}>{link.name}</a>
+          </li>
+        ))}
+      </ul>
+    </article>
+  ))
+}
+
+<article>
+  <ImportantLinksContainer {fixedLinks} />
+</article>
+
+<style>
+ h5 {
+    font-weight: 500;
+    /* font-size: 1.125rem; */
+  }
+  article header {
+    margin-bottom: 0.5rem;
+  }
+
+  .links-container {
+    font-size: 0.6875rem;
+    display: flex;
+    flex-grow: 1;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+
+
+</style>

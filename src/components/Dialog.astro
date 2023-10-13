@@ -1,0 +1,86 @@
+---
+  import { closeModalIcon } from "@assets/icons";
+  import { toggleDialog } from "@utils/helperFunctions";
+---
+
+<script>
+  import { toggleDialog } from "@utils/helperFunctions";
+  const modalButton = document.querySelector(".modal-button");
+
+  modalButton!.addEventListener("click", () => {
+    toggleDialog();
+  });
+</script>
+
+<dialog id="dialog">
+  <button class="modal-button"
+    >
+    <img src="closeModalButton.png" alt="">
+    </button
+  >
+  <div class="dialog-container">
+    <h3>Vols formar part de la familia cbg?</h3>
+    <br />
+    <div>
+      <p>Envia'ns un correu electrònic a:</p>
+      <p class="g-text-clr-accent">somcbg@cbgranollers.cat</p>
+    </div>
+    <div>
+      <p>O bé, vine a les oficines:</p>
+      <p class="g-text-clr-accent">
+        dimarts, dimecres o divendres de 17 a 20 h.
+      </p>
+    </div>
+  </div>
+</dialog>
+<style>
+  dialog {
+    overflow: visible;
+    /* position: fixed; */
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: var(--clr-secondary);
+    padding-inline: 3.5rem;
+    padding-block: 2.69rem;
+    z-index: 1000;
+    background-color: var(--clr-contrast);
+    border-radius: 0.4rem;
+    border: none;
+  }
+
+  .modal-button {
+    z-index: 2000;
+  }
+
+  .modal-button {
+    position: absolute;
+    top: -1.7rem;
+    right: -2rem;
+  }
+
+  .dialog-container {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+  }
+  .dialog-container p {
+    font-size: var(--font-size-h4);
+    font-weight: 560;
+    line-height: 1.5625rem;
+  }
+
+  dialog::backdrop {
+    /*Opacity property does not work with backdrop*/
+    background-color: rgba(0, 0, 0, 0.5);
+  }
+
+  @media (width < 400px) {
+    dialog {
+      width: 21rem;
+      padding-inline: 1.69rem;
+      padding-block: 2.5rem;
+    }
+  }
+
+</style>

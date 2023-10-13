@@ -1,0 +1,13 @@
+---
+import TeamsLayout from "@layouts/TeamsLayout.astro";
+import { fetchImagesInPageBySlug } from "fetch-wordpress-api";
+
+const teamsImages = await fetchImagesInPageBySlug(
+  "equips-femenins-temporada-22-23",
+);
+
+const title = "Els equips femenins del club Bàsquet Granollers";
+const heading = "Els equips femenins";
+---
+
+<TeamsLayout {teamsImages} {title} {heading} />

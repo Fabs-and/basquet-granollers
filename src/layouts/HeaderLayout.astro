@@ -1,0 +1,91 @@
+---
+import TopHeader from "@components/header/TopHeader.astro";
+
+import BottomHeader from "@components/header/bottomHeader/BottomHeader.astro";
+import BottomHeaderResponsive from "@components/header/bottomHeader/BottomHeaderResponsive.astro";
+import HeaderLineSeparator from "@components/header/HeaderLineSeparator.astro";
+import { fetchPageBySlug } from "fetch-wordpress-api";
+import { displayButtonHistory, displaySearchIcon, extractNavigation, extractTopHeaderContent } from "@utils/helperFunctions";
+
+const page = await fetchPageBySlug("capcalera", ["content"]);
+
+const {
+  content: { rendered: content },
+} = page[0];
+
+const topHeaderContent = extractTopHeaderContent(content);
+
+const navigation = extractNavigation(content);
+
+const isButtonHeader = displayButtonHistory(content);
+
+const isSearchIcon = displaySearchIcon(content);
+---
+
+<header>
+  <section class="header-top-section">
+      <TopHeader {topHeaderContent} />
+  </section>
+  <section class="header-bottom-section">
+    <div class="bottom-header">
+      <BottomHeader {navigation} {isButtonHeader} {isSearchIcon}/>
+    </div>
+    <div class="bottom-header responsive">
+      <BottomHeaderResponsive {navigation} {isSearchIcon}/>
+    </div>
+  </section>
+  <div class="separator-line">
+    <HeaderLineSeparator />
+  </div>
+</header>
+
+<style>
+  header {
+    position: sticky;
+    top: 0;
+    z-index: 10;
+  }
+  .header-top-section {
+    min-height: var(--top-header-hg);
+    background-color: var(--clr-primary);
+  }
+
+  .bottom-header {
+    min-height: var(--bottom-header-hg);
+    background-color: var(--clr-contrast);
+    background-color: rgba(243, 243, 243, 0.9);
+    position: relative;
+  }
+  .responsive {
+    display: none;
+  }
+
+  .separator-line {
+    height: var(--header-separator-line-hg);
+  }
+  @media (width < 1065px) {
+    .bottom-header {
+      display: none;
+      padding-inline: var(--padding-inline-tablet);
+    }
+    .separator-line {
+      height: var(--header-separator-line-responsive-hg);
+    }
+
+    .responsive {
+      display: block;
+    }
+  }
+
+  @media (width < 648px) {
+    .header-top-section {
+      display: none;
+    }
+
+    .bottom-header {
+      padding-inline: var(--padding-inline-mobile);
+    }
+  }
+
+  
+</style>

@@ -1,0 +1,34 @@
+---
+import BaseLayout from "@layouts/BaseLayout.astro";
+import Headings from "@components/internal-pages/headings.astro";
+import Teams from "@components/homePage/teams/Teams.astro";
+import { fetchPageBySlug } from "fetch-wordpress-api";
+
+const page = await fetchPageBySlug("equips1", ["title"]);
+
+const {
+  title: { rendered: title },
+} = page[0];
+---
+
+<BaseLayout {title}>
+  <section class="g-internal-page">
+    <div class="g-section-container">
+      <Headings heading={title} />
+    </div>
+  </section>
+  <div class="component-container">
+    <Teams noHeading={true} />
+  </div>
+</BaseLayout>
+
+<style>
+  .g-internal-page {
+    padding-bottom: 0rem;
+  }
+  .component-container {
+    background-color: var(--clr-contrast);
+    color: var(--clr-primary);
+    padding-bottom: var(--padding-section-big);
+  }
+</style>

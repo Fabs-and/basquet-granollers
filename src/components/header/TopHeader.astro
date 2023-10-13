@@ -1,0 +1,76 @@
+---
+import SocialMediaMenu from "@components/SocialMediaMenu.astro";
+import { extractTopHeaderContent } from "@utils/helperFunctions";
+
+const { topHeaderContent } = Astro.props;
+
+
+
+const { text1, link1 } = topHeaderContent![0];
+const { text2, link2 } = topHeaderContent![1];
+---
+
+<div class="top-header-content">
+  <div class="text-content">
+    {
+      text1 && !link1 ? (
+        <p>{text1.toUpperCase()}</p>
+      ) : text1 && link1 ? (
+        <a href={link1} class="underline-links" target="_blank" rel="noopener noreferrer">
+          {text1.toUpperCase()}
+        </a>
+      ) : null
+    }
+  </div>
+  <div class="text-content">
+    {
+      text2 && !link2 ? (
+        <p>{text2.toUpperCase()}</p>
+      ) : text2 && link2 ? (
+        <a href={link2} class="underline-links" target="_blank"  rel="noopener noreferrer">
+          {text2.toUpperCase()}
+        </a>
+      ) : null
+    }
+  </div>
+  <div class="social-menu">
+    <SocialMediaMenu />
+  </div>
+</div>
+
+<style>
+  .top-header-content {
+    position: relative;
+    font-size: 0.78125rem;
+    font-weight: 500;
+    font-style: italic;
+    width: 100%;
+    min-height: var(--top-header-hg);
+    display: flex;
+    align-items: center;
+    padding-left: 12.14rem;
+    padding-right: var(--padding-inline);
+  }
+
+  .text-content {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+  .social-menu {
+    position: absolute;
+    right: var(--padding-inline);
+  }
+
+  @media(width < 1025px) {
+    .social-menu {
+      display: none;
+    }
+
+    .top-header-content {
+      padding: 0rem;
+      justify-content: space-around;
+    }
+  }
+
+</style>

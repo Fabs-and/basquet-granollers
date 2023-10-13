@@ -1,0 +1,64 @@
+---
+import type { Post } from "fetch-wordpress-api";
+import NewsDesktop from "@components/homePage/news/NewsDesktop.svelte";
+import HomePageSectionLayout from "@layouts/HomePageSectionLayout.astro";
+import Slider from "@components/Slider.svelte";
+import { fetchPosts, fetchPostsInCategory } from "fetch-wordpress-api";
+
+const title = "CBG Notícies";
+
+const news: Post[] = await fetchPostsInCategory(19);
+
+const featuredNews = await fetchPostsInCategory(41);
+---
+
+<HomePageSectionLayout
+  sectionTitle="CBG Notícies"
+  textColor={`var(--clr-primary)`}
+  backgroundColor={`var(--clr-contrast)`}
+>
+  <div class="news-desktop">
+    <NewsDesktop
+      client:visible
+      featuredNews={featuredNews[0] ? featuredNews[0] : news[0]}
+      {news}
+    />
+  </div>
+
+  <div class="g-slider-container">
+    <Slider
+      client:visible
+      sliderItems={news}
+      childComponent="NewsItem"
+      itemWidth={312}
+      gap={`1rem`}
+    />
+  </div>
+</HomePageSectionLayout>
+
+<style>
+  .g-slider-container {
+    display: none;
+  }
+
+  @media (width < 1068px) {
+    .news-desktop {
+      display: none;
+    }
+    .g-slider-container {
+      display: block;
+    }
+  }
+
+  @media (width < 1025px) {
+    .g-slider-container {
+      padding-bottom: var(--padding-section-medium);
+    }
+  }
+
+  @media (width < 648px) {
+    .g-slider-container {
+      padding-bottom: var(--padding-section-small);
+    }
+  }
+</style>

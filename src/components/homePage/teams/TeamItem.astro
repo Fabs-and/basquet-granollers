@@ -1,0 +1,159 @@
+---
+import ButtonAnchor from "@components/ButtonAnchor.astro";
+import { containsWord } from "@utils/helperFunctions";
+
+const { team } = Astro.props;
+
+const { title, url, alt } = team;
+
+const wordSlugPairs = [
+  { word: "masculins", slug: "/equips/masculins" },
+  { word: "femenins", slug: "/equips/femenins" },
+  { word: "escola", slug: "/equips/escola-de-basquet" },
+  { word: "cadira", slug: "/equips/cadira-de-rodes" },
+];
+
+const foundPair = wordSlugPairs.find((pair) => containsWord(title, pair.word));
+
+const slug = foundPair ? foundPair.slug : "/equips/cos-tecnic";
+---
+
+<article class="team-article">
+  <a href={slug} class="responsive-anchor">
+    <img src={`${url}`} alt={alt} loading="lazy" />
+    <div class="half-hidden">
+      {
+        title === "Escola de bàsquet" && (
+          <img
+            class="mascot"
+            src={`/mascota.png`}
+            alt={`La mascota del club. Una granota de dibuix vestida amb l'equipació del Bàsquet Granollers`}
+            loading="lazy"
+          />
+        )
+      }
+      <div class="flex-content">
+        <h3>{title}</h3>
+        <div class="button">
+          <ButtonAnchor
+            textColor="var(--clr-contrast)"
+            slug={slug}
+            text={`Veure més`}
+          />
+        </div>
+      </div>
+    </div>
+  </a>
+</article>
+
+<style>
+  .team-article {
+    position: relative;
+    width: 17.8125rem;
+    height: 19.3125rem;
+    border-top-left-radius: 2.9375rem;
+    overflow: hidden;
+  }
+
+  h3 {
+    text-wrap: balance;
+  }
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .half-hidden {
+    position: absolute;
+    padding-inline: 1.81rem;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(0deg, #18366c 0%, rgba(0, 26, 156, 0) 83.17%);
+    transform: translateY(20%);
+    transition: transform 0.2s ease-in;
+    display: flex;
+    align-items: end;
+  }
+
+  .half-hidden:hover {
+    transform: translateY(0);
+  }
+
+  .half-hidden .mascot {
+    position: absolute;
+    right: -1.5rem;
+    bottom: -2.5rem;
+    transform: translateY(17%);
+    transition: transform 0.2s ease-in-out;
+  }
+
+  .half-hidden:hover .mascot {
+    transform: translateY(20%);
+  }
+
+  .flex-content {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    padding-bottom: 1rem;
+  }
+  
+  .mascot {
+    /* position: absolute; */
+    width: 9rem;
+    object-fit: contain;
+  }
+  @media (width < 1385px) {
+    .team-article {
+      width: 22.14806rem;
+      height: 23.4375rem;
+    }
+    .half-hidden {
+      transform: translateY(0%);
+    }
+
+    .half-hidden:hover .mascot {
+      transform: translateY(17%);
+    }
+
+    .half-hidden .mascot {
+      right: -1rem;
+      bottom: -5rem;
+    }
+    h3 {
+      position: absolute;
+      left: 0rem;
+      bottom: 0rem;
+      padding: 1.81rem;
+    }
+
+    .button {
+      display: none;
+    }
+
+    .team-article a {
+      display: block;
+      width: 100%;
+      height: 100%;
+    }
+  }
+
+  @media (width < 754px) {
+    .team-article {
+      width: 23.4375rem;
+      height: 23.4375rem;
+    }
+  }
+
+  @media (width < 425px) {
+    .team-article {
+      width: 100vw;
+      height: auto;
+      margin-left: calc(var(--padding-inline-mobile) * -1);
+    }
+  }
+</style>

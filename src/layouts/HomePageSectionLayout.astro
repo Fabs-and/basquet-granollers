@@ -1,0 +1,56 @@
+---
+const { sectionTitle, textColor, backgroundColor, noHeading } = Astro.props;
+---
+
+<section class="page-section-container">
+  <div class="section-container">
+    {!noHeading && <h2>{sectionTitle}</h2>}
+    <slot />
+  </div>
+</section>
+
+<style define:vars={{ textColor, backgroundColor }}>
+  .page-section-container {
+    padding-top: var(--padding-section-big);
+    padding-left: var(--padding-inline);
+    color: var(--textColor);
+    background-color: var(--backgroundColor);
+  }
+
+  h2 {
+    padding-bottom: var(--padding-heading-big);
+  }
+
+  .section-container {
+    max-width: 1206px;
+    margin: 0 auto;
+  }
+
+  @media (width < 1025px) {
+    .page-section-container {
+      padding-left: var(--padding-inline-tablet);
+      padding-top: var(--padding-section-medium);
+    }
+
+    h2 {
+      padding-bottom: var(--padding-heading-medium);
+    }
+  }
+
+  @media (width < 648px) {
+    .page-section-container {
+      padding-left: var(--padding-inline-mobile);
+      padding-top: var(--padding-section-small);
+    }
+
+    h2 {
+      padding-bottom: var(--padding-heading-small);
+    }
+  }
+
+  @media (width > 1400px) {
+    .page-section-container {
+      padding-inline: 0rem;
+    }
+  }
+</style>

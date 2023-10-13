@@ -1,0 +1,29 @@
+---
+// Import styles
+import "@styles/global.css";
+
+// Import components
+import FooterLayout from "./FooterLayout.astro";
+import HeaderLayout from "./HeaderLayout.astro";
+const { title } = Astro.props;
+---
+
+<html lang="ca">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+
+    <link rel="stylesheet" href="https://use.typekit.net/elj5gax.css" />
+
+    <meta name="viewport" content="width=device-width" />
+    <meta name="generator" content={Astro.generator} />
+    <title>{title ? title : "Club Bàsquet Granollers"}</title>
+  </head>
+  <body>
+    <HeaderLayout />
+    <main>
+      <slot />
+    </main>
+    <FooterLayout />
+  </body>
+</html>

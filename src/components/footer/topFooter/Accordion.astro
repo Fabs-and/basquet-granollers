@@ -1,0 +1,77 @@
+---
+const { generalLinks } = Astro.props;
+---
+
+ {
+  generalLinks.map((item) => (
+    <details >
+      <summary>
+        <h5>{item.title.toUpperCase()}</h5>
+      </summary>
+      <ul class='links-container'>
+          {item.content.map((link) => (
+            <li>
+              <a href={link.link}>{link.name}</a>
+            </li>
+          ))}
+      </ul>   
+    </details>
+  ))
+}
+
+<style>
+  /* details {
+    width: 100%;
+  } */
+  a {
+    font-size: 0.875rem;
+  }
+
+  h5 {
+    font-weight: 500;
+    font-size: 1.125rem;
+  }
+  details > summary {
+    list-style: none;
+  }
+
+  summary::-webkit-details-marker {
+	  display: none;
+  }
+
+  details summary {
+    cursor: pointer;
+    position: relative;
+    transition: margin 0.55s ease-out;
+  }
+
+  details[open] summary {
+    margin-bottom: 10px;
+  }
+
+  
+  summary::before {
+  	position: absolute;
+    top: -9%;
+    left: 5.5rem;
+    content: url('../../../collapsibleArrow.svg');
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    transform: rotate(0);
+    transform-origin: 50% 44%;
+    transition: 0.45s transform ease-in-out;
+  }
+
+  details[open] > summary:before {
+    transform: rotate(-180deg);
+    transition: 0.45s transform ease-in-out;
+  }
+
+  .links-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 0.65rem;
+  }
+</style>

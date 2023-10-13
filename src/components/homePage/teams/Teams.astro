@@ -1,0 +1,101 @@
+---
+import TeamItem from "@components/homePage/teams/TeamItem.astro";
+import HomePageSectionLayout from "@layouts/HomePageSectionLayout.astro";
+import { fetchImagesInPageBySlug } from "fetch-wordpress-api";
+
+const { noHeading } = Astro.props;
+const teams = await fetchImagesInPageBySlug("equips1");
+
+const sortTeams = (teams) => {
+  return teams.sort((a, b) => {
+    const titleA = a.title.toLowerCase();
+    const titleB = b.title.toLowerCase();
+    const getPriority = (title) => {
+      if (title.includes('femeni')) return 1;
+      if (title.includes('masculi')) return 2;
+      if (title.includes('cadira')) return 3;
+      if (title.includes('escola')) return 4;
+      return 5;  // default priority if none of the keywords are found
+    };
+    return getPriority(titleA) - getPriority(titleB);
+  });
+};
+
+const sortedTeams = sortTeams(teams);
+---
+
+<HomePageSectionLayout
+  sectionTitle="Els equips del Club Bàsquet Granollers"
+  {noHeading}
+>
+  <div class="teams-container">
+    {
+      sortedTeams.map((team) => (
+        <div>
+          <TeamItem {team} />
+        </div>
+      ))
+    }
+  </div>
+</HomePageSectionLayout>
+
+<style>
+  .teams-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    padding-right: var(--padding-inline);
+  }
+
+  @media (width < 1400px) {
+    .teams-container {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      place-items: center;
+      gap: 1rem;
+    }
+
+    .teams-container > :nth-child(1) {
+      justify-self: end;
+    }
+
+    .teams-container > :nth-child(2) {
+      justify-self: start;
+    }
+
+    .teams-container > :nth-child(3) {
+      justify-self: end;
+    }
+
+    .teams-container > :nth-child(4) {
+      justify-self: start;
+    }
+  }
+
+  @media (width < 1025px) {
+    .teams-container {
+      padding-right: var(--padding-inline-tablet);
+    }
+  }
+  @media (width < 754px) {
+    .teams-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+  }
+  @media (width < 648px) {
+    .teams-container {
+      padding-right: var(--padding-inline-mobile);
+    }
+  }
+
+   @media (width > 1400px) {
+    .teams-container {
+      padding-right: 0rem;
+      justify-content: center;
+      gap: 1.25rem;
+
+    }
+  }
+</style>

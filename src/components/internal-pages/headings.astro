@@ -1,0 +1,47 @@
+---
+const { heading, subHeading } = Astro.props;
+---
+
+<div class="headings-container">
+  {heading && <h1>{heading}</h1>}
+  {subHeading && <h2>{subHeading}</h2>}
+</div>
+
+<style>
+  .headings-container {
+    display: flex;
+    flex-direction: column;
+    padding-bottom: var(--padding-section-big);
+    gap: 1.6rem;
+  }
+  h1 {
+    font-weight: 600;
+  }
+
+  h2 {
+    color: var(--clr-accent);
+  }
+
+  @media (width < 1025px) {
+    h1 {
+      font-size: 1.625rem;
+      line-height: 2rem;
+    }
+
+    h2 {
+      font-size: 1.375rem;
+    }
+
+    .headings-container {
+      gap: 0.75rem;
+      padding-bottom: var(--padding-section-medium);
+    }
+  }
+
+  @media (width < 648px) {
+    .headings-container {
+      gap: 0.75rem;
+      padding-bottom: var(--padding-section-small);
+    }
+  }
+</style>

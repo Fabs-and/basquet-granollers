@@ -1,0 +1,34 @@
+---
+const {
+  text,
+  isFilled,
+  slug,
+  textColor,
+  hoverTextColor,
+  isSmallBtn, // Add this line to destructure the new prop
+} = Astro.props as {
+  text: string;
+  isFilled: boolean;
+  slug: string;
+  textColor: string;
+  hoverTextColor: string;
+};
+
+---
+
+<a
+class="button-anchor"
+  href={slug}
+  class:list={[{ isFilled: isFilled}]}
+  >{text.toUpperCase()}</a
+>
+
+<style define:vars={{ textColor, hoverTextColor }}>
+  .button-anchor {
+    color: var(--textColor)
+  }
+  .isFilled {
+    background-color: var(--clr-accent);
+  }
+
+</style>

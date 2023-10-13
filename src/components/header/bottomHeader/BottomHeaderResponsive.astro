@@ -1,0 +1,135 @@
+---
+import { logoSmall } from "@assets/logo";
+import { magnifyingGlass, hamburgerMenuIcon } from "@assets/icons";
+
+import Accordion from "@components/footer/topFooter/Accordion.astro";
+import { bottomHeaderLinks } from "@data/header";
+import DropDownAccordion from "./DropDownAccordion.astro";
+import {  extractNavigation } from "@utils/helperFunctions";
+
+const { navigation, isSearchIcon } = Astro.props;
+
+
+---
+
+<script>
+  function handleClick(this: any) {
+    let div = document.querySelector(".dropdown-content-responsive") as HTMLDivElement;
+
+    if (div) {
+        // Toggle the 'visible' class
+        if (div.classList.contains('visible')) {
+            div.classList.remove('visible');
+        } else {
+            div.classList.add('visible');
+        }
+    }
+  }
+  
+  let buttons = document.querySelectorAll(".dropdown-menu");
+
+  buttons.forEach(function (button) {
+    // Add the event listener to each button
+    button.addEventListener("click", handleClick);
+  });
+</script>
+
+<div class={`flex-container ${!isSearchIcon ? 'reverse-order' : ''}`}>
+
+  <button class="dropdown-menu">
+    <Fragment set:html={hamburgerMenuIcon} />
+  </button>
+  <a
+    class="logo"
+    title="Club Bàsquet Granollers Logo"
+    aria-label="Club Bàsquet Granollers Logo"
+    href="/"><Fragment set:html={logoSmall} /></a
+  >
+
+ { isSearchIcon && <div class="search-icon">
+    <Fragment set:html={magnifyingGlass} />
+  </div>}
+</div>
+
+<ul id="myDropdown" class={`dropdown-content-responsive ${!isSearchIcon ? 'reverse-transition' : ''}`}>
+
+  {
+    navigation.map((item) => (
+      <li>
+        {item.dropdown ? (
+          <DropDownAccordion {item} />
+        ) : (
+          <a href={item.link}>
+            <h5>{item.name!.toUpperCase()}</h5>
+          </a>
+        )}
+      </li>
+    ))
+  }
+</ul>
+<style>
+  .reverse-order {
+    flex-direction: row-reverse;
+}
+  .reverse-transition {
+    --transition-direction: 100%;
+  }
+  .dropdown-content-responsive {
+    position: fixed;
+    display: flex;
+    background-color: var(--clr-primary);
+    color: var(--clr-contrast);
+    top: calc(
+      var(--bottom-header-hg) +  var(--top-header-hg) + var(--header-separator-line-responsive-hg)
+    );
+    left: 0;
+    right: 0;
+    bottom: 0;
+    padding-inline: var(--padding-inline-tablet);
+    padding-block: 2.06rem;
+    flex-direction:column;
+    gap: 1.87rem;
+    transform: translateX(var(--transition-direction, -100%));
+    transition: transform 0.2s ease-in-out;
+  }
+
+  .dropdown-content-responsive.visible {
+    transform: translateX(0);
+}
+ .dropdown-content-responsive h5{
+  color:var(--clr-contrast)
+ }
+  .dropdown-content a {
+    color: var(--clr-contrast);
+    text-decoration: none;
+    display: block;
+  }
+  .flex-container {
+    min-height: var(--bottom-header-hg);
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 0.35rem;
+  }
+
+  .logo {
+  }
+  .search-icon:hover {
+    cursor: pointer;
+  }
+
+  a {
+    color: var(--clr-primary);
+    font-weight: var(--font-weight-bold);
+  }
+
+  @media (width < 648px) {
+    .dropdown-content-responsive {
+       top: calc(
+      var(--bottom-header-hg) + var(--header-separator-line-responsive-hg)
+    );
+      padding-inline: var(--padding-inline-mobile);
+    }
+  }
+</style>
