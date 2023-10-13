@@ -18,6 +18,8 @@ const pagesFromWP = await fetchPages(100);
 
 const page = pagesFromWP.find((page) => page.slug === pages);
 if (!page) return Astro.redirect("/404");
+
+
 // const { title, content, id, date, image } = page;
 
 //WAITING for the migration to be done
@@ -42,5 +44,5 @@ if (!page) return Astro.redirect("/404");
 ---
 
 
-  <PostLayout post={page} pageTitle={page.title} />
+  <PostLayout post={page} pageTitle={page.title.rendered} />
 

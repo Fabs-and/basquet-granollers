@@ -19,6 +19,8 @@ import Headings from "@components/internal-pages/headings.astro";
 
 const noticies = await fetchPostsInCategory(19,[],21);
 
+//When we generate all dynamic routes statically, wen need to remove noticies/ in the href of the anchor
+
 ---
 
 <InternalPageLayout title={`Notícies del Club Bàsquet Granollers`} heading={`Notícies del club Bàsquet Granollers`} subHeading={`Totes les notícies`}>
@@ -26,7 +28,7 @@ const noticies = await fetchPostsInCategory(19,[],21);
       {
         noticies.map((noticia: Post) => (
           <article class="noticia">
-            <a href={`${noticia.slug}`}>
+            <a href={`/noticies/${noticia.slug}`}>
               <div class="image-container">
                 {noticia.image && (
                   <img

@@ -39,5 +39,5 @@ if (!project) return Astro.redirect("/404");
 
 ---
 
-  <PostLayout post={project} />
+  <PostLayout post={project} pageTitle={project.title.rendered} />
 
