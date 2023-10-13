@@ -10,26 +10,32 @@ import BaseLayout from "@layouts/BaseLayout.astro";
 
 // Import global (not global stores) variables/constants
 
+const { projectes} = Astro.params;
 import PostLayout from "@layouts/PostLayout.astro";
 
-export async function getStaticPaths() {
-  const projects = await fetchPostsInCategory(42);
+const projectesFromWP =  await fetchPostsInCategory(42);
 
-  return projects.map((project: Post) => {
-    return {
-      params: { projectes: project.slug },
-      props: {
-        title: project.title.rendered,
-        content: project.content.rendered,
-        id: project.id,
-        date: project.date,
-        image: project.image,
-      },
-    };
-  });
-}
+const project = projectesFromWP.find((project) => project.slug === projectes);
+if (!project) return Astro.redirect("/404");
 
-const project = Astro.props;
+// export async function getStaticPaths() {
+//   const projects = await fetchPostsInCategory(42);
+
+//   return projects.map((project: Post) => {
+//     return {
+//       params: { projectes: project.slug },
+//       props: {
+//         title: project.title.rendered,
+//         content: project.content.rendered,
+//         id: project.id,
+//         date: project.date,
+//         image: project.image,
+//       },
+//     };
+//   });
+// }
+
+// const project = Astro.props;
 
 ---
 

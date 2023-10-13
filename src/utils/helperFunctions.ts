@@ -4,52 +4,85 @@ import type { Category } from "fetch-wordpress-api";
 import { load } from "cheerio";
 // Replace <div> for <p>
 export function formatHTMLContent(str: string) {
+  // Check if the input is a string
+  if (typeof str !== "string") {
+    throw new TypeError("Expected a string argument");
+  }
+
   const divTag = /<div>/g;
   const closingDiv = /<\/div>/g;
   const imgTag = /<img [^>]*src="([^"]*)"[^>]*>/g;
 
   // Convert divs to ps
-  let newStr = str.replace(divTag, "<p>").replace(closingDiv, "</p>");
+  let newStr = str;
+  if (divTag.test(str) && closingDiv.test(str)) {
+    newStr = str.replace(divTag, "<p>").replace(closingDiv, "</p>");
+  }
 
   // Clean up img tags
-  newStr = newStr.replace(imgTag, (match, p1) => `<img src="${p1}">`);
+  if (imgTag.test(newStr)) {
+    newStr = newStr.replace(imgTag, (match, p1) => `<img src="${p1}">`);
+  }
 
   // Apply align-self: center to img tags
-  newStr = newStr.replace(
-    /<img src="([^"]*)">/g,
-    '<img style="align-self: center;" src="$1">',
-  );
+  const imgTagSimple = /<img src="([^"]*)">/g;
+  if (imgTagSimple.test(newStr)) {
+    newStr = newStr.replace(
+      imgTagSimple,
+      '<img style="align-self: center;" src="$1">',
+    );
+  }
 
   // Strip p tags from around img tags
-  newStr = newStr.replace(/<p[^>]*>\s*(<img [^>]+>)\s*<\/p>/g, "$1");
+  const pTagAroundImg = /<p[^>]*>\s*(<img [^>]+>)\s*<\/p>/g;
+  if (pTagAroundImg.test(newStr)) {
+    newStr = newStr.replace(pTagAroundImg, "$1");
+  }
 
   // Ensure ul, ol, and li have default behaviors
-  newStr = newStr.replace(
-    /<ul([^>]*)>/g,
-    '<ul$1 style="list-style-type: disc; padding-left: 2em;">',
-  );
+  const ulTag = /<ul([^>]*)>/g;
+  const olTag = /<ol([^>]*)>/g;
+  const liTag = /<li([^>]*)>/g;
 
-  newStr = newStr.replace(
-    /<ol([^>]*)>/g,
-    '<ol$1 style="list-style-type: decimal; padding-left: 2em;">',
-  );
+  if (ulTag.test(newStr)) {
+    newStr = newStr.replace(
+      ulTag,
+      '<ul$1 style="list-style-type: disc; padding-left: 2em;">',
+    );
+  }
 
-  newStr = newStr.replace(/<li([^>]*)>/g, '<li$1 style="display: list-item;">');
+  if (olTag.test(newStr)) {
+    newStr = newStr.replace(
+      olTag,
+      '<ol$1 style="list-style-type: decimal; padding-left: 2em;">',
+    );
+  }
+
+  if (liTag.test(newStr)) {
+    newStr = newStr.replace(liTag, '<li$1 style="display: list-item;">');
+  }
 
   // Remove text-align style from p tags
-  newStr = newStr.replace(
-    /<p style="[^"]*text-align:[^;]*;?[^"]*">/g,
-    (match) => match.replace(/text-align:[^;]*;?/g, ""),
-  );
+  const pTagStyle = /<p style="[^"]*text-align:[^;]*;?[^"]*">/g;
+  if (pTagStyle.test(newStr)) {
+    newStr = newStr.replace(pTagStyle, (match) =>
+      match.replace(/text-align:[^;]*;?/g, ""),
+    );
+  }
 
   // Set color for anchor tags
-  newStr = newStr.replace(
-    /<a([^>]*)>/g,
-    '<a$1 style="color: var(--clr-primary); text-decoration: underline">',
-  );
+  const aTag = /<a([^>]*)>/g;
+  if (aTag.test(newStr)) {
+    newStr = newStr.replace(
+      aTag,
+      '<a$1 style="color: var(--clr-primary); text-decoration: underline">',
+    );
+  }
 
   // Replace right accents with apostrophes
-  newStr = newStr.replace(/(\b)´(\b)/g, "$1'$2");
+  if (/\b´\b/g.test(newStr)) {
+    newStr = newStr.replace(/(\b)´(\b)/g, "$1'$2");
+  }
 
   // Replace heading tags and adjust capitalization
   newStr = newStr.replace(

@@ -5,7 +5,8 @@ import BaseLayout from "./BaseLayout.astro";
 
 const { post, pageTitle } = Astro.props;
 
-const { title, content, image, date } = post;
+const { title: {rendered: title}, content: {rendered: content}, image, date } = post;
+
 ---
 
 <BaseLayout title={pageTitle}>

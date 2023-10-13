@@ -12,23 +12,32 @@ import BaseLayout from "@layouts/BaseLayout.astro";
 import PostLayout from "@layouts/PostLayout.astro";
 import { addApostrophe } from "@utils/helperFunctions";
 
-export async function getStaticPaths() {
-  const pages = await fetchPages(100);
-  return pages.map((page: Page) => {
-    return {
-      params: { pages: page.slug },
-      props: {
-        title: page.title.rendered,
-        content: page.content.rendered,
-        id: page.id,
-        date: page.date,
-        image: page.image,
-      },
-    };
-  });
-}
+const { pages} = Astro.params;
 
-const page = Astro.props;
+const pagesFromWP = await fetchPages(100);
+
+const page = pagesFromWP.find((page) => page.slug === pages);
+if (!page) return Astro.redirect("/404");
+// const { title, content, id, date, image } = page;
+
+//WAITING for the migration to be done
+// export async function getStaticPaths() {
+//   const pages = await fetchPages(100);
+//   return pages.map((page: Page) => {
+//     return {
+//       params: { pages: page.slug },
+//       props: {
+//         title: page.title.rendered,
+//         content: page.content.rendered,
+//         id: page.id,
+//         date: page.date,
+//         image: page.image,
+//       },
+//     };
+//   });
+// }
+
+// const page = Astro.props;
 
 ---
 
