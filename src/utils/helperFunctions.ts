@@ -274,7 +274,7 @@ export function extractNavigation(content: string): NavItem[] {
 
   // Find the navigation section between "Navegació" and "Botó de la història"
   const navStart = content.indexOf(
-    "Navegació (A triar entre totes les pàgines creades. Màxim 6 pàgines)",
+    "Navegació (A triar entre totes les pàgines creades)",
   );
   const navEnd = content.indexOf("Botó de la història: si");
   const navSection = content.slice(navStart, navEnd);

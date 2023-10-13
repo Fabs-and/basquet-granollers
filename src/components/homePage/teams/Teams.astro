@@ -5,6 +5,23 @@ import { fetchImagesInPageBySlug } from "fetch-wordpress-api";
 
 const { noHeading } = Astro.props;
 const teams = await fetchImagesInPageBySlug("equips1");
+
+const sortTeams = (teams) => {
+  return teams.sort((a, b) => {
+    const titleA = a.title.toLowerCase();
+    const titleB = b.title.toLowerCase();
+    const getPriority = (title) => {
+      if (title.includes('femeni')) return 1;
+      if (title.includes('masculi')) return 2;
+      if (title.includes('cadira')) return 3;
+      if (title.includes('escola')) return 4;
+      return 5;  // default priority if none of the keywords are found
+    };
+    return getPriority(titleA) - getPriority(titleB);
+  });
+};
+
+const sortedTeams = sortTeams(teams);
 ---
 
 <HomePageSectionLayout
@@ -13,7 +30,7 @@ const teams = await fetchImagesInPageBySlug("equips1");
 >
   <div class="teams-container">
     {
-      teams.reverse().map((team) => (
+      sortedTeams.map((team) => (
         <div>
           <TeamItem {team} />
         </div>
