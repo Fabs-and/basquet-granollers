@@ -1,11 +1,25 @@
 ---
 import { fetchImagesInPageBySlug } from "fetch-wordpress-api";
 
+const { isFromHeader} = Astro.props;
 const socialMediaLinks = await fetchImagesInPageBySlug("xarxes-socials");
 
+const order = ["youtube", "tiktok", "facebook", "x.com", "instagram"];
+
+const getOrderIndex = (title) => {
+  for (let i = 0; i < order.length; i++) {
+    if (title.toLowerCase().includes(order[i])) {
+      return i;
+    }
+  }
+  return order.length; // Return a value larger than any valid index for items that don't match any order
+};
+socialMediaLinks.sort((a, b) => {
+  return getOrderIndex(a.title) - getOrderIndex(b.title);
+});
 ---
 
-<nav>
+<nav style={{ width: isFromHeader ? '11.0544rem' : 'auto' }}>
   <ul>
     {
       socialMediaLinks.map((socialMediaLink) => {
@@ -44,7 +58,6 @@ const socialMediaLinks = await fetchImagesInPageBySlug("xarxes-socials");
 
 <style>
   nav {
-    width: 11.0544rem;
     height: 1.09956rem;
   }
   ul {
