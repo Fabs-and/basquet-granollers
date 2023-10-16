@@ -1,19 +1,45 @@
 <script>
 import { dateConverter } from "@utils/helperFunctions";
+    import { load } from "cheerio";
 
 export let noticies;
+
+let index = 0;  // Change const to let
+let showButton = noticies.length > 9;
+let displayedNews = [];
+
+// Corrected reactive statement
+$: {
+  showButton = displayedNews.length === noticies.length ? false : true;
+  displayedNews = noticies.slice(0, index + 9);  // Moved this line inside reactive block
+}
+
+function loadNineMore() {
+  index += 9;  // Update index to get the next slice
+  const nineMore = noticies.slice(index, index + 9);
+  displayedNews = [...displayedNews, ...nineMore];
+}
 </script>
 
 <div class="noticies-container">
-  {#each noticies as noticia (noticia.id)}
+  {#each displayedNews as noticia, i (noticia.id)}
     <article class="noticia">
       <a href={`/noticies/${noticia.slug}`}>
         <div class="image-container">
           {#if noticia.image}
+          {#if i < 3}
+             <img
+              src={noticia.image.url}
+              alt={noticia.image.alt ? noticia.image.alt : noticia.title.rendered}
+              loading='eager'
+            />
+          {:else}
             <img
               src={noticia.image.url}
               alt={noticia.image.alt ? noticia.image.alt : noticia.title.rendered}
+              loading='lazy'
             />
+            {/if}
           {/if}
         </div>
         <div class="info-container">
@@ -26,10 +52,22 @@ export let noticies;
     </article>
   {/each}
 </div>
+{#if showButton}
+  <button class='button-anchor' on:click={loadNineMore}>VEURE MÉS</button>
+{/if}
 
 <style>
    h4  { 
     font-weight: 500;
+  }
+
+  .button-anchor {
+    margin-top: var(--padding-section-big);
+    margin-inline: auto;
+    color: var(--clr-accent);
+  }
+   .button-anchor:hover {
+    color: var(--clr-contrast);
   }
   .noticies-container {
     display: flex;
@@ -94,6 +132,10 @@ export let noticies;
       width: 21.625rem;
       height: 20.93rem;
     }
+
+    .button-anchor {
+      margin-top: var(--padding-section-medium);
+    }
   }
 
   @media (width < 648px) {
@@ -101,7 +143,9 @@ export let noticies;
       font-size: 2.5rem;
       line-height: 2.5rem;
     }
-
+     .button-anchor {
+      margin-top: var(--padding-section-small);
+    }
       .noticia {
       width: 20.4375rem;
       height: 19.74rem;
