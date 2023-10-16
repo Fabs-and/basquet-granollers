@@ -2,7 +2,7 @@
 import ButtonAnchor from "@components/ButtonAnchor.astro";
 import { fetchPostsInCategory } from "fetch-wordpress-api";
 
-import { extractSlideDescriptionAndLink } from "@utils/helperFunctions";
+import { formatHTMLContent, extractSlideDescriptionAndLink } from "@utils/helperFunctions";
 const slides = await fetchPostsInCategory(40);
 
 const totalDots = Array(slides.length).fill(0);
@@ -61,8 +61,8 @@ const totalDots = Array(slides.length).fill(0);
           />
           <div class="hero-info-container">
             <div class="hero-info-flex">
-              <h2>{slide.title.rendered}</h2>
-              <p>{description}</p>
+              <h2>{formatHTMLContent(slide.title.rendered)}</h2>
+              <p>{formatHTMLContent(description)}</p>
               <ButtonAnchor slug={link} text={`veure més`} />
             </div>
           </div>

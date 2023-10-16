@@ -1,7 +1,7 @@
 <script>
 import { dateConverter } from "@utils/helperFunctions";
     import { load } from "cheerio";
-
+import { slide } from 'svelte/transition';
 export let noticies;
 
 let index = 0;  // Change const to let
@@ -23,7 +23,7 @@ function loadNineMore() {
 
 <div class="noticies-container">
   {#each displayedNews as noticia, i (noticia.id)}
-    <article class="noticia">
+    <article class="noticia" in:slide={{ duration: 300, y: 100 }}>
       <a href={`/noticies/${noticia.slug}`}>
         <div class="image-container">
           {#if noticia.image}

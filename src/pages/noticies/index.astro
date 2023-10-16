@@ -17,7 +17,7 @@ import { dateConverter } from "@utils/helperFunctions";
 import InternalPageLayout from "@layouts/NonDynamicPageLayout.astro";
 import Headings from "@components/internal-pages/headings.astro";
 import NoticiesPagination from "@components/internal-pages/NoticiesPagination.svelte";
-const noticies = await fetchPostsInCategory(19,[],75);
+const noticies = await fetchPostsInCategory(19,[],20);
 
 //When we generate all dynamic routes statically, we need to remove noticies/ in the href of the anchor
 
