@@ -13,13 +13,13 @@
     "@astrojs/netlify": "^3.0.2",
     "@astrojs/node": "^6.0.3",
     "@astrojs/svelte": "^4.0.3",
-    "astro": "^3.2.4",
+    "astro": "^3.3.0",
     "cheerio": "1.0.0-rc.12",
-    "fetch-wordpress-api": "^1.0.33",
+    "fetch-wordpress-api": "^1.0.38",
     "svelte": "^4.2.1"
   },
   "devDependencies": {
-    "@types/node": "^20.8.4",
+    "@types/node": "^20.8.6",
     "@typescript-eslint/parser": "^5.62.0",
     "eslint": "^8.51.0",
     "eslint-plugin-astro": "^0.27.2",

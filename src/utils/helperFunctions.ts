@@ -395,7 +395,7 @@ export function extractSponsorshipsOptions(content: string) {
     /(?:&gt;|&nbsp;)*\s*Preu:\s*<\/strong>\s*(?:&nbsp;)*(.*?)(?:&nbsp;)*(?:<br \/>\n|<\/p>)/gi;
   const advantagesRegex =
     /(?:&gt;|&nbsp;)*\s*Avantatges:\s*(?:<\/strong>\s*<br \/>\s*\n|<br \/>\s*\n\s*<\/strong>)([\s\S]*?)(?:&nbsp;)*<\/p>/gis;
-  const sponsorshipsStart = content.indexOf("MEMBRES");
+  const sponsorshipsStart = content.indexOf("SPONSORS");
   const membershipsEnd = content.length;
   const sponsorshipsSection = content.slice(sponsorshipsStart, membershipsEnd);
 

@@ -1,34 +1,34 @@
----
-// Import utils
-import {
-  fetchAllCategories,
-  fetchPostsInCategory,
-  Category,
-  fetchPosts,
-} from "fetch-wordpress-api";
-
-// Import types
-import type { Post } from "fetch-wordpress-api";
-
-// Import Layouts
-import BaseLayout from "@layouts/BaseLayout.astro";
-import GridPostCard from "@components/homePage/news/GridPostCard.astro";
+<script>
 import { dateConverter } from "@utils/helperFunctions";
-import InternalPageLayout from "@layouts/NonDynamicPageLayout.astro";
-import Headings from "@components/internal-pages/headings.astro";
-import NoticiesPagination from "@components/internal-pages/NoticiesPagination.svelte";
-const noticies = await fetchPostsInCategory(19,[],9);
 
-//When we generate all dynamic routes statically, we need to remove noticies/ in the href of the anchor
+export let noticies;
+</script>
 
----
-
-<InternalPageLayout title={`Notícies del Club Bàsquet Granollers`} heading={`Notícies CBG`} subHeading={`Totes les notícies`}>
-  <NoticiesPagination client:visible {noticies}/>
-</InternalPageLayout>
+<div class="noticies-container">
+  {#each noticies as noticia (noticia.id)}
+    <article class="noticia">
+      <a href={`/noticies/${noticia.slug}`}>
+        <div class="image-container">
+          {#if noticia.image}
+            <img
+              src={noticia.image.url}
+              alt={noticia.image.alt ? noticia.image.alt : noticia.title.rendered}
+            />
+          {/if}
+        </div>
+        <div class="info-container">
+          <h4>
+            {@html noticia.title.rendered}
+          </h4>
+          <p>Publicat {dateConverter(noticia.date)}</p>
+        </div>
+      </a>
+    </article>
+  {/each}
+</div>
 
 <style>
-  h4  { 
+   h4  { 
     font-weight: 500;
   }
   .noticies-container {
