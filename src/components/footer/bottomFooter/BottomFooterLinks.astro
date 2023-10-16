@@ -4,9 +4,20 @@ const { bottomFooterLinks } = Astro.props;
 
 {
   bottomFooterLinks.map((link) => (
-    <a class="underline-links" href={`${link.link}`}>
-      {link.name}
-    </a>
+    link.link.includes("http") ? (
+      <a
+        href={link.link}
+        class="g-underline-links"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        {link.name}
+      </a>
+    ) : (
+      <a href={link.link} class="underline-links">
+        {link.name}
+      </a>
+    )
   ))
 }
 
@@ -20,8 +31,8 @@ const { bottomFooterLinks } = Astro.props;
   }
 
   @media (width < 1025px) {
-      a {
-    font-size: 0.75rem;;
-  }
+    a {
+      font-size: 0.75rem;
+    }
   }
 </style>

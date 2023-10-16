@@ -47,7 +47,17 @@ import { collapsibleArrowHeader } from "@assets/icons";
       {
         item.dropdown.map((dropDownItem) => (
           <li>
-            <a href={dropDownItem.link}>{dropDownItem.name!.toUpperCase()}</a>
+            {dropDownItem.link.includes("http") ? (
+              <a
+                href={dropDownItem.link}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                {dropDownItem.name!}
+              </a>
+            ) : (
+              <a href={dropDownItem.link}>{dropDownItem.name!}</a>
+            )}
           </li>
         ))
       }

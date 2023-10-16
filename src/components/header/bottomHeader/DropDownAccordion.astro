@@ -10,7 +10,17 @@ const { item } = Astro.props;
     {
       item.dropdown.map((dropDownItem) => (
         <li>
-          <a href={dropDownItem.link}>{dropDownItem.name}</a>
+          {dropDownItem.link.includes("http") ? (
+            <a
+              href={dropDownItem.link}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              {dropDownItem.name!}
+            </a>
+          ) : (
+            <a href={dropDownItem.link}>{dropDownItem.name!}</a>
+          )}
         </li>
       ))
     }

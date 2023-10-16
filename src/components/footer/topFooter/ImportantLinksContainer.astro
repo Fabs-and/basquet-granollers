@@ -6,11 +6,19 @@ const {fixedLinks} = Astro.props
   {
     fixedLinks.map((link) => (
       <li>
-        <a
-          href={`${link.link}`}
-        >
-          <h5>{link.name.toUpperCase()}</h5>
-        </a>
+       {link.link.includes("http") ? (
+              <a
+                href={link.link}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <h5>{link.name.toUpperCase()}</h5>
+              </a>
+            ) : (
+              <a href={link.link}>
+                <h5>{link.name.toUpperCase()}</h5>
+              </a>
+            )}
       </li>
     ))
   }

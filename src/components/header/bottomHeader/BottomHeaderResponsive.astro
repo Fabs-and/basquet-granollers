@@ -58,11 +58,11 @@ const { navigation, isSearchIcon } = Astro.props;
       <li>
         {item.dropdown ? (
           <DropDownAccordion {item} />
-        ) : (
-          <a href={item.link}>
-            <h5>{item.name!.toUpperCase()}</h5>
-          </a>
-        )}
+        ) : item.link.includes('http') ? (
+            <a href={item.link} target='_blank' rel="noopener noreferrer">{item.name!.toUpperCase() }</a>
+          ) : (
+            <a href={item.link}>{item.name!.toUpperCase()}</a>
+          )}
       </li>
     ))
   }

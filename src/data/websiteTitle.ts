@@ -1,1 +1,0 @@
-export const title = "CBG, Club Bàsquet Granollers"

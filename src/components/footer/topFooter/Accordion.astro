@@ -2,19 +2,25 @@
 const { generalLinks } = Astro.props;
 ---
 
- {
+{
   generalLinks.map((item) => (
-    <details >
+    <details>
       <summary>
         <h5>{item.title.toUpperCase()}</h5>
       </summary>
-      <ul class='links-container'>
-          {item.content.map((link) => (
-            <li>
+      <ul class="links-container">
+        {item.content.map((link) => (
+          <li>
+            {link.link.includes("http") ? (
+              <a href={link.link} target="_blank" rel="noopener noreferrer">
+                {link.name}
+              </a>
+            ) : (
               <a href={link.link}>{link.name}</a>
-            </li>
-          ))}
-      </ul>   
+            )}
+          </li>
+        ))}
+      </ul>
     </details>
   ))
 }
@@ -36,7 +42,7 @@ const { generalLinks } = Astro.props;
   }
 
   summary::-webkit-details-marker {
-	  display: none;
+    display: none;
   }
 
   details summary {
@@ -49,12 +55,11 @@ const { generalLinks } = Astro.props;
     margin-bottom: 10px;
   }
 
-  
   summary::before {
-  	position: absolute;
+    position: absolute;
     top: -9%;
     left: 5.5rem;
-    content: url('../../../collapsibleArrow.svg');
+    content: url("../../../collapsibleArrow.svg");
     display: inline-flex;
     justify-content: center;
     align-items: center;

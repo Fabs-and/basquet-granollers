@@ -11,8 +11,6 @@ interface Props {
 const { topFooterLinks } = Astro.props;
 
 const { generalLinks, fixedLinks } = topFooterLinks;
-
-
 ---
 
 {
@@ -25,7 +23,19 @@ const { generalLinks, fixedLinks } = topFooterLinks;
       <ul class="links-container">
         {item.content.map((link) => (
           <li>
-            <a href={link.link}>{link.name}</a>
+            {link.link.includes("http") ? (
+              <a
+                href={link.link}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                {link.name}
+              </a>
+            ) : (
+              <a href={link.link}>
+                {link.name}
+              </a>
+            )}
           </li>
         ))}
       </ul>
@@ -38,7 +48,7 @@ const { generalLinks, fixedLinks } = topFooterLinks;
 </article>
 
 <style>
- h5 {
+  h5 {
     font-weight: 500;
     /* font-size: 1.125rem; */
   }
@@ -53,6 +63,4 @@ const { generalLinks, fixedLinks } = topFooterLinks;
     flex-direction: column;
     justify-content: space-between;
   }
-
-
 </style>

@@ -24,13 +24,7 @@ import { BASE_URL } from "src/config";
 
 configure({ BASE_URL: BASE_URL });
 
-
-
-// console.log(posts[1])
-
-const allCategories: Category[] = await fetchAllCategories(categoryFields);
-
-import { title } from "@data/websiteTitle";
+const title = `Club Bàsquet Granollers`;
 ---
 
 <BaseLayout {title}>
@@ -39,8 +33,7 @@ import { title } from "@data/websiteTitle";
   <MainSponsors />
   <News />
   <Join />
-  <Teams needsHeading={true}/>
+  <Teams needsHeading={true} />
   <Projects />
   <AllSponsors />
 </BaseLayout>
-
