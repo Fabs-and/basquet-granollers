@@ -7,6 +7,7 @@ const { generalLinks } = Astro.props;
     <details>
       <summary>
         <h5>{item.title.toUpperCase()}</h5>
+          <span class="arrow-icon"></span>
       </summary>
       <ul class="links-container">
         {item.content.map((link) => (
@@ -36,6 +37,7 @@ const { generalLinks } = Astro.props;
   h5 {
     font-weight: 500;
     font-size: 1.125rem;
+    display: inline-block;
   }
   details > summary {
     list-style: none;
@@ -54,11 +56,14 @@ const { generalLinks } = Astro.props;
   details[open] summary {
     margin-bottom: 10px;
   }
-
-  summary::before {
+  .arrow-icon {
+    position: relative;
+  }
+  .arrow-icon::before {
     position: absolute;
-    top: -9%;
-    left: 5.5rem;
+    top: 0rem;
+    left: 0.5rem;
+    bottom: 0rem;
     content: url("../../../collapsibleArrow.svg");
     display: inline-flex;
     justify-content: center;
@@ -66,12 +71,11 @@ const { generalLinks } = Astro.props;
     transform: rotate(0);
     transform-origin: 50% 44%;
     transition: 0.45s transform ease-in-out;
-  }
+}
 
-  details[open] > summary:before {
-    transform: rotate(-180deg);
-    transition: 0.45s transform ease-in-out;
-  }
+details[open] .arrow-icon::before {
+  transform: rotate(-180deg);
+}
 
   .links-container {
     display: flex;

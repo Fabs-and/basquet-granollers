@@ -1,7 +1,6 @@
 ---
 import { fetchImagesInPageBySlug } from "fetch-wordpress-api";
 
-const { isFromHeader} = Astro.props;
 const socialMediaLinks = await fetchImagesInPageBySlug("xarxes-socials");
 
 const order = ["youtube", "tiktok", "facebook", "x.com", "instagram"];
@@ -19,7 +18,7 @@ socialMediaLinks.sort((a, b) => {
 });
 ---
 
-<nav style={{ width: isFromHeader ? '11.0544rem' : 'auto' }}>
+<nav>
   <ul>
     {
       socialMediaLinks.map((socialMediaLink) => {
@@ -58,6 +57,7 @@ socialMediaLinks.sort((a, b) => {
 
 <style>
   nav {
+    width: 11.0544rem;
     height: 1.09956rem;
   }
   ul {
@@ -71,4 +71,9 @@ socialMediaLinks.sort((a, b) => {
     align-items: center;
   }
 
+ @media (width < 648px) {
+  nav {
+    width: auto;
+  }
+ }
 </style>
