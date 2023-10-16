@@ -11,7 +11,7 @@ import BaseLayout from "@layouts/BaseLayout.astro";
 // Import global (not global stores) variables/constants
 
 const { projectes} = Astro.params;
-import PostLayout from "@layouts/PostLayout.astro";
+import PageLayout from "@layouts/PageLayout.astro";
 
 const projectesFromWP =  await fetchPostsInCategory(42);
 
@@ -39,5 +39,5 @@ if (!project) return Astro.redirect("/404");
 
 ---
 
-  <PostLayout post={project} pageTitle={project.title.rendered} />
+  <PageLayout post={project} pageTitle={project.title.rendered} isPost={true}/>
 

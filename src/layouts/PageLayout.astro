@@ -3,7 +3,7 @@
 import { dateConverter, formatHTMLContent } from "@utils/helperFunctions";
 import BaseLayout from "./BaseLayout.astro";
 
-const { post, pageTitle } = Astro.props;
+const { post, pageTitle, isPost } = Astro.props;
 
 const { title: {rendered: title}, content: {rendered: content}, image, date } = post;
 
@@ -15,7 +15,7 @@ const { title: {rendered: title}, content: {rendered: content}, image, date } = 
       <header class="article-header">
         <div class="article-header-text">
           <h1 set:html={formatHTMLContent(title)} />
-          <p class="g-date-style">{`Publicat ${dateConverter(date)}`}</p>
+          {isPost && <p class="g-date-style">{`Publicat ${dateConverter(date)}`}</p>}
         </div>
         {
           image && (

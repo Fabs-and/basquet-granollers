@@ -11,7 +11,7 @@ import type { Post } from "fetch-wordpress-api";
 import BaseLayout from "@layouts/BaseLayout.astro";
 
 // Import global (not global stores) variables/constants
-import PostLayout from "@layouts/PostLayout.astro";
+import PageLayout from "@layouts/PageLayout.astro";
 
 const { noticia} = Astro.params;
 
@@ -43,5 +43,5 @@ if (!post) return Astro.redirect("/404");
 ---
 
 
-<PostLayout post={post} pageTitle={post.title.rendered}/>
+<PageLayout isPost={true} post={post} pageTitle={post.title.rendered}/>
 

@@ -14,7 +14,7 @@ import type { Post } from "fetch-wordpress-api";
 import BaseLayout from "@layouts/BaseLayout.astro";
 import GridPostCard from "@components/homePage/news/GridPostCard.astro";
 import { dateConverter } from "@utils/helperFunctions";
-import InternalPageLayout from "@layouts/InternalPageLayout.astro";
+import InternalPageLayout from "@layouts/NonDynamicPageLayout.astro";
 import Headings from "@components/internal-pages/headings.astro";
 
 const noticies = await fetchPostsInCategory(19,[],21);
