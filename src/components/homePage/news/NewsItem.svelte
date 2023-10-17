@@ -20,7 +20,7 @@
 <article class:isFeatured class:isSliderItem class:isDesktopNews>
   <a href={`/noticies/${slug}`}>
     <div class="image-container">
-      {#if image}
+      {#if image.url !== ""}
         <img src={image.url} alt={image.alt} loading="lazy" />
       {:else}
         <img

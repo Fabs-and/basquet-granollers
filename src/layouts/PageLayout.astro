@@ -20,7 +20,7 @@ const { title: {rendered: title}, content: {rendered: content}, image, date } = 
           {isPost && <p class="g-date-style">{`Publicat ${dateConverter(date)}`}</p>}
         </div>
         {
-          image ? (
+          image.url !== "" ? (
             <img
               class="g-opacity"
               src={image.url}
@@ -29,7 +29,7 @@ const { title: {rendered: title}, content: {rendered: content}, image, date } = 
           ) : (
             <img
               class="g-opacity"
-              src='default-pic.avif'
+              src='/default-pic.avif'
               alt='Imatge de recurs amb totes les seccions del Club Bàsquet Granollers'
             />
           )
@@ -88,7 +88,7 @@ const { title: {rendered: title}, content: {rendered: content}, image, date } = 
     width: 100%;
     height: 100%;
     object-fit: cover;
-    object-position: left top;
+    object-position: center top;
   }
   .article-content {
     padding-inline: calc(19.44rem - var(--padding-inline));
