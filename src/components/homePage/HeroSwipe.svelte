@@ -1,6 +1,6 @@
 <script>
-  import { onMount, onDestroy } from 'svelte';
-  import ButtonAnchor from '../ButtonAnchor.svelte';
+  import { onMount, onDestroy } from "svelte";
+  import ButtonAnchor from "../ButtonAnchor.svelte";
   export let slides;
   let totalDots;
   let currentSlideIndex = 0;
@@ -10,64 +10,123 @@
     extractSlideDescriptionAndLink,
   } from "@utils/helperFunctions";
 
-  $: totalDots = Array((slides ? slides.length : 0)).fill(0);
+  $: totalDots = Array(slides ? slides.length : 0).fill(0);
 
-let intervalId;
+  let intervalId;
+  let startX;
 
-onMount(() => {
+  onMount(() => {
     intervalId = setInterval(() => {
-        if (slides && slides.length > 0) {
+      if (slides && slides.length > 0) {
         currentSlideIndex = (currentSlideIndex + 1) % slides.length;
-    }
+      }
     }, 10000);
-});
+  });
 
-onDestroy(() => {
+  onDestroy(() => {
     clearInterval(intervalId);
-});
+  });
+
+  function handleTouchStart(event) {
+    startX = event.touches[0].clientX;
+  }
+
+  function handleTouchEnd(event) {
+    const endX = event.changedTouches[0].clientX;
+    if (startX - endX > 50) {
+      nextSlide(); // swiped left
+    } else if (endX - startX > 50) {
+      prevSlide(); // swiped right
+    }
+  }
+
+  let transitionDirection = '';
+  let prevSlideIndex = 0;
+
+  function prevSlide() {
+   transitionDirection = 'prev';  // Changed from 'next' to 'prev'
+    prevSlideIndex = currentSlideIndex;  // Store the current slide index as the previous slide index
+    currentSlideIndex = currentSlideIndex === 0 ? slides.length - 1 : currentSlideIndex - 1;  // Corrected the logic for cycling to the previous slide
+  }
+
+  function nextSlide() {
+   transitionDirection = 'next';  // Changed from 'prev' to 'next'
+    prevSlideIndex = currentSlideIndex;  // Store the current slide index as the previous slide index
+    currentSlideIndex = currentSlideIndex === slides.length - 1 ? 0 : currentSlideIndex + 1;  // Corrected the logic for cycling to the next slide
+  }
+
   function handleDotClick(index) {
     if (!isNaN(index)) {
       currentSlideIndex = index;
     }
   }
-
 </script>
 
 {#if slides && slides.length > 0}
-   <section class="hero-section">
+  <section
+    class="hero-section"
+    on:touchstart={handleTouchStart}
+    on:touchend={handleTouchEnd}
+  >
     {#each slides as slide, index}
+      <div
+        data-index={index}
+        class="slide" 
+        class:active={index === currentSlideIndex}
+        class:outgoing={index === prevSlideIndex && index !== currentSlideIndex}
+        class:transition-next={transitionDirection === 'next'}
+        class:transition-prev={transitionDirection === 'prev'}
+      >
+        {#if index === 0}
+          <img
+            src={slide.image.url}
+            class="hidden"
+            alt={slide.image.alt}
+            loading="eager"
+          />
+        {:else}
+          <img
+            src={slide.image.url}
+            class="hidden"
+            alt={slide.image.alt}
+            loading="lazy"
+          />
+        {/if}
 
-    <div data-index={index} class="slide {index === currentSlideIndex ? 'active' : ''}">
-      {#if index === 0}
-        <img src={slide.image.url} class="hidden" alt={slide.image.alt} loading='eager'/>
-      {:else}
-        <img src={slide.image.url} class="hidden" alt={slide.image.alt} loading='lazy' />
-      {/if}
-      
-      <div class="hero-info-container">
-        <div class="hero-info-flex">
-          <h2>{formatHTMLContent(slide.title.rendered)}</h2>
-          <p>{formatHTMLContent(extractSlideDescriptionAndLink(slide.content.rendered).description)}</p>
-          <ButtonAnchor slug={extractSlideDescriptionAndLink(slide.content.rendered).link} text={`veure més`} />
+        <div class="hero-info-container">
+          <div class="hero-info-flex">
+            <h2>{formatHTMLContent(slide.title.rendered)}</h2>
+            <p>
+              {formatHTMLContent(
+                extractSlideDescriptionAndLink(slide.content.rendered)
+                  .description,
+              )}
+            </p>
+            <ButtonAnchor
+              slug={extractSlideDescriptionAndLink(slide.content.rendered).link}
+              text={`veure més`}
+            />
+          </div>
         </div>
       </div>
-    </div>
-    {#if totalDots && totalDots.length > 1}
-    <div class="carousel-dots">
-      {#each totalDots as _, index}
-       <button class="carousel-dot {index === currentSlideIndex ? 'active-dot' : ''}" on:click={() => handleDotClick(index)} />
-      {/each}
-    </div>
-  {/if}
-
+      {#if totalDots && totalDots.length > 1}
+        <div class="carousel-dots">
+          {#each totalDots as _, index}
+            <button
+              class="carousel-dot {index === currentSlideIndex
+                ? 'active-dot'
+                : ''}"
+              on:click={() => handleDotClick(index)}
+            />
+          {/each}
+        </div>
+      {/if}
     {/each}
-    
-     
-    </section>
+  </section>
 {/if}
 
 <style>
-    h2 {
+  h2 {
     font-size: 2.75rem;
     line-height: 3.25rem;
   }
@@ -142,6 +201,42 @@ onDestroy(() => {
     width: 100%;
     gap: 1.5rem;
     text-wrap: balance;
+  }
+
+  .slide.transition-next.active {
+    animation: slide-in-from-right 0.5s forwards ease-in-out;
+  }
+
+  .slide.transition-next.outgoing {
+    animation: slide-out-to-left 0.5s forwards ease-in-out;
+  }
+
+  .slide.transition-prev.active {
+    animation: slide-in-from-left 0.5s forwards ease-in-out;
+  }
+
+  .slide.transition-prev.outgoing {
+    animation: slide-out-to-right 0.5s forwards ease-in-out;
+  }
+
+  @keyframes slide-in-from-right {
+    0% { transform: translateX(100%); }
+    100% { transform: translateX(0); }
+  }
+
+  @keyframes slide-in-from-left {
+    0% { transform: translateX(-100%); }
+    100% { transform: translateX(0); }
+  }
+
+  @keyframes slide-out-to-left {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-100%); }
+  }
+
+  @keyframes slide-out-to-right {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(100%); }
   }
 
   @media (width < 1184px) {
