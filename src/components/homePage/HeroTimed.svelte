@@ -1,29 +1,73 @@
----
-import ButtonAnchor from "@components/ButtonAnchor.astro";
-import { fetchPostsInCategory } from "fetch-wordpress-api";
-import HeroSwipe from "./HeroSwipe.svelte";
-import {
-  formatHTMLContent,
-  extractSlideDescriptionAndLink,
-} from "@utils/helperFunctions";
-import HeroTimed from "./HeroTimed.svelte";
-const slides = await fetchPostsInCategory(40);
+<script>
+  import { onMount, onDestroy } from 'svelte';
+  import ButtonAnchor from '../ButtonAnchor.svelte';
+  export let slides;
+  let totalDots;
+  let currentSlideIndex = 0;
 
-const totalDots = Array(slides.length).fill(0);
----
+  import {
+    formatHTMLContent,
+    extractSlideDescriptionAndLink,
+  } from "@utils/helperFunctions";
 
-<div class="desktop">
-  <HeroTimed client:visible {slides} />
-</div>
-<div class="responsive">
-  <HeroSwipe client:visible {slides} />
-</div>
+  $: totalDots = Array((slides ? slides.length : 0)).fill(0);
+
+let intervalId;
+
+onMount(() => {
+    intervalId = setInterval(() => {
+        if (slides && slides.length > 0) {
+        currentSlideIndex = (currentSlideIndex + 1) % slides.length;
+    }
+    }, 10000);
+});
+
+onDestroy(() => {
+    clearInterval(intervalId);
+});
+  function handleDotClick(index) {
+    if (!isNaN(index)) {
+      currentSlideIndex = index;
+    }
+  }
+
+</script>
+
+{#if slides && slides.length > 0}
+   <section class="hero-section">
+    {#each slides as slide, index}
+
+    <div data-index={index} class="slide {index === currentSlideIndex ? 'active' : ''}">
+      {#if index === 0}
+        <img src={slide.image.url} class="hidden" alt={slide.image.alt} loading='eager'/>
+      {:else}
+        <img src={slide.image.url} class="hidden" alt={slide.image.alt} loading='lazy' />
+      {/if}
+      
+      <div class="hero-info-container">
+        <div class="hero-info-flex">
+          <h2>{formatHTMLContent(slide.title.rendered)}</h2>
+          <p>{formatHTMLContent(extractSlideDescriptionAndLink(slide.content.rendered).description)}</p>
+          <ButtonAnchor slug={extractSlideDescriptionAndLink(slide.content.rendered).link} text={`veure més`} />
+        </div>
+      </div>
+    </div>
+    {#if totalDots && totalDots.length > 1}
+    <div class="carousel-dots">
+      {#each totalDots as _, index}
+       <button class="carousel-dot {index === currentSlideIndex ? 'active-dot' : ''}" on:click={() => handleDotClick(index)} />
+      {/each}
+    </div>
+  {/if}
+
+    {/each}
+    
+     
+    </section>
+{/if}
 
 <style>
-  .responsive {
-    display: none;
-  }
-  h2 {
+    h2 {
     font-size: 2.75rem;
     line-height: 3.25rem;
   }
@@ -123,12 +167,6 @@ const totalDots = Array(slides.length).fill(0);
   }
 
   @media (width < 648px) {
-    .desktop {
-      display: none;
-    }
-    .responsive {
-      display: block;
-    }
     .hero-info-container {
       padding-inline: var(--padding-inline-mobile);
       width: 100%;
