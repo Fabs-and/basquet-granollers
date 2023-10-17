@@ -2,7 +2,10 @@
 import ButtonAnchor from "@components/ButtonAnchor.astro";
 import { fetchPostsInCategory } from "fetch-wordpress-api";
 
-import { formatHTMLContent, extractSlideDescriptionAndLink } from "@utils/helperFunctions";
+import {
+  formatHTMLContent,
+  extractSlideDescriptionAndLink,
+} from "@utils/helperFunctions";
 const slides = await fetchPostsInCategory(40);
 
 const totalDots = Array(slides.length).fill(0);
@@ -44,45 +47,43 @@ const totalDots = Array(slides.length).fill(0);
   updateSlide();
 </script>
 
-{ slides.length > 0 &&
-<section class="hero-section">
-  {
-    slides.map((slide, index) => {
-      const { description, link } = extractSlideDescriptionAndLink(
-        slide.content.rendered,
-      );
+{
+  slides.length > 0 && (
+    <section class="hero-section">
+      {slides.map((slide, index) => {
+        const { description, link } = extractSlideDescriptionAndLink(
+          slide.content.rendered,
+        );
 
-      return (
-        <div data-index={index} class="slide">
-          <img
-            src={slide.image.url}
-            class="hidden"
-            alt={slide.image.alt}
-          />
-          <div class="hero-info-container">
-            <div class="hero-info-flex">
-              <h2>{formatHTMLContent(slide.title.rendered)}</h2>
-              <p>{formatHTMLContent(description)}</p>
-              <ButtonAnchor slug={link} text={`veure més`} />
+        return (
+          <div data-index={index} class="slide">
+            <img src={slide.image.url} class="hidden" alt={slide.image.alt} />
+            <div class="hero-info-container">
+              <div class="hero-info-flex">
+                <h2>{formatHTMLContent(slide.title.rendered)}</h2>
+                <p>{formatHTMLContent(description)}</p>
+                <ButtonAnchor slug={link} text={`veure més`} />
+              </div>
             </div>
           </div>
-        </div>
-      );
-    })
-  }
+        );
+      })}
 
-  {
-  totalDots.length > 1 &&
-  <div class="carousel-dots">
-    { 
-      totalDots.map((_, index) => (
-        <button class="carousel-dot" data-index={index} />
-      ))
-    }
-  </div>}
-</section>}
+      {totalDots.length > 1 && (
+        <div class="carousel-dots">
+          {totalDots.map((_, index) => (
+            <button class="carousel-dot" data-index={index} />
+          ))}
+        </div>
+      )}
+    </section>
+  )
+}
 
 <style>
+  h2 {
+    font-size: 2.75rem;
+  }
   .hero-section {
     position: relative;
   }
@@ -170,6 +171,11 @@ const totalDots = Array(slides.length).fill(0);
   @media (width < 1025px) {
     .hero-info-container {
       padding-inline: var(--padding-inline-tablet);
+    }
+
+    h2 {
+      font-size: 2.5rem;
+      line-height: 2.8125rem;
     }
   }
 
