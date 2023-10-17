@@ -1,0 +1,60 @@
+---
+import BaseLayout from "@layouts/BaseLayout.astro";
+import Headings from "@components/internal-pages/headings.astro";
+import { fetchPostsInCategory } from "fetch-wordpress-api";
+import NonDynamicPageLayout from "@layouts/NonDynamicPageLayout.astro";
+
+const projects = await fetchPostsInCategory(42);
+---
+
+
+<NonDynamicPageLayout title={`Projectes i events del Club Bàsquet Granollers`} heading={`Projectes i events del CBG`}>
+  <div class="component-container">
+    <div class="projects-desktop">
+      {
+        projects.map((project) =>
+          project.image ? (
+            <a href={`${project.slug}`}>
+              <div class="image-container">
+                <img
+                  class="image"
+                  src={project.image.url}
+                  alt={project.image.alt}
+                />
+              </div>
+            </a>
+          ) : null,
+        )
+      }
+    </div>
+  </div>
+</NonDynamicPageLayout>
+
+
+<style>
+  a {
+    display: block;
+    background: var(--clr-secondary);
+    /* width: 100%; */
+  }
+  .projects-desktop {
+    /* padding-right: var(--padding-inline); */
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(20rem, 1fr));
+    justify-items: center;
+    gap: 1rem;
+  }
+
+  .image-container {
+    max-width: 24.1875rem;
+    height: 14.375rem;
+    overflow: hidden;
+  }
+  img {
+     width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+
+</style>

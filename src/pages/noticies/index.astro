@@ -14,7 +14,7 @@ import type { Post } from "fetch-wordpress-api";
 import BaseLayout from "@layouts/BaseLayout.astro";
 import GridPostCard from "@components/homePage/news/GridPostCard.astro";
 import { dateConverter } from "@utils/helperFunctions";
-import InternalPageLayout from "@layouts/NonDynamicPageLayout.astro";
+import NonDynamicPageLayout from "@layouts/NonDynamicPageLayout.astro";
 import Headings from "@components/internal-pages/headings.astro";
 import NoticiesPagination from "@components/internal-pages/NoticiesPagination.svelte";
 const noticies = await fetchPostsInCategory(19,[],20);
@@ -23,9 +23,9 @@ const noticies = await fetchPostsInCategory(19,[],20);
 
 ---
 
-<InternalPageLayout title={`Notícies del Club Bàsquet Granollers`} heading={`Notícies CBG`} subHeading={`Totes les notícies`}>
+<NonDynamicPageLayout title={`Notícies del Club Bàsquet Granollers`} heading={`Notícies CBG`} subHeading={`Totes les notícies`}>
   <NoticiesPagination client:visible {noticies}/>
-</InternalPageLayout>
+</NonDynamicPageLayout>
 
 <style>
   h4  { 
