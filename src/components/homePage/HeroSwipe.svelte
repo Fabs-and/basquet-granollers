@@ -279,7 +279,7 @@
       transform: none;
     }
     section {
-      height: 100svh;
+      height: 101svh;
     }
   }
 </style>
