@@ -1,7 +1,7 @@
 ---
 import ButtonAnchor from "@components/ButtonAnchor.astro";
 import { fetchPostsInCategory } from "fetch-wordpress-api";
-
+import HeroSwipe from "./HeroSwipe.svelte";
 import {
   formatHTMLContent,
   extractSlideDescriptionAndLink,
@@ -11,7 +11,7 @@ const slides = await fetchPostsInCategory(40);
 const totalDots = Array(slides.length).fill(0);
 ---
 
-<script>
+<!-- <script>
   let currentSlideIndex = 0;
   const slides = document.querySelectorAll(".slide");
   const dots = document.querySelectorAll(".carousel-dot");
@@ -45,9 +45,11 @@ const totalDots = Array(slides.length).fill(0);
 
   // Initial update
   updateSlide();
-</script>
+</script> -->
 
-{
+
+<HeroSwipe client:visible {slides}></HeroSwipe>
+<!-- {
   slides.length > 0 && (
     <section class="hero-section">
       {slides.map((slide, index) => {
@@ -78,7 +80,7 @@ const totalDots = Array(slides.length).fill(0);
       )}
     </section>
   )
-}
+} -->
 
 <style>
   h2 {
