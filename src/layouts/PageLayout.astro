@@ -20,11 +20,17 @@ const { title: {rendered: title}, content: {rendered: content}, image, date } = 
           {isPost && <p class="g-date-style">{`Publicat ${dateConverter(date)}`}</p>}
         </div>
         {
-          image && (
+          image ? (
             <img
               class="g-opacity"
               src={image.url}
               alt={image.alt && image.alt}
+            />
+          ) : (
+            <img
+              class="g-opacity"
+              src='default-pic.avif'
+              alt='Imatge de recurs amb totes les seccions del Club Bàsquet Granollers'
             />
           )
         }

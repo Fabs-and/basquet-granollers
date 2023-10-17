@@ -1,5 +1,8 @@
 <script>
-  import { dateConverter, formatHTMLContent } from "../../../utils/helperFunctions";
+  import {
+    dateConverter,
+    formatHTMLContent,
+  } from "../../../utils/helperFunctions";
 
   export let item;
 
@@ -18,7 +21,13 @@
   <a href={`/noticies/${slug}`}>
     <div class="image-container">
       {#if image}
-        <img src={image.url} alt={image.alt} loading="lazy"/>
+        <img src={image.url} alt={image.alt} loading="lazy" />
+      {:else}
+        <img
+          src="./default-pic.avif"
+          alt="Imatge de recurs amb totes les seccions del Club Bàsquet Granollers"
+          loading='lazy'
+        />
       {/if}
     </div>
     <div class="info-container">
