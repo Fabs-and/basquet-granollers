@@ -21,8 +21,8 @@ dependencies:
     specifier: 1.0.0-rc.12
     version: 1.0.0-rc.12
   fetch-wordpress-api:
-    specifier: ^1.0.40
-    version: 1.0.40
+    specifier: ^1.0.41
+    version: 1.0.41
   svelte:
     specifier: ^4.2.1
     version: 4.2.1
@@ -2375,8 +2375,8 @@ packages:
     dependencies:
       reusify: 1.0.4
 
-  /fetch-wordpress-api@1.0.40:
-    resolution: {integrity: sha512-UbGqK5Z0v1ie4yAdxpOmABJSCMKv8c0EbaZKEeFoszcKAoTyE5kyzOUZe6K7IwtAUyjHWOJ6TeCD3VGMpj8xXw==}
+  /fetch-wordpress-api@1.0.41:
+    resolution: {integrity: sha512-gzNKljJQhwm2hk8RtpHXwoJfArZt/VWRNgOZfe0RgTJEuutD76pH6zEIfbbqdtabJ3gLUQkLIiR9HRc/Kgc3Jg==}
     dev: false
 
   /file-entry-cache@6.0.1:
