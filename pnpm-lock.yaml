@@ -21,8 +21,8 @@ dependencies:
     specifier: 1.0.0-rc.12
     version: 1.0.0-rc.12
   fetch-wordpress-api:
-    specifier: ^1.0.42
-    version: 1.0.42
+    specifier: ^1.0.47
+    version: 1.0.47
   svelte:
     specifier: ^4.2.1
     version: 4.2.1
@@ -1475,7 +1475,7 @@ packages:
     hasBin: true
     dependencies:
       caniuse-lite: 1.0.30001550
-      electron-to-chromium: 1.4.558
+      electron-to-chromium: 1.4.559
       node-releases: 2.0.13
       update-browserslist-db: 1.0.13(browserslist@4.22.1)
     dev: false
@@ -1942,8 +1942,8 @@ packages:
     resolution: {integrity: sha512-WMwm9LhRUo+WUaRN+vRuETqG89IgZphVSNkdFgeb6sS/E4OrDIN7t48CAewSHXc6C8lefD8KKfr5vY61brQlow==}
     dev: false
 
-  /electron-to-chromium@1.4.558:
-    resolution: {integrity: sha512-j9IcGmfkyN5MBH/0Xzg45GDHasXsnwEJDM6Xnr9H7GlGUni+JH4q6xp6Nk7NV5LjTmoEFBqhILIqg1McJrv6uA==}
+  /electron-to-chromium@1.4.559:
+    resolution: {integrity: sha512-iS7KhLYCSJbdo3rUSkhDTVuFNCV34RKs2UaB9Ecr7VlqzjjWW//0nfsFF5dtDmyXlZQaDYYtID5fjtC/6lpRug==}
     dev: false
 
   /emoji-regex@10.3.0:
@@ -2375,8 +2375,8 @@ packages:
     dependencies:
       reusify: 1.0.4
 
-  /fetch-wordpress-api@1.0.42:
-    resolution: {integrity: sha512-gTX7Rj7yMzaWLv4pjcAwkI1+FHAHvDS4x6ct3yyfTBN0Ypv95OCFHfjHmenFDx7ICGSXENqmyijr7aEdBkAVow==}
+  /fetch-wordpress-api@1.0.47:
+    resolution: {integrity: sha512-C8amOzDQI4/JUkz74sYBCbTu19rGCR5armrxFlY1gtej2c9oj3U6T1R1B6cC5x0aY9MYcIzq9l+Ug5LtyHqaJw==}
     dev: false
 
   /file-entry-cache@6.0.1:
