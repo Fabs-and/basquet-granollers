@@ -3,6 +3,7 @@ import BaseLayout from "@layouts/BaseLayout.astro";
 import Headings from "@components/internal-pages/headings.astro";
 import { masculins } from "@data/teamsPage";
 import InternalPageLayout from "./NonDynamicPageLayout.astro";
+import { extractPlayerInfo } from "@utils/helperFunctions";
 
 const { heading, subHeading, team } = Astro.props;
 
@@ -13,17 +14,17 @@ const { heading, subHeading, team } = Astro.props;
       {subHeading}>
     <div class="players-container">
       {
-        masculins[0].players.map((player, i) => (
+        team.map((player, i) => (
           <article class="player">
             <div class="image-container">
               <img
-                src={player.image ? player.image : "/player-avatar.png"}
+                src={player.url ? player.url : "/player-avatar.png"}
                 alt="" loading={i < 3 ? "eager" : "lazy"}
               />
             </div>
             <div class="info-container">
-              <p class="name">{player.nom}</p>
-              <p class="position">{player.posicio}</p>
+              <p class="name">{extractPlayerInfo(player.caption).name}</p>
+              <p class="position">{extractPlayerInfo(player.caption).position}</p>
             </div>
           </article>
         ))
@@ -39,7 +40,7 @@ const { heading, subHeading, team } = Astro.props;
 
   .name {
     font-size: 1.25rem;
-    font-weight: 700;
+    font-weight: 500;
   }
 
   .position {
