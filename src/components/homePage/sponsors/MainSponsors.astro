@@ -4,6 +4,7 @@ import { fetchImagesInPageBySlug } from "fetch-wordpress-api";
 const mainSponsorsWhite = await fetchImagesInPageBySlug('patrocinadors-principals-logos-blancs');
 
 
+
 ---
 
 <section class="main-sponsors-flex-container">
@@ -11,7 +12,7 @@ const mainSponsorsWhite = await fetchImagesInPageBySlug('patrocinadors-principal
   <nav>
     <ul class="main-sponsors-container">
       {
-        mainSponsorsWhite.reverse().map((sponsor) => (
+        mainSponsorsWhite.map((sponsor) => (
           <li>
             <a href={sponsor.caption} target="_blank" rel="noopener noreferrer">
               <img src={sponsor.url} alt={sponsor.alt} loading="lazy" />
