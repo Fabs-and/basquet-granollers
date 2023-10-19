@@ -270,9 +270,9 @@ small {
 
 /*Internal Pages styles*/
 .g-h2-internal-page {
-  font-size: 3.375rem;
-  line-height: 3.2rem;
-  font-weight: 800;
+  font-size: 1.625rem;
+  line-height: 1.75rem;
+  font-weight: 600;
   padding-bottom: 1rem;
   text-align: left;
   text-wrap: balance;
