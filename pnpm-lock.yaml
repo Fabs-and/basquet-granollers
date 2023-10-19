@@ -21,8 +21,8 @@ dependencies:
     specifier: 1.0.0-rc.12
     version: 1.0.0-rc.12
   fetch-wordpress-api:
-    specifier: ^1.0.48
-    version: 1.0.48
+    specifier: ^1.0.50
+    version: 1.0.50
   svelte:
     specifier: ^4.2.2
     version: 4.2.2
@@ -842,11 +842,11 @@ packages:
     engines: {node: ^12.22.0 || ^14.17.0 || >=16.0.0}
     dev: true
 
-  /@humanwhocodes/config-array@0.11.11:
-    resolution: {integrity: sha512-N2brEuAadi0CcdeMXUkhbZB84eskAc8MEX1By6qEchoVywSgXPIjou4rYsl0V3Hj0ZnuGycGCjdNgockbzeWNA==}
+  /@humanwhocodes/config-array@0.11.12:
+    resolution: {integrity: sha512-NlGesA1usRNn6ctHCZ21M4/dKPgW9Nn1FypRdIKKgZOKzkVV4T1FlK5mBiLhHBCDmEbdQG0idrcXlbZfksJ+RA==}
     engines: {node: '>=10.10.0'}
     dependencies:
-      '@humanwhocodes/object-schema': 1.2.1
+      '@humanwhocodes/object-schema': 2.0.0
       debug: 4.3.4
       minimatch: 3.1.2
     transitivePeerDependencies:
@@ -858,8 +858,8 @@ packages:
     engines: {node: '>=12.22'}
     dev: true
 
-  /@humanwhocodes/object-schema@1.2.1:
-    resolution: {integrity: sha512-ZnQMnLV4e7hDlUvw8H+U8ASL02SS2Gn6+9Ac3wGGLIe7+je2AeAOxPY+izIPJDfFDb7eDjev0Us8MO1iFRN8hA==}
+  /@humanwhocodes/object-schema@2.0.0:
+    resolution: {integrity: sha512-9S9QrXY2K0L4AGDcSgTi9vgiCcG8VcBv4Mp7/1hDPYoswIy6Z6KO5blYto82BT8M0MZNRWmCFLpCs3HlpYGGdw==}
     dev: true
 
   /@jridgewell/gen-mapping@0.3.3:
@@ -2195,7 +2195,7 @@ packages:
       '@eslint-community/regexpp': 4.9.1
       '@eslint/eslintrc': 2.1.2
       '@eslint/js': 8.51.0
-      '@humanwhocodes/config-array': 0.11.11
+      '@humanwhocodes/config-array': 0.11.12
       '@humanwhocodes/module-importer': 1.0.1
       '@nodelib/fs.walk': 1.2.8
       ajv: 6.12.6
@@ -2375,8 +2375,8 @@ packages:
     dependencies:
       reusify: 1.0.4
 
-  /fetch-wordpress-api@1.0.48:
-    resolution: {integrity: sha512-2YKrP9TFFUyOeecccPd9721ttUIt167IMWm+d1746S57CKOLb5Fsc2DQKIY8kokwuv9LRcEYAuaysGh4ybczDg==}
+  /fetch-wordpress-api@1.0.50:
+    resolution: {integrity: sha512-T2WczLC2C7/AZkQKPJYoeIgqYGWTw2UH8MXF3ycIvdmFu0IwqUa2Z3DEAH29cSgfOZU8ydsGhdd/DnXueCWK1g==}
     dev: false
 
   /file-entry-cache@6.0.1:

@@ -1,9 +1,11 @@
 ---
+import { configure, fetchAllCategories, fetchPosts } from "fetch-wordpress-api";
+import { BASE_URL } from "src/config";
+
+configure({ BASE_URL: BASE_URL });
 // Import types
 // import { Endpoints, CategoryFields } from 'src/types';
 
-import { configure, fetchAllCategories, fetchPosts } from "fetch-wordpress-api";
-configure({ BASE_URL: 'https://cbgranollers.cat' });
 // Import Layouts
 import BaseLayout from "@layouts/BaseLayout.astro";
 
@@ -20,9 +22,6 @@ import News from "@components/homePage/news/News.astro";
 import type { Category, Post } from "fetch-wordpress-api";
 // Import global (not global stores) variables/constants
 import { postFields, categoryFields } from "src/data/apiGlobalConsts";
-
-import { BASE_URL } from "src/config";
-
 
 const title = `Club Bàsquet Granollers`;
 ---
