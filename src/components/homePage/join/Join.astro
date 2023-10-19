@@ -79,10 +79,7 @@ function toggleSelected() {
   });
 </script>
 
-<HomePageSectionLayout
-  sectionTitle="Forma part de la família CBG"
-  noHeading={true}
->
+<HomePageSectionLayout noHeading={true}>
   <div class="title-and-options-container">
     <h2>Forma part de la família CBG</h2>
     <div class="options-container">
@@ -141,22 +138,16 @@ function toggleSelected() {
 </HomePageSectionLayout>
 
 <Dialog />
-<!-- 
-<section class="g-page-section-with-slider-container">
-  <div class="g-section-container">
-    
-  </div>
-</section> -->
 
 <style>
   .memberships.active {
     animation: slide-in-from-left 0.45s forwards ease-in;
   }
-
+  
   .memberships.outgoing {
     animation: slide-out-to-left 0.45s forwards ease-in;
   }
-
+  
   .sponsors.active {
     animation: slide-in-from-right 0.45s forwards ease-in;
   }
@@ -165,6 +156,19 @@ function toggleSelected() {
     animation: slide-out-to-right 0.45s forwards ease-in;
   }
 
+  .title-and-options-container {
+    padding-right: var(--padding-inline);
+    display: flex;
+    justify-content: space-between;
+    padding-bottom: var(--padding-heading-big);
+    flex-wrap: wrap;
+    gap: 1.5rem;
+  }
+  
+  .options-container {
+    display: flex;
+    gap: 1.5rem;
+  }
   .membership-desktop {
     /* padding-right: var(--padding-inline); */
     display: grid;
@@ -198,19 +202,6 @@ function toggleSelected() {
     display: none;
   }
 
-  .title-and-options-container {
-    padding-right: var(--padding-inline);
-    display: flex;
-    justify-content: space-between;
-    padding-bottom: var(--padding-heading-big);
-    flex-wrap: wrap;
-    gap: 1.5rem;
-  }
-
-  .options-container {
-    display: flex;
-    gap: 1.5rem;
-  }
   .button-anchor {
     transition: all 0.3s ease-in-out;
   }
@@ -352,8 +343,8 @@ function toggleSelected() {
   }
 
   @media (width < 375px) {
-    .options-container {
-      gap: 0rem;
+     .button-anchor {
+      width: 8rem;
     }
   }
 </style>
