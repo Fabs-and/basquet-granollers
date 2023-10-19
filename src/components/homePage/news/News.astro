@@ -4,12 +4,18 @@ import NewsDesktop from "@components/homePage/news/NewsDesktop.svelte";
 import HomePageSectionLayout from "@layouts/HomePageSectionLayout.astro";
 import Slider from "@components/Slider.svelte";
 import { fetchPosts, fetchPostsInCategory } from "fetch-wordpress-api";
+import NewsItem from "./NewsItem.svelte";
 
 const title = "CBG Notícies";
 
 const news: Post[] = await fetchPostsInCategory(19);
 
-const featuredNews = await fetchPostsInCategory(41);
+export const featuredNews = await fetchPostsInCategory(41);
+
+let newsForSlider = news;
+if (featuredNews.length > 0) {
+  newsForSlider = [featuredNews[0], ...news];
+}
 ---
 
 <HomePageSectionLayout
@@ -28,7 +34,7 @@ const featuredNews = await fetchPostsInCategory(41);
   <div class="g-slider-container">
     <Slider
       client:visible
-      sliderItems={news}
+      sliderItems={newsForSlider}
       childComponent="NewsItem"
       itemWidth={312}
       gap={`1rem`}
