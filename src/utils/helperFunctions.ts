@@ -305,7 +305,6 @@ export function extractNavigation(content: string): NavItem[] {
     }
   }
 
-  
   return navigation;
 }
 
@@ -345,8 +344,6 @@ export function extractSlideDescriptionAndLink(
 export function addApostrophe(str: string) {
   return str.replace(/&#8217;/g, "'");
 }
-
-
 
 export function extractMembershipsOptions(content: string) {
   const imageURLRegex = /src="([^"]*)"/gi;
@@ -483,21 +480,22 @@ export function extractBottomFooterInfo(content: string) {
 }
 
 export function extractPlayerInfo(str: string) {
+  if (str === "") return "";
   // Define regular expressions to match the desired parts of the string
   const nameRegex = /Nom:\s(.*?)\sPosició:/;
   const positionRegex = /Posició:\s(.*)/;
-  
+
   // Execute the regular expressions on the input string
   const nameMatch = nameRegex.exec(str);
   const positionMatch = positionRegex.exec(str);
-  
+
   // If both matches are successful, create and return the desired object
   if (nameMatch && positionMatch) {
     return {
       name: nameMatch[1],
-      position: positionMatch[1]
+      position: positionMatch[1],
     };
   } else {
-    throw new Error('Invalid input string format');
+    throw new Error("Invalid input string format");
   }
 }

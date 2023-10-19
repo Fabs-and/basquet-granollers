@@ -7,14 +7,14 @@ import { extractPlayerInfo } from "@utils/helperFunctions";
 
 const { heading, subHeading, team } = Astro.props;
 
-
 ---
 
 <InternalPageLayout  pageTitle={`Equips masculins del Club Bàsquet Granollers`}  {heading}
       {subHeading}>
     <div class="players-container">
       {
-        team.map((player, i) => (
+        team.map((player, i) => {
+          return (
           <article class="player">
             <div class="image-container">
               <img
@@ -27,7 +27,7 @@ const { heading, subHeading, team } = Astro.props;
               <p class="position">{extractPlayerInfo(player.caption).position}</p>
             </div>
           </article>
-        ))
+        )})
       }
     </div>
 </InternalPageLayout>
