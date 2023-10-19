@@ -15,7 +15,7 @@
     "@astrojs/svelte": "^4.0.3",
     "astro": "^3.3.2",
     "cheerio": "1.0.0-rc.12",
-    "fetch-wordpress-api": "^1.0.52",
+    "fetch-wordpress-api": "^1.0.53",
     "svelte": "^4.2.2"
   },
   "devDependencies": {
