@@ -8,9 +8,13 @@ import NewsItem from "./NewsItem.svelte";
 
 const title = "CBG Notícies";
 
-const news: Post[] = await fetchPostsInCategory(19);
+//Id needs to be included as a field it is used in newsDesktop to render in each block in svelte and also to compare with feature news
 
-export const featuredNews = await fetchPostsInCategory(41);
+const news: Post[] = await fetchPostsInCategory(19,  ['title', 'image', 'slug', 'date', 'id']);
+
+
+
+export const featuredNews = await fetchPostsInCategory(41, ['title', 'image', 'slug', 'date']);
 
 let newsForSlider = news;
 if (featuredNews.length > 0) {

@@ -6,7 +6,7 @@
   
   export let news: Post[];
   export let featuredNews: Post;
-
+ 
   news = news.filter((newsItem) => newsItem.id !== featuredNews.id);
   
   let position = 1;

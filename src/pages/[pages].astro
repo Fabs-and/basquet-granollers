@@ -14,7 +14,7 @@ import { addApostrophe } from "@utils/helperFunctions";
 
 const { pages} = Astro.params;
 
-const pagesFromWP = await fetchPages(100);
+const pagesFromWP = await fetchPages(100, ['title', 'content', 'image', 'date', 'slug']);
 
 const page = pagesFromWP.find((page) => page.slug === pages);
 

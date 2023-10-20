@@ -13,7 +13,7 @@ import BaseLayout from "@layouts/BaseLayout.astro";
 const { projectes} = Astro.params;
 import PageLayout from "@layouts/PageLayout.astro";
 
-const projectesFromWP =  await fetchPostsInCategory(42);
+const projectesFromWP =  await fetchPostsInCategory(42, ['title', 'content', 'image', 'slug', 'date']);
 
 const project = projectesFromWP.find((project) => project.slug === projectes);
 if (!project) return Astro.redirect("/404");
