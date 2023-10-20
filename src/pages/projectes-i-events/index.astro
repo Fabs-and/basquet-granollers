@@ -5,7 +5,6 @@ import { fetchPostsInCategory } from "fetch-wordpress-api";
 import NonDynamicPageLayout from "@layouts/NonDynamicPageLayout.astro";
 //remove projectes-i-events when is generated statically
 const projects = await fetchPostsInCategory(42);
-console.log('projects', projects)
 ---
 
 
