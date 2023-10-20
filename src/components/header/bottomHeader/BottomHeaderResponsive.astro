@@ -5,27 +5,31 @@ import { magnifyingGlass, hamburgerMenuIcon } from "@assets/icons";
 import Accordion from "@components/footer/topFooter/Accordion.astro";
 import { bottomHeaderLinks } from "@data/header";
 import DropDownAccordion from "./DropDownAccordion.astro";
-import {  extractNavigation } from "@utils/helperFunctions";
+import { extractNavigation } from "@utils/helperFunctions";
+import SocialMediaMenu from "@components/SocialMediaMenu.astro";
 
-const { navigation, isSearchIcon } = Astro.props;
+const { navigation, isSearchIcon, topHeaderContent } = Astro.props;
 
-
+const { text1, link1 } = topHeaderContent![0];
+const { text2, link2 } = topHeaderContent![0];
 ---
 
 <script>
   function handleClick(this: any) {
-    let div = document.querySelector(".dropdown-content-responsive") as HTMLDivElement;
+    let div = document.querySelector(
+      ".dropdown-content-responsive",
+    ) as HTMLDivElement;
 
     if (div) {
-        // Toggle the 'visible' class
-        if (div.classList.contains('visible')) {
-            div.classList.remove('visible');
-        } else {
-            div.classList.add('visible');
-        }
+      // Toggle the 'visible' class
+      if (div.classList.contains("visible")) {
+        div.classList.remove("visible");
+      } else {
+        div.classList.add("visible");
+      }
     }
   }
-  
+
   let buttons = document.querySelectorAll(".dropdown-menu");
 
   buttons.forEach(function (button) {
@@ -34,8 +38,7 @@ const { navigation, isSearchIcon } = Astro.props;
   });
 </script>
 
-<div class={`flex-container ${!isSearchIcon ? 'reverse-order' : ''}`}>
-
+<div class={`flex-container ${!isSearchIcon ? "reverse-order" : ""}`}>
   <button class="dropdown-menu">
     <Fragment set:html={hamburgerMenuIcon} />
   </button>
@@ -46,31 +49,104 @@ const { navigation, isSearchIcon } = Astro.props;
     href="/"><Fragment set:html={logoSmall} /></a
   >
 
- { isSearchIcon && <div class="search-icon">
-    <Fragment set:html={magnifyingGlass} />
-  </div>}
+  {
+    isSearchIcon && (
+      <div class="search-icon">
+        <Fragment set:html={magnifyingGlass} />
+      </div>
+    )
+  }
 </div>
 
-<ul id="myDropdown" class={`dropdown-content-responsive ${!isSearchIcon ? 'reverse-transition' : ''}`}>
+<ul
+  id="myDropdown"
+  class={`dropdown-content-responsive ${
+    !isSearchIcon ? "reverse-transition" : ""
+  }`}
+>
+  {
+    text1 && (
+      <li class="top-header-link">
+        {!link1 ? (
+          <p>{text1.toUpperCase()}</p>
+        ) : link1.includes("http") ? (
+          <a
+            href={link1}
+            class="underline-links"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            {text1.toUpperCase()}
+          </a>
+        ) : (
+          <a href={link1} class="underline-links">
+            {text1.toUpperCase()}
+          </a>
+        )}
+      </li>
+    )
+  }
+  {
+    text2 && (
+      <li class="top-header-link">
+        {!link2 ? (
+          <p>{text2.toUpperCase()}</p>
+        ) : link2.includes("http") ? (
+          <a
+            href={link2}
+            class="underline-links"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            {text2.toUpperCase()}
+          </a>
+        ) : (
+          <a href={link2} class="underline-links">
+            {text2.toUpperCase()}
+          </a>
+        )}
+      </li>
+    )
+  }
 
   {
     navigation.map((item) => (
       <li>
         {item.dropdown ? (
           <DropDownAccordion {item} />
-        ) : item.link.includes('http') ? (
-            <a href={item.link} target='_blank' rel="noopener noreferrer"><h5>{item.name!.toUpperCase()}</h5> </a>
-          ) : (
-            <a href={item.link}><h5>{item.name!.toUpperCase()}</h5></a>
-          )}
+        ) : item.link.includes("http") ? (
+          <a href={item.link} target="_blank" rel="noopener noreferrer">
+            <h5>{item.name!.toUpperCase()}</h5>{" "}
+          </a>
+        ) : (
+          <a href={item.link}>
+            <h5>{item.name!.toUpperCase()}</h5>
+          </a>
+        )}
       </li>
     ))
   }
+  <div class="social-media-container">
+    <SocialMediaMenu />
+  </div>
 </ul>
+
 <style>
+  .top-header-link {
+    margin-inline: auto;
+  }
+
+  .top-header-link > a {
+    color: var(--clr-contrast);
+    font-size: var(--font-size-h5);
+    font-weight: var(--font-weight-bold);
+    font-style: italic;
+    text-decoration: underline;
+  }
+
   .reverse-order {
     flex-direction: row-reverse;
-}
+  }
   .reverse-transition {
     --transition-direction: 100%;
   }
@@ -80,25 +156,29 @@ const { navigation, isSearchIcon } = Astro.props;
     background-color: var(--clr-primary);
     color: var(--clr-contrast);
     top: calc(
-      var(--bottom-header-hg) +  var(--top-header-hg) + var(--header-separator-line-responsive-hg)
+      var(--bottom-header-hg) + var(--top-header-hg) +
+        var(--header-separator-line-responsive-hg)
     );
     left: 0;
     right: 0;
     bottom: 0;
     padding-inline: var(--padding-inline-tablet);
     padding-block: 2.06rem;
-    flex-direction:column;
+    flex-direction: column;
     gap: 1.87rem;
     transform: translateX(var(--transition-direction, -100%));
     transition: transform 0.2s ease-in-out;
   }
 
+  .social-media-container {
+    margin-top: auto;
+  }
   .dropdown-content-responsive.visible {
     transform: translateX(0);
-}
- .dropdown-content-responsive h5{
-  color:var(--clr-contrast)
- }
+  }
+  .dropdown-content-responsive h5 {
+    color: var(--clr-contrast);
+  }
   .dropdown-content a {
     color: var(--clr-contrast);
     text-decoration: none;
@@ -126,9 +206,9 @@ const { navigation, isSearchIcon } = Astro.props;
 
   @media (width < 648px) {
     .dropdown-content-responsive {
-       top: calc(
-      var(--bottom-header-hg) + var(--header-separator-line-responsive-hg)
-    );
+      top: calc(
+        var(--bottom-header-hg) + var(--header-separator-line-responsive-hg)
+      );
       padding-inline: var(--padding-inline-mobile);
     }
   }
