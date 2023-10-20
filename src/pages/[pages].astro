@@ -17,6 +17,7 @@ const { pages} = Astro.params;
 const pagesFromWP = await fetchPages(100);
 
 const page = pagesFromWP.find((page) => page.slug === pages);
+
 if (!page) return Astro.redirect("/404");
 
 

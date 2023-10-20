@@ -6,9 +6,10 @@ import { fetchPageBySlug } from "fetch-wordpress-api";
 
 const { post, pageTitle, isPost } = Astro.props;
 
-const { title: {rendered: title}, content: {rendered: content}, image, date } = post;
 
+const { title: {rendered: title}, content: {rendered: content}, image, date,  } = post;
 
+console.log('content', content);
 ---
 
 <BaseLayout title={pageTitle}>
@@ -20,7 +21,7 @@ const { title: {rendered: title}, content: {rendered: content}, image, date } = 
           {isPost && <p class="g-date-style">{`Publicat ${dateConverter(date)}`}</p>}
         </div>
         {
-          image.url !== "" ? (
+          image && image.url !== "" ? (
             <img
               class="g-opacity"
               src={image.url}

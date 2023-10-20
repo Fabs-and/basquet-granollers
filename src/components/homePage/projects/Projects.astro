@@ -15,7 +15,7 @@ const projects = await fetchPostsInCategory(42);
       projects.map((project) =>
         project.image ? (
           <article class="project-item">
-            <a href={`/projectes/${project.slug}`}>
+            <a href={`/projectes-i-events/${project.slug}`}>
                 <img
                   class="image"
                   src={project.image.url}
