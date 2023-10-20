@@ -14,8 +14,6 @@
   let intervalId;
   let startX;
 
-
-
   function handleTouchStart(event) {
     startX = event.touches[0].clientX;
   }
@@ -60,54 +58,54 @@
     on:touchstart={handleTouchStart}
     on:touchend={handleTouchEnd}
   >
-      {#each slides as slide, index}
-        <div
-          data-index={index}
-          class="slide {index === 0 ? 'active' : ''}"
-          class:active={index === currentSlideIndex}
-          class:outgoing={index === prevSlideIndex &&
-            index !== currentSlideIndex}
-          class:transition-next={transitionDirection === "next"}
-          class:transition-prev={transitionDirection === "prev"}
-        >
+    {#each slides as slide, index}
+      <div
+        data-index={index}
+        class="slide {index === 0 ? 'active' : ''}"
+        class:active={index === currentSlideIndex}
+        class:outgoing={index === prevSlideIndex && index !== currentSlideIndex}
+        class:transition-next={transitionDirection === "next"}
+        class:transition-prev={transitionDirection === "prev"}
+      >
         <img
           src={slide.image.url}
           class="hidden"
           alt={slide.image.alt}
           loading="eager"
         />
-        
 
-          <div class="hero-info-container">
-            <div class="hero-info-flex">
-              <h2>{formatHTMLContent(slide.title.rendered)}</h2>
-              <p>
-                {formatHTMLContent(
-                  extractSlideDescriptionAndLink(slide.content.rendered)
-                    .description,
-                )}
-              </p>
+        <div class="hero-info-container">
+          <div class="hero-info-flex">
+            <h2>{formatHTMLContent(slide.title.rendered)}</h2>
+            <p>
+              {formatHTMLContent(
+                extractSlideDescriptionAndLink(slide.content.rendered)
+                  .description,
+              )}
+            </p>
+            {#if extractSlideDescriptionAndLink(slide.content.rendered).link}
               <ButtonAnchor
                 slug={extractSlideDescriptionAndLink(slide.content.rendered)
                   .link}
                 text={`veure més`}
               />
-            </div>
+            {/if}
           </div>
         </div>
-        {#if totalDots && totalDots.length > 1}
-          <div class="carousel-dots">
-            {#each totalDots as _, index}
-              <button
-                class="carousel-dot {index === currentSlideIndex
-                  ? 'active-dot'
-                  : ''}"
-                on:click={() => handleDotClick(index)}
-              />
-            {/each}
-          </div>
-        {/if}
-      {/each}
+      </div>
+      {#if totalDots && totalDots.length > 1}
+        <div class="carousel-dots">
+          {#each totalDots as _, index}
+            <button
+              class="carousel-dot {index === currentSlideIndex
+                ? 'active-dot'
+                : ''}"
+              on:click={() => handleDotClick(index)}
+            />
+          {/each}
+        </div>
+      {/if}
+    {/each}
   </section>
 {/if}
 

@@ -48,7 +48,10 @@ onDestroy(() => {
         <div class="hero-info-flex">
           <h2>{formatHTMLContent(slide.title.rendered)}</h2>
           <p>{formatHTMLContent(extractSlideDescriptionAndLink(slide.content.rendered).description)}</p>
-          <ButtonAnchor slug={extractSlideDescriptionAndLink(slide.content.rendered).link} text={`veure més`} />
+          {#if extractSlideDescriptionAndLink(slide.content.rendered).link}
+            <ButtonAnchor slug={extractSlideDescriptionAndLink(slide.content.rendered).link} text={`veure més`} />
+          {/if}
+
         </div>
       </div>
     </div>
