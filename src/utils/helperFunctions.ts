@@ -6,7 +6,8 @@ import { load } from "cheerio";
 export function formatHTMLContent(str: string) {
   // Check if the input is a string
   if (typeof str !== "string") {
-    throw new TypeError("Expected a string argument");
+    console.error("Expected a string argument, received:", typeof str);
+    return "";
   }
 
   const divTag = /<div>/g;
