@@ -5,7 +5,6 @@
   } from "../../../utils/helperFunctions";
 
   export let item;
-  console.log('item', item)
   export let isFeatured = false;
   export let isSliderItem = false;
   export let isDesktopNews = false;
