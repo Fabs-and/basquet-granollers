@@ -16,12 +16,15 @@ jobs:
         npm install
         npm run build
 
-    - name: Deploy to server
-      uses: appleboy/ftp-action@master
+      - name: Deploy to server
+      uses: SamKirkland/FTP-Deploy-Action@v4.3.4
       with:
-        host: ${{ secrets.FTP_HOST }}
+        server: ${{ secrets.FTP_HOST }}
         username: ${{ secrets.FTP_USER }}
         password: ${{ secrets.FTP_PASSWORD }}
         port: 21
-        local_dir: dist
-
+        local-dir: dist
+        exclude:
+          - '.htaccess'
+          - '.ftpquota'
+          - 'wordpress/**/*'
