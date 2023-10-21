@@ -8,23 +8,21 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Checkout code
-      uses: actions/checkout@v2
+      - name: Checkout code
+        uses: actions/checkout@v2
 
-    - name: Install and Build
-      run: |
-        npm install
-        npm run build
+      - name: Install and Build
+        run: |
+          npm install
+          npm run build
 
       - name: Deploy to server
-      uses: SamKirkland/FTP-Deploy-Action@v4.3.4
-      with:
-        server: ${{ secrets.FTP_HOST }}
-        username: ${{ secrets.FTP_USER }}
-        password: ${{ secrets.FTP_PASSWORD }}
-        port: 21
-        local-dir: dist
-        exclude:
-          - '.htaccess'
-          - '.ftpquota'
-          - 'wordpress/**/*'
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.4
+        with:
+          server: ${{ secrets.FTP_HOST }}
+          username: ${{ secrets.FTP_USER }}
+          password: ${{ secrets.FTP_PASSWORD }}
+          port: 21
+          local-dir: dist
+          server-dir: /
+          exclude: ".htaccess .ftpquota wordpress/**/*"
