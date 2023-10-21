@@ -1,0 +1,27 @@
+name: Build and Deploy
+on:
+  repository_dispatch:
+    types: [trigger-build]
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Install and Build
+      run: |
+        npm install
+        npm run build
+
+    - name: Deploy to server
+      uses: appleboy/ftp-action@master
+      with:
+        host: ${{ secrets.FTP_HOST }}
+        username: ${{ secrets.FTP_USER }}
+        password: ${{ secrets.FTP_PASSWORD }}
+        port: 21
+        local_dir: dist
+

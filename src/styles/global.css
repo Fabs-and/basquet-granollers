@@ -307,7 +307,7 @@ small {
 .button-anchor-internals:hover {
   cursor: pointer;
   background-color: var(--clr-accent);
-  color: var(--clr-contrast);
+  color: var(--clr-contrast) !important;
 }
 
 .g-internal-page {

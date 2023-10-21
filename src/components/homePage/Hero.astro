@@ -1,11 +1,7 @@
 ---
-import ButtonAnchor from "@components/ButtonAnchor.astro";
 import { fetchPostsInCategory } from "fetch-wordpress-api";
 import HeroSwipe from "./HeroSwipe.svelte";
-import {
-  formatHTMLContent,
-  extractSlideDescriptionAndLink,
-} from "@utils/helperFunctions";
+
 import HeroTimed from "./HeroTimed.svelte";
 const slides = await fetchPostsInCategory(40);
 

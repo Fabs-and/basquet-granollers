@@ -1,25 +1,31 @@
 ---
-import type { Post } from "fetch-wordpress-api";
+
 import NewsDesktop from "@components/homePage/news/NewsDesktop.svelte";
 import HomePageSectionLayout from "@layouts/HomePageSectionLayout.astro";
 import Slider from "@components/Slider.svelte";
-import { fetchPosts, fetchPostsInCategory } from "fetch-wordpress-api";
-import NewsItem from "./NewsItem.svelte";
+import { fetchPostsInCategory } from "fetch-wordpress-api";
+import { isLastYearNews } from "@utils/helperFunctions";
+
 
 const title = "CBG Notícies";
 
 //Id needs to be included as a field it is used in newsDesktop to render in each block in svelte and also to compare with feature news
 
-const news: Post[] = await fetchPostsInCategory(19,  ['title', 'image', 'slug', 'date', 'id']);
+const [news, featuredNews] = await Promise.all([
+  fetchPostsInCategory(19, ['title', 'image', 'slug', 'date', 'id']),
+  fetchPostsInCategory(41, ['title', 'image', 'slug', 'date', 'id'])
+]);
+
+const lastYearNews = news.filter((oneNews) => isLastYearNews(oneNews.date));
 
 
+let newsForSlider = lastYearNews;
 
-export const featuredNews = await fetchPostsInCategory(41, ['title', 'image', 'slug', 'date']);
-
-let newsForSlider = news;
 if (featuredNews.length > 0) {
-  newsForSlider = [featuredNews[0], ...news];
+  newsForSlider = [featuredNews[0], ...lastYearNews];
 }
+
+export { featuredNews };
 ---
 
 <HomePageSectionLayout
@@ -30,8 +36,8 @@ if (featuredNews.length > 0) {
   <div class="news-desktop">
     <NewsDesktop
       client:visible
-      featuredNews={featuredNews[0] ? featuredNews[0] : news[0]}
-      {news}
+      featuredNews={featuredNews[0] ? featuredNews[0] : lastYearNews[0]}
+      news={lastYearNews}
     />
   </div>
 

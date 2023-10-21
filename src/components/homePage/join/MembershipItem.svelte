@@ -1,6 +1,6 @@
 <script>
   import { membershipCheck } from "@assets/icons";
-  import { toggleDialog } from "@utils/helperFunctions";
+  import { toggleDialog, updateUrltoSubdomain } from "@utils/helperFunctions";
   export let item = {};
 
   let expanded = false;
@@ -12,7 +12,7 @@
 
 <article class="membership-article opacity" class:expanded>
   <div class="image-container">
-    <img src={item.image.url} alt={item.image.alt} loading="lazy" />
+    <img src={updateUrltoSubdomain(item.image.url)} alt={item.image.alt} loading="lazy" />
     <h3 class="membership-title">{item.title}</h3>
   </div>
   <article class="membership-info-container">

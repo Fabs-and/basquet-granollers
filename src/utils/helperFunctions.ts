@@ -129,13 +129,12 @@ export function formatHTMLContent(str: string) {
     },
   );
 
-  // Remove style from anchor tags and add class "button-anchor"
-  newStr = newStr.replace(
-    /<a([^>]*) style="[^"]*"([^>]*)>(.*?)<\/a>/g,
-    (match, before, after, content) => {
-      return `<a${before}${after} class="button-anchor-internals">${content}</a>`;
-    },
-  );
+newStr = newStr.replace(
+  /<a([^>]*)style="[^"]*"([^>]*)>(.*?)<\/a>/g,
+  (match, before, after, content) => {
+    return `<a${before}${after} class="button-anchor-internals">${content}</a>`;
+  },
+);
 
   // Remove > and < characters from anchor tag content
   newStr = newStr.replace(
@@ -169,6 +168,14 @@ export function formatHTMLContent(str: string) {
       return `<iframe width="100%"${p1}>`;
     }
   });
+
+  // Replace cbgranollers.cat URLs with wordpress.cbgranollers.cat URLs
+  const urlRegex = /(https?:\/\/cbgranollers\.cat\/[^"]*)/g;
+  if (urlRegex.test(newStr)) {
+    newStr = newStr.replace(urlRegex, (match) => {
+      return match.replace("cbgranollers.cat", "wordpress.cbgranollers.cat");
+    });
+  }
 
   return newStr;
 }
@@ -499,4 +506,16 @@ export function extractPlayerInfo(str: string) {
   } else {
     throw new Error("Invalid input string format");
   }
+}
+
+export function updateUrltoSubdomain(htmlContent: string): string {
+  const urlRegex = /https:\/\/cbgranollers\.cat\/([^"]+)/g;
+  return htmlContent.replace(urlRegex, "https://wordpress.cbgranollers.cat/$1");
+}
+
+export function isLastYearNews(str: string){
+  const date = new Date(str).getTime();
+  const currentYear = new Date();
+  const aYearAgo = currentYear.getTime() - 31536000000;
+  return date > aYearAgo;
 }

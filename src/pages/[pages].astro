@@ -1,46 +1,43 @@
 ---
 // Import utils
-import { fetchPages, fetchPostsInCategory } from "fetch-wordpress-api";
+import { fetchPages} from "fetch-wordpress-api";
 
 // Import types
 import type { Page } from "fetch-wordpress-api";
 
-// Import Layouts
-import BaseLayout from "@layouts/BaseLayout.astro";
 
-// Import global (not global stores) variables/constants
 import PageLayout from "@layouts/PageLayout.astro";
-import { addApostrophe } from "@utils/helperFunctions";
 
-const { pages} = Astro.params;
 
-const pagesFromWP = await fetchPages(100, ['title', 'content', 'image', 'date', 'slug']);
+// const { pages} = Astro.params;
 
-const page = pagesFromWP.find((page) => page.slug === pages);
+// const pagesFromWP = await fetchPages(100, ['title', 'content', 'image', 'date', 'slug']);
 
-if (!page) return Astro.redirect("/404");
+//To generate pages in SSR
+// const page = pagesFromWP.find((page) => page.slug === pages);
+
+// if (!page) return Astro.redirect("/404");
 
 
 // const { title, content, id, date, image } = page;
 
 //WAITING for the migration to be done
-// export async function getStaticPaths() {
-//   const pages = await fetchPages(100);
-//   return pages.map((page: Page) => {
-//     return {
-//       params: { pages: page.slug },
-//       props: {
-//         title: page.title.rendered,
-//         content: page.content.rendered,
-//         id: page.id,
-//         date: page.date,
-//         image: page.image,
-//       },
-//     };
-//   });
-// }
+export async function getStaticPaths() {
+  const pages = await fetchPages(100,  ['title', 'content', 'image', 'date', 'slug']);
+  return pages.map((page: Page) => {
+    return {
+      params: { pages: page.slug },
+      props: {
+        title: page.title.rendered,
+        content: page.content.rendered,
+        date: page.date,
+        image: page.image,
+      },
+    };
+  });
+}
 
-// const page = Astro.props;
+const page = Astro.props;
 
 ---
 

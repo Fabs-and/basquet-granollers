@@ -10,30 +10,6 @@ const otherSponsors = await fetchImagesInPageBySlug("altres-patrocinadors");
 
 ---
 
-<!-- <script>
-  function checkWrap(container) {
-    const items = container.children;
-    if (items.length > 1) {
-        const firstItem = items[0];
-        const lastItem = items[items.length - 1];
-        if (firstItem.offsetTop !== lastItem.offsetTop) {
-            // Wrapping has occurred, apply space-between
-            container.style.justifyContent = 'space-between';
-        } else {
-            // No wrapping, apply center
-            container.style.justifyContent = 'center';
-        }
-    }
-}
-
-// Call this function whenever the window is resized or items are added/removed
-window.addEventListener('resize', () => {
-    const container = document.querySelector('.other-sponsors-container');
-    checkWrap(container);
-});
-
-</script> -->
-
 <section class="sponsors-outter-container">
   <div class="inner-containers">
     <p>Patrocinadors principals</p>

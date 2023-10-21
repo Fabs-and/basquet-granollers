@@ -1,10 +1,7 @@
 ---
-import { configure, fetchAllCategories, fetchPosts } from "fetch-wordpress-api";
 import { BASE_URL } from "src/config";
-
+import { configure } from "fetch-wordpress-api";
 configure({ BASE_URL: BASE_URL });
-// Import types
-// import { Endpoints, CategoryFields } from 'src/types';
 
 // Import Layouts
 import BaseLayout from "@layouts/BaseLayout.astro";
@@ -17,11 +14,6 @@ import Projects from "@components/homePage/projects/Projects.astro";
 import Teams from "@components/homePage/teams/Teams.astro";
 import Join from "@components/homePage/join/Join.astro";
 import News from "@components/homePage/news/News.astro";
-// Import api functions from utils
-
-import type { Category, Post } from "fetch-wordpress-api";
-// Import global (not global stores) variables/constants
-import { postFields, categoryFields } from "src/data/apiGlobalConsts";
 
 const title = `Club Bàsquet Granollers`;
 ---

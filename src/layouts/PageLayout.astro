@@ -2,12 +2,11 @@
 // Import utils functions
 import { dateConverter, formatHTMLContent } from "@utils/helperFunctions";
 import BaseLayout from "./BaseLayout.astro";
-import { fetchPageBySlug } from "fetch-wordpress-api";
 
 const { post, pageTitle, isPost } = Astro.props;
 
 
-const { title: {rendered: title}, content: {rendered: content}, image, date,  } = post;
+const { title, content, image, date,  } = post;
 
 
 ---

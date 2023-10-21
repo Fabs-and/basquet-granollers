@@ -1,13 +1,8 @@
 ---
-import { bottomHeaderLinks } from "src/data/header";
-import { logo } from "@assets/logo";
+
 import DropDownMenu from "@components/header/bottomHeader/DropDownMenu.astro";
-import { collapsibleArrowHeader, magnifyingGlass } from "@assets/icons";
-import {
-  displayButtonHistory,
-  displaySearchIcon,
-  extractNavigation,
-} from "@utils/helperFunctions";
+import {  magnifyingGlass } from "@assets/icons";
+
 
 const { navigation, isButtonHeader, isSearchIcon } = Astro.props;
 

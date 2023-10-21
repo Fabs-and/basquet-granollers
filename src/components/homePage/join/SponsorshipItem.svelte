@@ -1,8 +1,8 @@
 <script>
-  import ButtonAnchor from "@components/ButtonAnchor.svelte";
+
   import { membershipCheck } from "@assets/icons";
    import { toggleDialog } from "@utils/helperFunctions";
-  import { sliderLeftArrowWhite, sliderRightArrowWhite } from "@assets/icons";
+
   export let item;
 </script>
 

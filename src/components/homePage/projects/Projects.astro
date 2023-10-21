@@ -1,12 +1,10 @@
 ---
 import HomePageSectionLayout from "@layouts/HomePageSectionLayout.astro";
-import MobileCarousel from "./MobileCarousel.svelte";
-import ProjectItem from "@components/projects/ProjectItem.svelte";
 import Slider from "@components/Slider.svelte";
 // import { projects } from "@data/projects.ts";
 import { fetchPostsInCategory } from "fetch-wordpress-api";
 
-const projects = await fetchPostsInCategory(42);
+const projects = await fetchPostsInCategory(42, ['image','slug']);
 ---
 
 <HomePageSectionLayout sectionTitle="Events i projectes">

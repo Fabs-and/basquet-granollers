@@ -7,41 +7,33 @@ import {
 // Import types
 import type { Post } from "fetch-wordpress-api";
 
-// Import Layouts
-import BaseLayout from "@layouts/BaseLayout.astro";
-
-// Import global (not global stores) variables/constants
 import PageLayout from "@layouts/PageLayout.astro";
 
-const { noticia} = Astro.params;
+// const { noticia} = Astro.params;
+// const noticiesfromWP = await fetchPostsInCategory(19, ['title', 'content', 'image', 'slug', 'date']);
+// const post = noticiesfromWP.find((post) => post.slug === noticia);
+// if (!post) return Astro.redirect("/404");
 
-const noticiesfromWP = await fetchPostsInCategory(19, ['title', 'content', 'image', 'slug', 'date']);
+export async function getStaticPaths() {
+  const noticies = await fetchPostsInCategory(19,  ['title', 'content', 'image', 'slug', 'date']);
 
-const post = noticiesfromWP.find((post) => post.slug === noticia);
-if (!post) return Astro.redirect("/404");
+  return noticies.map((noticia: Post) => {
+    return {
+      params: { noticia: noticia.slug },
+      props: {
+        title: noticia.title.rendered,
+        content: noticia.content.rendered,
+        date: noticia.date,
+        image: noticia.image,
+      },
+    };
+  });
+}
 
-// export async function getStaticPaths() {
-//   const noticies = await fetchPostsInCategory(19);
-
-//   return noticies.map((noticia: Post) => {
-//     return {
-//       params: { noticia: noticia.slug },
-//       props: {
-//         title: noticia.title.rendered,
-//         content: noticia.content.rendered,
-//         id: noticia.id,
-//         date: noticia.date,
-//         image: noticia.image,
-//       },
-//     };
-//   });
-// }
-
-// const noticia = Astro.props;
-
+const noticia = Astro.props;
 
 ---
 
 
-<PageLayout isPost={true} post={post} pageTitle={post.title.rendered}/>
+<PageLayout isPost={true} post={noticia} pageTitle={noticia.title.rendered}/>
 

@@ -1,6 +1,5 @@
 <script>
 import { dateConverter } from "@utils/helperFunctions";
-    import { load } from "cheerio";
 import { slide } from 'svelte/transition';
 export let noticies;
 

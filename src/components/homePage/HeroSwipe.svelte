@@ -1,5 +1,4 @@
 <script>
-  import { onMount, onDestroy } from "svelte";
   import ButtonAnchor from "../ButtonAnchor.svelte";
   export let slides;
   let totalDots;
