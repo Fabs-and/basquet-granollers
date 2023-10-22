@@ -12,7 +12,7 @@ import {
 import {
   copyright,
 } from "src/data/footer";
-import { fetchPageBySlug } from "fetch-wordpress-api";
+import { fetchPageBySlug } from "@utils/apiFunctions/index";
 import HomePageSectionLayout from "./HomePageSectionLayout.astro";
 
 const footerData = await fetchPageBySlug("peu-de-pagina");

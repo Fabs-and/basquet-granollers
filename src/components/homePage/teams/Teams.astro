@@ -1,7 +1,7 @@
 ---
 import TeamItem from "@components/homePage/teams/TeamItem.astro";
 import HomePageSectionLayout from "@layouts/HomePageSectionLayout.astro";
-import { fetchImagesInPageBySlug } from "fetch-wordpress-api";
+import { fetchImagesInPageBySlug } from"@utils/apiFunctions/index";
 
 const { noHeading } = Astro.props;
 const teams = await fetchImagesInPageBySlug("equips");

@@ -1,6 +1,6 @@
 ---
 import PlayersLayout from "@layouts/PlayersLayout.astro";
-import { fetchImagesInPageBySlug } from "fetch-wordpress-api";
+import { fetchImagesInPageBySlug } from "@utils/apiFunctions/index";
 
 const maleTeam = await fetchImagesInPageBySlug('jugadors-equip-senior-masculi')
 

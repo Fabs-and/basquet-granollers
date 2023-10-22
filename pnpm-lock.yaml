@@ -20,9 +20,6 @@ dependencies:
   cheerio:
     specifier: 1.0.0-rc.12
     version: 1.0.0-rc.12
-  fetch-wordpress-api:
-    specifier: ^1.0.65
-    version: 1.0.65
   svelte:
     specifier: ^4.2.2
     version: 4.2.2
@@ -2375,10 +2372,6 @@ packages:
     resolution: {integrity: sha512-wBrocU2LCXXa+lWBt8RoIRD89Fi8OdABODa/kEnyeyjS5aZO5/GNvI5sEINADqP/h8M29UHTHUb53sUu5Ihqdw==}
     dependencies:
       reusify: 1.0.4
-
-  /fetch-wordpress-api@1.0.65:
-    resolution: {integrity: sha512-oNKPVv5Qer0CD8fFM894nhq/NWo3p+PhZwD1QNzIirAkJmDCZkNVT80fcXZdGEBzAqaXoaN1PxlgdXo+gHWiww==}
-    dev: false
 
   /file-entry-cache@6.0.1:
     resolution: {integrity: sha512-7Gps/XWymbLk2QLYK4NzpMOrYjMhdIxXuIvy2QBsLE6ljuodKvdkWs/cpyJJ3CVIVpH0Oi1Hvg1ovbMzLdFBBg==}

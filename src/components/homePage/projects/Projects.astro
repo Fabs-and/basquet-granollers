@@ -2,7 +2,7 @@
 import HomePageSectionLayout from "@layouts/HomePageSectionLayout.astro";
 import Slider from "@components/Slider.svelte";
 // import { projects } from "@data/projects.ts";
-import { fetchPostsInCategory } from "fetch-wordpress-api";
+import { fetchPostsInCategory } from "@utils/apiFunctions/index";
 
 const projects = await fetchPostsInCategory(42, ['image','slug']);
 ---

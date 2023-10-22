@@ -1,6 +1,6 @@
 ---
 import TeamsLayout from "@layouts/TeamsLayout.astro";
-import { fetchImagesInPageBySlug } from "fetch-wordpress-api";
+import { fetchImagesInPageBySlug } from "@utils/apiFunctions/index";
 
 const teamsImages = await fetchImagesInPageBySlug(
   "basquet-en-cadira-de-rodes-temporada-22-23/"

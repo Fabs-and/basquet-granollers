@@ -1,5 +1,5 @@
 ---
-import { fetchPostsInCategory } from "fetch-wordpress-api";
+import { fetchPostsInCategory } from "@utils/apiFunctions/index";
 import NonDynamicPageLayout from "@layouts/NonDynamicPageLayout.astro";
 
 const projects = await fetchPostsInCategory(42);
