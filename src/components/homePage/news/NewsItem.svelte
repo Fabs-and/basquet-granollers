@@ -20,12 +20,11 @@
   <a href={`/noticies/${slug}`}>
     <div class="image-container">
       {#if image && (image.url !== "")}
-        <img src={image.url} alt={image.alt} loading="lazy" />
+        <img src={image.url} alt={image.alt} />
       {:else}
         <img
           src="./default-pic.avif"
           alt="Imatge de recurs amb totes les seccions del Club Bàsquet Granollers"
-          loading='lazy'
         />
       {/if}
     </div>
