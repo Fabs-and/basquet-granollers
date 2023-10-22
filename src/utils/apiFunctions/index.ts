@@ -68,7 +68,8 @@ export async function fetchData<T>(
   query?: URLSearchParams,
   isImage?: boolean, // add isImage parameter to control the image fetching logic
 ): Promise<T[]> {
-  const url = new URL(`${BASE_URL}${WP_API}/${endpoint}`);
+  const url = new URL(`https://wordpress.cbgranollers.cat
+${WP_API}/${endpoint}`);
   try {
     let fieldValue: string | null = null;
     if (query) {
