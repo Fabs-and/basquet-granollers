@@ -14,6 +14,7 @@ export type {
 
 
 
+import { BASE_URL } from "src/config";
 import {
   addImagesToPost,
   detectRedirects,
@@ -46,11 +47,8 @@ import type {
 // Variables Declarations
 
 const WP_API = "/wp-json/wp/v2"; // This may change if Wordpress changes the Wordpress API
-let BASE_URL: string;
 
-export function configure(options: ConfigureOptions) {
-  BASE_URL = options.BASE_URL;
-}
+
 
 // Functions Declarations
 /**
