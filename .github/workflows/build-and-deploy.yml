@@ -4,25 +4,35 @@ on:
     types: [trigger-build]
 
 jobs:
-  build-and-deploy:
+  cancel-previous-runs:
+    name: Cancel Previous Runs
     runs-on: ubuntu-latest
-
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
+    - name: Cancel Previous Runs
+      uses: styfle/cancel-workflow-action@0.9.1
+      with:
+        access_token: ${{ github.token }}
 
-      - name: Install and Build
-        run: |
-          npm install
-          npm run build
+  build-and-deploy:
+    name: Build and Deploy
+    needs: cancel-previous-runs
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
 
-      - name: Deploy to server
-        uses: SamKirkland/FTP-Deploy-Action@v4.3.4
-        with:
-          server: ${{ secrets.FTP_HOST }}
-          username: ${{ secrets.FTP_USER }}
-          password: ${{ secrets.FTP_PASSWORD }}
-          port: 21
-          local-dir: dist
-          server-dir: /
-          exclude: ".htaccess .ftpquota wordpress/**/*"
+    - name: Install and Build
+      run: |
+        npm install
+        npm run build
+
+    - name: Deploy to server
+      uses: SamKirkland/FTP-Deploy-Action@v4.3.4
+      with:
+        server: ${{ secrets.FTP_HOST }}
+        username: ${{ secrets.FTP_USER }}
+        password: ${{ secrets.FTP_PASSWORD }}
+        port: 21
+        local-dir: dist/
+        server-dir: /
+        exclude: '.htaccess .ftpquota wordpress/**/*'
