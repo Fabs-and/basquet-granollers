@@ -1,23 +1,20 @@
 ---
-
 import NewsDesktop from "@components/homePage/news/NewsDesktop.svelte";
 import HomePageSectionLayout from "@layouts/HomePageSectionLayout.astro";
 import Slider from "@components/Slider.svelte";
 import { fetchPostsInCategory } from "@utils/apiFunctions/index";
 import { isLastYearNews } from "@utils/helperFunctions";
 
-
 const title = "CBG Notícies";
 
 //Id needs to be included as a field it is used in newsDesktop to render in each block in svelte and also to compare with feature news
 
 const [news, featuredNews] = await Promise.all([
-  fetchPostsInCategory(19, ['title', 'image', 'slug', 'date', 'id']),
-  fetchPostsInCategory(41, ['title', 'image', 'slug', 'date', 'id'])
+  fetchPostsInCategory(19, ["title", "image", "slug", "date", "id"]),
+  fetchPostsInCategory(41, ["title", "image", "slug", "date", "id"]),
 ]);
 
-const lastYearNews = news.filter((oneNews) => isLastYearNews(oneNews.date));
-
+let lastYearNews = news.filter((oneNews) => isLastYearNews(oneNews.date));
 
 let newsForSlider = lastYearNews;
 
@@ -28,14 +25,15 @@ if (featuredNews.length > 0) {
 export { featuredNews };
 ---
 
+
 <HomePageSectionLayout
   sectionTitle="Notícies CBG"
   textColor={`var(--clr-primary)`}
   backgroundColor={`var(--clr-contrast)`}
 >
-  <div class="news-desktop">
+  <div data-news={news} class="news-desktop">
     <NewsDesktop
-      client:visible
+      client:load
       featuredNews={featuredNews[0] ? featuredNews[0] : lastYearNews[0]}
       news={lastYearNews}
     />
