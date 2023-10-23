@@ -15,7 +15,7 @@ import PageLayout from "@layouts/PageLayout.astro";
 // if (!post) return Astro.redirect("/404");
 
 export async function getStaticPaths() {
-  const noticies = await fetchPostsInCategory(19,  ['title', 'content', 'image', 'slug', 'date']);
+  const noticies = await fetchPostsInCategory(19,  ['title', 'content', 'image', 'slug', 'date'],100);
 
   return noticies.map((noticia: Post) => {
     return {

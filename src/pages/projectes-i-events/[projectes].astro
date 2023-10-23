@@ -14,7 +14,7 @@ import PageLayout from "@layouts/PageLayout.astro";
 // if (!project) return Astro.redirect("/404");
 
 export async function getStaticPaths() {
-  const projects = await fetchPostsInCategory(42,  ['title', 'content', 'image', 'slug', 'date']);
+  const projects = await fetchPostsInCategory(42,  ['title', 'content', 'image', 'slug', 'date'],100);
 
   return projects.map((project: Post) => {
     return {
