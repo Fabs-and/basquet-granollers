@@ -1,13 +1,13 @@
 <script lang="ts">
+  import type { Post } from "fetch-wordpress-api";
   import NewsItem from "@components/homePage/news/NewsItem.svelte";
   import { sliderLeftArrow, sliderRightArrow } from "@assets/icons";
   import ButtonAnchor from "@components/ButtonAnchor.svelte";
-    import { fetchPostsInCategory } from "@utils/apiFunctions";
-    import { isLastYearNews } from "@utils/helperFunctions";
   
   export let news: Post[];
   export let featuredNews: Post;
  
+  news = news.filter((newsItem) => newsItem.id !== featuredNews.id);
   
   let position = 1;
   let currentIndex = 0;
@@ -15,17 +15,7 @@
   let direction = "";
 
   const totalSlides = Math.ceil(news.length / 3);
-  
-  (async () => {
-    const clientFetchNews = await fetchPostsInCategory(19, ["title", "image", "slug", "date", "id"]);
-    let clientLastYearNews = clientFetchNews.filter((oneNews) => isLastYearNews(oneNews.date));
-    
-    if (news.length !== clientLastYearNews.length) {
-      news = clientLastYearNews;
-    }
-  })();
-  
-  news = news.filter((newsItem) => newsItem.id !== featuredNews.id);
+
 
   async function goBack() {
     if (position > 1) {
@@ -48,7 +38,6 @@
     prevIndex = currentIndex;
     currentIndex = currentIndex === totalSlides - 1 ? 0 : currentIndex + 1;
   }
-
 </script>
 
 <div class="desktop-news-container">

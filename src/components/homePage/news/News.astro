@@ -25,7 +25,6 @@ if (featuredNews.length > 0) {
 export { featuredNews };
 ---
 
-
 <HomePageSectionLayout
   sectionTitle="Notícies CBG"
   textColor={`var(--clr-primary)`}
@@ -33,7 +32,7 @@ export { featuredNews };
 >
   <div data-news={news} class="news-desktop">
     <NewsDesktop
-      client:load
+      client:visible
       featuredNews={featuredNews[0] ? featuredNews[0] : lastYearNews[0]}
       news={lastYearNews}
     />

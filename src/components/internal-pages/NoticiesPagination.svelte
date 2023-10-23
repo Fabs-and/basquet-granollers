@@ -28,13 +28,13 @@ function loadNineMore() {
           {#if noticia.image}
           {#if i < 3}
              <img
-              src={noticia.image.url}
+              src={noticia.image.url ? noticia.image.url : '/default-pic.avif'}
               alt={noticia.image.alt ? noticia.image.alt : noticia.title.rendered}
               loading='eager'
             />
           {:else}
             <img
-              src={noticia.image.url}
+              src={noticia.image.url ? noticia.image.url : '/default-pic.avif'}
               alt={noticia.image.alt ? noticia.image.alt : noticia.title.rendered}
               loading='lazy'
             />

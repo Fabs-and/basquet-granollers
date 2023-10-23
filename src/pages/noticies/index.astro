@@ -8,7 +8,7 @@ import {
 // Import Layouts
 import NonDynamicPageLayout from "@layouts/NonDynamicPageLayout.astro";
 import NoticiesPagination from "@components/internal-pages/NoticiesPagination.svelte";
-const noticies = await fetchPostsInCategory(19,[],20);
+const noticies = await fetchPostsInCategory(19,[],100);
 
 //When we generate all dynamic routes statically, we need to remove noticies/ in the href of the anchor
 
