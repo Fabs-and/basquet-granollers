@@ -1,0 +1,41 @@
+---
+const {posts, pages} = Astro.props;
+
+
+---
+
+<script>
+  import DOMPurify from 'dompurify';
+  const form = document.querySelector("form");
+  form?.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const formData = new FormData(form);
+    const searchTerm = DOMPurify.sanitize(formData.get('search')?.toString() as string);
+    if (!searchTerm || searchTerm.length === 0 ) return;
+    const url = new URL('/search', window.location.origin);
+    url.searchParams.set('q', searchTerm);
+    //we could use replace, but by assigning we would have the history of the browser
+    window.location.assign(url.toString())
+  })
+</script>
+
+<aside id="search-component" >
+  <form action="" class="form">
+    <div>
+      <label for="search">Search the blog</label>
+    </div>
+    <input
+      type="search"
+      required
+      min="2"
+      max="24"
+      name="search"
+      id="'searh"
+      placeholder="Enter a search term"
+    />
+  </form>
+</aside>
+
+<style>
+
+</style>

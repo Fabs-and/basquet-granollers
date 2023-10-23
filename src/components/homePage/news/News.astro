@@ -12,7 +12,7 @@ const title = "CBG Notícies";
 const [news, featuredNews] = await Promise.all([
   fetchPostsInCategory(19, ["title", "image", "slug", "date", "id"]),
   fetchPostsInCategory(41, ["title", "image", "slug", "date", "id"]),
-]);
+]); 
 
 let lastYearNews = news.filter((oneNews) => isLastYearNews(oneNews.date));
 
