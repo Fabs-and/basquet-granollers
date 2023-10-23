@@ -125,3 +125,8 @@ export const closeModalIcon = `<svg xmlns="http://www.w3.org/2000/svg" width="66
   </g>
 </svg>
 `;
+
+export const closeIcon = `<svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 30 30" fill="none">
+  <path d="M7.48535 22.4561L22.4559 7.48549" stroke="#084395" stroke-width="2" stroke-linecap="round"/>
+  <path d="M22.4556 22.4561L7.485 7.48549" stroke="#084395" stroke-width="2" stroke-linecap="round"/>
+</svg>`;

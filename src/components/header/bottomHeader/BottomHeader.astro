@@ -1,28 +1,32 @@
 ---
-
 import DropDownMenu from "@components/header/bottomHeader/DropDownMenu.astro";
-import {  magnifyingGlass } from "@assets/icons";
+import { magnifyingGlass } from "@assets/icons";
 import SearchWidget from "@components/SearchWidget.astro";
 import { fetchPages, fetchPosts } from "@utils/apiFunctions";
 
-const [posts, pages] = await Promise.all([fetchPosts(100, ['title', 'slug']), fetchPages(100, ['title', 'slug'])])
-const { navigation, isButtonHeader, isSearchIcon } = Astro.props;
+const [posts, pages] = await Promise.all([
+  fetchPosts(100, ["title", "slug", 'content', 'date']),
+  fetchPages(100, ["title", "slug", 'content', 'date']),
+]);
 
---- 
+const { navigation, isButtonHeader, isSearchIcon } = Astro.props;
+---
 
 <a class="logo" href="/"
   ><img src="/logo.svg" alt="Web oficial del Club Bàsquet Granollers" /></a
 >
 
-<nav class="nav">
+<nav class="nav"> 
   <ul>
     {
       navigation.map((item) => (
         <li>
           {item.dropdown ? (
             <DropDownMenu {item} />
-          ) : item.link.includes('http')? (
-            <a href={item.link} target='_blank'rel="noopener noreferrer">{item.name!.toUpperCase() }</a>
+          ) : item.link.includes("http") ? (
+            <a href={item.link} target="_blank" rel="noopener noreferrer">
+              {item.name!.toUpperCase()}
+            </a>
           ) : (
             <a href={item.link}>{item.name!.toUpperCase()}</a>
           )}
@@ -33,7 +37,7 @@ const { navigation, isButtonHeader, isSearchIcon } = Astro.props;
 </nav>
 
 <div class="history-search-container">
- <SearchWidget {posts} {pages}/>
+  <SearchWidget {posts} {pages} />
   {
     isButtonHeader && (
       <a href="" class="button-anchor">

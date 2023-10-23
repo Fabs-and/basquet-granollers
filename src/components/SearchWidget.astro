@@ -1,29 +1,64 @@
 ---
-const {posts, pages} = Astro.props;
+import { closeIcon, magnifyingGlass } from "@assets/icons";
+const { posts, pages } = Astro.props;
 
-
+// console.log('posts', posts);
 ---
 
 <script>
-  import DOMPurify from 'dompurify';
-  const form = document.querySelector("form");
-  form?.addEventListener('submit', (e) => {
-    e.preventDefault();
-    const formData = new FormData(form);
-    const searchTerm = DOMPurify.sanitize(formData.get('search')?.toString() as string);
-    if (!searchTerm || searchTerm.length === 0 ) return;
-    const url = new URL('/search', window.location.origin);
-    url.searchParams.set('q', searchTerm);
-    //we could use replace, but by assigning we would have the history of the browser
-    window.location.assign(url.toString())
-  })
+  import DOMPurify from "dompurify";
+
+  document.addEventListener("DOMContentLoaded", () => {
+    const form = document.querySelector("form");
+    const inputField = form?.querySelector("input[name='search']");
+    const magnifyingDiv = document.querySelector(".magnifying") as HTMLElement;
+    const closeDiv = document.querySelector(".close") as HTMLElement;
+    const button = document.querySelector(".search-icon");
+
+    inputField?.addEventListener("input", (e) => {
+      const target = e.target as HTMLInputElement; // Type assertion here
+      const sanitizedInput = DOMPurify.sanitize(target.value); // Now TypeScript knows .value is valid
+
+      const aside = document.getElementById("search-component");
+      const posts = JSON.parse(aside?.dataset.posts || "[]");
+
+      if (sanitizedInput && sanitizedInput.length > 0) {
+        const filteredPosts = posts.filter((post) => {
+          const title = post.title.rendered.toLowerCase();
+          const content = post.content.rendered.toLowerCase();
+          const slug = post.slug.toLowerCase();
+          const input = sanitizedInput.toLowerCase();
+
+          return (
+            title.includes(input) ||
+            content.includes(input) ||
+            slug.includes(input)
+          );
+        });
+
+        console.log("Filtered posts:", filteredPosts);
+      }
+    });
+
+    button?.addEventListener("click", (e) => {
+      e.preventDefault();
+      if (form) {
+        if (form.classList.contains("show")) {
+          form.classList.remove("show");
+          magnifyingDiv.style.display = "block";
+          closeDiv.style.display = "none";
+        } else {
+          form.classList.add("show");
+          magnifyingDiv.style.display = "none";
+          closeDiv.style.display = "block";
+        }
+      }
+    });
+  });
 </script>
 
-<aside id="search-component" >
+<aside id="search-component" data-posts={JSON.stringify(posts)}>
   <form action="" class="form">
-    <div>
-      <label for="search">Search the blog</label>
-    </div>
     <input
       type="search"
       required
@@ -31,11 +66,75 @@ const {posts, pages} = Astro.props;
       max="24"
       name="search"
       id="'searh"
-      placeholder="Enter a search term"
+      placeholder="Buscar"
     />
   </form>
+  <button class="search-icon">
+    <div class="magnifying">
+      <Fragment set:html={magnifyingGlass} />
+    </div>
+    <div class="close">
+      <Fragment set:html={closeIcon} />
+    </div>
+  </button>
 </aside>
 
 <style>
+  aside {
+    position: relative;
+    height: 2.6875rem;
+    padding-top: 0.1rem;
+  }
+  .close {
+    display: none;
+    position: relative;
+    top: 0.3rem;
+  }
+  form.show {
+    display: block;
+  }
+  .search-icon {
+    position: absolute;
+    right: 0rem;
+    bottom: 0.5rem;
+  }
+  form {
+    position: relative;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.5s ease-in-out;
+  }
 
+  form.show {
+    opacity: 1;
+    visibility: visible;
+  }
+
+  input {
+    border-radius: 1.34375rem;
+    border: 1px solid var(--clr-primary);
+    width: 3.7rem; /* Set initial width to 2rem */
+    height: 2.6875rem;
+    background-color: transparent;
+    padding-inline: 1.5rem;
+    color: var(--clr-primary);
+    margin-right: -1rem;
+    position: absolute; /* Absolute position is necessary to use 'right' */
+    right: 0; /* Set initial right position to 0 */
+    /* Set initial opacity to 0 */
+    transition: width 0.3s ease-in-out; /* Set transitions for opacity and width */
+  }
+
+  form.show input {
+    width: 18.875rem;
+    /* Set final opacity to 1 */
+  }
+
+  input::placeholder {
+    color: var(--clr-primary);
+  }
+
+  input[type="search"]::-webkit-search-cancel-button {
+    display: none;
+  }
 </style>
