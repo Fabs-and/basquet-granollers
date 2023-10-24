@@ -115,6 +115,7 @@ export interface PostParams extends GlobalParams {
   author?: number | number[];
   author_exclude?: number | number[];
   before?: string;
+  parent?: number | number[];
   exclude?: number | number[];
   include?: number | number[];
   offset?: number;

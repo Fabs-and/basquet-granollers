@@ -1,5 +1,5 @@
 import type { Media, Page, Post, PostParams } from "./types";
-import { configure, fetchData, fetchPageBySlug } from "./index";
+import { configure, extractUrlFromCaption, fetchData, fetchPageBySlug } from "./index";
 
 /**
  * Builds an object containing endpoint parameters based on the provided fields and quantity.
@@ -10,6 +10,7 @@ import { configure, fetchData, fetchPageBySlug } from "./index";
 export function endpointParamsBuilder(
   fields?: string[],
   quantity?: number,
+  parentId?: number,
 ): PostParams {
   const endpointParams: PostParams = {};
 
@@ -34,6 +35,10 @@ export function endpointParamsBuilder(
 
   if (typeof quantity === "number") {
     endpointParams.per_page = quantity;
+  }
+
+  if (typeof parentId === "number") {
+    endpointParams.parent = quantity;
   }
 
   return endpointParams;
@@ -168,7 +173,7 @@ export async function getImageLink(featured_media: number) {
       url: imageUrl,
       title: imageTitle,
       alt: imageAlt,
-      caption: removeParagraphTags(caption),
+      caption: extractUrlFromCaption(caption, description),
       // ... extract other properties from mediaItem here
     };
   } catch (error) {
@@ -190,12 +195,21 @@ export async function getImageLink(featured_media: number) {
 
 export async function getImagesLink(id: number) {
   try {
+    const fields = [
+      "id",
+      "source_url",
+      "title",
+      "alt_text",
+      "caption",
+      "description",
+    ];
+    const quantity = 100;
+
+    const endpointParams: PostParams = endpointParamsBuilder(fields, quantity, id);
+
     const images = await fetchData<Media>(
       `${"media"}`,
-      queryBuilder({ parent: id, per_page: 100 } as {
-        parent: number;
-        per_page: number;
-      }),
+      queryBuilder(endpointParams),
     );
 
     const imageDetails = images.map((image) => ({
@@ -203,7 +217,7 @@ export async function getImagesLink(id: number) {
       url: image.source_url,
       title: image.title.rendered,
       alt: image.alt_text,
-      caption: removeParagraphTags(image.caption.rendered),
+      caption: extractUrlFromCaption(image.caption.rendered, image.description.rendered),
     }));
 
     return imageDetails;

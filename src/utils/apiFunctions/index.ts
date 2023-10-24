@@ -12,8 +12,6 @@ export type {
   CustomEndpoint,
 } from "./types";
 
-
-
 import { BASE_URL } from "src/config";
 import {
   addImagesToPost,
@@ -47,8 +45,6 @@ import type {
 // Variables Declarations
 
 const WP_API = "/wp-json/wp/v2"; // This may change if Wordpress changes the Wordpress API
-
-
 
 // Functions Declarations
 /**
@@ -372,7 +368,7 @@ function getBaseUrl(url: string): string {
 
 let imageFetchPromise: Promise<any[] | null> | null = null;
 
-function extractUrl(caption: string, description: string) {
+export function extractUrlFromCaption(caption: string, description: string) {
   const match = description.match(
     /<blockquote[^>]*>.*?href=["'](http[^"']+)["']/,
   );
@@ -436,7 +432,7 @@ export async function fetchAllImages() {
           url: image.source_url,
           title: image.title.rendered,
           alt: image.alt_text,
-          caption: extractUrl(
+          caption: extractUrlFromCaption(
             image.caption.rendered,
             image.description.rendered,
           ),
@@ -459,42 +455,67 @@ export async function fetchAllImages() {
 
 export async function fetchImagesInPageBySlug(slug: string) {
   try {
+    // Fetch the page by slug and get its content and ID.
     const page = await fetchPageBySlug(slug, ["id", "content"]);
-    if (page.length === 0) throw new Error("Page not found");
-    const { id, content } = page[0];
-    const imageUrls = extractImageUrlsFromContent(content.rendered);
-    const imageUrlSet = new Set(imageUrls);
+    if (!page.length) throw new Error(`Page not found for slug: ${slug}`);
 
-    // Use Promise.all to fetch images and allMedia concurrently
-    const [images, allMedia] = await Promise.all([
+    const { id, content } = page[0];
+    // Extract URLs of images rendered on the page.
+    const renderedImagesUrls = extractImageUrlsFromContent(content.rendered);
+    const renderedImagesUrlsSet = new Set(renderedImagesUrls);
+
+    // Fetch images with the same parent page and all available media concurrently.
+    const [imagesWithSamePageParent, allMedia] = await Promise.all([
       getImagesLink(id),
       fetchAllImages(),
     ]);
 
-    let filteredImages;
-    if (imageUrls.length === images.length) {
-      if (images.length === 1) return images;
-
-      return sortImagesByAppearanceOrder(images, imageUrls);
+    // If there's only one image URL, return it after verifying it's in the parent page images.
+    if (renderedImagesUrls.length === 1) {
+      return (
+        imagesWithSamePageParent.find(
+          (image) => image.url === renderedImagesUrls[0],
+        ) || []
+      );
     }
 
-    // If images don't share the same parent page
-    if (allMedia) {
-      filteredImages = allMedia.filter((media) => imageUrlSet.has(media.url));
-    } else {
-      filteredImages = [];
+    // If the count of rendered images equals images with the same parent, return the parent images.
+    if (renderedImagesUrls.length === imagesWithSamePageParent.length) {
+      return sortImagesByAppearanceOrder(
+        imagesWithSamePageParent,
+        renderedImagesUrls,
+      );
     }
 
+    // Filter out images from the parent page that match the rendered images.
+    const imagesRendered = imagesWithSamePageParent.filter((image) =>
+      renderedImagesUrlsSet.has(image.url),
+    );
+
+    // If the count of rendered images equals the filtered parent images, return the rendered images.
+    if (imagesRendered.length === renderedImagesUrlsSet.size) {
+      return sortImagesByAppearanceOrder(imagesRendered, renderedImagesUrls);
+    }
+
+    // If images rendered don't share same parent Filter all media to get images that match the rendered images.
+    const filteredImages =
+      allMedia && allMedia.length
+        ? allMedia.filter((media) => renderedImagesUrlsSet.has(media.url))
+        : [];
+
+    // If no images were filtered from all media, return the parent images.
     if (filteredImages.length === 0) {
-      return images;
+      return imagesWithSamePageParent;
     }
-
-    return sortImagesByAppearanceOrder(filteredImages, imageUrls);
+    // Return the sorted images by appearance order.
+    return sortImagesByAppearanceOrder(filteredImages, renderedImagesUrls);
   } catch (error) {
     console.error("Error in fetchImagesInPageBySlug:", error);
     throw error;
   }
 }
+
+
 
 function extractImageUrlsFromContent(content: string): string[] {
   const urls: string[] = [];
