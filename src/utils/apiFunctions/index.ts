@@ -368,7 +368,7 @@ function getBaseUrl(url: string): string {
 
 let imageFetchPromise: Promise<any[] | null> | null = null;
 
-function extractUrl(caption: string, description: string) {
+export function extractUrlFromCaption(caption: string, description: string) {
   const match = description.match(
     /<blockquote[^>]*>.*?href=["'](http[^"']+)["']/,
   );
@@ -432,7 +432,7 @@ export async function fetchAllImages() {
           url: image.source_url,
           title: image.title.rendered,
           alt: image.alt_text,
-          caption: extractUrl(
+          caption: extractUrlFromCaption(
             image.caption.rendered,
             image.description.rendered,
           ),
