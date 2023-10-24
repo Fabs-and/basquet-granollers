@@ -211,7 +211,6 @@ export async function getImagesInfo(id: number) {
       `${"media"}`,
       queryBuilder(endpointParams),
     );
-      console.log('images',images)
     const imageDetails = images.map((image) => ({
       id: image.id,
       url: image.source_url,

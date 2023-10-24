@@ -10,17 +10,17 @@ const { posts, pages } = Astro.props;
 
   document.addEventListener("DOMContentLoaded", () => {
     const form = document.querySelector("form");
+    const resultsDiv = document.querySelector(".results-modal")!;
     const inputField = form?.querySelector("input[name='search']");
     const magnifyingDiv = document.querySelector(".magnifying") as HTMLElement;
     const closeDiv = document.querySelector(".close") as HTMLElement;
     const button = document.querySelector(".search-icon");
+    const aside = document.getElementById("search-component");
+    const posts = JSON.parse(aside?.dataset.posts || "[]");
 
     inputField?.addEventListener("input", (e) => {
       const target = e.target as HTMLInputElement; // Type assertion here
       const sanitizedInput = DOMPurify.sanitize(target.value); // Now TypeScript knows .value is valid
-
-      const aside = document.getElementById("search-component");
-      const posts = JSON.parse(aside?.dataset.posts || "[]");
 
       if (sanitizedInput && sanitizedInput.length > 0) {
         const filteredPosts = posts.filter((post) => {
@@ -28,16 +28,20 @@ const { posts, pages } = Astro.props;
           const content = post.content.rendered.toLowerCase();
           const slug = post.slug.toLowerCase();
           const input = sanitizedInput.toLowerCase();
-
           return (
             title.includes(input) ||
             content.includes(input) ||
             slug.includes(input)
-          );
-        });
-
+            );
+          });
+          if (filteredPosts.length !== 0) {
+            resultsDiv.classList.add("show");
+          } else {
+            resultsDiv.classList.remove("show");
+          }
+          
         console.log("Filtered posts:", filteredPosts);
-      }
+      } 
     });
 
     button?.addEventListener("click", (e) => {
@@ -45,6 +49,7 @@ const { posts, pages } = Astro.props;
       if (form) {
         if (form.classList.contains("show")) {
           form.classList.remove("show");
+          resultsDiv.classList.remove("show");
           magnifyingDiv.style.display = "block";
           closeDiv.style.display = "none";
         } else {
@@ -77,13 +82,62 @@ const { posts, pages } = Astro.props;
       <Fragment set:html={closeIcon} />
     </div>
   </button>
+  <ul class="results-modal">
+    {
+      posts.map((post) => {
+        return (
+          <li>
+            <a href={post.link}>{post.title.rendered}</a>
+          </li>
+        );
+      })
+    }
+  </ul>
 </aside>
 
 <style>
   aside {
+    --searchbox-width: 18.875rem;
     position: relative;
     height: 2.6875rem;
     padding-top: 0.1rem;
+  }
+
+  ul {
+    display: none;
+    flex-direction: column;
+    left: calc((var(--searchbox-width) * -1) + 1rem);
+    top: 4rem;
+    gap: 0.75rem;
+    position: absolute;
+    /*Max-height is calculated with two lines for results (0.75rem) plus the padding-block times 10 to have around 10 results before scrolling*/
+    max-height: 15.5rem;
+    background-color: var(--clr-primary);
+    border: 2px solid var(--clr-secondary);
+    /* border-color: var(--clr-secondary); ; */
+    padding-inline: 1.31rem;
+    padding-block: 0.81rem;
+    font-weight: 400;
+    width: var(--searchbox-width);
+    z-index: 1;
+    overflow-y: scroll;
+  }
+
+  ul.show {
+    display: flex;
+  }
+
+  ul:before {
+    content: "";
+    width: 0;
+    height: 0;
+    border-left: 0.71875rem solid transparent; /* Half of the width */
+    border-right: 0.71875rem solid transparent; /* Half of the width */
+    border-bottom: 0.9375rem solid var(--clr-primary); /* Given height */
+    position: absolute;
+    top: -0.85rem;
+    left: 10%;
+    /* transform: translateX(5%); */
   }
   .close {
     display: none;
@@ -125,8 +179,12 @@ const { posts, pages } = Astro.props;
     transition: width 0.3s ease-in-out; /* Set transitions for opacity and width */
   }
 
+  input:focus {
+    outline: 2px solid var(--clr-primary); /* Blue outline */
+  }
+
   form.show input {
-    width: 18.875rem;
+    width: var(--searchbox-width);
     /* Set final opacity to 1 */
   }
 
