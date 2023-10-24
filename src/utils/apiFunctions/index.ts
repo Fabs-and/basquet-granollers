@@ -17,7 +17,7 @@ import {
   addImagesToPost,
   detectRedirects,
   endpointParamsBuilder,
-  getImagesLink,
+  getImagesInfo,
   queryBuilder,
   removeParagraphTags,
 } from "./auxiliaryFunctions";
@@ -466,16 +466,21 @@ export async function fetchImagesInPageBySlug(slug: string) {
 
     // Fetch images with the same parent page and all available media concurrently.
     const [imagesWithSamePageParent, allMedia] = await Promise.all([
-      getImagesLink(id),
+      getImagesInfo(id),
       fetchAllImages(),
     ]);
 
     // If there's only one image URL, return it after verifying it's in the parent page images.
-    if (renderedImagesUrls.length === 1) {
+    if (
+      renderedImagesUrls.length === 1 &&
+      imagesWithSamePageParent.find(
+        (image) => image.url === renderedImagesUrls[0],
+      )
+    ) {
       return (
         imagesWithSamePageParent.find(
           (image) => image.url === renderedImagesUrls[0],
-        ) || []
+        ) 
       );
     }
 
@@ -491,7 +496,7 @@ export async function fetchImagesInPageBySlug(slug: string) {
     const imagesRendered = imagesWithSamePageParent.filter((image) =>
       renderedImagesUrlsSet.has(image.url),
     );
-
+   
     // If the count of rendered images equals the filtered parent images, return the rendered images.
     if (imagesRendered.length === renderedImagesUrlsSet.size) {
       return sortImagesByAppearanceOrder(imagesRendered, renderedImagesUrls);

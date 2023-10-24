@@ -38,7 +38,7 @@ export function endpointParamsBuilder(
   }
 
   if (typeof parentId === "number") {
-    endpointParams.parent = quantity;
+    endpointParams.parent = parentId;
   }
 
   return endpointParams;
@@ -193,7 +193,7 @@ export async function getImageLink(featured_media: number) {
 // Remove the import statement for PostParams since it is already imported in another file
 // import { PostParams } from './types';
 
-export async function getImagesLink(id: number) {
+export async function getImagesInfo(id: number) {
   try {
     const fields = [
       "id",
@@ -211,7 +211,7 @@ export async function getImagesLink(id: number) {
       `${"media"}`,
       queryBuilder(endpointParams),
     );
-
+      console.log('images',images)
     const imageDetails = images.map((image) => ({
       id: image.id,
       url: image.source_url,
@@ -222,7 +222,7 @@ export async function getImagesLink(id: number) {
 
     return imageDetails;
   } catch (error) {
-    console.error("Error in getImagesLink:", error);
+    console.error("Error in getImagesInfo:", error);
     throw error; // Propagate the error to the caller
   }
 }
