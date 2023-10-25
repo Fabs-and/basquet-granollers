@@ -519,3 +519,5 @@ export function isLastYearNews(str: string){
   const aYearAgo = currentYear.getTime() - 31536000000;
   return date > aYearAgo;
 }
+
+export function filterConfigPages() {};

@@ -28,7 +28,14 @@ let [posts, pages, socialMediaLinks] = await Promise.all([
   fetchImagesInPageBySlug("xarxes-socials")
 ]);
 
+const configPages = new Set(["capcalera", "peu-de-pagina", "la-familia-cbg", "equips", "patrocinadors-principals-logos-blaus", "patrocinadors-principals-logos-blancs", "altres-patrocinadors", "xarxes-socials", "jugadors-equip-senior-masculi", "jugadores-equip-senior-femeni" ]);
+
+const nonConfigPages = pages.filter(
+   (page) => !configPages.has(page.slug),
+ );
+
 const postsToShow = posts.filter((post) => post.categories.includes(19) || post.categories.includes(41) || post.categories.includes(42));
+
 
 postsToShow.forEach((post) => {
   if (
@@ -44,7 +51,7 @@ postsToShow.forEach((post) => {
   }
 });
 
-const websiteContent = [...pages, ...postsToShow];
+const websiteContent = [...nonConfigPages, ...postsToShow];
 ---
 
 <header>

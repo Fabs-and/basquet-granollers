@@ -1,13 +1,11 @@
 ---
 // Import utils
-import { fetchPages} from "@utils/apiFunctions/index";
+import { fetchPages } from "@utils/apiFunctions/index";
 
 // Import types
 import type { Page } from "@utils/apiFunctions/types";
 
-
 import PageLayout from "@layouts/PageLayout.astro";
-
 
 // const { pages} = Astro.params;
 
@@ -18,13 +16,24 @@ import PageLayout from "@layouts/PageLayout.astro";
 
 // if (!page) return Astro.redirect("/404");
 
-
 // const { title, content, id, date, image } = page;
 
 //WAITING for the migration to be done
 export async function getStaticPaths() {
-  const pages = await fetchPages(100,  ['title', 'content', 'image', 'date', 'slug']);
-  return pages.map((page: Page) => {
+  const configPages = new Set(["capcalera", "peu-de-pagina", "la-familia-cbg", "equips", "patrocinadors-principals-logos-blaus", "patrocinadors-principals-logos-blancs", "altres-patrocinadors", "xarxes-socials", "jugadors-equip-senior-masculi", "jugadores-equip-senior-femeni" ]);
+  const pages = await fetchPages(100, [
+    "title",
+    "content",
+    "image",
+    "date",
+    "slug",
+  ]);
+
+  const nonConfigPages = pages.filter(
+    (page: Page) => !configPages.has(page.slug),
+  );
+
+  return nonConfigPages.map((page: Page) => {
     return {
       params: { pages: page.slug },
       props: {
@@ -38,9 +47,6 @@ export async function getStaticPaths() {
 }
 
 const page = Astro.props;
-
 ---
 
-
-  <PageLayout post={page} pageTitle={page.title.rendered} />
-
+<PageLayout post={page} pageTitle={page.title.rendered} />
