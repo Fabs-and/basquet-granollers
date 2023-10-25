@@ -1,5 +1,4 @@
 <script>
-  console.log("am i in the browser?");
   import { onMount } from "svelte";
   import DropDownAccordion from "./DropDownAccordion.svelte";
   import SearchWidgetResponsive from "@components/SearchWidgetResponsive.svelte";

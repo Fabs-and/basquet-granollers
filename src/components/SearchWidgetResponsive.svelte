@@ -10,7 +10,6 @@
   let showResults = false;
   let showAside = false;
 
-  // console.log('websiteContent', websiteContent)
   const handleInput = () => {
     const sanitizedInput = DOMPurify.sanitize(searchInput.toLowerCase());
     // Step 1: Filter the content
