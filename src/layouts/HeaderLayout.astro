@@ -1,6 +1,6 @@
 ---
 import TopHeader from "@components/header/TopHeader.astro";
-
+ import { fetchImagesInPageBySlug } from "@utils/apiFunctions/index";
 import BottomHeader from "@components/header/bottomHeader/BottomHeader.astro";
 
 import HeaderLineSeparator from "@components/header/HeaderLineSeparator.astro";
@@ -22,9 +22,10 @@ const navigation = extractNavigation(content);
 const isButtonHeader = displayButtonHistory(content);
 
 
-let [posts, pages] = await Promise.all([
+let [posts, pages, socialMediaLinks] = await Promise.all([
   fetchPosts(100, ["categories", "title", "slug", "content", "date"]),
   fetchPages(100, ["title", "slug", "content", "date"]),
+  fetchImagesInPageBySlug("xarxes-socials")
 ]);
 
 const postsToShow = posts.filter((post) => post.categories.includes(19) || post.categories.includes(41) || post.categories.includes(42));
@@ -55,7 +56,7 @@ const websiteContent = [...pages, ...postsToShow];
       <BottomHeader {websiteContent} {navigation} {isButtonHeader} />
     </div>
     <div class="bottom-header responsive">
-      <BottomHeaderResponsive client:load {websiteContent} {navigation} {topHeaderContent}/>
+      <BottomHeaderResponsive client:load {websiteContent} {navigation} {topHeaderContent} {socialMediaLinks}/>
     </div>
   </section>
   <div class="separator-line">

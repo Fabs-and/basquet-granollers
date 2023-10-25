@@ -4,7 +4,7 @@
   import DropDownAccordion from "./DropDownAccordion.svelte";
   import SearchWidgetResponsive from "@components/SearchWidgetResponsive.svelte";
 
-  //  import SocialMediaMenu from "@components/SocialMediaMenu.svelte";
+   import SocialMediaMenu from "@components/SocialMediaMenu.svelte";
 
   import { logoSmall } from "@assets/logo";
   import { isModalOpen } from "../../../svelte/store.ts";
@@ -13,7 +13,8 @@
   export let navigation;
   export let topHeaderContent;
   export let websiteContent;
-  console.log("websiteContent", websiteContent);
+  export let socialMediaLinks;
+
   let isDropdownVisible = false;
 
   function handleClick() {
@@ -115,7 +116,7 @@
   {/each}
 
   <div class="social-media-container">
-    <!-- <SocialMediaMenu /> -->
+    <SocialMediaMenu {socialMediaLinks}/>
   </div>
 </ul>
 

@@ -1,12 +1,11 @@
 <script>
-  import { onMount } from "svelte";
-  import { fetchImagesInPageBySlug } from "@utils/apiFunctions/index";
+  // import { fetchImagesInPageBySlug } from "@utils/apiFunctions/index";
 
-  let socialMediaLinks = [];
+  export let socialMediaLinks = [];
 
-  onMount(async () => {
-    socialMediaLinks = await fetchImagesInPageBySlug("xarxes-socials");
-  });
+// (async () => {
+//     socialMediaLinks = await fetchImagesInPageBySlug("xarxes-socials");
+//   })();
 
   let name;
 </script>
@@ -15,23 +14,11 @@
   <ul>
     {#each socialMediaLinks as socialMediaLink}
       {#if socialMediaLink.title}
-        {#if socialMediaLink.title.toLowerCase().includes("instagram")}
-          { name = "Instagram" }
-        {:else if socialMediaLink.title.toLowerCase().includes("facebook")}
-          { name = "Facebook"}
-        {:else if socialMediaLink.title.toLowerCase().includes("x.com")}
-          { name = "Twitter"}
-        {:else if socialMediaLink.title.toLowerCase().includes("youtube")}
-          { name = "Youtube"}
-        {:else if socialMediaLink.title.toLowerCase().includes("twitch")}
-          { name = "Twitch" }
-        {:else}
-          { name = "TikTok" }
-        {/if}
+     
         <li>
           <a
             title={name}
-            href={name === 'TikTok' ? `https://www.tiktok.com/${socialMediaLink.caption}` : socialMediaLink.caption}
+            href={socialMediaLink.title.toLowerCase().includes('tiktok') ? `https://www.tiktok.com/${socialMediaLink.caption}` : socialMediaLink.caption}
             target="_blank"
             rel="noopener noreferrer"
           >
