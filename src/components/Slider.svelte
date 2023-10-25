@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { removeOpacity } from "../svelte-actions/intersectionObserver";
+  import { removeOpacity } from "../svelte/intersectionObserver";
   import NewsItem from "./homePage/news/NewsItem.svelte";
   import ProjectItem from "./homePage/projects/ProjectItem.svelte";
   import MembershipItem from "./homePage/join/MembershipItem.svelte";

@@ -1,0 +1,13 @@
+---
+import BottomHeaderResponsive from "./BottomHeaderResponsive.svelte";
+const { navigation, topHeaderContent, websiteContent } = Astro.props;
+---
+
+<div>
+  <BottomHeaderResponsive
+    client:load
+    {navigation}
+    {topHeaderContent}
+    {websiteContent}
+  />
+</div>

@@ -1,36 +1,11 @@
 ---
 import DropDownMenu from "@components/header/bottomHeader/DropDownMenu.astro";
 import { magnifyingGlass } from "@assets/icons";
-import SearchWidgetAstro from "@components/SearchWidget.astro";
+
 import SearchWidget from "@components/SearchWidget.svelte";
-import { fetchPages, fetchPosts } from "@utils/apiFunctions";
 
-let [posts, pages] = await Promise.all([
-  fetchPosts(100, ["categories", "title", "slug", "content", "date"]),
-  fetchPages(100, ["title", "slug", "content", "date"]),
-]);
-
-const postsToShow = posts.filter((post) => post.categories.includes(19) || post.categories.includes(41) || post.categories.includes(42));
-
-postsToShow.forEach((post) => {
-  if (
-    (post.categories.includes(19) || post.categories.includes(41)) &&
-    !post.slug.includes("noticies")
-  ) {
-    post.slug = `./noticies/${post.slug}`;
-  } else if (
-    post.categories.includes(42) &&
-    !post.slug.includes("projectes-i-events")
-  ) {
-    post.slug = `./projectes-i-events/${post.slug}`;
-  }
-});
-
-const websiteContent = [...pages, ...postsToShow];
-
-const { navigation, isButtonHeader, isSearchIcon } = Astro.props;
+const { navigation, isButtonHeader, websiteContent } = Astro.props;
 ---
-
 <a class="logo" href="/"
   ><img src="/logo.svg" alt="Web oficial del Club Bàsquet Granollers" /></a
 >
@@ -63,13 +38,6 @@ const { navigation, isButtonHeader, isSearchIcon } = Astro.props;
       <a href="" class="button-anchor">
         {`La història`.toUpperCase()}
       </a>
-    )
-  }
-  {
-    isSearchIcon && (
-      <div class="search-icon">
-        <Fragment set:html={magnifyingGlass} />
-      </div>
     )
   }
 </div>

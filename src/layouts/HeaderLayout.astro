@@ -2,10 +2,12 @@
 import TopHeader from "@components/header/TopHeader.astro";
 
 import BottomHeader from "@components/header/bottomHeader/BottomHeader.astro";
-import BottomHeaderResponsive from "@components/header/bottomHeader/BottomHeaderResponsive.astro";
+
 import HeaderLineSeparator from "@components/header/HeaderLineSeparator.astro";
 import { fetchPageBySlug } from "@utils/apiFunctions/index";
 import { displayButtonHistory, displaySearchIcon, extractNavigation, extractTopHeaderContent } from "@utils/helperFunctions";
+import { fetchPages, fetchPosts } from "@utils/apiFunctions";
+import BottomHeaderResponsive from "../components/header/bottomHeader/BottomHeaderResponsive.svelte";
 
 const page = await fetchPageBySlug("capcalera");
 
@@ -19,7 +21,29 @@ const navigation = extractNavigation(content);
 
 const isButtonHeader = displayButtonHistory(content);
 
-const isSearchIcon = displaySearchIcon(content);
+
+let [posts, pages] = await Promise.all([
+  fetchPosts(100, ["categories", "title", "slug", "content", "date"]),
+  fetchPages(100, ["title", "slug", "content", "date"]),
+]);
+
+const postsToShow = posts.filter((post) => post.categories.includes(19) || post.categories.includes(41) || post.categories.includes(42));
+
+postsToShow.forEach((post) => {
+  if (
+    (post.categories.includes(19) || post.categories.includes(41)) &&
+    !post.slug.includes("noticies")
+  ) {
+    post.slug = `./noticies/${post.slug}`;
+  } else if (
+    post.categories.includes(42) &&
+    !post.slug.includes("projectes-i-events")
+  ) {
+    post.slug = `./projectes-i-events/${post.slug}`;
+  }
+});
+
+const websiteContent = [...pages, ...postsToShow];
 ---
 
 <header>
@@ -28,10 +52,10 @@ const isSearchIcon = displaySearchIcon(content);
   </section>
   <section class="header-bottom-section">
     <div class="bottom-header">
-      <BottomHeader {navigation} {isButtonHeader} {isSearchIcon}/>
+      <BottomHeader {websiteContent} {navigation} {isButtonHeader} />
     </div>
     <div class="bottom-header responsive">
-      <BottomHeaderResponsive {navigation} {isSearchIcon} {topHeaderContent}/>
+      <BottomHeaderResponsive client:load {websiteContent} {navigation} {topHeaderContent}/>
     </div>
   </section>
   <div class="separator-line">

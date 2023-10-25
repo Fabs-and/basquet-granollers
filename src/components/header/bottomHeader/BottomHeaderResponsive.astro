@@ -2,12 +2,14 @@
 import { logoSmall } from "@assets/logo";
 import { magnifyingGlass, hamburgerMenuIcon } from "@assets/icons";
 
-
 import DropDownAccordion from "./DropDownAccordion.astro";
+  
 
 import SocialMediaMenu from "@components/SocialMediaMenu.astro";
+import SearchWidgetResponsive from "@components/SearchWidgetResponsive.svelte";
 
-const { navigation, isSearchIcon, topHeaderContent } = Astro.props;
+const { navigation, topHeaderContent, websiteContent } = Astro.props;
+
 
 const { text1, link1 } = topHeaderContent![0];
 const { text2, link2 } = topHeaderContent![0];
@@ -37,7 +39,7 @@ const { text2, link2 } = topHeaderContent![0];
   });
 </script>
 
-<div class={`flex-container ${!isSearchIcon ? "reverse-order" : ""}`}>
+<div class={`flex-container`}>
   <button class="dropdown-menu">
     <Fragment set:html={hamburgerMenuIcon} />
   </button>
@@ -48,21 +50,12 @@ const { text2, link2 } = topHeaderContent![0];
     href="/"><Fragment set:html={logoSmall} /></a
   >
 
-  {
-    isSearchIcon && (
-      <div class="search-icon">
-        <Fragment set:html={magnifyingGlass} />
-      </div>
-    )
-  }
+  <div class="search-icon">
+    <SearchWidgetResponsive client:load {websiteContent}/>
+  </div>
 </div>
 
-<ul
-  id="myDropdown"
-  class={`dropdown-content-responsive ${
-    !isSearchIcon ? "reverse-transition" : ""
-  }`}
->
+<ul id="myDropdown" class={`dropdown-content-responsive`}>
   {
     text1 && (
       <li class="top-header-link">
@@ -143,12 +136,6 @@ const { text2, link2 } = topHeaderContent![0];
     text-decoration: underline;
   }
 
-  .reverse-order {
-    flex-direction: row-reverse;
-  }
-  .reverse-transition {
-    --transition-direction: 100%;
-  }
   .dropdown-content-responsive {
     position: fixed;
     display: flex;
@@ -165,7 +152,7 @@ const { text2, link2 } = topHeaderContent![0];
     padding-block: 2.06rem;
     flex-direction: column;
     gap: 1.87rem;
-    transform: translateX(var(--transition-direction, -100%));
+    transform: translateX(-100%);
     transition: transform 0.2s ease-in-out;
   }
 
@@ -185,7 +172,6 @@ const { text2, link2 } = topHeaderContent![0];
   }
   .flex-container {
     min-height: var(--bottom-header-hg);
-
     display: flex;
     justify-content: space-between;
     align-items: center;
