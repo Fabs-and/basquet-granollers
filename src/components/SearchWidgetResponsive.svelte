@@ -190,7 +190,9 @@
     padding-inline: 1.5rem;
     color: var(--clr-primary);
     transition: width 0.3s ease-in-out; /* Set transitions for opacity and width */
-    font-size: var(--font-size-regular);
+
+    /*Had it as --font-size-regular, but it made an undesired zoom in mobile, when input was focused*/
+    font-size: 16px !important;
     font-weight: 600;
   }
 
