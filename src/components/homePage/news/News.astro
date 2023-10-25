@@ -16,10 +16,10 @@ const [news, featuredNews] = await Promise.all([
 
 let lastYearNews = news.filter((oneNews) => isLastYearNews(oneNews.date));
 
-let newsForSlider = lastYearNews;
+let newsForSlider = lastYearNews.filter((newsItem) => newsItem.id !== featuredNews[0].id);
 
 if (featuredNews.length > 0) {
-  newsForSlider = [featuredNews[0], ...lastYearNews];
+  newsForSlider = [featuredNews[0], ...newsForSlider];
 }
 
 export { featuredNews };
