@@ -151,6 +151,7 @@
     gap: 1.87rem;
     transform: translateX(-100%);
     transition: transform 0.2s ease-in-out;
+    overflow: auto;
   }
 
   .social-media-container {
