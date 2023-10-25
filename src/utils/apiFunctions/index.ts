@@ -54,6 +54,11 @@ const WP_API = "/wp-json/wp/v2"; // This may change if Wordpress changes the Wor
  * @returns {Promise<Post[] | Category[] | Page[]>} The fetched data as a JSON object.
  * @throws {Error} If the fetch request fails.
  */
+
+const USERNAME = import.meta.env.USERNAME;
+const WP_APPLICATION_PASSWORD = import.meta.env.WP_APPLICATION_PASSWORD;
+const TOKEN = btoa(`${USERNAME}:${WP_APPLICATION_PASSWORD}`);
+
 export async function fetchData<T>(
   endpoint:
     | Endpoints
@@ -64,7 +69,7 @@ export async function fetchData<T>(
   query?: URLSearchParams,
   isImage?: boolean, // add isImage parameter to control the image fetching logic
 ): Promise<T[]> {
-  const url = new URL(`https://wordpress.cbgranollers.cat
+  const url = new URL(`${import.meta.env.PUBLIC_BASE_URL}
 ${WP_API}/${endpoint}`);
   try {
     let fieldValue: string | null = null;
@@ -477,10 +482,8 @@ export async function fetchImagesInPageBySlug(slug: string) {
         (image) => image.url === renderedImagesUrls[0],
       )
     ) {
-      return (
-        imagesWithSamePageParent.find(
-          (image) => image.url === renderedImagesUrls[0],
-        ) 
+      return imagesWithSamePageParent.find(
+        (image) => image.url === renderedImagesUrls[0],
       );
     }
 
@@ -496,7 +499,7 @@ export async function fetchImagesInPageBySlug(slug: string) {
     const imagesRendered = imagesWithSamePageParent.filter((image) =>
       renderedImagesUrlsSet.has(image.url),
     );
-   
+
     // If the count of rendered images equals the filtered parent images, return the rendered images.
     if (imagesRendered.length === renderedImagesUrlsSet.size) {
       return sortImagesByAppearanceOrder(imagesRendered, renderedImagesUrls);
@@ -519,8 +522,6 @@ export async function fetchImagesInPageBySlug(slug: string) {
     throw error;
   }
 }
-
-
 
 function extractImageUrlsFromContent(content: string): string[] {
   const urls: string[] = [];
@@ -578,7 +579,11 @@ async function fetchWithRetry(
   let lastError;
   for (let i = 0; i < retries; i++) {
     try {
-      const res = await fetch(url.toString());
+      const res = await fetch(url.toString(), {
+        headers: {
+          Authorization: `Basic ${TOKEN}`,
+        },
+      });
       if (!res.ok) {
         // Log status and headers if there's an error
         console.error("Response Status:", res.status);
