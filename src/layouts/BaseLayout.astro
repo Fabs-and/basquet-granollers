@@ -2,11 +2,13 @@
 // Import styles
 import "@styles/global.css";
 
+import {SEO} from 'astro-seo'
 // Import components
 import FooterLayout from "./FooterLayout.astro";
 import HeaderLayout from "./HeaderLayout.astro";
 
-const { title } = Astro.props;
+const { pageHeading } = Astro.props;
+const DESCRIPTION = "Benvinguts i benvingudes a la web oficial del Club Bàsquet Granollers, un equip de bàsquet amb més de 90 anys d'història. El nostre equip està dedicat a promoure l'esportivitat, la comunitat i l'amor pel bàsquet. Vine al proper partit o segueix-nos a les xarxes socials per donar suport a l'esport local i ser part de la nostra família de bàsquet."
 
 ---
 
@@ -19,7 +21,17 @@ const { title } = Astro.props;
 
     <meta name="viewport" content="width=device-width" />
     <meta name="generator" content={Astro.generator} />
-    <title>{title ? title : "Club Bàsquet Granollers"}</title>
+    <SEO
+      title="Club Bàsquet Granollers"
+      description={DESCRIPTION}
+      openGraph={{
+        basic: {
+          title: `${pageHeading || 'Club Bàsquet Granollers'}`,
+          type: "website",
+          image: `favicon.svg`,
+        }
+      }}
+    />
   </head>
   <body>
     <HeaderLayout />
