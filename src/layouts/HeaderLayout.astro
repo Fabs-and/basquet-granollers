@@ -22,9 +22,10 @@ const navigation = extractNavigation(content);
 const isButtonHeader = displayButtonHistory(content);
 
 
+
 let [posts, pages, socialMediaLinks] = await Promise.all([
-  fetchPosts(100, ["categories", "title", "slug", "content", "date"]),
-  fetchPages(100, ["title", "slug", "content", "date"]),
+  fetchPosts(100),
+  fetchPages(100),
   fetchImagesInPageBySlug("xarxes-socials")
 ]);
 

@@ -334,7 +334,11 @@ export async function fetchPageBySlug(
     endpointParams.slug = slug;
 
     const page = await fetchData<Page>("pages", queryBuilder(endpointParams));
-    if (page.length === 0) throw new Error("Page not found");
+    
+    if (page.length === 0) {
+      console.warn(`No page found for slug: ${slug}`);
+      return [];
+    }
     return page;
   } catch (error) {
     console.error("Error in fetchPageBySlug:", error);
