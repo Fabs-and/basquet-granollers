@@ -9,6 +9,8 @@ export function formatHTMLContent(str: string) {
     console.error("Expected a string argument, received:", typeof str);
     return "";
   }
+  // Replace &#215;3 with x
+  str = str.replace(/&#215;/g, "x");
 
   const divTag = /<div>/g;
   const closingDiv = /<\/div>/g;
@@ -24,6 +26,9 @@ export function formatHTMLContent(str: string) {
   if (imgTag.test(newStr)) {
     newStr = newStr.replace(imgTag, (match, p1) => `<img src="${p1}">`);
   }
+
+  // Strip a tags from around img tags
+  newStr = newStr.replace(/<a[^>]*>\s*(<img [^>]+>)\s*<\/a>/g, "$1");
 
   // Apply align-self: center to img tags
   const imgTagSimple = /<img src="([^"]*)">/g;
@@ -129,12 +134,12 @@ export function formatHTMLContent(str: string) {
     },
   );
 
-newStr = newStr.replace(
-  /<a([^>]*)style="[^"]*"([^>]*)>(.*?)<\/a>/g,
-  (match, before, after, content) => {
-    return `<a${before}${after} class="button-anchor-internals">${content}</a>`;
-  },
-);
+  newStr = newStr.replace(
+    /<a([^>]*)style="[^"]*"([^>]*)>(.*?)<\/a>/g,
+    (match, before, after, content) => {
+      return `<a${before}${after} class="button-anchor-internals">${content}</a>`;
+    },
+  );
 
   // Remove > and < characters from anchor tag content
   newStr = newStr.replace(
