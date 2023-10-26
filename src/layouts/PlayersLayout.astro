@@ -1,4 +1,5 @@
 ---
+import { Image } from "astro:assets";
 import InternalPageLayout from "./NonDynamicPageLayout.astro";
 import { extractPlayerInfo } from "@utils/helperFunctions";
 
@@ -14,6 +15,9 @@ const { heading, subHeading, team } = Astro.props;
           return (
           <article class="player">
             <div class="image-container">
+              <Image
+                src={player.url}
+                alt="" loading={i < 3 ? "eager" : "lazy"}/>
               <img
                 src={player.url ? player.url : "/player-avatar.png"}
                 alt="" loading={i < 3 ? "eager" : "lazy"}
