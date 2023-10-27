@@ -1,5 +1,5 @@
 <script>
-import { dateConverter } from "@utils/helperFunctions";
+import { dateConverter, formatHTMLContent } from "@utils/helperFunctions";
 import { slide } from 'svelte/transition';
 export let noticies;
 
@@ -43,7 +43,7 @@ function loadNineMore() {
         </div>
         <div class="info-container">
           <h4>
-            {@html noticia.title.rendered}
+            {@html formatHTMLContent(noticia.title.rendered)}
           </h4>
           <p>Publicat {dateConverter(noticia.date)}</p>
         </div>
@@ -103,12 +103,13 @@ function loadNineMore() {
     padding-block: 0.5rem;
     color: var(--clr-contrast);
     background-color: var(--clr-secondary);
+
   }
 
   .image-container {
     background-color: white;
     z-index: 0;
-  }
+ }
 
   .noticia {
     height: 21.87rem;
@@ -147,7 +148,6 @@ function loadNineMore() {
     }
       .noticia {
       width: 20.4375rem;
-      height: 19.74rem;
     }
   }
 
