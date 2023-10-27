@@ -1,4 +1,4 @@
-import type { Media, Page, Post, PostParams } from "./types";
+import type { Media, Page, Post, PostParams } from "../../types";
 import { configure, extractUrlFromCaption, fetchData, fetchPageBySlug } from "./index";
 
 /**

@@ -4,13 +4,13 @@ import {
   fetchPostsInCategory,
 } from "@utils/apiFunctions/index";
 
-
 // Import Layouts
 import NonDynamicPageLayout from "@layouts/NonDynamicPageLayout.astro";
 import NoticiesPagination from "@components/internal-pages/NoticiesPagination.svelte";
-const noticies = await fetchPostsInCategory(19,[],100);
 
-//When we generate all dynamic routes statically, we need to remove noticies/ in the href of the anchor
+const noticies = await fetchPostsInCategory(19,['title', 'image', 'date'],100);
+
+
 
 ---
 
@@ -27,7 +27,6 @@ const noticies = await fetchPostsInCategory(19,[],100);
     flex-wrap: wrap;
     justify-content: center;
     gap: 1rem;
-    /* padding-inline: var(--padding-inline); */
   }
   
   p {

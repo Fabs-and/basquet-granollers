@@ -2,21 +2,19 @@
 // Import utils
 import { fetchPostsInCategory } from "@utils/apiFunctions/index";
 
-// Import types
-import type { Post } from "@utils/apiFunctions/types";
 
 // Import Layouts
 import PageLayout from "@layouts/PageLayout.astro";
 
-// const { projectes} = Astro.params;
-// const projectesFromWP =  await fetchPostsInCategory(42, ['title', 'content', 'image', 'slug', 'date']);
-// const project = projectesFromWP.find((project) => project.slug === projectes);
-// if (!project) return Astro.redirect("/404");
 
 export async function getStaticPaths() {
-  const projects = await fetchPostsInCategory(42,  ['title', 'content', 'image', 'slug', 'date'],100);
+  const projects = await fetchPostsInCategory(
+    42,
+    ["title", "content", "image", "slug", "date"],
+    100,
+  );
 
-  return projects.map((project: Post) => {
+  return projects.map((project) => {
     return {
       params: { projectes: project.slug },
       props: {
@@ -30,8 +28,7 @@ export async function getStaticPaths() {
 }
 
 const project = Astro.props;
-
 ---
 
-  <PageLayout post={project} pageTitle={project.title.rendered} />
+<PageLayout post={project} pageTitle={project.title.rendered} />
 

@@ -3,6 +3,7 @@ import BaseLayout from "@layouts/BaseLayout.astro";
 import Headings from "@components/internal-pages/headings.astro";
 import Teams from "@components/homePage/teams/Teams.astro";
 import { fetchPageBySlug } from "@utils/apiFunctions/index";
+import NonDynamicPageLayout from "@layouts/NonDynamicPageLayout.astro";
 
 const page = await fetchPageBySlug("equips", ["title"]);
 
@@ -11,24 +12,31 @@ const {
 } = page[0];
 ---
 
-<BaseLayout {title}>
-  <section class="g-internal-page">
-    <div class="g-section-container">
-      <Headings heading={title} />
-    </div>
-  </section>
-  <div class="component-container">
+
+<NonDynamicPageLayout heading={title}>
+  <div class="teams-wrapper">
     <Teams noHeading={true} />
   </div>
-</BaseLayout>
+</NonDynamicPageLayout>
+
 
 <style>
-  .g-internal-page {
-    padding-bottom: 0rem;
+   .teams-wrapper {
+      margin-inline: calc(var(--padding-inline) * -1);
+      margin-top: calc(var(--padding-section-big) * -1);
+    }
+
+  @media (width < 1025px) {
+     .teams-wrapper {
+      margin-inline: calc(var(--padding-inline-tablet) * -1);
+      margin-top: calc(var(--padding-section-medium) * -1);
+    }
   }
-  .component-container {
-    background-color: var(--clr-contrast);
-    color: var(--clr-primary);
-    padding-bottom: var(--padding-section-big);
+  @media (width < 648px) {
+    .teams-wrapper {
+      margin-inline: calc(var(--padding-inline-mobile) * -1);
+      margin-top: calc(var(--padding-section-small) * -1);
+    }
   }
+  
 </style>

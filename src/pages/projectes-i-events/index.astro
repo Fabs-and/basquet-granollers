@@ -2,7 +2,8 @@
 import { fetchPostsInCategory } from "@utils/apiFunctions/index";
 import NonDynamicPageLayout from "@layouts/NonDynamicPageLayout.astro";
 
-const projects = await fetchPostsInCategory(42);
+const projects = await fetchPostsInCategory(42, ["image", "slug"]);
+
 ---
 
 <NonDynamicPageLayout title={`Projectes i events del Club Bàsquet Granollers`} heading={`Projectes i events del CBG`}>

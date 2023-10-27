@@ -5,19 +5,16 @@ import {
 } from "@utils/apiFunctions/index";
 
 // Import types
-import type { Post } from "@utils/apiFunctions/index";
+
 
 import PageLayout from "@layouts/PageLayout.astro";
 
-// const { noticia} = Astro.params;
-// const noticiesfromWP = await fetchPostsInCategory(19, ['title', 'content', 'image', 'slug', 'date']);
-// const post = noticiesfromWP.find((post) => post.slug === noticia);
-// if (!post) return Astro.redirect("/404");
+
 
 export async function getStaticPaths() {
   const noticies = await fetchPostsInCategory(19,  ['title', 'content', 'image', 'slug', 'date'],100);
 
-  return noticies.map((noticia: Post) => {
+  return noticies.map((noticia) => {
     return {
       params: { noticia: noticia.slug },
       props: {

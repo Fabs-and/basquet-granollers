@@ -3,37 +3,20 @@
 import { fetchPages } from "@utils/apiFunctions/index";
 
 // Import types
-import type { Page } from "@utils/apiFunctions/types";
+import type { Page } from "src/types";
 
 import PageLayout from "@layouts/PageLayout.astro";
 
-// const { pages} = Astro.params;
+import { EXCLUDED_PAGES, PAGE_FIELDS } from "src/globalConstants";
 
-// const pagesFromWP = await fetchPages(100, ['title', 'content', 'image', 'date', 'slug']);
-
-//To generate pages in SSR
-// const page = pagesFromWP.find((page) => page.slug === pages);
-
-// if (!page) return Astro.redirect("/404");
-
-// const { title, content, id, date, image } = page;
-
-//WAITING for the migration to be done
 export async function getStaticPaths() {
-  const configPages = new Set(["capcalera", "peu-de-pagina", "la-familia-cbg", "equips", "patrocinadors-principals-logos-blaus", "patrocinadors-principals-logos-blancs", "altres-patrocinadors", "xarxes-socials", "jugadors-equip-senior-masculi", "jugadores-equip-senior-femeni" ]);
-  const pages = await fetchPages(100, [
-    "title",
-    "content",
-    "image",
-    "date",
-    "slug",
-  ]);
+  const wpPages = await fetchPages(100, PAGE_FIELDS);
 
-  const nonConfigPages = pages.filter(
-    (page: Page) => !configPages.has(page.slug),
+  const pagesToGenerate = wpPages.filter(
+    (page) => !EXCLUDED_PAGES.has(page.slug),
   );
 
-  return nonConfigPages.map((page: Page) => {
+  return pagesToGenerate.map((page: Page) => {
     return {
       params: { pages: page.slug },
       props: {

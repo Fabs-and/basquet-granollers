@@ -10,7 +10,7 @@ export type {
   PostsWithId,
   Media,
   CustomEndpoint,
-} from "./types";
+} from "../../types";
 
 import { BASE_URL } from "src/config";
 import {
@@ -40,7 +40,7 @@ import type {
   ExtendedMedia,
   CustomEndpoint,
   CustomImage,
-} from "./types";
+} from "../../types";
 
 // Variables Declarations
 
