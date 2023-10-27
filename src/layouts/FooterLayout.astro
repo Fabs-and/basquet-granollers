@@ -9,9 +9,7 @@ import {
   extractTopFooterInfo,
   extractBottomFooterInfo,
 } from "@utils/helperFunctions";
-import {
-  copyright,
-} from "src/data/footer";
+
 import { fetchPageBySlug } from "@utils/apiFunctions/index";
 import HomePageSectionLayout from "./HomePageSectionLayout.astro";
 
@@ -45,13 +43,13 @@ const bottomFooterLinks = extractBottomFooterInfo(content);
 
   <section class="bottom-footer-section">
     <div class="bottom-footer-desktop">
-      <BottomFooter {bottomFooterLinks} {copyright} />
+      <BottomFooter {bottomFooterLinks}  />
     </div>
     <div class="bottom-footer-tablet">
-      <BottomFooterTablet {bottomFooterLinks} {copyright} />
+      <BottomFooterTablet {bottomFooterLinks}  />
     </div>
     <div class="bottom-footer-mobile">
-      <BottomFooterMobile {bottomFooterLinks} {copyright} />
+      <BottomFooterMobile {bottomFooterLinks}  />
     </div>
   </section>
 </footer>

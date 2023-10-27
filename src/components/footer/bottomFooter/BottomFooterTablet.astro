@@ -1,24 +1,23 @@
 ---
 import SocialMediaMenu from "@components/SocialMediaMenu.astro";
 import BottomFooterLinks from "./BottomFooterLinks.astro";
-import Copyright from "./Copyright.astro";
-
-import { copyright } from "src/data/footer";
+import CurrentYear from "./CurrentYear.svelte";
 
 const { bottomFooterLinks } = Astro.props;
-
 ---
 
+<div class="tablet">
+  <BottomFooterLinks {bottomFooterLinks} />
 
-  <div class="tablet">
-    <BottomFooterLinks {bottomFooterLinks} />
-
-    <SocialMediaMenu />
-  </div>
-  <div class="copyright">
-    <Copyright/>
-  </div>
-
+  <SocialMediaMenu />
+</div>
+<div class="copyright">
+  <small>
+    Web Propietat del Club Bàsquet Granollers. Copyright © <CurrentYear
+      client:visible
+    />. All rights reserved.
+  </small>
+</div>
 
 <style>
   .tablet {
@@ -29,5 +28,14 @@ const { bottomFooterLinks } = Astro.props;
 
   .copyright {
     align-self: center;
+  }
+    small {
+    font-size: 0.5625rem;
+  }
+
+  @media (width < 1025px) {
+    small {
+      font-size: 0.75rem;
+    }
   }
 </style>
