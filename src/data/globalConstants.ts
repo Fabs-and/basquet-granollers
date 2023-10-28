@@ -53,6 +53,28 @@ const NEWS_CATEGORY_ID = 19;
 const HERO_SLIDES_CATEGORY_ID = 40;
 const FEATURED_NEWS_CATEGORY_ID = 41;
 
+const CONFIG_PAGES = {
+  header: "capcalera",
+  footer: "peu-de-pagina",
+  socialMedia: "xarxes-socials",
+  homePageJoinSection: "la-familia-cbg",
+  homePageTeamsSection: "equips",
+  homePageMainSponsorsWhite: "patrocinadors-principals-logos-blancs",
+  homePageMainSponsorsBlue: "patrocinadors-principals-logos-blaus",
+  homePageOtherSponsors: "altres-patrocinadors",
+};
+
+const TEAM_PAGES = {
+  allTeams: "equips",
+  maleTeams: "equips-masculins",
+  femaleTeams: "equips-femenins",
+  school: "escola-de-basquet",
+  wheelchair: "basquet-en-cadira-de-rodes",
+  maleSenior: "jugadors-equip-senior-masculi",
+  femaleSenior: "jugadores-equip-senior-femeni",
+  coaches: "entrenadors-i-entrenadores",
+}
+
 export {
   EXCLUDED_PAGES,
   POST_FIELDS,
@@ -63,4 +85,6 @@ export {
   NEWS_CATEGORY_ID,
   HERO_SLIDES_CATEGORY_ID,
   FEATURED_NEWS_CATEGORY_ID,
+  CONFIG_PAGES,
+  TEAM_PAGES
 };

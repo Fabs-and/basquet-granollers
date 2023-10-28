@@ -8,7 +8,11 @@ import { isLastYearNews } from "@utils/helperFunctions";
 import { featuredNews, news
  } from "@data/apiData";
 
+
+
 news.splice(10);
+
+// console.log('news', news);
 
 let lastYearNews = news.filter((oneNews) => isLastYearNews(oneNews.date));
 
