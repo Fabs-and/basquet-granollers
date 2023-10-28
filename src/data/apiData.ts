@@ -73,29 +73,18 @@ export let featuredNews: Post[] = [];
 export let projects: Post[] = [];
 export let heroSlides: Post[] = [];
 
-const loopLength =
-  allNews.length > projectsAndHeroSlides.length
-    ? allNews.length
-    : projectsAndHeroSlides.length;
-
-for (let i = 0; i < loopLength; i++) {
-  if (
-    allNews.length > i &&
-    allNews[i] &&
-    Array.isArray(allNews[i].categories)
-  ) {
+for (let i = 0; i < allNews.length; i++) {
+  if (Array.isArray(allNews[i].categories)) {
     if (allNews[i].categories.includes(FEATURED_NEWS_CATEGORY_ID)) {
       featuredNews.push(allNews[i]);
     } else {
       news.push(allNews[i]);
     }
   }
+}
 
-  if (
-    projectsAndHeroSlides.length > i &&
-    projectsAndHeroSlides[i] &&
-    Array.isArray(projectsAndHeroSlides[i].categories)
-  ) {
+for (let i = 0; i < projectsAndHeroSlides.length; i++) {
+  if (Array.isArray(projectsAndHeroSlides[i].categories)) {
     if (projectsAndHeroSlides[i].categories.includes(HERO_SLIDES_CATEGORY_ID)) {
       heroSlides.push(projectsAndHeroSlides[i]);
     } else {

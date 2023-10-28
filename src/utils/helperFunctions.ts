@@ -1,7 +1,3 @@
-// import types
-import type { Category } from "fetch-wordpress-api";
-
-import { load } from "cheerio";
 // Replace <div> for <p>
 export function formatHTMLContent(str: string) {
   // Check if the input is a string

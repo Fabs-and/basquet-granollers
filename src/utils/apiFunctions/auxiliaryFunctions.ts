@@ -1,5 +1,5 @@
 import type { Media, Page, Post, PostParams } from "../../types";
-import { configure, extractUrlFromCaption, fetchData, fetchPageBySlug } from "./index";
+import { extractUrlFromCaption, fetchData, fetchPageBySlug } from "./index";
 
 /**
  * Builds an object containing endpoint parameters based on the provided fields and quantity.
