@@ -113,7 +113,7 @@ export interface PostParams extends GlobalParams {
     | "title";
   slug?: string | string[];
   status?: string | string[];
-  categories?: number | number[];
+  categories?: number | number[] | string;
   categories_exclude?: number | number[];
   tags?: number | number[];
   tags_exclude?: number | number[];

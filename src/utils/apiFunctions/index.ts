@@ -171,28 +171,29 @@ export async function fetchPosts(
 }
 
 /**
- * Fetches posts in a specific category with optional fields and quantity.
- * @param {number} categoryId - The ID of the category to fetch posts from.
+ * Fetches posts in specific categories with optional fields and quantity.
+ * @param {number[]} categoryIds - The IDs of the categories to fetch posts from.
  * @param {PostFields[]} [postFields] - The fields to include in the fetched posts.
  * @param {number} [quantity] - The number of posts to fetch.
  * @returns {Promise<Post[]>} The fetched posts as an array of Post objects.
  * @throws {Error} If the fetch request fails.
  */
-export async function fetchPostsInCategory(
-  categoryId: number,
+export async function fetchPostsInCategories(
+  categoryIds: number[],
   postFields?: PostFields[],
   quantity?: number,
 ): Promise<Post[]> {
   try {
     const endpointParams = endpointParamsBuilder(postFields, quantity);
 
-    endpointParams.categories = categoryId;
+    // Join the category IDs into a comma-separated string
+    endpointParams.categories = categoryIds.join(',');
 
     const data = await fetchData<Post>("posts", queryBuilder(endpointParams));
     const posts = await detectRedirects(data);
     return posts;
   } catch (error) {
-    console.error("Error in fetchPostsInCategory:", error);
+    console.error("Error in fetchPostsInCategories:", error);
     throw error; // Propagate the error to the caller
   }
 }

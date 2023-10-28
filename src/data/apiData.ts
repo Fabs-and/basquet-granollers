@@ -3,16 +3,23 @@ import {
   fetchPageBySlug,
   fetchPages,
   fetchPosts,
-  fetchPostsInCategory,
+  fetchPostsInCategories,
 } from "@utils/apiFunctions";
 
-import { COMMON_FIELDS } from "./globalConstants";
+import type { Post } from "../types";
+import {
+  COMMON_FIELDS,
+  PROJECTS_CATEGORY_ID,
+  NEWS_CATEGORY_ID,
+  HERO_SLIDES_CATEGORY_ID,
+  FEATURED_NEWS_CATEGORY_ID,
+} from "./globalConstants";
 
 export const [
   projects,
-  news,
+  allNews,
   heroSlides,
-  featuredNews,
+  // featuredNews,
   joinData,
   pages,
   posts,
@@ -32,13 +39,20 @@ export const [
   femaleSeniorTeamData,
 ] = await Promise.all([
   //used in @pages/projectes-i-events index and [projectes]
-  fetchPostsInCategory(42, COMMON_FIELDS, 100),
+  fetchPostsInCategories([PROJECTS_CATEGORY_ID], COMMON_FIELDS, 100),
   //used in @pages/noticies index and [noticies]
-  fetchPostsInCategory(19, COMMON_FIELDS, 100),
+  fetchPostsInCategories(
+    [FEATURED_NEWS_CATEGORY_ID, NEWS_CATEGORY_ID],
+    COMMON_FIELDS,
+    100,
+  ),
   //used in @components/hero
-  fetchPostsInCategory(40, ["image", "title", "content"]),
+  fetchPostsInCategories(
+    [HERO_SLIDES_CATEGORY_ID],
+    ["image", "title", "content"],
+  ),
   //used in @components news
-  fetchPostsInCategory(41, ["title", "image", "slug", "date", "id"]),
+  // fetchPostsInCategories([FEATURED_NEWS_CATEGORY_ID], ["title", "image", "slug", "date", "id"]),
   //used in @components join
   fetchPageBySlug("la-familia-cbg/"),
   //used in @pages [pages] and in @layouts/HeaderLayout for SearchWidget
@@ -65,3 +79,14 @@ export const [
   fetchImagesInPageBySlug("equips-femenins"),
   fetchImagesInPageBySlug("jugadores-equip-senior-femeni"),
 ]);
+
+export let news: Post[] = [];
+export let featuredNews: Post[] = [];
+
+for (let oneNews of allNews) {
+  if (oneNews.categories.includes(FEATURED_NEWS_CATEGORY_ID)) {
+    featuredNews.push(oneNews);
+  } else {
+    news.push(oneNews);
+  }
+}

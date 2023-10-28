@@ -3,7 +3,7 @@ import type {
   CommonPagesAndPostsFields,
   PageFields,
   PostFields,
-} from '../types';
+} from "../types";
 
 /*Pages to exclude when generating dynamic routes*/
 
@@ -22,18 +22,24 @@ const EXCLUDED_PAGES = new Set([
 
 /*API constants fields*/
 const POST_FIELDS: PostFields[] = [
-  'title',
-  'content',
-  'link',
-  'slug',
-  'categories',
-  'date',
-  'id'
+  "title",
+  "content",
+  "link",
+  "slug",
+  "categories",
+  "date",
+  "id",
 ];
 
-const CATEGORY_FIELDS: CategoryFields[] = ['id', 'name', 'slug'];
+const CATEGORY_FIELDS: CategoryFields[] = ["id", "name", "slug"];
 
-const COMMON_FIELDS: CommonPagesAndPostsFields[] = ["title", "content", "image", "date", "slug"];
+const COMMON_FIELDS: CommonPagesAndPostsFields[] = [
+  "title",
+  "content",
+  "image",
+  "date",
+  "slug",
+];
 
 const TEAMS_SLUGS = [
   { word: "masculins", slug: "/equips/masculins" },
@@ -42,4 +48,19 @@ const TEAMS_SLUGS = [
   { word: "cadira", slug: "/equips/cadira-de-rodes" },
 ];
 
-export { EXCLUDED_PAGES, POST_FIELDS, CATEGORY_FIELDS, COMMON_FIELDS, TEAMS_SLUGS };
+const PROJECTS_CATEGORY_ID = 42;
+const NEWS_CATEGORY_ID = 19;
+const HERO_SLIDES_CATEGORY_ID = 40;
+const FEATURED_NEWS_CATEGORY_ID = 41;
+
+export {
+  EXCLUDED_PAGES,
+  POST_FIELDS,
+  CATEGORY_FIELDS,
+  COMMON_FIELDS,
+  TEAMS_SLUGS,
+  PROJECTS_CATEGORY_ID,
+  NEWS_CATEGORY_ID,
+  HERO_SLIDES_CATEGORY_ID,
+  FEATURED_NEWS_CATEGORY_ID,
+};
