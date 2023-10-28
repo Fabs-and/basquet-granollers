@@ -1,5 +1,3 @@
-//Kept in js to avoid unnecessary compilation in github actions
-
 import {
   readdirSync,
   existsSync,
@@ -10,6 +8,8 @@ import {
   renameSync,
 } from "fs";
 import { join, relative, dirname } from "path";
+
+import { Client } from "basic-ftp";
 
 const distDir = "dist";
 const cacheDistDir = "cache-dist";
@@ -55,3 +55,22 @@ distFiles.forEach((file) => {
 // Update the cache for next run
 rmdirSync(cacheDistDir, { recursive: true });
 renameSync(distDir, cacheDistDir);
+
+// FTP Access
+async function listFtpFiles() {
+  const client = new Client();
+  try {
+    await client.access({
+      host: import.meta.env.FTP_HOST,
+      user: import.meta.env.FTP_USER,
+      password: import.meta.env.FTP_PASSWORD,
+    });
+    console.log(await client.list());
+  } catch (error) {
+    console.error(error);
+  }
+  client.close();
+}
+
+// Call the function to list FTP files
+listFtpFiles();
