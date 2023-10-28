@@ -1,4 +1,6 @@
-import { Client } from "basic-ftp";
+// import { Client } from "basic-ftp";
+import { config } from "dotenv";
+config();
 
 // FTP Access
 async function listFtpFiles() {
@@ -16,5 +18,6 @@ async function listFtpFiles() {
   client.close();
 }
 
-// Call the function to list FTP files
+//Call the function to list FTP files
 listFtpFiles();
+
