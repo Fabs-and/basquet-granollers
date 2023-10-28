@@ -34,6 +34,7 @@ jobs:
     - name: Install and Build
       run: |
         npm install
+        npm install dotenv --save
         npm run build
       env:
         PUBLIC_BASE_URL: ${{ secrets.PUBLIC_BASE_URL }}
@@ -46,7 +47,7 @@ jobs:
 
     - name: Custom FTP Deploy
       run: |
-        node ftp-deploy.js
+        node compare-and-prepare.js
       env:
         FTP_HOST: ${{ secrets.FTP_HOST }}
         FTP_USER: ${{ secrets.FTP_USER }}
