@@ -47,7 +47,7 @@ jobs:
 
     - name: Custom FTP Deploy
       run: |
-        node compare-and-prepare.js
+        node ftp-deploy.js
       env:
         FTP_HOST: ${{ secrets.FTP_HOST }}
         FTP_USER: ${{ secrets.FTP_USER }}
