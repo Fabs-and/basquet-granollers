@@ -3,10 +3,12 @@ import NonDynamicPageLayout from "@layouts/NonDynamicPageLayout.astro";
 
 import NoticiesPagination from "@components/internal-pages/NoticiesPagination.svelte";
 
-import { news } from "@data/apiData";
+import { news, featuredNews } from "@data/apiData";
+
+const renderNews = [featuredNews[0], ...news]
 ---
 
 <NonDynamicPageLayout title={`Notícies del Club Bàsquet Granollers`} heading={`Notícies CBG`} subHeading={`Totes les notícies`}>
-  <NoticiesPagination client:visible noticies={news}/>
+  <NoticiesPagination client:visible noticies={renderNews}/>
 </NonDynamicPageLayout>
 

@@ -8,19 +8,16 @@ import { isLastYearNews } from "@utils/helperFunctions";
 import { featuredNews, news
  } from "@data/apiData";
 
-
-
 news.splice(10);
-
-// console.log('news', news);
 
 let lastYearNews = news.filter((oneNews) => isLastYearNews(oneNews.date));
 
-let newsForSlider = lastYearNews.filter((newsItem) => newsItem.id !== featuredNews[0].id);
+
+let newsForSlider;
 
 if (featuredNews.length > 0) {
-  newsForSlider = [featuredNews[0], ...newsForSlider];
-}
+  newsForSlider = [featuredNews[0], ...lastYearNews];
+} else newsForSlider = lastYearNews;
 
 export { featuredNews };
 ---
