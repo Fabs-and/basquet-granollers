@@ -233,7 +233,7 @@ export function toggleDialog() {
   }
 }
 
-export function containsWord(str: string, word: string) {
+export function titleSlugMapper(str: string, word: string) {
   const regex = new RegExp(`\\b${word}\\b`, "i");
   return regex.test(str);
 }

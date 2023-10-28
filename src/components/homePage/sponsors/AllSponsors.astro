@@ -1,13 +1,5 @@
 ---
-import { fetchImagesInPageBySlug } from "@utils/apiFunctions/index";
-
-const mainSponsorsBlue = await fetchImagesInPageBySlug(
-  "patrocinadors-principals-logos-blaus",
-);
-
-const otherSponsors = await fetchImagesInPageBySlug("altres-patrocinadors");
-
-
+import { mainSponsorsBlue, otherSponsors} from '@data/apiData'
 ---
 
 <section class="sponsors-outter-container">

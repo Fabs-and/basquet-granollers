@@ -1,31 +1,23 @@
 ---
 import NonDynamicPageLayout from "@layouts/NonDynamicPageLayout.astro";
+
 import Teams from "@components/homePage/teams/Teams.astro";
-import { fetchPageBySlug } from "@utils/apiFunctions/index";
-
-const page = await fetchPageBySlug("equips", ["title"]);
-
-const {
-  title: { rendered: title },
-} = page[0];
 ---
 
-
-<NonDynamicPageLayout heading={title}>
+<NonDynamicPageLayout heading="Equips del club Bàsquet Granollers">
   <div class="teams-wrapper">
     <Teams noHeading={true} />
   </div>
 </NonDynamicPageLayout>
 
-
 <style>
-   .teams-wrapper {
-      margin-inline: calc(var(--padding-inline) * -1);
-      margin-top: calc(var(--padding-section-big) * -1);
-    }
+  .teams-wrapper {
+    margin-inline: calc(var(--padding-inline) * -1);
+    margin-top: calc(var(--padding-section-big) * -1);
+  }
 
   @media (width < 1025px) {
-     .teams-wrapper {
+    .teams-wrapper {
       margin-inline: calc(var(--padding-inline-tablet) * -1);
       margin-top: calc(var(--padding-section-medium) * -1);
     }
@@ -36,5 +28,4 @@ const {
       margin-top: calc(var(--padding-section-small) * -1);
     }
   }
-  
 </style>

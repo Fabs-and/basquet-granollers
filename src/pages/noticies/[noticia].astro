@@ -1,20 +1,10 @@
 ---
-// Import utils
-import {
-  fetchPostsInCategory,
-} from "@utils/apiFunctions/index";
-
-// Import types
-
-
 import PageLayout from "@layouts/PageLayout.astro";
 
-
+import {news} from "@data/apiData"
 
 export async function getStaticPaths() {
-  const noticies = await fetchPostsInCategory(19,  ['title', 'content', 'image', 'slug', 'date'],100);
-
-  return noticies.map((noticia) => {
+  return news.map((noticia) => {
     return {
       params: { noticia: noticia.slug },
       props: {

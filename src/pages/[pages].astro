@@ -1,22 +1,15 @@
 ---
-// Import utils
-import { fetchPages } from "@utils/apiFunctions/index";
-
-// Import types
-import type { Page } from "src/types";
-
 import PageLayout from "@layouts/PageLayout.astro";
 
-import { EXCLUDED_PAGES, PAGE_FIELDS } from "src/globalConstants";
+import { pages } from '@data/apiData'
+import { EXCLUDED_PAGES} from "@data/globalConstants";
 
 export async function getStaticPaths() {
-  const wpPages = await fetchPages(100, PAGE_FIELDS);
-
-  const pagesToGenerate = wpPages.filter(
+  const pagesToGenerate = pages.filter(
     (page) => !EXCLUDED_PAGES.has(page.slug),
   );
 
-  return pagesToGenerate.map((page: Page) => {
+  return pagesToGenerate.map((page) => {
     return {
       params: { pages: page.slug },
       props: {

@@ -1,21 +1,17 @@
 ---
 import ButtonAnchor from "@components/ButtonAnchor.astro";
-import { containsWord } from "@utils/helperFunctions";
+import { titleSlugMapper } from "@utils/helperFunctions";
+
+import { TEAMS_SLUGS} from "@data/globalConstants";
 
 const { team } = Astro.props;
 
 const { title, url, alt } = team;
 
-const wordSlugPairs = [
-  { word: "masculins", slug: "/equips/masculins" },
-  { word: "femenins", slug: "/equips/femenins" },
-  { word: "escola", slug: "/equips/escola-de-basquet" },
-  { word: "cadira", slug: "/equips/cadira-de-rodes" },
-];
 
-const foundPair = wordSlugPairs.find((pair) => containsWord(title, pair.word));
+const mapped = TEAMS_SLUGS.find((pair) => titleSlugMapper(title, pair.word));
 
-const slug = foundPair ? foundPair.slug : "/equips/cos-tecnic";
+const slug = mapped ? mapped.slug : "/equips/cos-tecnic";
 ---
 
 <article class="team-article">

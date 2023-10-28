@@ -1,15 +1,11 @@
 ---
 import PlayersLayout from "@layouts/PlayersLayout.astro";
-import { fetchImagesInPageBySlug } from "@utils/apiFunctions/index";
 
-const maleTeam = await fetchImagesInPageBySlug('jugadors-equip-senior-masculi')
-
-
+import { maleSeniorTeamData } from "@data/apiData";
 ---
 
-<!-- Get also the heading and subHeading from the Wordpress -->
 <PlayersLayout
   heading={`Equips masculins`}
   subHeading={`Sènior 1 masculí Pisos.com - Liga EBA`}
-  team={maleTeam}
+  team={maleSeniorTeamData}
 />

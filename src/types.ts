@@ -8,16 +8,14 @@ export type PagesWithId = `${"pages"}/${number}`;
 
 export type MediaWithId = `${"media"}/${number}`;
 
-export type PostFields =
+export type CommonPagesAndPostsFields =
   | "author"
-  | "categories"
   | "comment_status"
   | "content"
   | "date"
   | "date_gmt"
   | "excerpt"
   | "featured_media"
-  | "format"
   | "guid"
   | "id"
   | "image"
@@ -28,51 +26,33 @@ export type PostFields =
   | "ping_status"
   | "slug"
   | "status"
-  | "sticky"
-  | "tags"
   | "template"
   | "title"
   | "type";
 
-export type CategoryFields =
-  | "count"
-  | "description"
-  | "id"
-  | "link"
-  | "meta"
-  | "parent"
-  | "name"
-  | "slug"
-  | "taxonomy";
-
-export type PageFields =
-  | "author"
-  | "comment_status"
-  | "content"
-  | "date"
-  | "date_gmt"
-  | "excerpt"
-  | "featured_media"
-  | "generated_slug"
-  | "guid"
-  | "id"
-  | "image"
-  | "link"
-  | "menu_order"
-  | "meta"
-  | "modified"
-  | "modified_gmt"
-  | "password"
-  | "permalink_template"
-  | "ping_status"
-  | "slug"
-  | "status"
-  | "template"
-  | "title"
-  | "type";
-
-type IdAutosaves = `${number}/autosaves`;
-type PagesRevisionsWithID = `${"pages"}/${number}/revisions`;
+export type PostSpecificFields = "categories" | "format" | "sticky" | "tags";
+  
+  export type PageSpecificFields =
+    | "generated_slug"
+    | "menu_order"
+    | "password"
+    | "permalink_template";
+  
+  export type PageFields = CommonPagesAndPostsFields | PageSpecificFields;
+  export type PostFields = CommonPagesAndPostsFields | PostSpecificFields;
+  
+  export type CategoryFields =
+    | "count"
+    | "description"
+    | "id"
+    | "link"
+    | "meta"
+    | "parent"
+    | "name"
+    | "slug"
+    | "taxonomy";
+  type IdAutosaves = `${number}/autosaves`;
+  type PagesRevisionsWithID = `${"pages"}/${number}/revisions`;
 type PostsRevisionsWithID = `${"posts"}/${number}/revisions`;
 
 export type Endpoints =

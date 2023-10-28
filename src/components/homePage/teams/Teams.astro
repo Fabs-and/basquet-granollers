@@ -1,11 +1,10 @@
 ---
-import TeamItem from "@components/homePage/teams/TeamItem.astro";
 import HomePageSectionLayout from "@layouts/HomePageSectionLayout.astro";
-import { fetchImagesInPageBySlug } from"@utils/apiFunctions/index";
+import TeamItem from "@components/homePage/teams/TeamItem.astro";
+
+import { teamsCategories } from "@data/apiData";
 
 const { noHeading } = Astro.props;
-const teams = await fetchImagesInPageBySlug("equips");
-
 ---
 
 <HomePageSectionLayout
@@ -14,9 +13,9 @@ const teams = await fetchImagesInPageBySlug("equips");
 >
   <div class="teams-container">
     {
-      teams.map((team) => (
+      teamsCategories.map((teamCategory) => (
         <div>
-          <TeamItem {team} />
+          <TeamItem team={teamCategory} />
         </div>
       ))
     }

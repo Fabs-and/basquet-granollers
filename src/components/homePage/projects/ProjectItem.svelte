@@ -1,10 +1,5 @@
 <script>
-  export let item = {
-    title: { rendered: "" },
-    slug: "",
-    date: "",
-    image: { url: "", title: "", alt: "" },
-  };
+  export let item;
 </script>
 
 {#if item.image}

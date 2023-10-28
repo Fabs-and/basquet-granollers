@@ -461,7 +461,7 @@ export async function fetchAllImages() {
   }
 }
 
-export async function fetchImagesInPageBySlug(slug: string) {
+export async function fetchImagesInPageBySlug(slug: string): Promise<CustomImage[]> {
   try {
     // Fetch the page by slug and get its content and ID.
     const page = await fetchPageBySlug(slug, ["id", "content"]);

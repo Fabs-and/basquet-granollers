@@ -1,19 +1,9 @@
 ---
-// Import utils
-import { fetchPostsInCategory } from "@utils/apiFunctions/index";
-
-
-// Import Layouts
 import PageLayout from "@layouts/PageLayout.astro";
 
+import { projects } from "../../data/apiData.ts";
 
 export async function getStaticPaths() {
-  const projects = await fetchPostsInCategory(
-    42,
-    ["title", "content", "image", "slug", "date"],
-    100,
-  );
-
   return projects.map((project) => {
     return {
       params: { projectes: project.slug },
@@ -31,4 +21,3 @@ const project = Astro.props;
 ---
 
 <PageLayout post={project} pageTitle={project.title.rendered} />
-

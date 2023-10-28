@@ -1,9 +1,7 @@
 ---
-import { fetchPostsInCategory } from "@utils/apiFunctions/index";
 import NonDynamicPageLayout from "@layouts/NonDynamicPageLayout.astro";
 
-const projects = await fetchPostsInCategory(42, ["image", "slug"]);
-
+import { projects} from '../../data/apiData.ts'
 ---
 
 <NonDynamicPageLayout title={`Projectes i events del Club Bàsquet Granollers`} heading={`Projectes i events del CBG`}>
@@ -33,10 +31,8 @@ const projects = await fetchPostsInCategory(42, ["image", "slug"]);
   a {
     display: block;
     background: var(--clr-secondary);
-    /* width: 100%; */
   }
   .projects-desktop {
-    /* padding-right: var(--padding-inline); */
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(20rem, 1fr));
     justify-items: center;
@@ -53,6 +49,4 @@ const projects = await fetchPostsInCategory(42, ["image", "slug"]);
     height: 100%;
     object-fit: cover;
   }
-
-
 </style>

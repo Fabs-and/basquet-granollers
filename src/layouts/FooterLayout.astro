@@ -10,10 +10,9 @@ import {
   extractBottomFooterInfo,
 } from "@utils/helperFunctions";
 
-import { fetchPageBySlug } from "@utils/apiFunctions/index";
 import HomePageSectionLayout from "./HomePageSectionLayout.astro";
 
-const footerData = await fetchPageBySlug("peu-de-pagina");
+import { footerData } from "@data/apiData";
 
 const {
   content: { rendered: content },

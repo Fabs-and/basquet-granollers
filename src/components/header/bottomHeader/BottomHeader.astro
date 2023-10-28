@@ -1,10 +1,9 @@
 ---
 import DropDownMenu from "@components/header/bottomHeader/DropDownMenu.astro";
-import { magnifyingGlass } from "@assets/icons";
 
 import SearchWidget from "@components/SearchWidget.svelte";
 
-const { navigation, isButtonHeader, websiteContent } = Astro.props;
+const { navigation, websiteContent } = Astro.props;
 ---
 <a class="logo" href="/"
   ><img src="/logo.svg" alt="Web oficial del Club Bàsquet Granollers" /></a
@@ -31,37 +30,16 @@ const { navigation, isButtonHeader, websiteContent } = Astro.props;
 </nav>
 
 <div class="history-search-container">
-  <!-- <SearchWidgetAstro {posts} {pages} /> -->
   <SearchWidget client:load {websiteContent} />
-  {
-    isButtonHeader && (
-      <a href="" class="button-anchor">
-        {`La història`.toUpperCase()}
-      </a>
-    )
-  }
 </div>
 
 <style>
-  .button-anchor {
-    border: none;
-    background-color: var(--clr-secondary);
-    color: var(--clr-contrast);
-  }
-
-  .button-anchor:hover {
-    background-color: var(--clr-accent);
-    font-weight: 500;
-  }
   .logo {
     position: absolute;
     bottom: 0.5rem;
     left: var(--padding-inline);
   }
 
-  button:hover {
-    color: var(--clr-accent);
-  }
   .history-search-container {
     position: absolute;
     display: flex;
@@ -69,14 +47,6 @@ const { navigation, isButtonHeader, websiteContent } = Astro.props;
     bottom: 50%;
     transform: translateY(50%);
     gap: 0.94rem;
-  }
-
-  .search-icon {
-    align-self: center;
-  }
-
-  .search-icon:hover {
-    cursor: pointer;
   }
 
   ul {
@@ -91,25 +61,5 @@ const { navigation, isButtonHeader, websiteContent } = Astro.props;
 
   a {
     color: var(--clr-primary);
-  }
-
-  .button {
-    text-decoration: none;
-    display: grid;
-    place-items: center;
-    height: 2.6875rem;
-    width: 8.8125rem;
-    border-radius: 1.75rem;
-    color: inherit;
-    background-color: var(--clr-secondary);
-    font-weight: 500;
-    transition:
-      background-color 0.1s ease-in-out,
-      font-weight 0.1s ease-in-out;
-  }
-
-  .button:hover {
-    background-color: var(--clr-accent);
-    font-weight: 560;
   }
 </style>

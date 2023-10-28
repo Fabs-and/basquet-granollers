@@ -1,28 +1,21 @@
 <script>
   // import { fetchImagesInPageBySlug } from "@utils/apiFunctions/index";
+  import {socialMediaInfo} from '@data/apiData'
 
-  export let socialMediaLinks = [];
-
-// (async () => {
-//     socialMediaLinks = await fetchImagesInPageBySlug("xarxes-socials");
-//   })();
-
-  let name;
 </script>
 
 <nav>
   <ul>
-    {#each socialMediaLinks as socialMediaLink}
-      {#if socialMediaLink.title}
+    {#each socialMediaInfo as socialMediaItem}
+      {#if socialMediaItem.title}
      
         <li>
           <a
-            title={name}
-            href={socialMediaLink.title.toLowerCase().includes('tiktok') ? `https://www.tiktok.com/${socialMediaLink.caption}` : socialMediaLink.caption}
+            href={socialMediaItem.title.toLowerCase().includes('tiktok') ? `https://www.tiktok.com/${socialMediaItem.caption}` : socialMediaItem.caption}
             target="_blank"
             rel="noopener noreferrer"
           >
-            <img src={socialMediaLink.url} alt={socialMediaLink.alt} />
+            <img src={socialMediaItem.url} alt={socialMediaItem.alt} />
           </a>
         </li>
       {/if}

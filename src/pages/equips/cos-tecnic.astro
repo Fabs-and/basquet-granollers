@@ -1,13 +1,10 @@
 ---
 import TeamsLayout from "@layouts/TeamsLayout.astro";
-import { fetchImagesInPageBySlug } from "@utils/apiFunctions/index";
 
-const teamsImages = await fetchImagesInPageBySlug(
-  "entrenadors-i-entrenadores",
-);
+import { coachesData } from "@data/apiData";
 
 const title = "Club Bàsquet Granollers";
 const heading = "Cos tècnic";
 ---
 
-<TeamsLayout {teamsImages} {title} {heading} />
+<TeamsLayout teamsImages={coachesData} {title} {heading} />

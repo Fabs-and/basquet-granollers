@@ -1,40 +1,42 @@
 ---
-import { fetchImagesInPageBySlug } from "@utils/apiFunctions/index";
+import { socialMediaInfo } from "@data/apiData";
 
-const socialMediaLinks = await fetchImagesInPageBySlug("xarxes-socials");
+interface TitleMap {
+  [key: string]: string;
+}
 
+const titleMap: TitleMap = {
+  instagram: "Instagram",
+  facebook: "Facebook",
+  "x.com": "Twitter",
+  youtube: "Youtube",
+  twitch: "Twitch",
+};
 
+function getTitle(title: string) {
+  const lowerCaseTitle = title.toLowerCase();
+  for (let socialMediaName in titleMap) {
+    if (lowerCaseTitle.includes(socialMediaName)) {
+      return titleMap[socialMediaName];
+    }
+  }
+  return "TikTok";
+}
 ---
 
 <nav>
   <ul>
     {
-      socialMediaLinks.map((socialMediaLink) => {
-        const name = socialMediaLink.title.toLowerCase().includes("instagram")
-          ? "Instagram"
-          : socialMediaLink.title.toLowerCase().includes("facebook")
-          ? "Facebook"
-          : socialMediaLink.title.toLowerCase().includes("x.com")
-          ? "Twitter"
-          : socialMediaLink.title.toLowerCase().includes("youtube")
-          ? "Youtube"
-          : socialMediaLink.title.toLowerCase().includes("twitch")
-          ? "Twitch"
-          : "TikTok";
-
-          let { url, caption, alt } = socialMediaLink;
-          if (name === "TikTok") {
-            caption = `https://www.tiktok.com/${caption}`;
-          }
+      socialMediaInfo.map((socialMediaItem) => {
         return (
           <li>
             <a
-              title={name}
-              href={caption}
+              title={getTitle(socialMediaItem.title)}
+              href={socialMediaItem.title.toLowerCase().includes('tiktok') ? `https://www.tiktok.com/${socialMediaItem.caption}` : socialMediaItem.caption}
               target="_blank"
               rel="noopener noreferrer"
             >
-              <img src={url} alt={alt} />
+              <img src={socialMediaItem.url} alt={socialMediaItem.alt} />
             </a>
           </li>
         );
@@ -59,9 +61,9 @@ const socialMediaLinks = await fetchImagesInPageBySlug("xarxes-socials");
     align-items: center;
   }
 
- @media (width < 648px) {
-  nav {
-    width: auto;
+  @media (width < 648px) {
+    nav {
+      width: auto;
+    }
   }
- }
 </style>

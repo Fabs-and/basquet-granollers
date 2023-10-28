@@ -1,11 +1,10 @@
-<script lang="ts">
-  import type { Post } from "fetch-wordpress-api";
+<script>
   import NewsItem from "@components/homePage/news/NewsItem.svelte";
   import { sliderLeftArrow, sliderRightArrow } from "@assets/icons";
   import ButtonAnchor from "@components/ButtonAnchor.svelte";
   
-  export let news: Post[];
-  export let featuredNews: Post;
+  export let news;
+  export let featuredNews;
  
   news = news.filter((newsItem) => newsItem.id !== featuredNews.id);
   

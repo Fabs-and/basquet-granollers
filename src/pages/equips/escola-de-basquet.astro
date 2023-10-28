@@ -1,13 +1,11 @@
 ---
 import TeamsLayout from "@layouts/TeamsLayout.astro";
-import { fetchImagesInPageBySlug } from "@utils/apiFunctions/index";
 
-const teamsImages = await fetchImagesInPageBySlug(
-  "escola-de-basquet"
-);
+import { schoolTeamData } from "@data/apiData";
+
 
 const title = "Club Bàsquet Granollers";
 const heading = "Escola de bàsquet";
 ---
 
-<TeamsLayout {teamsImages} {title} {heading} />
+<TeamsLayout teamsImages={schoolTeamData} {title} {heading} />

@@ -1,5 +1,4 @@
 <script>
-  import { onMount } from "svelte";
   import DropDownAccordion from "./DropDownAccordion.svelte";
   import SearchWidgetResponsive from "@components/SearchWidgetResponsive.svelte";
 
@@ -12,7 +11,6 @@
   export let navigation;
   export let topHeaderContent;
   export let websiteContent;
-  export let socialMediaLinks;
 
   let isDropdownVisible = false;
 
@@ -115,7 +113,7 @@
   {/each}
 
   <div class="social-media-container">
-    <SocialMediaMenu {socialMediaLinks}/>
+    <SocialMediaMenu />
   </div>
 </ul>
 

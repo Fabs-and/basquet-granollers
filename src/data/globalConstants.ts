@@ -1,8 +1,9 @@
 import type {
   CategoryFields,
+  CommonPagesAndPostsFields,
   PageFields,
   PostFields,
-} from './types';
+} from '../types';
 
 /*Pages to exclude when generating dynamic routes*/
 
@@ -32,6 +33,13 @@ const POST_FIELDS: PostFields[] = [
 
 const CATEGORY_FIELDS: CategoryFields[] = ['id', 'name', 'slug'];
 
-const PAGE_FIELDS: PageFields[] = ["title", "content", "image", "date", "slug"];
+const COMMON_FIELDS: CommonPagesAndPostsFields[] = ["title", "content", "image", "date", "slug"];
 
-export { EXCLUDED_PAGES, POST_FIELDS, CATEGORY_FIELDS, PAGE_FIELDS };
+const TEAMS_SLUGS = [
+  { word: "masculins", slug: "/equips/masculins" },
+  { word: "femenins", slug: "/equips/femenins" },
+  { word: "escola", slug: "/equips/escola-de-basquet" },
+  { word: "cadira", slug: "/equips/cadira-de-rodes" },
+];
+
+export { EXCLUDED_PAGES, POST_FIELDS, CATEGORY_FIELDS, COMMON_FIELDS, TEAMS_SLUGS };

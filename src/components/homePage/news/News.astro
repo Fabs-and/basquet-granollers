@@ -1,18 +1,14 @@
 ---
-import NewsDesktop from "@components/homePage/news/NewsDesktop.svelte";
 import HomePageSectionLayout from "@layouts/HomePageSectionLayout.astro";
+
+import NewsDesktop from "@components/homePage/news/NewsDesktop.svelte";
 import Slider from "@components/Slider.svelte";
-import { fetchPostsInCategory } from "@utils/apiFunctions/index";
+
 import { isLastYearNews } from "@utils/helperFunctions";
+import { featuredNews, news
+ } from "@data/apiData";
 
-const title = "CBG Notícies";
-
-//Id needs to be included as a field it is used in newsDesktop to render in each block in svelte and also to compare with feature news
-
-const [news, featuredNews] = await Promise.all([
-  fetchPostsInCategory(19, ["title", "image", "slug", "date", "id"]),
-  fetchPostsInCategory(41, ["title", "image", "slug", "date", "id"]),
-]); 
+news.splice(10);
 
 let lastYearNews = news.filter((oneNews) => isLastYearNews(oneNews.date));
 

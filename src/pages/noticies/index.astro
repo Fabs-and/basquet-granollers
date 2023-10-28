@@ -1,106 +1,12 @@
 ---
-// Import utils
-import {
-  fetchPostsInCategory,
-} from "@utils/apiFunctions/index";
-
-// Import Layouts
 import NonDynamicPageLayout from "@layouts/NonDynamicPageLayout.astro";
+
 import NoticiesPagination from "@components/internal-pages/NoticiesPagination.svelte";
 
-const noticies = await fetchPostsInCategory(19,['title', 'image', 'date'],100);
-
-
-
+import { news } from "@data/apiData";
 ---
 
 <NonDynamicPageLayout title={`Notícies del Club Bàsquet Granollers`} heading={`Notícies CBG`} subHeading={`Totes les notícies`}>
-  <NoticiesPagination client:visible {noticies}/>
+  <NoticiesPagination client:visible noticies={news}/>
 </NonDynamicPageLayout>
 
-<style>
-  h4  { 
-    font-weight: 500;
-  }
-  .noticies-container {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 1rem;
-  }
-  
-  p {
-    position: absolute;
-    bottom: 0;
-    background-color: var(--clr-secondary);
-    padding-bottom: 0.5rem;
-    font-style: italic;
-    width: 100%;
-    z-index: 2;
-  }
-
-  a {
-    display: block;
-    height: 100%;
-  }
-
-  img {
-    height: 100%;
-    object-fit: cover;
-    margin: auto;
-  }
-
-  .info-container {
-    position: relative; /* so the z-index has effect  */
-    padding-inline: 1rem;
-    padding-block: 0.5rem;
-    color: var(--clr-contrast);
-    background-color: var(--clr-secondary);
-  }
-
-  .image-container {
-    background-color: white;
-    z-index: 0;
-  }
-
-  .noticia {
-    height: 21.87rem;
-    width: 24.25rem;
-    flex-shrink: 0;
-    border-top-left-radius: 2.9375rem;
-    overflow: hidden;
-  }
-
-  .noticia .image-container {
-    height: 67%;
-  }
-
-  .noticia .info-container {
-    height: 33%;
-  }
-
-  @media (width < 1025px) {
-    .noticia {
-      width: 21.625rem;
-      height: 20.93rem;
-    }
-  }
-
-  @media (width < 648px) {
-    h1 {
-      font-size: 2.5rem;
-      line-height: 2.5rem;
-    }
-
-      .noticia {
-      width: 20.4375rem;
-      height: 19.74rem;
-    }
-  }
-
-  @media (width < 375px) {
-    .noticia {
-      width: 100%;
-    }
-  }
-</style>

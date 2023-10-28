@@ -1,12 +1,11 @@
 ---
 import PlayersLayout from "@layouts/PlayersLayout.astro";
-import { fetchImagesInPageBySlug } from "@utils/apiFunctions/index";
 
-const femaleTeam = await fetchImagesInPageBySlug('jugadores-equip-senior-femeni')
-
+import { femaleSeniorTeamData } from "@data/apiData";
 ---
 
-
-<!-- Get also the heading and subHeading from the Wordpress -->
-<PlayersLayout heading={`Equips femenins`} subHeading={`Sènior 1 femení - SuperCopa Femenina`} team={femaleTeam}/>
-
+<PlayersLayout
+  heading={`Equips femenins`}
+  subHeading={`Sènior 1 femení - SuperCopa Femenina`}
+  team={femaleSeniorTeamData}
+/>

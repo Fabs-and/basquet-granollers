@@ -1,23 +1,23 @@
 ---
-import MembershipItem from "@components/homePage/join/MembershipItem.svelte";
 import HomePageSectionLayout from "@layouts/HomePageSectionLayout.astro";
-import SponsorshipItem from "@components/homePage/join/SponsorshipItem.svelte";
 
-// import { memberships, sponsors } from "@data/memberships";
-import Slider from "@components/Slider.svelte";
 import Dialog from "@components/Dialog.astro";
-import { fetchPageBySlug } from "@utils/apiFunctions/index";
+import MembershipItem from "@components/homePage/join/MembershipItem.svelte";
+import SponsorshipItem from "@components/homePage/join/SponsorshipItem.svelte";
+import Slider from "@components/Slider.svelte";
+
 import {
   extractMembershipsOptions,
   extractSponsorshipsOptions,
 } from "@utils/helperFunctions";
+import { joinData } from "@data/apiData";
 
 let isSelected = true;
 
-const joinPage = await fetchPageBySlug("la-familia-cbg/");
 
-const memberships = extractMembershipsOptions(joinPage[0].content.rendered);
-const sponsors = extractSponsorshipsOptions(joinPage[0].content.rendered);
+
+const memberships = extractMembershipsOptions(joinData[0].content.rendered);
+const sponsors = extractSponsorshipsOptions(joinData[0].content.rendered);
 
 function toggleSelected() {
   isSelected = !isSelected;

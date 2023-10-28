@@ -1,43 +1,30 @@
 ---
 import TopHeader from "@components/header/TopHeader.astro";
- import { fetchImagesInPageBySlug } from "@utils/apiFunctions/index";
 import BottomHeader from "@components/header/bottomHeader/BottomHeader.astro";
-
 import HeaderLineSeparator from "@components/header/HeaderLineSeparator.astro";
-import { fetchPageBySlug } from "@utils/apiFunctions/index";
-import { displayButtonHistory, displaySearchIcon, extractNavigation, extractTopHeaderContent } from "@utils/helperFunctions";
-import { fetchPages, fetchPosts } from "@utils/apiFunctions";
 import BottomHeaderResponsive from "../components/header/bottomHeader/BottomHeaderResponsive.svelte";
 
-const page = await fetchPageBySlug("capcalera");
+import { extractNavigation, extractTopHeaderContent } from "@utils/helperFunctions";
+import { pages, posts, headerData } from "@data/apiData"
+import { EXCLUDED_PAGES } from "@data/globalConstants";
 
 const {
   content: { rendered: content },
-} = page[0];
+} = headerData[0];
 
 const topHeaderContent = extractTopHeaderContent(content);
 
-const navigation = extractNavigation(content);
-
-const isButtonHeader = displayButtonHistory(content);
+const bottomHeaderNav = extractNavigation(content);
 
 
-let [posts, pages, socialMediaLinks] = await Promise.all([
-  fetchPosts(100, ["categories", "title", "slug", "content", "date"]),
-  fetchPages(100, ["title", "slug", "content", "date"]),
-  fetchImagesInPageBySlug("xarxes-socials")
-]);
-
-const configPages = new Set(["capcalera", "peu-de-pagina", "la-familia-cbg", "equips", "patrocinadors-principals-logos-blaus", "patrocinadors-principals-logos-blancs", "altres-patrocinadors", "xarxes-socials", "jugadors-equip-senior-masculi", "jugadores-equip-senior-femeni" ]);
-
-const nonConfigPages = pages.filter(
-   (page) => !configPages.has(page.slug),
+const pagesToSearch = pages.filter(
+   (page) => !EXCLUDED_PAGES.has(page.slug),
  );
 
-const postsToShow = posts.filter((post) => post.categories.includes(19) || post.categories.includes(41) || post.categories.includes(42));
+const postsToSearch = posts.filter((post) => post.categories.includes(19) || post.categories.includes(41) || post.categories.includes(42));
 
 
-postsToShow.forEach((post) => {
+postsToSearch.forEach((post) => {
   if (
     (post.categories.includes(19) || post.categories.includes(41)) &&
     !post.slug.includes("noticies")
@@ -51,7 +38,7 @@ postsToShow.forEach((post) => {
   }
 });
 
-const websiteContent = [...nonConfigPages, ...postsToShow];
+const websiteContent = [...pagesToSearch, ...postsToSearch];
 ---
 
 <header>
@@ -60,10 +47,10 @@ const websiteContent = [...nonConfigPages, ...postsToShow];
   </section>
   <section class="header-bottom-section">
     <div class="bottom-header">
-      <BottomHeader {websiteContent} {navigation} {isButtonHeader} />
+      <BottomHeader {websiteContent} navigation={bottomHeaderNav}  />
     </div>
     <div class="bottom-header responsive">
-      <BottomHeaderResponsive client:load {websiteContent} {navigation} {topHeaderContent} {socialMediaLinks}/>
+      <BottomHeaderResponsive client:load {websiteContent} navigation={bottomHeaderNav} {topHeaderContent}/>
     </div>
   </section>
   <div class="separator-line">
