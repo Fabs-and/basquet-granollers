@@ -23,6 +23,14 @@ jobs:
         restore-keys: |
           ${{ runner.OS }}-node-
 
+    - name: Restore cached dist directory
+      uses: actions/cache@v2
+      with:
+        path: cache-dist
+        key: ${{ runner.OS }}-dist-${{ hashFiles('**/*') }}
+        restore-keys: |
+          ${{ runner.OS }}-dist-
+
     - name: Install and Build
       run: |
         npm install
@@ -32,6 +40,10 @@ jobs:
         USERNAME: ${{ secrets.USERNAME }}
         WP_APPLICATION_PASSWORD: ${{ secrets.WP_APPLICATION_PASSWORD }}
 
+    - name: Compare and Prepare Files for Upload
+      run: |
+        node compare-and-prepare.js
+
     - name: Deploy to server
       uses: SamKirkland/FTP-Deploy-Action@v4.3.4
       with:
@@ -39,6 +51,7 @@ jobs:
         username: ${{ secrets.FTP_USER }}
         password: ${{ secrets.FTP_PASSWORD }}
         port: 21
-        local-dir: dist/
+        local-dir: upload/
         server-dir: /
         exclude: '.htaccess .ftpquota wordpress/**/*'
+
