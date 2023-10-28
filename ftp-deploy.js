@@ -1,4 +1,4 @@
-// import { Client } from "basic-ftp";
+import { Client } from "basic-ftp";
 import { config } from "dotenv";
 config();
 
