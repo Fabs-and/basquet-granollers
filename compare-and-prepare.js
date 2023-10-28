@@ -22,6 +22,11 @@ if (!existsSync(uploadDir)) {
 
 // Function to get a list of files in a directory
 function getFiles(dir) {
+  // Check if the directory exists, create it if not
+  if (!existsSync(dir)) {
+    mkdirSync(dir, { recursive: true });
+  }
+
   return readdirSync(dir, { withFileTypes: true }).flatMap((dirent) =>
     dirent.isDirectory()
       ? getFiles(join(dir, dirent.name))
