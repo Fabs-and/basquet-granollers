@@ -1,59 +1,40 @@
-import {
-  readdirSync,
-  existsSync,
-  mkdirSync,
-  statSync,
-  copyFileSync,
-  rmdirSync,
-  renameSync,
-} from "fs";
-import { join, relative, dirname } from "path";
-
-
-
-const distDir = "dist";
-const cacheDistDir = "cache-dist";
-const uploadDir = "upload";
-
-// Ensure upload directory exists
-if (!existsSync(uploadDir)) {
-  mkdirSync(uploadDir);
-}
-
-// Function to get a list of files in a directory
-function getFiles(dir) {
+// Function to get a list of files and folders directly in a directory
+function getFilesAndFolders(dir) {
   // Check if the directory exists, create it if not
   if (!existsSync(dir)) {
     mkdirSync(dir, { recursive: true });
   }
 
-  return readdirSync(dir, { withFileTypes: true }).flatMap((dirent) =>
-    dirent.isDirectory()
-      ? getFiles(join(dir, dirent.name))
-      : join(dir, dirent.name),
-  );
+  return readdirSync(dir, { withFileTypes: true }).map((dirent) => ({
+    name: dirent.name,
+    type: dirent.isDirectory() ? "directory" : "file",
+    path: join(dir, dirent.name),
+  }));
 }
 
-// Get files from dist and cache-dist directories
-const distFiles = getFiles(distDir);
-const cacheDistFiles = getFiles(cacheDistDir);
+// Get files and folders from dist and cache-dist directories
+const distItems = getFilesAndFolders(distDir);
+const cacheDistItems = getFilesAndFolders(cacheDistDir);
 
-// Compare files and prepare the upload directory
-distFiles.forEach((file) => {
-  const cacheFile = join(cacheDistDir, relative(distDir, file));
+// Compare files and folders and prepare the upload directory
+distItems.forEach((item) => {
+  const cacheItem = cacheDistItems.find(
+    (i) => i.name === item.name && i.type === item.type,
+  );
   if (
-    !existsSync(cacheFile) ||
-    statSync(file).size !== statSync(cacheFile).size
+    !cacheItem ||
+    (item.type === "file" &&
+      statSync(item.path).size !== statSync(cacheItem.path).size)
   ) {
-    // File is new or changed, copy to upload directory
-    const uploadFile = join(uploadDir, relative(distDir, file));
-    mkdirSync(dirname(uploadFile), { recursive: true });
-    copyFileSync(file, uploadFile);
+    // Item is new or changed or the file size is different, copy to upload directory
+    const uploadItemPath = join(uploadDir, item.name);
+    if (item.type === "file") {
+      mkdirSync(dirname(uploadItemPath), { recursive: true });
+      copyFileSync(item.path, uploadItemPath);
+    } else {
+      if (!existsSync(uploadItemPath)) {
+        mkdirSync(uploadItemPath);
+      }
+    }
   }
 });
-
-// Update the cache for next run
-rmdirSync(cacheDistDir, { recursive: true });
-renameSync(distDir, cacheDistDir);
-
-

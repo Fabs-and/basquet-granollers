@@ -2,8 +2,7 @@ import { Client } from "basic-ftp";
 import { config } from "dotenv";
 config();
 
-// FTP Access
-async function listFtpFiles() {
+async function uploadFiles() {
   const client = new Client();
   try {
     await client.access({
@@ -11,13 +10,13 @@ async function listFtpFiles() {
       user: process.env.FTP_USER,
       password: process.env.FTP_PASSWORD,
     });
-    console.log(await client.list());
+    // Upload the contents of the upload directory to the root directory on the server
+    await client.uploadFrom("upload/*", "/");
   } catch (error) {
     console.error(error);
   }
   client.close();
 }
 
-//Call the function to list FTP files
-listFtpFiles();
-
+// Call the function to upload files
+uploadFiles();
