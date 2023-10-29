@@ -6,9 +6,11 @@ import NoticiesPagination from "@components/internal-pages/NoticiesPagination.sv
 import { news, featuredNews } from "@data/apiData";
 
 const renderNews = [featuredNews[0], ...news]
+
+console.log('renderNews', renderNews.length);
 ---
 
 <NonDynamicPageLayout title={`Notícies del Club Bàsquet Granollers`} heading={`Notícies CBG`} subHeading={`Totes les notícies`}>
-  <NoticiesPagination client:visible noticies={renderNews}/>
+  <NoticiesPagination client:load noticies={renderNews}/>
 </NonDynamicPageLayout>
 

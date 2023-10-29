@@ -1,7 +1,11 @@
 <script>
   import { dateConverter, formatHTMLContent } from "@utils/helperFunctions";
+
   import { slide } from "svelte/transition";
+
   export let noticies;
+  
+  console.log('noticies', noticies.length);
 
   let index = 0; // Change const to let
   let showButton = noticies.length > 9;
@@ -14,6 +18,7 @@
   }
 
   function loadNineMore() {
+    console.log('briiiiiiiiiiiii')
     index += 9; // Update index to get the next slice
     const nineMore = noticies.slice(index, index + 9);
     displayedNews = [...displayedNews, ...nineMore];
@@ -30,7 +35,7 @@
               <img
                 src={noticia.image.url
                   ? noticia.image.url
-                  : "/default-pic.avif"}
+                  : "default-pic.avif"}
                 alt={noticia.image.alt
                   ? noticia.image.alt
                   : noticia.title.rendered}
@@ -40,7 +45,7 @@
               <img
                 src={noticia.image.url
                   ? noticia.image.url
-                  : "/default-pic.avif"}
+                  : "default-pic.avif"}
                 alt={noticia.image.alt
                   ? noticia.image.alt
                   : noticia.title.rendered}

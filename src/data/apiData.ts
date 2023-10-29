@@ -73,6 +73,7 @@ export let featuredNews: Post[] = [];
 export let projects: Post[] = [];
 export let heroSlides: Post[] = [];
 
+
 for (let i = 0; i < allNews.length; i++) {
   if (Array.isArray(allNews[i].categories)) {
     if (allNews[i].categories.includes(FEATURED_NEWS_CATEGORY_ID)) {
@@ -82,6 +83,8 @@ for (let i = 0; i < allNews.length; i++) {
     }
   }
 }
+
+console.log('news', news.length)
 
 for (let i = 0; i < projectsAndHeroSlides.length; i++) {
   if (Array.isArray(projectsAndHeroSlides[i].categories)) {
