@@ -7,12 +7,25 @@ import Slider from "@components/Slider.svelte";
 import { isLastYearNews } from "@utils/helperFunctions";
 import { allNews
  } from "@data/apiData";
+import { FEATURED_NEWS_CATEGORY_ID } from "@data/globalConstants";
+import type { Post } from "src/types";
 
 
 allNews.splice(10);
 
 let lastYearNews = allNews.filter((oneNews) => isLastYearNews(oneNews.date));
 
+const featuredNews = [lastYearNews.find((oneNews)=> oneNews.categories.includes(FEATURED_NEWS_CATEGORY_ID))
+]
+
+let newsToRender = lastYearNews.filter((oneNews) => !oneNews.categories.includes(FEATURED_NEWS_CATEGORY_ID))
+
+
+
+
+if (featuredNews && featuredNews.length > 0) {
+  newsToRender = [featuredNews[0]!, ...newsToRender]
+} 
 
 ---
 
@@ -24,14 +37,14 @@ let lastYearNews = allNews.filter((oneNews) => isLastYearNews(oneNews.date));
   <div class="news-desktop">
     <NewsDesktop
       client:visible
-      news={lastYearNews}
+      news={newsToRender}
     />
   </div>
 
   <div class="g-slider-container">
     <Slider
       client:visible
-      sliderItems={lastYearNews}
+      sliderItems={newsToRender}
       childComponent="NewsItem"
       itemWidth={312}
       gap={`1rem`}
