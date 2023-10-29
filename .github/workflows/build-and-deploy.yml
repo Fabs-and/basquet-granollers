@@ -23,14 +23,6 @@ jobs:
         restore-keys: |
           ${{ runner.OS }}-node-
 
-    - name: Restore cached dist directory
-      uses: actions/cache@v2
-      with:
-        path: cache-dist
-        key: ${{ runner.OS }}-dist-${{ hashFiles('**/*') }}
-        restore-keys: |
-          ${{ runner.OS }}-dist-
-
     - name: Install and Build
       run: |
         npm install
