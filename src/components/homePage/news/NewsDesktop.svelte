@@ -50,7 +50,7 @@ news = news.filter((newsItem) => !newsItem.categories.includes(41));
           class:active={currentIndex === i}
           class:outgoing={prevIndex === i && currentIndex !== i}
         >
-          {#each news.slice(1).slice(i * 3, i * 3 + 3) as newsItem (newsItem.id)}
+          {#each news.slice(i * 3, i * 3 + 3) as newsItem (newsItem.date)}
             <NewsItem item={newsItem} isDesktopNews={true} />
           {/each}
         </div>

@@ -4,7 +4,7 @@ import NonDynamicPageLayout from "@layouts/NonDynamicPageLayout.astro";
 import NoticiesPagination from "@components/internal-pages/NoticiesPagination.svelte";
 import { fetchPostsInCategories } from "@utils/apiFunctions";
 import { COMMON_FIELDS, NEWS_CATEGORY_ID } from "@data/globalConstants";
-import NewsPagination from "@components/internal-pages/newsPagination.svelte";
+
 // import { allNews} from "@data/apiData";
 // If got from apiDAta.ts i only received 10 news
  const allNews = await fetchPostsInCategories(
@@ -16,6 +16,5 @@ import NewsPagination from "@components/internal-pages/newsPagination.svelte";
 
 <NonDynamicPageLayout title={`Notícies del Club Bàsquet Granollers`} heading={`Notícies CBG`} subHeading={`Totes les notícies`}>
   <NoticiesPagination client:visible noticies={allNews}/>
-  <!-- <NewsPagination client:visible {allNews}/> -->
 </NonDynamicPageLayout>
 
