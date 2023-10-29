@@ -23,22 +23,32 @@ jobs:
         restore-keys: |
           ${{ runner.OS }}-node-
 
+    - name: Restore cached dist directory
+      uses: actions/cache@v2
+      with:
+        path: cache-dist
+        key: ${{ runner.OS }}-dist-${{ hashFiles('**/*') }}
+        restore-keys: |
+          ${{ runner.OS }}-dist-
+
     - name: Install and Build
       run: |
-        npm install
+        npm ci
+        npm install dotenv --save
         npm run build
       env:
         PUBLIC_BASE_URL: ${{ secrets.PUBLIC_BASE_URL }}
         USERNAME: ${{ secrets.USERNAME }}
         WP_APPLICATION_PASSWORD: ${{ secrets.WP_APPLICATION_PASSWORD }}
 
-    - name: Deploy to server
-      uses: SamKirkland/FTP-Deploy-Action@v4.3.4
-      with:
-        server: ${{ secrets.FTP_HOST }}
-        username: ${{ secrets.FTP_USER }}
-        password: ${{ secrets.FTP_PASSWORD }}
-        port: 21
-        local-dir: dist/
-        server-dir: /
-        exclude: '.htaccess .ftpquota wordpress/**/*'
+    - name: Compare and Prepare Files for Upload
+      run: |
+        node compare-and-prepare.js
+
+    - name: Custom FTP Deploy
+      run: |
+        node ftp-deploy.js
+      env:
+        FTP_HOST: ${{ secrets.FTP_HOST }}
+        FTP_USER: ${{ secrets.FTP_USER }}
+        FTP_PASSWORD: ${{ secrets.FTP_PASSWORD }}
