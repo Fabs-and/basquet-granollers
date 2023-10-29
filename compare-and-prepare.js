@@ -1,7 +1,7 @@
 import { readdirSync, existsSync, mkdirSync, statSync, copyFileSync } from "fs";
-import { join, relative, dirname } from "path";
+import { join, dirname } from "path";
 
-const distDir = "dist"; // Define distDir here
+const distDir = "dist";
 const cacheDistDir = "cache-dist";
 const uploadDir = "upload";
 
@@ -17,6 +17,11 @@ function getFilesAndFolders(dir) {
     type: dirent.isDirectory() ? "directory" : "file",
     path: join(dir, dirent.name),
   }));
+}
+
+// Ensure the upload directory exists
+if (!existsSync(uploadDir)) {
+  mkdirSync(uploadDir);
 }
 
 // Get files and folders from dist and cache-dist directories
@@ -40,7 +45,7 @@ distItems.forEach((item) => {
       copyFileSync(item.path, uploadItemPath);
     } else {
       if (!existsSync(uploadItemPath)) {
-        mkdirSync(uploadItemPath);
+        mkdirSync(uploadItemPath, { recursive: true });
       }
     }
   }
