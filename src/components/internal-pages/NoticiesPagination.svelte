@@ -14,10 +14,10 @@
   }
 </script>
 
-<div class="noticies-container">
-  {#each displayedNews as noticia, i (noticia.id)}
+<div class="allNews-container">
+  {#each displayedNews as noticia, i (noticia.date)}
     <article class="noticia" in:slide={{ duration: 300, y: 100 }}>
-      <a href={`/noticies/${noticia.slug}`}>
+      <a href={`/allNews/${noticia.slug}`}>
         <div class="image-container">
           {#if noticia.image}
           {#if i < 3}
@@ -62,7 +62,7 @@
    .button-anchor:hover {
     color: var(--clr-contrast);
   }
-  .noticies-container {
+  .allNews-container {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
