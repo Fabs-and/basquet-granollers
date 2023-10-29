@@ -4,6 +4,7 @@ import { readdirSync, statSync } from "fs";
 import { join } from "path";
 
 config(); // Load environment variables from .env file
+const distDir = "dist";
 
 // Main function to process files
 async function processFiles() {
@@ -20,7 +21,6 @@ async function processFiles() {
 
     console.log("Fetching list of files from server...");
     let serverFiles = await client.list();
-    console.log("Fetched list of files from server.");
 
     // Filter out specified files and directories from server files list
     serverFiles = serverFiles.filter((file) => {
@@ -31,6 +31,7 @@ async function processFiles() {
       );
     });
 
+    console.log("Fetched list of files from server: ", serverFiles);
     console.log("Fetching list of files from dist directory...");
     const distFiles = getFiles(distDir);
     console.log("Fetched list of files from dist directory.");
@@ -50,6 +51,11 @@ async function processFiles() {
     }
   } catch (error) {
     console.error("Error encountered:", error);
+    process.exit(1);
+  } finally {
+    console.log("Closing FTP client...");
+    client.close();
+    console.log("FTP client closed.");
   }
 
   console.log("Closing FTP client...");
