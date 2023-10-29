@@ -2,7 +2,7 @@
   import { dateConverter } from "@utils/helperFunctions";
   import { slide } from 'svelte/transition';
   export let noticies;
-
+  import {formatHTMLContent} from '@utils/helperFunctions';
   let index = 9;  // Start index at 9 since initial slice is 0 to 9
   let displayedNews = noticies && noticies.length ? noticies.slice(0, 9) : [];
 
@@ -37,7 +37,7 @@
         </div>
         <div class="info-container">
           <h4>
-            {@html noticia.title.rendered}
+            {@html formatHTMLContent(noticia.title.rendered)}
           </h4>
           <p>Publicat {dateConverter(noticia.date)}</p>
         </div>
@@ -132,16 +132,12 @@
   }
 
   @media (width < 648px) {
-    h1 {
-      font-size: 2.5rem;
-      line-height: 2.5rem;
-    }
+  
      .button-anchor {
       margin-top: var(--padding-section-small);
     }
       .noticia {
       width: 20.4375rem;
-      height: 19.74rem;
     }
   }
 

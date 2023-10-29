@@ -9,7 +9,6 @@ import HeaderLayout from "./HeaderLayout.astro";
 
 const { pageHeading } = Astro.props;
 const DESCRIPTION = "Benvinguts i benvingudes a la web oficial del Club Bàsquet Granollers, un equip de bàsquet amb més de 90 anys d'història. El nostre equip està dedicat a promoure l'esportivitat, la comunitat i l'amor pel bàsquet. Vine al proper partit o segueix-nos a les xarxes socials per donar suport a l'esport local i ser part de la nostra família de bàsquet."
-
 ---
 
 <html lang="ca">
@@ -24,10 +23,10 @@ const DESCRIPTION = "Benvinguts i benvingudes a la web oficial del Club Bàsquet
     <SEO
       title="Club Bàsquet Granollers"
       canonical="https://cbgranollers.cat/"
-      description={DESCRIPTION}
+      description={pageHeading || DESCRIPTION}
       openGraph={{
         basic: {
-          title: `${pageHeading || 'Club Bàsquet Granollers'}`,
+          title: `${'Club Bàsquet Granollers'}`,
           type: "website",
           image: `/og-image.png`,
         }
