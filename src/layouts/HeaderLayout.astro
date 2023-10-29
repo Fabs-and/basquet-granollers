@@ -5,7 +5,7 @@ import HeaderLineSeparator from "@components/header/HeaderLineSeparator.astro";
 import BottomHeaderResponsive from "../components/header/bottomHeader/BottomHeaderResponsive.svelte";
 
 import { extractNavigation, extractTopHeaderContent } from "@utils/helperFunctions";
-import { pages, posts, headerData } from "@data/apiData"
+import { pages, posts, headerData, socialMediaInfo } from "@data/apiData"
 import { EXCLUDED_PAGES } from "@data/globalConstants";
 
 const {
@@ -50,7 +50,7 @@ const websiteContent = [...pagesToSearch, ...postsToSearch];
       <BottomHeader {websiteContent} navigation={bottomHeaderNav}  />
     </div>
     <div class="bottom-header responsive">
-      <BottomHeaderResponsive client:load {websiteContent} navigation={bottomHeaderNav} {topHeaderContent}/>
+      <BottomHeaderResponsive client:load {websiteContent} navigation={bottomHeaderNav} {topHeaderContent} {socialMediaInfo}/>
     </div>
   </section>
   <div class="separator-line">

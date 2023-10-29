@@ -1,7 +1,5 @@
 <script>
-  // import { fetchImagesInPageBySlug } from "@utils/apiFunctions/index";
-  import {socialMediaInfo} from '@data/apiData'
-
+  export let socialMediaInfo;
 </script>
 
 <nav>
