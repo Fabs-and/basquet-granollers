@@ -5,21 +5,13 @@ import NewsDesktop from "@components/homePage/news/NewsDesktop.svelte";
 import Slider from "@components/Slider.svelte";
 
 import { isLastYearNews } from "@utils/helperFunctions";
-import { featuredNews, news
+import { allNews
  } from "@data/apiData";
 
-news.splice(10);
 
-let lastYearNews = news.filter((oneNews) => isLastYearNews(oneNews.date));
+allNews.splice(10);
 
-
-let newsForSlider;
-
-if (featuredNews.length > 0) {
-  newsForSlider = [featuredNews[0], ...lastYearNews];
-} else newsForSlider = lastYearNews;
-
-export { featuredNews };
+let lastYearNews = allNews.filter((oneNews) => isLastYearNews(oneNews.date));
 ---
 
 <HomePageSectionLayout
@@ -27,10 +19,9 @@ export { featuredNews };
   textColor={`var(--clr-primary)`}
   backgroundColor={`var(--clr-contrast)`}
 >
-  <div data-news={news} class="news-desktop">
+  <div class="news-desktop">
     <NewsDesktop
       client:visible
-      featuredNews={featuredNews[0] ? featuredNews[0] : lastYearNews[0]}
       news={lastYearNews}
     />
   </div>
@@ -38,7 +29,7 @@ export { featuredNews };
   <div class="g-slider-container">
     <Slider
       client:visible
-      sliderItems={newsForSlider}
+      sliderItems={lastYearNews}
       childComponent="NewsItem"
       itemWidth={312}
       gap={`1rem`}

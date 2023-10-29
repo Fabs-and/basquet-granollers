@@ -2,11 +2,12 @@
   import NewsItem from "@components/homePage/news/NewsItem.svelte";
   import { sliderLeftArrow, sliderRightArrow } from "@assets/icons";
   import ButtonAnchor from "@components/ButtonAnchor.svelte";
-  
   export let news;
-  export let featuredNews;
- 
   
+ 
+const featuredNewsItem = news.find((newsItem) => newsItem.categories.includes(41));
+
+news = news.filter((newsItem) => !newsItem.categories.includes(41));
   
   let position = 1;
   let currentIndex = 0;
@@ -40,7 +41,7 @@
 </script>
 
 <div class="desktop-news-container">
-  <NewsItem item={featuredNews} isFeatured={true} />
+  <NewsItem item={featuredNewsItem} isFeatured={true} />
   <div class="desktop-news-and-controls">
     <div class="carousel">
       {#each Array(totalSlides) as _, i (i)}
@@ -49,7 +50,7 @@
           class:active={currentIndex === i}
           class:outgoing={prevIndex === i && currentIndex !== i}
         >
-          {#each news.slice(i * 3, i * 3 + 3) as newsItem (newsItem.id)}
+          {#each news.slice(1).slice(i * 3, i * 3 + 3) as newsItem (newsItem.id)}
             <NewsItem item={newsItem} isDesktopNews={true} />
           {/each}
         </div>

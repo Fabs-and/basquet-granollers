@@ -46,7 +46,7 @@ export const [
     100,
   ),
   fetchPostsInCategories(
-    [FEATURED_NEWS_CATEGORY_ID, NEWS_CATEGORY_ID],
+    [NEWS_CATEGORY_ID],
     ["categories", ...COMMON_FIELDS],
     100,
   ),
@@ -68,30 +68,36 @@ export const [
   fetchImagesInPageBySlug(TEAM_PAGES.femaleSenior),
 ]);
 
-export let news: Post[] = [];
-export let featuredNews: Post[] = [];
-export let projects: Post[] = [];
-export let heroSlides: Post[] = [];
+console.log('weeeeee', allNews.length);
 
+async function initializePostTypes(allNews: Post[], projectsAndHeroSlides: Post[]) {
+  let news: Post[] = [];
+  let featuredNews: Post[] = [];
+  let projects: Post[] = [];
+  let heroSlides: Post[] = [];
+  
 
-for (let i = 0; i < allNews.length; i++) {
-  if (Array.isArray(allNews[i].categories)) {
-    if (allNews[i].categories.includes(FEATURED_NEWS_CATEGORY_ID)) {
-      featuredNews.push(allNews[i]);
-    } else {
-      news.push(allNews[i]);
+ 
+  for (let i = 0; i < projectsAndHeroSlides.length; i++) {
+    if (Array.isArray(projectsAndHeroSlides[i].categories)) {
+      if (
+        projectsAndHeroSlides[i].categories.includes(HERO_SLIDES_CATEGORY_ID)
+      ) {
+        heroSlides.push(projectsAndHeroSlides[i]);
+      } else {
+        projects.push(projectsAndHeroSlides[i]);
+      }
     }
   }
-}
 
-console.log('news', news.length)
+  let newsToRender;
+  if (featuredNews) newsToRender = [featuredNews[0], ...news]
+  else newsToRender = news;
 
-for (let i = 0; i < projectsAndHeroSlides.length; i++) {
-  if (Array.isArray(projectsAndHeroSlides[i].categories)) {
-    if (projectsAndHeroSlides[i].categories.includes(HERO_SLIDES_CATEGORY_ID)) {
-      heroSlides.push(projectsAndHeroSlides[i]);
-    } else {
-      projects.push(projectsAndHeroSlides[i]);
-    }
-  }
+  return {
+    newsToRender,
+    projects,
+    heroSlides,
+  };
 }
+export const { newsToRender, projects, heroSlides } = await initializePostTypes(allNews, projectsAndHeroSlides);

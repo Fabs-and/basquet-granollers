@@ -1,10 +1,16 @@
 ---
+import { COMMON_FIELDS, NEWS_CATEGORY_ID } from "@data/globalConstants";
 import PageLayout from "@layouts/PageLayout.astro";
-
-import {news} from "@data/apiData"
+import { fetchPostsInCategories } from "@utils/apiFunctions";
 
 export async function getStaticPaths() {
-  return news.map((noticia) => {
+  //If got from apiDAta.ts i only received 10 news
+ const allNews = await fetchPostsInCategories(
+    [NEWS_CATEGORY_ID],
+    ["categories", ...COMMON_FIELDS],
+    100,
+  );
+  return allNews.map((noticia) => {
     return {
       params: { noticia: noticia.slug },
       props: {
