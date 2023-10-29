@@ -17,7 +17,7 @@
 <div class="allNews-container">
   {#each displayedNews as noticia, i (noticia.date)}
     <article class="noticia" in:slide={{ duration: 300, y: 100 }}>
-      <a href={`/allNews/${noticia.slug}`}>
+      <a href={`/noticies/${noticia.slug}`}>
         <div class="image-container">
           {#if noticia.image}
           {#if i < 3}
