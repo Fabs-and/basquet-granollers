@@ -33,6 +33,10 @@ jobs:
         USERNAME: ${{ secrets.USERNAME }}
         WP_APPLICATION_PASSWORD: ${{ secrets.WP_APPLICATION_PASSWORD }}
 
+    - name: Fetch Server Files
+      run: |
+        node fetch-server-files.js
+
     - name: Compare and Prepare Files for Upload
       run: |
         node compare-and-prepare.js
