@@ -1,3 +1,10 @@
+import { readdirSync, existsSync, mkdirSync, statSync, copyFileSync } from "fs";
+import { join, relative, dirname } from "path";
+
+const distDir = "dist"; // Define distDir here
+const cacheDistDir = "cache-dist";
+const uploadDir = "upload";
+
 // Function to get a list of files and folders directly in a directory
 function getFilesAndFolders(dir) {
   // Check if the directory exists, create it if not
