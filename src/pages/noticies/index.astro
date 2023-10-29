@@ -8,12 +8,12 @@ import { COMMON_FIELDS, NEWS_CATEGORY_ID } from "@data/globalConstants";
 //If got from apiDAta.ts i only received 10 news
  const allNews = await fetchPostsInCategories(
     [NEWS_CATEGORY_ID],
-    ["categories", ...COMMON_FIELDS],
+    COMMON_FIELDS,
     100,
   );
 ---
 
 <NonDynamicPageLayout title={`Notícies del Club Bàsquet Granollers`} heading={`Notícies CBG`} subHeading={`Totes les notícies`}>
-  <NoticiesPagination client:load noticies={allNews}/>
+  <NoticiesPagination client:visible noticies={allNews}/>
 </NonDynamicPageLayout>
 

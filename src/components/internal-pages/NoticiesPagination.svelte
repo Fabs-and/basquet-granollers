@@ -1,27 +1,16 @@
-<script lang='ts'>
-  import { dateConverter, formatHTMLContent } from "@utils/helperFunctions";
-    import type { Post } from "src/types";
+<script>
+  import { dateConverter } from "@utils/helperFunctions";
+  import { slide } from 'svelte/transition';
+  export let noticies;
 
-  import { slide } from "svelte/transition";
+  let index = 9;  // Start index at 9 since initial slice is 0 to 9
+  let displayedNews = noticies && noticies.length ? noticies.slice(0, 9) : [];
 
-  export let noticies: Post[] =[];
-
-
-  console.log('noticies', noticies.length)
-  let index = 0; // Change const to let
-  let showButton = noticies.length > 9;
-  let displayedNews: Post[] = [];
-
-  // Corrected reactive statement
-  $: {
-    showButton = displayedNews.length === noticies.length ? false : true;
-    displayedNews = noticies.slice(0, index + 9); // Moved this line inside reactive block
-  }
+  $: showButton = displayedNews.length < noticies.length;
 
   function loadNineMore() {
-    index += 9; // Update index to get the next slice
-    const nineMore = noticies.slice(index, index + 9);
-    displayedNews = [...displayedNews, ...nineMore];
+    displayedNews = noticies.slice(0, index + 9);
+    index += 9;
   }
 </script>
 
@@ -31,32 +20,24 @@
       <a href={`/noticies/${noticia.slug}`}>
         <div class="image-container">
           {#if noticia.image}
-            {#if i < 3}
-              <img
-                src={noticia.image.url
-                  ? noticia.image.url
-                  : "default-pic.avif"}
-                alt={noticia.image.alt
-                  ? noticia.image.alt
-                  : noticia.title.rendered}
-                loading="eager"
-              />
-            {:else}
-              <img
-                src={noticia.image.url
-                  ? noticia.image.url
-                  : "default-pic.avif"}
-                alt={noticia.image.alt
-                  ? noticia.image.alt
-                  : noticia.title.rendered}
-                loading="lazy"
-              />
+          {#if i < 3}
+             <img
+              src={noticia.image.url ? noticia.image.url : '/default-pic.avif'}
+              alt={noticia.image.alt ? noticia.image.alt : noticia.title.rendered}
+              loading='eager'
+            />
+          {:else}
+            <img
+              src={noticia.image.url ? noticia.image.url : '/default-pic.avif'}
+              alt={noticia.image.alt ? noticia.image.alt : noticia.title.rendered}
+              loading='lazy'
+            />
             {/if}
           {/if}
         </div>
         <div class="info-container">
           <h4>
-            {@html formatHTMLContent(noticia.title.rendered)}
+            {@html noticia.title.rendered}
           </h4>
           <p>Publicat {dateConverter(noticia.date)}</p>
         </div>
@@ -65,11 +46,11 @@
   {/each}
 </div>
 {#if showButton}
-  <button class="button-anchor" on:click={loadNineMore}>VEURE MÉS</button>
+  <button class='button-anchor' on:click={loadNineMore}>VEURE MÉS</button>
 {/if}
 
 <style>
-  h4 {
+   h4  { 
     font-weight: 500;
   }
 
@@ -78,7 +59,7 @@
     margin-inline: auto;
     color: var(--clr-accent);
   }
-  .button-anchor:hover {
+   .button-anchor:hover {
     color: var(--clr-contrast);
   }
   .noticies-container {
@@ -88,7 +69,7 @@
     gap: 1rem;
     /* padding-inline: var(--padding-inline); */
   }
-
+  
   p {
     position: absolute;
     bottom: 0;
@@ -151,11 +132,16 @@
   }
 
   @media (width < 648px) {
-    .button-anchor {
+    h1 {
+      font-size: 2.5rem;
+      line-height: 2.5rem;
+    }
+     .button-anchor {
       margin-top: var(--padding-section-small);
     }
-    .noticia {
+      .noticia {
       width: 20.4375rem;
+      height: 19.74rem;
     }
   }
 
