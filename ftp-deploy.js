@@ -11,7 +11,7 @@ async function uploadFiles() {
       password: process.env.FTP_PASSWORD,
     });
     // Upload the contents of the upload directory to the root directory on the server
-    await client.uploadFrom("upload", "/");
+    await client.uploadFromDir("upload", "/");
   } catch (error) {
     console.error(error);
   }
