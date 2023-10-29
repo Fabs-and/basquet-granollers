@@ -55,7 +55,7 @@ async function processFiles() {
           const startTime = Date.now();
           await client.uploadFrom(distFile.path, uploadPath);
           const elapsedMs = Date.now() - startTime;
-          console.log(`[${elapsedMs} ms] Uploaded file: ${distFile.name}.`);
+          console.log(`[${elapsedMs} ms] Uploaded file: ${distFile.path}.`);
         } catch (error) {
           console.error(
             `[${new Date().toISOString()}] Failed to upload file: ${
