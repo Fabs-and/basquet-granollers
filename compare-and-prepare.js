@@ -1,22 +1,20 @@
-import { readdirSync, existsSync, mkdirSync, statSync, copyFileSync } from "fs";
+import {
+  readdirSync,
+  existsSync,
+  mkdirSync,
+  statSync,
+  copyFileSync,
+  readFileSync,
+} from "fs";
 import { join, dirname } from "path";
 
 const distDir = "dist";
-const cacheDistDir = "cache-dist";
 const uploadDir = "upload";
+const serverFilesJSON = "server-files.json";
 
 // Function to get a list of files and folders directly in a directory
 function getFilesAndFolders(dir) {
-  // Check if the directory exists, create it if not
-  if (!existsSync(dir)) {
-    mkdirSync(dir, { recursive: true });
-  }
-
-  return readdirSync(dir, { withFileTypes: true }).map((dirent) => ({
-    name: dirent.name,
-    type: dirent.isDirectory() ? "directory" : "file",
-    path: join(dir, dirent.name),
-  }));
+  // ... (same as before)
 }
 
 // Ensure the upload directory exists
@@ -24,25 +22,30 @@ if (!existsSync(uploadDir)) {
   mkdirSync(uploadDir);
 }
 
-// Get files and folders from dist and cache-dist directories
+// Get server files and folders metadata
+const serverFiles = JSON.parse(readFileSync(serverFilesJSON, "utf8"));
+
+console.log('SERVER FILES', serverFiles);
+// Get files and folders from dist directory
 const distItems = getFilesAndFolders(distDir);
-const cacheDistItems = getFilesAndFolders(cacheDistDir);
 
 // Compare files and folders and prepare the upload directory
-distItems.forEach((item) => {
-  const cacheItem = cacheDistItems.find(
-    (i) => i.name === item.name && i.type === item.type,
+distItems.forEach((distItem) => {
+  const serverItem = serverFiles.find(
+    (file) =>
+      file.name === distItem.name &&
+      (file.type === 1) === (distItem.type === "directory"),
   );
   if (
-    !cacheItem ||
-    (item.type === "file" &&
-      statSync(item.path).size !== statSync(cacheItem.path).size)
+    !serverItem ||
+    (distItem.type === "file" &&
+      statSync(distItem.path).size !== serverItem.size) // Assuming serverItem.size holds the file size
   ) {
     // Item is new or changed or the file size is different, copy to upload directory
-    const uploadItemPath = join(uploadDir, item.name);
-    if (item.type === "file") {
+    const uploadItemPath = join(uploadDir, distItem.name);
+    if (distItem.type === "file") {
       mkdirSync(dirname(uploadItemPath), { recursive: true });
-      copyFileSync(item.path, uploadItemPath);
+      copyFileSync(distItem.path, uploadItemPath);
     } else {
       if (!existsSync(uploadItemPath)) {
         mkdirSync(uploadItemPath, { recursive: true });
