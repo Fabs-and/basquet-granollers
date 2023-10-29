@@ -45,8 +45,13 @@ async function processFiles() {
       );
 
       if (!serverFile || distFile.size !== serverFile.size) {
-        const uploadPath = join("/", distFile.path);
+        const uploadPath = distFile.path.replace(/^dist\//, "/");
+        const directoryPath = uploadPath.substring(
+          0,
+          uploadPath.lastIndexOf("/"),
+        );
         try {
+          await client.ensureDir(directoryPath); // Ensure the directory exists
           const startTime = Date.now();
           await client.uploadFrom(distFile.path, uploadPath);
           const elapsedMs = Date.now() - startTime;
@@ -65,15 +70,15 @@ async function processFiles() {
     // Identify extra files on server
     const serverFileNames = serverFiles.map((file) => file.name);
     const distFileNames = distFiles.map((file) => file.name);
-   const filesToDelete = serverFileNames.filter(
-     (file, index) =>
-       !distFileNames.includes(file) &&
-       !(
-         (file === ".htaccess" && serverFiles[index].type === 0) ||
-         (file === ".ftpquota" && serverFiles[index].type === 0) ||
-         (file === "wordpress" && serverFiles[index].type === 1)
-       ),
-   );
+    const filesToDelete = serverFileNames.filter(
+      (file, index) =>
+        !distFileNames.includes(file) &&
+        !(
+          (file === ".htaccess" && serverFiles[index].type === 0) ||
+          (file === ".ftpquota" && serverFiles[index].type === 0) ||
+          (file === "wordpress" && serverFiles[index].type === 1)
+        ),
+    );
 
     // Sequentially delete extra files from server
     for (const file of filesToDelete) {
