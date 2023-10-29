@@ -1,6 +1,6 @@
 import { Client } from "basic-ftp";
 import { config } from "dotenv";
-import { readdirSync, statSync, readFileSync, writeFileSync } from "fs";
+import { readdirSync, statSync } from "fs";
 import { join } from "path";
 
 config(); // Load environment variables from .env file
@@ -25,7 +25,6 @@ async function processFiles() {
       `[${new Date().toISOString()}] Fetching list of files from server...`,
     );
     let serverFiles = await client.list();
-    // Filter out specified files and directories from server files list
     serverFiles = serverFiles.filter((file) => {
       return !(
         file.name === ".htaccess" ||
@@ -38,66 +37,54 @@ async function processFiles() {
       `[${new Date().toISOString()}] Fetching list of files from dist directory...`,
     );
     const distFiles = getFiles(distDir);
-    console.log(
-      `[${new Date().toISOString()}] Fetched list of files from dist directory.`,
-    );
 
-    // Parallel uploading
-    const uploadPromises = distFiles.map(async (distFile) => {
+    // Sequentially upload files
+    for (const distFile of distFiles) {
       const serverFile = serverFiles.find(
         (file) => file.name === distFile.name,
       );
 
       if (!serverFile || distFile.size !== serverFile.size) {
-        // File is new or has a different size, upload it
-        console.log(
-          `[${new Date().toISOString()}] Uploading file: ${distFile.path}...`,
-        );
-        const uploadPath = join("/", distFile.path); // Adjust path as needed
+        const uploadPath = join("/", distFile.path);
         try {
+          const startTime = Date.now();
           await client.uploadFrom(distFile.path, uploadPath);
-          console.log(
-            `[${new Date().toISOString()}] Uploaded file: ${distFile.path}.`,
-          );
+          const elapsedMs = Date.now() - startTime;
+          console.log(`[${elapsedMs} ms] Uploaded file: ${distFile.name}.`);
         } catch (error) {
           console.error(
             `[${new Date().toISOString()}] Failed to upload file: ${
-              distFile.path
+              distFile.name
             }.`,
             error,
           );
         }
       }
-    });
-    await Promise.all(uploadPromises);
+    }
 
     // Identify extra files on server
     const serverFileNames = serverFiles.map((file) => file.name);
     const distFileNames = distFiles.map((file) => file.name);
-    const filesToDelete = serverFileNames.filter(
-      (file, index) =>
-        !distFileNames.includes(file) &&
-        !(
-          (file === ".htaccess" && serverFiles[index].type === 0) ||
-          (file === ".ftpquota" && serverFiles[index].type === 0) ||
-          (file === "wordpress" && serverFiles[index].type === 1)
-        ),
-    );
+   const filesToDelete = serverFileNames.filter(
+     (file, index) =>
+       !distFileNames.includes(file) &&
+       !(
+         (file === ".htaccess" && serverFiles[index].type === 0) ||
+         (file === ".ftpquota" && serverFiles[index].type === 0) ||
+         (file === "wordpress" && serverFiles[index].type === 1)
+       ),
+   );
 
-    // Delete extra files from server
-    // Parallel deletion
-    const deletePromises = filesToDelete.map(async (file) => {
+    // Sequentially delete extra files from server
+    for (const file of filesToDelete) {
       console.log(`[${new Date().toISOString()}] Deleting file: ${file}...`);
       try {
-        // Check if it's a file or directory
         const isDirectory = serverFiles.find(
           (f) => f.name === file && f.type === 1,
         );
         if (isDirectory) {
-          // If it's a directory, remove the directory
           await client.removeDir(file);
         } else {
-          // If it's a file, remove the file
           await client.remove(file);
         }
         console.log(`[${new Date().toISOString()}] Deleted file: ${file}.`);
@@ -107,8 +94,7 @@ async function processFiles() {
           error,
         );
       }
-    });
-    await Promise.all(deletePromises);
+    }
   } catch (error) {
     console.error(`[${new Date().toISOString()}] Error encountered:`, error);
     process.exit(1);
