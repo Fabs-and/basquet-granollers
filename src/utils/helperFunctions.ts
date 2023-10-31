@@ -5,7 +5,7 @@ export function formatHTMLContent(str: string) {
     console.error("Expected a string argument, received:", typeof str);
     return "";
   }
-  // Replace &#215;3 with x
+  // Replace &#215; with x
   str = str.replace(/&#215;/g, "x");
 
   const divTag = /<div>/g;
@@ -133,7 +133,7 @@ export function formatHTMLContent(str: string) {
   newStr = newStr.replace(
     /<a([^>]*)style="[^"]*"([^>]*)>(.*?)<\/a>/g,
     (match, before, after, content) => {
-      return `<a${before}${after} class="button-anchor-internals">${content}</a>`;
+      return `<a${before}${after} class="g-g-button-anchor-internals">${content}</a>`;
     },
   );
 
@@ -357,12 +357,19 @@ export function addApostrophe(str: string) {
 export function extractMembershipsOptions(content: string) {
   const imageURLRegex = /src="([^"]*)"/gi;
   const imageAltRegex = /alt="([^"]*)"/gi;
-  const titleRegex =
-    /(?:&gt;|&nbsp;)*\s*T[ií]tol:\s*<\/strong>\s*(?:&nbsp;)*(.*?)(?:&nbsp;)*(?:<br \/>\n|<\/p>)/gi;
-  const priceRegex =
-    /(?:&gt;|&nbsp;)*\s*Preu:\s*<\/strong>\s*(?:&nbsp;)*(.*?)(?:&nbsp;)*(?:<br \/>\n|<\/p>)/gi;
-  const advantagesRegex =
-    /(?:&gt;|&nbsp;)*\s*Avantatges:\s*(?:<\/strong>\s*<br \/>\s*\n|<br \/>\s*\n\s*<\/strong>)([\s\S]*?)(?:&nbsp;)*<\/p>/gis;
+const titleRegex =
+  /T[ií]tol:\s*(?:<\/?[^>]*>|&nbsp;)*\s*(.*?)(?:\s*<\/?[^>]*>|&nbsp;)*\s*(?:<br \/>\n|<\/p>|<p>)/gi;
+
+
+const priceRegex =
+  /Preu:\s*(?:<\/?[^>]*>|&nbsp;)*\s*(.*?)(?:\s*<\/?[^>]*>|&nbsp;)*\s*(?:<br \/>\n|<\/p>|<p>)/gi;
+
+const advantagesRegex =
+  /Avantatges:\s*(?:<\/?[^>]*>|&nbsp;)*\s*([\s\S]*?)(?=(?:Imatge:|$))/gi;
+
+
+
+
   const membershipsStart = content.indexOf("MEMBRES");
   const membershipsEnd = content.indexOf("SPONSORS");
   const membershipsSection = content.slice(membershipsStart, membershipsEnd);
@@ -378,10 +385,22 @@ export function extractMembershipsOptions(content: string) {
     const advantagesMatch = advantagesRegex.exec(membershipsSection);
 
     if (imageAltMatch && titleMatch && priceMatch && advantagesMatch) {
+      let advantagesContent = advantagesMatch[1];
+
+      // Remove all HTML tags
+      advantagesContent = advantagesContent.replace(/<\/?[^>]+(>|$)/g, "");
+
+      // Remove newline characters at the beginning and end of the string, and replace &nbsp; with a space
+      advantagesContent = advantagesContent.replace(/^\n+|\n+$|&nbsp;/g, "");
+
+      console.log('advantagesMatch', advantagesContent);
+
       const imageAlt = addApostrophe(imageAltMatch[1]);
       const title = addApostrophe(titleMatch[1]);
       const price = addApostrophe(priceMatch[1]);
-      const advantages = addApostrophe(advantagesMatch[1]).split("<br />\n");
+      const advantages = addApostrophe(advantagesContent)
+        .split("\n")
+        .filter((line) => line.trim() !== "");
 
       memberships.push({
         image: { url: imageURL, alt: imageAlt },
@@ -391,6 +410,7 @@ export function extractMembershipsOptions(content: string) {
       });
     }
   }
+
   return memberships;
 }
 
@@ -514,11 +534,11 @@ export function updateUrltoSubdomain(htmlContent: string): string {
   return htmlContent.replace(urlRegex, "https://wordpress.cbgranollers.cat/$1");
 }
 
-export function isLastYearNews(str: string){
+export function isLastYearNews(str: string) {
   const date = new Date(str).getTime();
   const currentYear = new Date();
   const aYearAgo = currentYear.getTime() - 31536000000;
   return date > aYearAgo;
 }
 
-export function filterConfigPages() {};
+export function filterConfigPages() {}
