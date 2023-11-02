@@ -16,6 +16,7 @@
     "astro": "^3.4.0",
     "astro-seo": "^0.8.0",
     "basic-ftp": "^5.0.3",
+    "cheerio": "1.0.0-rc.12",
     "dompurify": "^3.0.6",
     "dotenv": "^16.3.1",
     "import-env": "^1.1.1",

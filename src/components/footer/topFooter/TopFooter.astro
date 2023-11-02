@@ -1,5 +1,5 @@
 ---
-import type { Link } from "../../../types/footer";
+
 
 import ImportantLinksContainer from "./ImportantLinksContainer.astro";
 
@@ -15,7 +15,7 @@ const { generalLinks, fixedLinks } = topFooterLinks;
 
 {
   generalLinks.map((item) => (
-    <article class="top-footer-articles">
+    <article class="g-top-footer-articles">
       <header>
         <h5>{item.title.toUpperCase()}</h5>
       </header>
@@ -50,7 +50,7 @@ const { generalLinks, fixedLinks } = topFooterLinks;
 <style>
   h5 {
     font-weight: 500;
-    /* font-size: 1.125rem; */
+
   }
   article header {
     margin-bottom: 0.5rem;

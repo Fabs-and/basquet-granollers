@@ -1,12 +1,12 @@
 ---
-import InternalPageLayout from "./NonDynamicPageLayout.astro";
+import InternalPageLayout from "./PageLayout.astro";
 const { teamsImages, heading, subHeading, title } = Astro.props;
 ---
 
 <InternalPageLayout {title} {heading} {subHeading}>
   <div class="images-container">
     {
-      Array.isArray(teamsImages) ?
+      Array.isArray(teamsImages) ? (
         teamsImages.map((image, i) => (
           <div class="image-container">
             <img
@@ -15,15 +15,16 @@ const { teamsImages, heading, subHeading, title } = Astro.props;
               loading={i < 3 ? "eager" : "lazy"}
             />
           </div>
-        )) : (
-          <div class="image-container">
-            <img
-              src={teamsImages.url}
-              alt={teamsImages.alt && teamsImages.alt}
-              loading="eager"
-            />
-          </div>
-        )
+        ))
+      ) : (
+        <div class="image-container">
+          <img
+            src={teamsImages.url}
+            alt={teamsImages.alt && teamsImages.alt}
+            loading="eager"
+          />
+        </div>
+      )
     }
   </div>
 </InternalPageLayout>
@@ -39,7 +40,7 @@ const { teamsImages, heading, subHeading, title } = Astro.props;
   .image-container {
     max-width: 595px;
     /* height: 18.4rem; */
-    border-top-left-radius: 2.9375rem;
+    border-top-left-radius: var(--brdr-left-top-radius);
     overflow: hidden;
   }
 
@@ -59,7 +60,7 @@ const { teamsImages, heading, subHeading, title } = Astro.props;
   @media (width < 415px) {
     .image-container {
       width: 100vw;
-      margin-inline: calc(var(--padding-inline-mobile) * -1);
+      margin-inline: calc(var(--pd-x-small) * -1);
     }
   }
 </style>

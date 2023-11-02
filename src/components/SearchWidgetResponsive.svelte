@@ -1,6 +1,6 @@
 <script>
   import { closeIcon, magnifyingGlass } from "@assets/icons";
-  import { formatHTMLContent } from "@utils/helperFunctions";
+  import { formatHtml } from "@utils/helperFunctions";
   import DOMPurify from "dompurify";
   import { isModalOpen } from "src/svelte/store";
   export let websiteContent = [];
@@ -71,7 +71,7 @@
 <aside class="searchModal" class:show={showAside}>
   <form action="" class="form">
     <input
-      style="font-family: 'obviously', sans-serif; font-size: var(--font-size-regular); font-weight: 400;"
+      style="font-family: 'obviously', sans-serif; font-size: var(--fnt-sz-regular); font-weight: 400;"
       type="search"
       min="2"
       max="24"
@@ -95,7 +95,7 @@
     {#if filteredContent.length > 0}
       {#each filteredContent as post}
         <li>
-          <a href={`/${post.slug}`}>{formatHTMLContent(post.title.rendered)}</a>
+          <a href={`/${post.slug}`}>{formatHtml(post.title.rendered)}</a>
         </li>
       {/each}
     {:else if searchInput.length > 0}
@@ -120,13 +120,13 @@
     background-color: rgba(243, 243, 243, 0.9);
     color: var(--clr-contrast);
     top: calc(
-      var(--bottom-header-hg) + var(--top-header-hg) +
-        var(--header-separator-line-responsive-hg)
+      var(--hg-header-bottom-section) + var(--hg-header-top-section) +
+        var(--hg-sponsors-all-responsive)
     );
     left: 0;
     right: 0;
     bottom: 0;
-    padding-inline: var(--padding-inline-tablet);
+    padding-inline: var(--pd-x-medium);
     padding-block: 2.06rem;
     flex-direction: column;
     transform: translateX(100%);
@@ -142,7 +142,7 @@
   }
   .close-icon {
     position: absolute;
-    /* right: calc(var(--padding-inline-mobile)); */
+    /* right: calc(var(--pd-x-small)); */
     right: 1rem;
     top: 0.4rem;
     /* top: 1.25rem; */
@@ -190,7 +190,7 @@
     color: var(--clr-primary);
     transition: width 0.3s ease-in-out; /* Set transitions for opacity and width */
 
-    /*Had it as --font-size-regular, but it made an undesired zoom in mobile, when input was focused*/
+    /*Had it as --fnt-sz-regular, but it made an undesired zoom in mobile, when input was focused*/
     font-size: 16px !important;
     font-weight: 600;
   }
@@ -208,21 +208,21 @@
   }
   @media (width < 1258px) {
     aside {
-      padding-inline: var(--padding-inline);
+      padding-inline: var(--pd-x);
     }
   }
 
   @media (width < 1065px) {
     aside {
-      padding-inline: var(--padding-inline-tablet);
+      padding-inline: var(--pd-x-medium);
     }
   }
   @media (width < 648px) {
     aside {
       top: calc(
-        var(--bottom-header-hg) + var(--header-separator-line-responsive-hg)
+        var(--hg-header-bottom-section) + var(--hg-sponsors-all-responsive)
       );
-      padding-inline: var(--padding-inline-mobile);
+      padding-inline: var(--pd-x-small);
     }
   }
 </style>

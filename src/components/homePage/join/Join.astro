@@ -1,5 +1,5 @@
 ---
-import HomePageSectionLayout from "@layouts/HomePageSectionLayout.astro";
+import HpSectionLayout from "@layouts/HpSectionLayout.astro";
 
 import Dialog from "@components/Dialog.astro";
 import MembershipItem from "@components/homePage/join/MembershipItem.svelte";
@@ -13,8 +13,6 @@ import {
 import { joinData } from "@data/apiData";
 
 let isSelected = true;
-
-
 
 const memberships = extractMembershipsOptions(joinData[0].content.rendered);
 const sponsors = extractSponsorshipsOptions(joinData[0].content.rendered);
@@ -79,117 +77,92 @@ function toggleSelected() {
   });
 </script>
 
-<HomePageSectionLayout noHeading={true}>
+<HpSectionLayout noHeading={true} isSliderSection={true}>
   <div class="title-and-options-container">
     <h2>Forma part de la família CBG</h2>
     <div class="options-container">
-      <button id="btn-memberships" class="button-anchor options"
+      <button id="btn-memberships" class="g-button-anchor options"
         >{"fes-te soci".toUpperCase()}</button
       >
-      <button id="btn-sponsors" class="button-anchor options"
+      <button id="btn-sponsors" class="g-button-anchor options"
         >{"fes-te sponsor".toUpperCase()}</button
       >
     </div>
   </div>
 
-  <div class="memberships">
-    <div class="membership-desktop">
-      {
-        memberships.map((membership) => (
-          <div>
-            <MembershipItem client:visible item={membership} />
-          </div>
-        ))
-      }
+  <div class="section-wrapper">
+    <div class="memberships">
+      <div class="memberships-container flex">
+        {
+          memberships.map((membership) => (
+            <div>
+              <MembershipItem client:visible item={membership} />
+            </div>
+          ))
+        }
+      </div>
+
+      <div class="g-slider-container meberships-slider">
+        <Slider
+          client:visible
+          sliderItems={memberships}
+          childComponent="MembershipItem"
+          itemWidth={315}
+          gap={`1rem`}
+        />
+      </div>
     </div>
 
-    <div class="g-slider-container meberships-slider">
-      <Slider
-        client:visible
-        sliderItems={memberships}
-        childComponent="MembershipItem"
-        itemWidth={315}
-        gap={`1rem`}
-      />
+    <div class="sponsors">
+      <div class="sponsors-container flex">
+        {
+          sponsors.map((sponsor) => (
+            <div>
+              <SponsorshipItem client:visible item={sponsor} />
+            </div>
+          ))
+        }
+      </div>
+
+      <div class="g-slider-container sponsors-slider">
+        <Slider
+          client:visible
+          sliderItems={sponsors}
+          childComponent="SponsorshipItem"
+          itemWidth={315}
+          gap={`1rem`}
+        />
+      </div>
     </div>
   </div>
-
-  <div class="sponsors">
-    <div class="sponsors-desktop">
-      {
-        sponsors.map((sponsor) => (
-          <div>
-            <SponsorshipItem client:visible item={sponsor} />
-          </div>
-        ))
-      }
-    </div>
-
-    <div class="g-slider-container sponsors-slider">
-      <Slider
-        client:visible
-        sliderItems={sponsors}
-        childComponent="SponsorshipItem"
-        itemWidth={315}
-        gap={`1rem`}
-      />
-    </div>
-  </div>
-</HomePageSectionLayout>
+</HpSectionLayout>
 
 <Dialog />
 
 <style>
-  .memberships.active {
-    animation: slide-in-from-left 0.45s forwards ease-in;
-  }
-  
-  .memberships.outgoing {
-    animation: slide-out-to-left 0.45s forwards ease-in;
-  }
-  
-  .sponsors.active {
-    animation: slide-in-from-right 0.45s forwards ease-in;
-  }
-
-  .sponsors.outgoing {
-    animation: slide-out-to-right 0.45s forwards ease-in;
-  }
-
   .title-and-options-container {
-    padding-right: var(--padding-inline);
     display: flex;
     justify-content: space-between;
-    padding-bottom: var(--padding-heading-big);
+    padding-bottom: var(--pd-y-heading-big);
     flex-wrap: wrap;
     gap: 1.5rem;
   }
-  
+
   .options-container {
     display: flex;
     gap: 1.5rem;
   }
-  .membership-desktop {
-    /* padding-right: var(--padding-inline); */
-    display: grid;
-    grid-template-columns: repeat(3, var(--membership-item-wd-big));
-    place-items: center;
-    justify-content: space-between;
-    padding-right: var(--padding-inline);
-    /* gap: 1.3rem; */
+
+  .flex {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
   }
 
-  .sponsors-desktop {
-    padding-right: var(--padding-inline);
-    display: grid;
-    grid-template-columns: repeat(
-      auto-fit,
-      minmax(var(--membership-item-wd-big), 1fr)
-    );
-    place-items: center;
-    justify-content: space-between;
-    gap: 1.3rem;
+  .sponsors-container.flex {
+    flex-wrap: wrap;
   }
+
   .g-slider-container {
     display: none;
   }
@@ -202,11 +175,98 @@ function toggleSelected() {
     display: none;
   }
 
-  .button-anchor {
+  .g-button-anchor {
     transition: all 0.3s ease-in-out;
   }
   .selected {
     background-color: var(--clr-accent);
+  }
+
+  @media (width < 1068px) {
+    .section-wrapper {
+      margin-left: calc(var(--pd-x) * -1);
+    }
+    .title-and-options-container {
+      padding-right: var(--pd-x);
+    }
+  }
+
+  @media (width < 1025px) {
+    .section-wrapper {
+      margin-left: calc(var(--pd-x-medium) * -1);
+    }
+
+    .title-and-options-container {
+      padding-right: var(--pd-x-medium);
+      padding-bottom: var(--pd-y-heading-medium);
+    }
+  }
+
+  @media (width < 932px) {
+    .section-wrapper {
+      margin-left: 0rem;
+    }
+    .memberships {
+      display: none;
+    }
+    .g-slider-container {
+      display: block;
+    }
+
+    .title-and-options-container {
+      padding-left: 0rem;
+    }
+  }
+
+  @media (width < 859px) {
+    .sponsors-container {
+      display: none;
+    }
+
+    .sponsors-slider {
+      display: block;
+    }
+
+    .memberships.active,
+    .memberships.outgoing,
+    .sponsors.active,
+    .sponsors.outgoing {
+      animation: none !important;
+    }
+  }
+  @media (width < 648px) {
+    .title-and-options-container {
+      padding-right: var(--pd-x-small);
+    }
+    .options-container {
+      gap: 0.48rem;
+    }
+
+    .g-button-anchor {
+      width: var(--wd-btn-small);
+    }
+  }
+
+  @media (width < 375px) {
+    .g-button-anchor {
+      width: 8rem;
+    }
+  }
+
+  .memberships.active {
+    animation: slide-in-from-left 0.45s forwards ease-in;
+  }
+
+  .memberships.outgoing {
+    animation: slide-out-to-left 0.45s forwards ease-in;
+  }
+
+  .sponsors.active {
+    animation: slide-in-from-right 0.45s forwards ease-in;
+  }
+
+  .sponsors.outgoing {
+    animation: slide-out-to-right 0.45s forwards ease-in;
   }
 
   @keyframes slide-in-from-right {
@@ -244,107 +304,10 @@ function toggleSelected() {
       transform: translateX(-100%);
     }
   }
-  @media (width < 1399px) {
-    .sponsors-desktop > div:nth-child(odd) {
-      justify-self: end;
-    }
-
-    .sponsors-desktop > div:nth-child(even) {
-      justify-self: start;
-    }
-  }
-
-  @media (width < 1374px) {
-    .membership-desktop {
-      grid-template-columns:
-        var(--membership-item-wd-medium) var(--membership-item-wd-medium)
-        var(--membership-item-wd-medium);
-      justify-content: center;
-      gap: 1rem;
-    }
-  }
-
-  @media (width < 1025px) {
-    .title-and-options-container {
-      padding-inline: var(--padding-inline-tablet);
-    }
-
-    .membership-desktop {
-      padding-inline: 0rem;
-      padding-right: var(--padding-inline-tablet);
-    }
-
-    .sponsors-desktop {
-      padding-inline: 0rem;
-      padding-right: var(--padding-inline-tablet);
-    }
-
-    .title-and-options-container {
-      padding-bottom: var(--padding-heading-medium);
-    }
-  }
-
-  @media (width < 932px) {
-    .membership-desktop {
-      display: none;
-    }
-    .g-slider-container {
-      display: block;
-    }
-
-    .title-and-options-container {
-      padding-left: 0rem;
-    }
-  }
-
-  @media (width < 859px) {
-    .sponsors-desktop {
-      display: none;
-    }
-
-    .sponsors-slider {
-      display: block;
-    }
-
-    .memberships.active,
-    .memberships.outgoing,
-    .sponsors.active,
-    .sponsors.outgoing {
-      animation: none !important;
-    }
-  }
-  @media (width < 648px) {
-    .title-and-options-container {
-      padding-right: var(--padding-inline-mobile);
-      padding-bottom: var(--padding-heading-small);
-    }
-    .options-container {
-      gap: 0.48rem;
-      /* width: 100%; */
-      /* justify-content: space-between; */
-    }
-
-    .button-anchor {
-      width: var(--btn-width-small);
-    }
-  }
 
   @media (width > 1400px) {
-    .membership-desktop {
-      padding-right: 0rem;
-    }
-
-    .sponsors-desktop {
-      padding-right: 0rem;
-    }
-    .title-and-options-container {
-      padding-right: 0rem;
-    }
-  }
-
-  @media (width < 375px) {
-     .button-anchor {
-      width: 8rem;
+    .section-wrapper {
+      padding-inline: 0rem;
     }
   }
 </style>

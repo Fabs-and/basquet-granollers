@@ -11,12 +11,11 @@ import Teams from "@components/homePage/teams/Teams.astro";
 import Join from "@components/homePage/join/Join.astro";
 import News from "@components/homePage/news/News.astro";
 
-const title = `Club Bàsquet Granollers`;
 ---
 
-<BaseLayout {title}>
+<BaseLayout>
+  <h1 class="g-visibly-hidden">Club Bàsquet Granollers</h1>
   <Hero />
-  <h1 class="g-visibly-hidden">{title}</h1>
   <MainSponsors />
   <News />
   <Join />

@@ -1,44 +1,41 @@
 ---
-import HomePageSectionLayout from "@layouts/HomePageSectionLayout.astro";
+import HpSectionLayout from "@layouts/HpSectionLayout.astro";
 
 import NewsDesktop from "@components/homePage/news/NewsDesktop.svelte";
 import Slider from "@components/Slider.svelte";
 
 import { isLastYearNews } from "@utils/helperFunctions";
-import { allNews
- } from "@data/apiData";
+import { allNews } from "@data/apiData";
 import { FEATURED_NEWS_CATEGORY_ID } from "@data/globalConstants";
 import type { Post } from "src/types";
-
 
 allNews.splice(10);
 
 let lastYearNews = allNews.filter((oneNews) => isLastYearNews(oneNews.date));
 
-const featuredNews = [lastYearNews.find((oneNews)=> oneNews.categories.includes(FEATURED_NEWS_CATEGORY_ID))
-]
+const featuredNews = [
+  lastYearNews.find((oneNews) =>
+    oneNews.categories.includes(FEATURED_NEWS_CATEGORY_ID),
+  ),
+];
 
-let newsToRender = lastYearNews.filter((oneNews) => !oneNews.categories.includes(FEATURED_NEWS_CATEGORY_ID))
-
-
-
+let newsToRender = lastYearNews.filter(
+  (oneNews) => !oneNews.categories.includes(FEATURED_NEWS_CATEGORY_ID),
+);
 
 if (featuredNews && featuredNews.length > 0) {
-  newsToRender = [featuredNews[0]!, ...newsToRender]
-} 
-
+  newsToRender = [featuredNews[0]!, ...newsToRender];
+}
 ---
 
-<HomePageSectionLayout
+<HpSectionLayout
   sectionTitle="Notícies CBG"
-  textColor={`var(--clr-primary)`}
-  backgroundColor={`var(--clr-contrast)`}
+  color={`var(--clr-primary)`}
+  bgColor={`var(--clr-contrast)`}
+  isSliderSection={true}
 >
   <div class="news-desktop">
-    <NewsDesktop
-      client:visible
-      news={newsToRender}
-    />
+    <NewsDesktop client:visible news={newsToRender} />
   </div>
 
   <div class="g-slider-container">
@@ -50,11 +47,15 @@ if (featuredNews && featuredNews.length > 0) {
       gap={`1rem`}
     />
   </div>
-</HomePageSectionLayout>
+</HpSectionLayout>
 
 <style>
   .g-slider-container {
     display: none;
+  }
+
+  .news-desktop {
+    padding-right: var(--pd-x);
   }
 
   @media (width < 1068px) {
@@ -63,18 +64,6 @@ if (featuredNews && featuredNews.length > 0) {
     }
     .g-slider-container {
       display: block;
-    }
-  }
-
-  @media (width < 1025px) {
-    .g-slider-container {
-      padding-bottom: var(--padding-section-medium);
-    }
-  }
-
-  @media (width < 648px) {
-    .g-slider-container {
-      padding-bottom: var(--padding-section-small);
     }
   }
 </style>

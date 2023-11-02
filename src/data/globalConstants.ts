@@ -28,16 +28,24 @@ const POST_FIELDS: PostFields[] = [
   "slug",
   "categories",
   "date",
+  "image",
   "id",
+];
+
+const PROJECTS_AND_HERO_SLIDES_FIELDS: PostFields[] = [
+  "title",
+  "content",
+  "image",
+  'slug',
+  "categories",
 ];
 
 const CATEGORY_FIELDS: CategoryFields[] = ["id", "name", "slug"];
 
-const COMMON_FIELDS: CommonPagesAndPostsFields[] = [
+const PAGE_FIELDS: PageFields[] = [
   "title",
   "content",
   "image",
-  "date",
   "slug",
 ];
 
@@ -73,18 +81,19 @@ const TEAM_PAGES = {
   maleSenior: "jugadors-equip-senior-masculi",
   femaleSenior: "jugadores-equip-senior-femeni",
   coaches: "entrenadors-i-entrenadores",
-}
+};
 
 export {
   EXCLUDED_PAGES,
   POST_FIELDS,
   CATEGORY_FIELDS,
-  COMMON_FIELDS,
+  PAGE_FIELDS,
   TEAMS_SLUGS,
   PROJECTS_CATEGORY_ID,
   NEWS_CATEGORY_ID,
   HERO_SLIDES_CATEGORY_ID,
   FEATURED_NEWS_CATEGORY_ID,
   CONFIG_PAGES,
-  TEAM_PAGES
+  TEAM_PAGES,
+  PROJECTS_AND_HERO_SLIDES_FIELDS,
 };

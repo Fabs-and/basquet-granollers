@@ -1,26 +1,25 @@
 ---
-import HomePageSectionLayout from "@layouts/HomePageSectionLayout.astro";
+import HpSectionLayout from "@layouts/HpSectionLayout.astro";
 
 import Slider from "@components/Slider.svelte";
 
-import { projects } from "@data/apiData"
+import { projects } from "@data/apiData";
 
-projects.splice(9)
-
+projects.splice(9);
 ---
 
-<HomePageSectionLayout sectionTitle="Events i projectes">
+<HpSectionLayout sectionTitle="Events i projectes" isSliderSection={true}>
   <div class="projects-desktop">
     {
       projects.map((project) =>
         project.image ? (
           <article class="project-item">
             <a href={`/projectes-i-events/${project.slug}`}>
-                <img
-                  class="image"
-                  src={project.image.url}
-                  alt={project.image.alt}
-                />
+              <img
+                class="image"
+                src={project.image.url}
+                alt={project.image.alt}
+              />
             </a>
           </article>
         ) : null,
@@ -37,7 +36,7 @@ projects.splice(9)
       gap={`1rem`}
     />
   </div>
-</HomePageSectionLayout>
+</HpSectionLayout>
 
 <style>
   .mobile {
@@ -52,16 +51,13 @@ projects.splice(9)
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    padding-right: var(--padding-inline);
+    /* padding-right: var(--pd-x); */
     gap: 1rem;
-    padding-bottom: var(--padding-section-big);
   }
-  
-  
-  
+
   .project-item {
     background: var(--clr-contrast);
-    width: 24.1875rem;
+    width: var(--wd-three-columns);
     height: 14.375rem;
   }
   img {
@@ -70,17 +66,23 @@ projects.splice(9)
     object-fit: cover;
   }
 
-  @media (width < 1025px) {
+  @media (width < 1068px) {
     .projects-desktop {
-      padding-right: var(--padding-inline-tablet);
-      padding-bottom: var(--padding-section-medium);
+      margin-left: calc(var(--pd-x) * -1);
+    }
+  }
+  @media (width < 1025px) {
+     .projects-desktop {
+      margin-left: calc(var(--pd-x-medium) * -1);
     }
   }
 
   @media (width < 720px) {
+    .projects-desktop {
+      margin-left: 0rem;
+    }
     .mobile {
       display: block;
-      padding-bottom: var(--padding-section-medium);
     }
     .projects-desktop {
       display: none;
@@ -88,14 +90,14 @@ projects.splice(9)
   }
 
   @media (width < 648px) {
-    .mobile {
-      padding-bottom: var(--padding-section-small);
+     .projects-desktop {
+      margin-left: calc(var(--pd-x-small) * -1);
     }
   }
 
   @media (width > 1400px) {
     .projects-desktop {
-      padding-right: 0rem;
+      padding-inline: 0rem;
     }
   }
 </style>

@@ -1,6 +1,6 @@
 <script>
   import { closeIcon, magnifyingGlass } from "@assets/icons";
-  import { formatHTMLContent } from "@utils/helperFunctions";
+  import { formatHtml } from "@utils/helperFunctions";
   import DOMPurify from "dompurify";
 
   export let websiteContent = [];
@@ -69,7 +69,7 @@
 >
   <form action="" class="form" class:show={showForm}>
     <input
-     style="font-family: 'obviously', sans-serif; font-size: var(--font-size-regular); font-weight: 400;"
+      style="font-family: 'obviously', sans-serif; font-size: var(--fnt-sz-regular); font-weight: 400;"
       type="search"
       required
       min="2"
@@ -98,7 +98,7 @@
       {#if filteredContent.length > 0}
         {#each filteredContent as post}
           <li>
-            <a href={`/${post.slug}`}>{formatHTMLContent(post.title.rendered)}</a>
+            <a href={`/${post.slug}`}>{formatHtml(post.title.rendered)}</a>
           </li>
         {/each}
       {:else if searchInput.length > 0}
@@ -216,7 +216,7 @@
     right: 0; /* Set initial right position to 0 */
     /* Set initial opacity to 0 */
     transition: width 0.3s ease-in-out; /* Set transitions for opacity and width */
-    font-size: var(--font-size-regular);
+    font-size: var(--fnt-sz-regular);
     font-weight: 600;
   }
 

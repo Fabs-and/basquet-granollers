@@ -12,7 +12,11 @@
 
 <article class="membership-article opacity" class:expanded>
   <div class="image-container">
-    <img src={updateUrltoSubdomain(item.image.url)} alt={item.image.alt} loading="lazy" />
+    <img
+      src={updateUrltoSubdomain(item.image.url)}
+      alt={item.image.alt}
+      loading="lazy"
+    />
     <h3 class="membership-title">{item.title}</h3>
   </div>
   <article class="membership-info-container">
@@ -32,7 +36,7 @@
         </div>
       {/each}
     </div>
-    <button on:click={toggleDialog} class="button-anchor"> CONTACTA </button>
+    <button on:click={toggleDialog} class="g-button-anchor"> CONTACTA </button>
     <div class="ball-img">
       <img src="membership-ball.png" alt="" class="" />
     </div>
@@ -63,9 +67,9 @@
   }
   .membership-article {
     height: 51.75rem;
-    width: var(--membership-item-wd-big);
+    width: var(--wd-three-columns);
     background-color: var(--clr-secondary);
-    border-top-left-radius: 2.9375rem;
+    border-top-left-radius: var(--brdr-left-top-radius);
     overflow: hidden;
     scroll-snap-align: start;
     transition: height 0.3s ease;
@@ -117,7 +121,7 @@
     gap: 0.87rem;
   }
 
-  .button-anchor {
+  .g-button-anchor {
     position: absolute;
     left: 1.88rem;
     bottom: 1.88rem;
@@ -137,13 +141,13 @@
 
   @media (width < 1374px) {
     .membership-article {
-      width: var(--membership-item-wd-medium);
+      width: var(--wd-three-columns-medium);
       height: 56.13rem;
       justify-content: center;
       gap: 1.3rem;
     }
 
-    .button-anchor {
+    .g-button-anchor {
       bottom: -2.69rem;
     }
     .ball-img {
@@ -156,19 +160,17 @@
       font-size: 1.375rem;
     }
     .membership-article {
-      width: var(--slider-item-width);
+      width: var(--wd-slider-item);
       height: 29.625rem;
       flex-shrink: 0;
       position: relative;
     }
 
     .membership-title {
-  
       bottom: 1.31rem;
-   
     }
 
-    .button-anchor {
+    .g-button-anchor {
       display: none;
     }
 

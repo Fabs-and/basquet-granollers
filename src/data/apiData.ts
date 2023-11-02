@@ -8,13 +8,15 @@ import {
 
 import type { Post } from "../types";
 import {
-  COMMON_FIELDS,
+  PAGE_FIELDS,
   PROJECTS_CATEGORY_ID,
   NEWS_CATEGORY_ID,
   HERO_SLIDES_CATEGORY_ID,
-  FEATURED_NEWS_CATEGORY_ID,
+  PROJECTS_AND_HERO_SLIDES_FIELDS,
   CONFIG_PAGES,
   TEAM_PAGES,
+  POST_FIELDS,
+  COMMON_FIELDS,
 } from "./globalConstants";
 
 export const [
@@ -38,18 +40,14 @@ export const [
   femaleTeamsData,
   femaleSeniorTeamData,
 ] = await Promise.all([
-  fetchPages(100, COMMON_FIELDS),
-  fetchPosts(100, ["categories", ...COMMON_FIELDS]),
+  fetchPages(100, PAGE_FIELDS),
+  fetchPosts(100, POST_FIELDS),
   fetchPostsInCategories(
     [PROJECTS_CATEGORY_ID, HERO_SLIDES_CATEGORY_ID],
-    ["categories", ...COMMON_FIELDS],
+    PROJECTS_AND_HERO_SLIDES_FIELDS,
     100,
   ),
-  fetchPostsInCategories(
-    [NEWS_CATEGORY_ID],
-    ["categories", ...COMMON_FIELDS],
-    100,
-  ),
+  fetchPostsInCategories([NEWS_CATEGORY_ID], POST_FIELDS, 100),
   //Fetching of Config pages
   fetchPageBySlug(CONFIG_PAGES.homePageJoinSection, ["content"]),
   fetchImagesInPageBySlug(CONFIG_PAGES.socialMedia),
@@ -68,16 +66,13 @@ export const [
   fetchImagesInPageBySlug(TEAM_PAGES.femaleSenior),
 ]);
 
-console.log('weeeeee', allNews.length);
+async function initializePostTypes(
 
-async function initializePostTypes(allNews: Post[], projectsAndHeroSlides: Post[]) {
-  let news: Post[] = [];
-  let featuredNews: Post[] = [];
+  projectsAndHeroSlides: Post[],
+) {
   let projects: Post[] = [];
   let heroSlides: Post[] = [];
-  
 
- 
   for (let i = 0; i < projectsAndHeroSlides.length; i++) {
     if (Array.isArray(projectsAndHeroSlides[i].categories)) {
       if (
@@ -90,14 +85,11 @@ async function initializePostTypes(allNews: Post[], projectsAndHeroSlides: Post[
     }
   }
 
-  let newsToRender;
-  if (featuredNews) newsToRender = [featuredNews[0], ...news]
-  else newsToRender = news;
-
   return {
-    newsToRender,
     projects,
     heroSlides,
   };
 }
-export const { newsToRender, projects, heroSlides } = await initializePostTypes(allNews, projectsAndHeroSlides);
+export const {projects, heroSlides } = await initializePostTypes(
+  projectsAndHeroSlides,
+);

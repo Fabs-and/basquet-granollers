@@ -4,7 +4,7 @@
   let totalDots;
 
   import {
-    formatHTMLContent,
+    formatHtml,
     extractSlideDescriptionAndLink,
   } from "@utils/helperFunctions";
 
@@ -75,9 +75,9 @@
 
         <div class="hero-info-container">
           <div class="hero-info-flex">
-            <h2>{formatHTMLContent(slide.title.rendered)}</h2>
+            <h2>{formatHtml(slide.title.rendered)}</h2>
             <p>
-              {formatHTMLContent(
+              {formatHtml(
                 extractSlideDescriptionAndLink(slide.content.rendered)
                   .description,
               )}
@@ -158,9 +158,9 @@
   section {
     position: relative;
     margin-top: calc(
-      (var(--bottom-header-hg) + var(--header-separator-line-hg)) * -1
+      (var(--hg-header-bottom-section) + var(--hg-sponsors-all)) * -1
     );
-    height: calc(100dvh - var(--top-header-hg));
+    height: calc(100dvh - var(--hg-header-top-section));
     overflow: hidden;
   }
 
@@ -173,12 +173,12 @@
   .hero-info-container {
     position: absolute;
     background-color: rgba(0, 0, 0, 0.65);
-    top: calc(var(--bottom-header-hg) + var(--header-separator-line-hg));
+    top: calc(var(--hg-header-bottom-section) + var(--hg-sponsors-all));
     left: 0;
     width: 37rem;
     bottom: 0rem;
     display: flex;
-    padding-inline: var(--padding-inline);
+    padding-inline: var(--pd-x);
     /* justify-content: center; */
     align-items: center;
   }
@@ -257,7 +257,7 @@
 
   @media (width < 1025px) {
     .hero-info-container {
-      padding-inline: var(--padding-inline-tablet);
+      padding-inline: var(--pd-x-medium);
     }
 
     h2 {
@@ -268,11 +268,11 @@
 
   @media (width < 648px) {
     .hero-info-container {
-      padding-inline: var(--padding-inline-mobile);
+      padding-inline: var(--pd-x-small);
       width: 100%;
     }
     .carousel-dots {
-      left: var(--padding-inline-mobile);
+      left: var(--pd-x-small);
       transform: none;
     }
     section {

@@ -10,7 +10,7 @@ import {
   extractBottomFooterInfo,
 } from "@utils/helperFunctions";
 
-import HomePageSectionLayout from "./HomePageSectionLayout.astro";
+import HpSectionLayout from "./HpSectionLayout.astro";
 
 import { footerData } from "@data/apiData";
 
@@ -24,33 +24,30 @@ const bottomFooterLinks = extractBottomFooterInfo(content);
 ---
 
 <footer>
-  <section class="footer-top-section">
-    <HomePageSectionLayout noHeading={true}>
-      <nav class="top-footer-desktop">
-        <TopFooter {topFooterLinks} />
-      </nav>
+  <HpSectionLayout noHeading={true} bgColor="var(--clr-footer-top)">
+    <nav class="top-footer-desktop">
+      <TopFooter {topFooterLinks} />
+    </nav>
 
-      <nav class="top-footer-tablet">
-        <TopFooterTablet {topFooterLinks} />
-      </nav>
+    <nav class="top-footer-tablet">
+      <TopFooterTablet {topFooterLinks} />
+    </nav>
 
-      <nav class="top-footer-mobile">
-        <TopFooterMobile {topFooterLinks} />
-      </nav>
-    </HomePageSectionLayout>
-  </section>
-
-  <section class="bottom-footer-section">
+    <nav class="top-footer-mobile">
+      <TopFooterMobile {topFooterLinks} />
+    </nav>
+  </HpSectionLayout>
+  <HpSectionLayout noHeading={true} yPadding="var(--pd-y-small)" noMaxWidth={true}>
     <div class="bottom-footer-desktop">
-      <BottomFooter {bottomFooterLinks}  />
+      <BottomFooter {bottomFooterLinks} />
     </div>
     <div class="bottom-footer-tablet">
-      <BottomFooterTablet {bottomFooterLinks}  />
+      <BottomFooterTablet {bottomFooterLinks} />
     </div>
     <div class="bottom-footer-mobile">
-      <BottomFooterMobile {bottomFooterLinks}  />
+      <BottomFooterMobile {bottomFooterLinks} />
     </div>
-  </section>
+  </HpSectionLayout>
 </footer>
 
 <style>
@@ -58,19 +55,7 @@ const bottomFooterLinks = extractBottomFooterInfo(content);
     font-size: var(--font-size-footer);
   }
 
-  .footer-top-section {
-    padding-bottom: var(--padding-section-big);
-    background-color: var(--clr-footer);
-    padding-right: var(--padding-inline);
-  }
-
-  .bottom-footer-section {
-    padding-block: 2rem;
-    padding-inline: var(--padding-inline);
-  }
   .top-footer-desktop {
-    /* min-height: var(--footer-top-section-hg); */
-
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -83,20 +68,8 @@ const bottomFooterLinks = extractBottomFooterInfo(content);
     display: none;
   }
 
-  .bottom-footer-section {
-    /* padding-inline: var(--padding-inline); */
-  }
-
   @media (width < 1025px) {
-    .footer-top-section {
-      padding-right: var(--padding-inline-tablet);
-      padding-bottom: var(--padding-section-medium);
-    }
-    .bottom-footer-section {
-      padding-inline: var(--padding-inline-tablet);
-    }
-
-    .bottom-footer-desktop {
+   .bottom-footer-desktop {
       display: none;
     }
     .bottom-footer-tablet {
@@ -124,14 +97,6 @@ const bottomFooterLinks = extractBottomFooterInfo(content);
       display: none;
     }
 
-    .bottom-footer-section {
-      padding-inline: var(--padding-inline-mobile);
-    }
-
-    .footer-top-section {
-      padding-bottom: var(--padding-section-small);
-    }
-
     .bottom-footer-mobile {
       display: flex;
       flex-direction: column;
@@ -143,15 +108,11 @@ const bottomFooterLinks = extractBottomFooterInfo(content);
   }
 
   @media (width > 1400px) {
+    .bottom-footer-desktop {
+      padding-inline: var(--pd-x);
+    }
     .top-footer-desktop {
       padding-right: 0rem;
-    }
-
-    .footer-top-section {
-      padding-inline: 0rem;
-    }
-    .bottom-footer-section {
-      padding-inline: var(--padding-inline);
     }
   }
 </style>

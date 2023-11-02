@@ -1,22 +1,27 @@
 ---
-import { COMMON_FIELDS, NEWS_CATEGORY_ID } from "@data/globalConstants";
-import PageLayout from "@layouts/PageLayout.astro";
+import {
+  PAGE_FIELDS,
+  NEWS_CATEGORY_ID,
+  POST_FIELDS,
+} from "@data/globalConstants";
+import DynamicPageLayout from "@layouts/DynamicPageLayout.astro";
 import { fetchPostsInCategories } from "@utils/apiFunctions";
+import { dateConverter, formatHtml } from "@utils/helperFunctions";
 
 export async function getStaticPaths() {
   //If got from apiDAta.ts i only received 10 news
- const allNews = await fetchPostsInCategories(
+  const allNews = await fetchPostsInCategories(
     [NEWS_CATEGORY_ID],
-    ["categories", ...COMMON_FIELDS],
+    POST_FIELDS,
     100,
   );
   return allNews.map((noticia) => {
     return {
       params: { noticia: noticia.slug },
       props: {
-        title: noticia.title.rendered,
-        content: noticia.content.rendered,
-        date: noticia.date,
+        title: formatHtml(noticia.title.rendered),
+        content: formatHtml(noticia.content.rendered),
+        date: dateConverter(noticia.date),
         image: noticia.image,
       },
     };
@@ -24,9 +29,6 @@ export async function getStaticPaths() {
 }
 
 const noticia = Astro.props;
-
 ---
 
-
-<PageLayout isPost={true} post={noticia} pageTitle={noticia.title.rendered}/>
-
+<DynamicPageLayout isPost={true} post={noticia} />

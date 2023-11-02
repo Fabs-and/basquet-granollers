@@ -1,0 +1,75 @@
+---
+const {
+  sectionTitle,
+  color,
+  bgColor,
+  noHeading,
+  yPadding,
+  noMaxWidth,
+  isSliderSection,
+} = Astro.props;
+
+const pdY = yPadding !== undefined ? yPadding : "var(--pd-y-big)";
+---
+
+<section class:list={["page-section-container", { slider: isSliderSection }]}>
+  <div class={noMaxWidth || "g-section-max-width"}>
+    {!noHeading && <h2>{sectionTitle}</h2>}
+    <slot />
+  </div>
+</section>
+
+<style define:vars={{ color, bgColor, pdY }}>
+  .page-section-container {
+    padding-block: var(--pdY);
+    padding-inline: var(--pd-x);
+    color: var(--color);
+    background-color: var(--bgColor);
+  }
+  
+  h2 {
+    padding-bottom: var(--pd-y-heading-big);
+  }
+
+  .g-section-max-width {
+    max-width: 1206px;
+    margin: 0 auto;
+  }
+
+  /*First Slider to appear is the one in news at 1068px */
+  @media (width < 1068px) {
+    .slider {
+      /*The important here makes that the padding-right is not reapplied if the screen is smaller */
+      padding-right: 0rem !important;
+    }
+  }
+
+  @media (width < 1025px) {
+    .page-section-container {
+      padding-inline: var(--pd-x-medium);
+      padding-block: var(--pd-y-medium);
+      position: relative;
+    }
+
+    h2 {
+      padding-bottom: var(--pd-y-heading-medium);
+    }
+  }
+
+  @media (width < 648px) {
+    .page-section-container {
+      padding-inline: var(--pd-x-small);
+      padding-block: var(--pd-y-small);
+    }
+
+    h2 {
+      padding-bottom: var(--pd-y-heading-small);
+    }
+  }
+
+  @media (width > 1400px) {
+    .page-section-container {
+      padding-inline: 0rem;
+    }
+  }
+</style>

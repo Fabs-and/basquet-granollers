@@ -5,6 +5,7 @@ import SearchWidget from "@components/SearchWidget.svelte";
 
 const { navigation, websiteContent } = Astro.props;
 ---
+
 <a class="logo" href="/"
   ><img src="/logo.svg" alt="Web oficial del Club Bàsquet Granollers" /></a
 >
@@ -37,25 +38,25 @@ const { navigation, websiteContent } = Astro.props;
   .logo {
     position: absolute;
     bottom: 0.5rem;
-    left: var(--padding-inline);
+    left: var(--pd-x);
   }
 
   .history-search-container {
     position: absolute;
     display: flex;
-    right: var(--padding-inline);
+    right: var(--pd-x);
     bottom: 50%;
     transform: translateY(50%);
     gap: 0.94rem;
   }
 
   ul {
-    min-height: var(--bottom-header-hg);
+    min-height: var(--hg-header-bottom-section);
     display: flex;
     gap: 2rem;
     align-items: center;
     color: var(--clr-primary);
-    font-weight: var(--font-weight-bold);
+    font-weight: var(--fnt-wg-medium);
     padding-left: 12.4rem;
   }
 
