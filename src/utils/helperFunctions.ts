@@ -358,11 +358,12 @@ export function extractMembershipsOptions(content: string) {
   const imageURLRegex = /src="([^"]*)"/gi;
   const imageAltRegex = /alt="([^"]*)"/gi;
   const titleRegex =
-    /(?:&gt;|&nbsp;)*\s*T[ií]tol:\s*<\/strong>\s*(?:&nbsp;)*(.*?)(?:&nbsp;)*(?:<br \/>\n|<\/p>)/gi;
+    /T[ií]tol:\s*(?:<\/?[^>]*>|&nbsp;)*\s*(.*?)(?:\s*<\/?[^>]*>|&nbsp;)*\s*(?:<br \/>\n|<\/p>|<p>)/gi;
   const priceRegex =
-    /(?:&gt;|&nbsp;)*\s*Preu:\s*<\/strong>\s*(?:&nbsp;)*(.*?)(?:&nbsp;)*(?:<br \/>\n|<\/p>)/gi;
+    /Preu:\s*(?:<\/?[^>]*>|&nbsp;)*\s*(.*?)(?:\s*<\/?[^>]*>|&nbsp;)*\s*(?:<br \/>\n|<\/p>|<p>)/gi;
   const advantagesRegex =
-    /(?:&gt;|&nbsp;)*\s*Avantatges:\s*(?:<\/strong>\s*<br \/>\s*\n|<br \/>\s*\n\s*<\/strong>)([\s\S]*?)(?:&nbsp;)*<\/p>/gis;
+    /Avantatges:\s*(?:<\/?[^>]*>|&nbsp;)*\s*([\s\S]*?)(?=(?:Imatge:|$))/gi;
+
   const membershipsStart = content.indexOf("MEMBRES");
   const membershipsEnd = content.indexOf("SPONSORS");
   const membershipsSection = content.slice(membershipsStart, membershipsEnd);
@@ -378,10 +379,20 @@ export function extractMembershipsOptions(content: string) {
     const advantagesMatch = advantagesRegex.exec(membershipsSection);
 
     if (imageAltMatch && titleMatch && priceMatch && advantagesMatch) {
+      let advantagesContent = advantagesMatch[1];
+
+      // Remove all HTML tags
+      advantagesContent = advantagesContent.replace(/<\/?[^>]+(>|$)/g, "");
+
+      // Remove newline characters at the beginning and end of the string, and replace &nbsp; with a space
+      advantagesContent = advantagesContent.replace(/^\n+|\n+$|&nbsp;/g, "");
+
       const imageAlt = addApostrophe(imageAltMatch[1]);
       const title = addApostrophe(titleMatch[1]);
       const price = addApostrophe(priceMatch[1]);
-      const advantages = addApostrophe(advantagesMatch[1]).split("<br />\n");
+      const advantages = addApostrophe(advantagesContent)
+        .split("\n")
+        .filter((line) => line.trim() !== "");
 
       memberships.push({
         image: { url: imageURL, alt: imageAlt },
@@ -391,16 +402,18 @@ export function extractMembershipsOptions(content: string) {
       });
     }
   }
+
   return memberships;
 }
 
 export function extractSponsorshipsOptions(content: string) {
   const titleRegex =
-    /(?:&gt;|&nbsp;)*\s*T[ií]tol:\s*<\/strong>\s*(?:&nbsp;)*(.*?)(?:&nbsp;)*(?:<br \/>\n|<\/p>)/gi;
+    /T[ií]tol:\s*(?:<\/?[^>]*>|&nbsp;)*\s*(.*?)(?:\s*<\/?[^>]*>|&nbsp;)*\s*(?:<br \/>\n|<\/p>|<p>)/gi;
   const priceRegex =
-    /(?:&gt;|&nbsp;)*\s*Preu:\s*<\/strong>\s*(?:&nbsp;)*(.*?)(?:&nbsp;)*(?:<br \/>\n|<\/p>)/gi;
+    /Preu:\s*(?:<\/?[^>]*>|&nbsp;)*\s*(.*?)(?:\s*<\/?[^>]*>|&nbsp;)*\s*(?:<br \/>\n|<\/p>|<p>)/gi;
   const advantagesRegex =
-    /(?:&gt;|&nbsp;)*\s*Avantatges:\s*(?:<\/strong>\s*<br \/>\s*\n|<br \/>\s*\n\s*<\/strong>)([\s\S]*?)(?:&nbsp;)*<\/p>/gis;
+    /Avantatges:\s*(?:<\/?[^>]*>|&nbsp;)*\s*([\s\S]*?)(?=(?:T[ií]tol:|$))/gi;
+
   const sponsorshipsStart = content.indexOf("SPONSORS");
   const membershipsEnd = content.length;
   const sponsorshipsSection = content.slice(sponsorshipsStart, membershipsEnd);
@@ -414,8 +427,17 @@ export function extractSponsorshipsOptions(content: string) {
     const advantagesMatch = advantagesRegex.exec(sponsorshipsSection);
 
     if (priceMatch && advantagesMatch) {
+      let advantagesContent = advantagesMatch[1];
+
+      // Remove all HTML tags
+      advantagesContent = advantagesContent.replace(/<\/?[^>]+(>|$)/g, "");
+
+      // Remove newline characters at the beginning and end of the string, and replace &nbsp; with a space
+      advantagesContent = advantagesContent.replace(/^\n+|\n+$|&nbsp;/g, "");
       const price = addApostrophe(priceMatch[1]);
-      const advantages = addApostrophe(advantagesMatch[1]).split("<br />\n");
+      const advantages = addApostrophe(advantagesContent)
+        .split("\n")
+        .filter((line) => line.trim() !== "");
 
       sponsorships.push({ title, price, advantages });
     }
