@@ -1,11 +1,11 @@
 // Replace <div> for <p>
-export function formatHtml(str: string) {
+export function formatHTMLContent(str: string) {
   // Check if the input is a string
   if (typeof str !== "string") {
     console.error("Expected a string argument, received:", typeof str);
     return "";
   }
-  // Replace &#215; with x
+  // Replace &#215;3 with x
   str = str.replace(/&#215;/g, "x");
 
   const divTag = /<div>/g;
@@ -177,14 +177,19 @@ export function formatHtml(str: string) {
       return match.replace("cbgranollers.cat", "wordpress.cbgranollers.cat");
     });
   }
-  // Replace &#8217; (both represent an apostrophe) with an apostrophe '
-  newStr = newStr.replace(/&#8217;/g, "'");
 
   return newStr;
 }
 
-export function stripHtml(str: string) {
-  return str.replace(/<\/?[^>]+(>|$)/g, "").replace(/&nbsp;/g, " ");
+export function removeHTMLTags(str: string) {
+  const ellipsis = /\[.*?\]/g; // match anything in square brackets
+  const emptySpace = /&.*?;/g; // match anything between & and ;
+  let newStr;
+  if (ellipsis.test(str) || emptySpace.test(str)) {
+    newStr = str.replace(ellipsis, "...");
+  }
+  if (emptySpace.test(str)) str.replace(emptySpace, " ");
+  return newStr;
 }
 
 export function dateConverter(date: string | null | Date) {
@@ -539,21 +544,3 @@ export function isLastYearNews(str: string) {
 }
 
 export function filterConfigPages() {}
-
-export function truncateString(str: string) {
-  if (str.length <= 198) {
-    return str;
-  }
-
-  let truncated = str.slice(0, 198);
-
-  // Find the index of the last space character in the truncated string
-  let lastSpaceIndex = truncated.lastIndexOf(" ");
-
-  // If a space character is found, truncate the string to end at this last space
-  if (lastSpaceIndex !== -1) {
-    truncated = truncated.slice(0, lastSpaceIndex);
-  }
-  //Trim in case the content starts with empty spaces
-  return truncated.trim() + "...";
-}
