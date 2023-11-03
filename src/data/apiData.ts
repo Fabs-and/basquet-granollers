@@ -16,7 +16,6 @@ import {
   CONFIG_PAGES,
   TEAM_PAGES,
   POST_FIELDS,
-  COMMON_FIELDS,
 } from "./globalConstants";
 import { extractBottomFooterInfo, extractTopFooterInfo } from "@utils/helperFunctions";
 

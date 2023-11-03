@@ -4,8 +4,8 @@ import "@styles/global.css";
 
 import { SEO } from "astro-seo";
 // Import components
-import FooterLayout from "../components/footer/Footer.astro";
-import HeaderLayout from "./HeaderLayout.astro";
+import Footer from "../components/footer/Footer.astro";
+import Header from "../components/header/Header.astro";
 
 const { title, pageDescription } = Astro.props;
 const DESCRIPTION =
@@ -38,10 +38,10 @@ const DESCRIPTION =
     />
   </head>
   <body>
-    <HeaderLayout />
+    <Header />
     <main>
       <slot />
     </main>
-    <FooterLayout />
+    <Footer />
   </body>
 </html>
