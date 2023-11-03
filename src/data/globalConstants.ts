@@ -7,6 +7,15 @@ import type {
 
 /*Pages to exclude when generating dynamic routes*/
 
+const IMAGE_FIELDS = [
+  "id",
+  "source_url",
+  "title",
+  "alt_text",
+  "caption",
+  "description",
+];
+
 const EXCLUDED_PAGES = new Set([
   "capcalera",
   "peu-de-pagina",
@@ -96,4 +105,5 @@ export {
   CONFIG_PAGES,
   TEAM_PAGES,
   PROJECTS_AND_HERO_SLIDES_FIELDS,
+  IMAGE_FIELDS,
 };

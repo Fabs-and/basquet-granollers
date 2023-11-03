@@ -1,5 +1,5 @@
-import type { Media, Page, Post, PostParams } from "../../types";
-import { extractUrlFromCaption, fetchData, fetchPageBySlug } from "./index";
+import type { Media, Page, Post, PostParams } from "../types";
+import { getData, getPageBySlug } from "./apiFunctions";
 
 /**
  * Builds an object containing endpoint parameters based on the provided fields and quantity.
@@ -80,7 +80,7 @@ export async function detectRedirects(posts: Post[]): Promise<Post[]> {
       try {
         const linkSlug = slugExtractor(post.link as string);
         if (post.slug !== linkSlug) {
-          const redirectedPost = await fetchPageBySlug(linkSlug);
+          const redirectedPost = await getPageBySlug(linkSlug);
 
           if (redirectedPost && redirectedPost.length > 0) {
             redirectedPost[0] = {
@@ -126,9 +126,7 @@ export async function addImagesToPost(data: Post[] | Page[]) {
 
 export async function getImageLink(featured_media: number) {
   try {
-    const imageMetaInfo = await fetchData<Media>(
-      `${"media"}/${featured_media}`,
-    );
+    const imageMetaInfo = await getData<Media>(`${"media"}/${featured_media}`);
 
     // Default return object in case anything is missing
     const defaultResponse = {
@@ -205,9 +203,13 @@ export async function getImagesInfo(id: number) {
     ];
     const quantity = 100;
 
-    const endpointParams: PostParams = endpointParamsBuilder(fields, quantity, id);
+    const endpointParams: PostParams = endpointParamsBuilder(
+      fields,
+      quantity,
+      id,
+    );
 
-    const images = await fetchData<Media>(
+    const images = await getData<Media>(
       `${"media"}`,
       queryBuilder(endpointParams),
     );
@@ -216,7 +218,10 @@ export async function getImagesInfo(id: number) {
       url: image.source_url,
       title: image.title.rendered,
       alt: image.alt_text,
-      caption: extractUrlFromCaption(image.caption.rendered, image.description.rendered),
+      caption: extractUrlFromCaption(
+        image.caption.rendered,
+        image.description.rendered,
+      ),
     }));
 
     return imageDetails;
@@ -232,4 +237,55 @@ export function removeParagraphTags(string: string) {
 
   // Trim spaces at the beginning and end
   return cleanedString.trim();
+}
+
+
+export function extractUrlFromCaption(caption: string, description: string) {
+  const match = description.match(
+    /<blockquote[^>]*>.*?href=["'](http[^"']+)["']/,
+  );
+
+  if (match) {
+    // Extract the URL from the match
+    const url = match[1];
+    // Extract the homepage URL by finding the third slash
+    const homepage = url.slice(0, url.indexOf("/", url.indexOf("//") + 2) + 1);
+    return homepage;
+  }
+  return removeParagraphTags(caption);
+}
+
+export function extractImageUrlsFromContent(content: string): string[] {
+  const urls: string[] = [];
+  const imgTagRegex = /<img[^>]+src="(https:\/\/[^">]+)"/g;
+  let match;
+
+  while ((match = imgTagRegex.exec(content))) {
+    urls.push(match[1]);
+  }
+
+  return urls;
+}
+
+export function sortImagesByAppearanceOrder(
+  images: any[],
+  imageUrls: string[],
+): any[] {
+  const imageUrlOrderMapping: { [url: string]: number } = {};
+  imageUrls.forEach((url, index) => {
+    const baseUrl = getBaseUrl(url);
+    imageUrlOrderMapping[baseUrl] = index;
+  });
+
+  images.sort(
+    (a, b) =>
+      imageUrlOrderMapping[getBaseUrl(a.url)] -
+      imageUrlOrderMapping[getBaseUrl(b.url)],
+  );
+
+  return images;
+}
+function getBaseUrl(url: string): string {
+  // Remove dimension, file extension and trailing '.' (e.g., "-150x150.png") from URL
+  return url.replace(/-\d+x\d+(\.\w+)?$/, "").replace(/\.\w+$/, "");
 }

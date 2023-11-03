@@ -4,14 +4,14 @@ import HpSectionLayout from "@layouts/HpSectionLayout.astro";
 import NewsDesktop from "@components/homePage/news/NewsDesktop.svelte";
 import Slider from "@components/Slider.svelte";
 
-import { isLastYearNews } from "@utils/helperFunctions";
+import { lastYearsNews } from "@utils/helperFunctions";
 import { allNews } from "@data/apiData";
 import { FEATURED_NEWS_CATEGORY_ID } from "@data/globalConstants";
 import type { Post } from "src/types";
 
 allNews.splice(10);
 
-let lastYearNews = allNews.filter((oneNews) => isLastYearNews(oneNews.date));
+let lastYearNews = allNews.filter((oneNews) => lastYearsNews(oneNews.date));
 
 const featuredNews = [
   lastYearNews.find((oneNews) =>

@@ -6,14 +6,10 @@ import PageLayout from "@layouts/PageLayout.astro";
 import NoticiesPagination from "@components/internal-pages/NoticiesPagination.svelte";
 
 //Import functions
-import { fetchPostsInCategories } from "@utils/apiFunctions";
-import {
-  NEWS_CATEGORY_ID,
-  POST_FIELDS,
-} from "@data/globalConstants";
+import { getPostsInCategories } from "@services/apiFunctions";
+import { NEWS_CATEGORY_ID, POST_FIELDS } from "@data/globalConstants";
 
-
-const allNews = await fetchPostsInCategories(
+const allNews = await getPostsInCategories(
   [NEWS_CATEGORY_ID],
   POST_FIELDS,
   100,

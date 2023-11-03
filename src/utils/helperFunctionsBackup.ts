@@ -536,7 +536,7 @@ export function updateUrltoSubdomain(htmlContent: string): string {
   return htmlContent.replace(urlRegex, "https://wordpress.cbgranollers.cat/$1");
 }
 
-export function isLastYearNews(str: string) {
+export function lastYearsNews(str: string) {
   const date = new Date(str).getTime();
   const currentYear = new Date();
   const aYearAgo = currentYear.getTime() - 31536000000;

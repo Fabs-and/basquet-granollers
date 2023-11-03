@@ -65,10 +65,10 @@
   --fnt-sz-footer: 0.5625rem;
 
   /*Font weight*/
-  --fnt-wg-regular: 400;
-  --fnt-wg-medium: 500;
-  --fnt-wg-bold: 600;
-  --fnt-wg-bolder: 700;
+  --fnt-wg-regular: 500;
+  --fnt-wg-medium: 600;
+  --fnt-wg-bold: 700;
+
 
   /*Line Heights*/
   --line-hg-regular: 1.125rem;
@@ -103,30 +103,30 @@ img {
 h1 {
   font-size: var(--fnt-sz-h1);
   line-height: var(--line-hg-h1);
-  font-weight: var(--fnt-wg-bolder);
+  font-weight: var(--fnt-wg-bold);
 }
 
 h2 {
   font-size: var(--fnt-sz-h2);
   line-height: var(--line-hg-h2);
-  font-weight: var(--fnt-wg-bold);
+  font-weight: var(--fnt-wg-medium);
 }
 
 h3 {
   font-size: var(--fnt-sz-h3);
   line-height: 2.1875rem;
-  font-weight: var(--fnt-wg-medium);
+  font-weight: var(--fnt-wg-regular);
 }
 
 h4 {
   font-size: var(--fnt-sz-h4);
   line-height: var(--line-hg-h3);
-  font-weight: var(--fnt-wg-bold);
+  font-weight: var(--fnt-wg-medium);
 }
 
 h5 {
   font-size: var(--fnt-sz-h5);
-  font-weight: var(--fnt-wg-bold);
+  font-weight: var(--fnt-wg-medium);
 }
 
 ul {
@@ -275,6 +275,9 @@ button:hover svg.icons path {
     height: 8.0625rem;
   }
 
+  .g-underline-links {
+    text-decoration: underline;
+}
 
 @media (width < 1025px) {
   h2 {

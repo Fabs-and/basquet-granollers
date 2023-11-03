@@ -1,10 +1,10 @@
 import {
-  fetchImagesInPageBySlug,
-  fetchPageBySlug,
-  fetchPages,
-  fetchPosts,
-  fetchPostsInCategories,
-} from "@utils/apiFunctions";
+  getImagesBySlug,
+  getPageBySlug,
+  getPages,
+  getPosts,
+  getPostsInCategories,
+} from "@services/apiFunctions";
 
 import type { Post } from "../types";
 import {
@@ -40,36 +40,33 @@ export const [
   femaleTeamsData,
   femaleSeniorTeamData,
 ] = await Promise.all([
-  fetchPages(100, PAGE_FIELDS),
-  fetchPosts(100, POST_FIELDS),
-  fetchPostsInCategories(
+  getPages(100, PAGE_FIELDS),
+  getPosts(100, POST_FIELDS),
+  getPostsInCategories(
     [PROJECTS_CATEGORY_ID, HERO_SLIDES_CATEGORY_ID],
     PROJECTS_AND_HERO_SLIDES_FIELDS,
     100,
   ),
-  fetchPostsInCategories([NEWS_CATEGORY_ID], POST_FIELDS, 100),
+  getPostsInCategories([NEWS_CATEGORY_ID], POST_FIELDS, 100),
   //Fetching of Config pages
-  fetchPageBySlug(CONFIG_PAGES.homePageJoinSection, ["content"]),
-  fetchImagesInPageBySlug(CONFIG_PAGES.socialMedia),
-  fetchPageBySlug(CONFIG_PAGES.header, ["content"]),
-  fetchPageBySlug(CONFIG_PAGES.footer, ["content"]),
-  fetchImagesInPageBySlug(CONFIG_PAGES.homePageMainSponsorsWhite),
-  fetchImagesInPageBySlug(CONFIG_PAGES.homePageMainSponsorsBlue),
-  fetchImagesInPageBySlug(CONFIG_PAGES.homePageOtherSponsors),
-  fetchImagesInPageBySlug(TEAM_PAGES.allTeams),
-  fetchImagesInPageBySlug(TEAM_PAGES.school),
-  fetchImagesInPageBySlug(TEAM_PAGES.coaches),
-  fetchImagesInPageBySlug(TEAM_PAGES.wheelchair),
-  fetchImagesInPageBySlug(TEAM_PAGES.maleTeams),
-  fetchImagesInPageBySlug(TEAM_PAGES.maleSenior),
-  fetchImagesInPageBySlug(TEAM_PAGES.femaleTeams),
-  fetchImagesInPageBySlug(TEAM_PAGES.femaleSenior),
+  getPageBySlug(CONFIG_PAGES.homePageJoinSection, ["content"]),
+  getImagesBySlug(CONFIG_PAGES.socialMedia),
+  getPageBySlug(CONFIG_PAGES.header, ["content"]),
+  getPageBySlug(CONFIG_PAGES.footer, ["content"]),
+  getImagesBySlug(CONFIG_PAGES.homePageMainSponsorsWhite),
+  getImagesBySlug(CONFIG_PAGES.homePageMainSponsorsBlue),
+  getImagesBySlug(CONFIG_PAGES.homePageOtherSponsors),
+  getImagesBySlug(TEAM_PAGES.allTeams),
+  getImagesBySlug(TEAM_PAGES.school),
+  getImagesBySlug(TEAM_PAGES.coaches),
+  getImagesBySlug(TEAM_PAGES.wheelchair),
+  getImagesBySlug(TEAM_PAGES.maleTeams),
+  getImagesBySlug(TEAM_PAGES.maleSenior),
+  getImagesBySlug(TEAM_PAGES.femaleTeams),
+  getImagesBySlug(TEAM_PAGES.femaleSenior),
 ]);
 
-async function initializePostTypes(
-
-  projectsAndHeroSlides: Post[],
-) {
+async function initializePostTypes(projectsAndHeroSlides: Post[]) {
   let projects: Post[] = [];
   let heroSlides: Post[] = [];
 
@@ -90,6 +87,6 @@ async function initializePostTypes(
     heroSlides,
   };
 }
-export const {projects, heroSlides } = await initializePostTypes(
+export const { projects, heroSlides } = await initializePostTypes(
   projectsAndHeroSlides,
 );

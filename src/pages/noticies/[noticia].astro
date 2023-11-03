@@ -5,12 +5,12 @@ import {
   POST_FIELDS,
 } from "@data/globalConstants";
 import DynamicPageLayout from "@layouts/DynamicPageLayout.astro";
-import { fetchPostsInCategories } from "@utils/apiFunctions";
+import { getPostsInCategories } from "@services/apiFunctions";
 import { dateConverter, formatHtml } from "@utils/helperFunctions";
 
 export async function getStaticPaths() {
   //If got from apiDAta.ts i only received 10 news
-  const allNews = await fetchPostsInCategories(
+  const allNews = await getPostsInCategories(
     [NEWS_CATEGORY_ID],
     POST_FIELDS,
     100,
