@@ -1,14 +1,7 @@
 ---
-//Import types
-import type { TopFooterLinks } from "src/types";
-
 //Import components
 import ImportantLinksContainer from "./ImportantLinksContainer.astro";
-
-
-const { topFooterLinks } = Astro.props;
-
-const { generalLinks, fixedLinks }: TopFooterLinks = topFooterLinks;
+import { generalLinks, fixedLinks } from "@data/apiData";
 ---
 
 {

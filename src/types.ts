@@ -286,7 +286,7 @@ type LinkContent = {
   content: {name: string, link: string}[]; // assuming the content array contains strings
 };
 
-type FixedLink = {
+export type FixedLink = {
   name: string;
   link: string;
 };
@@ -295,3 +295,4 @@ export type TopFooterLinks = {
   generalLinks: LinkContent[];
   fixedLinks: FixedLink[];
 };
+

@@ -6,7 +6,7 @@ import {
   getPostsInCategories,
 } from "@services/apiFunctions";
 
-import type { Post } from "../types";
+import type { Page, Post } from "../types";
 import {
   PAGE_FIELDS,
   PROJECTS_CATEGORY_ID,
@@ -18,6 +18,7 @@ import {
   POST_FIELDS,
   COMMON_FIELDS,
 } from "./globalConstants";
+import { extractBottomFooterInfo, extractTopFooterInfo } from "@utils/helperFunctions";
 
 export const [
   pages,
@@ -90,3 +91,12 @@ async function initializePostTypes(projectsAndHeroSlides: Post[]) {
 export const { projects, heroSlides } = await initializePostTypes(
   projectsAndHeroSlides,
 );
+
+const { content: {rendered: footerContent} } = footerData[0];
+
+const topFooterContent = extractTopFooterInfo(footerContent);
+
+export const {generalLinks, fixedLinks} = topFooterContent;
+
+export const bottomFooterLinks = extractBottomFooterInfo(footerContent);
+

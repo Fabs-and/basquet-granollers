@@ -1,5 +1,5 @@
 ---
-const { bottomFooterLinks } = Astro.props;
+import { bottomFooterLinks } from "@data/apiData"
 ---
 
 {
@@ -23,7 +23,7 @@ const { bottomFooterLinks } = Astro.props;
 
 <style>
   a {
-    font-size: 0.5625rem;
+    font-size: var(--fnt-sz-footer);
   }
 
   a:not(:last-child) {
