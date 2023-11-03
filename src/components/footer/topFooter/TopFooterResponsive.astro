@@ -1,0 +1,51 @@
+---
+// Import Types
+import type { TopFooterLinks } from "src/types";
+
+//Imort components
+import Accordion from "./Accordion.astro";
+import ImportantLinksContainer from "./ImportantLinksContainer.astro";
+
+const { topFooterLinks } = Astro.props;
+
+const { generalLinks, fixedLinks }: TopFooterLinks = topFooterLinks;
+---
+
+<div class="top-footer-container">
+  <article class="responsive-general-links">
+    <Accordion {generalLinks} />
+  </article>
+  <article class="responsive-fixed-links">
+    <ImportantLinksContainer {fixedLinks} />
+  </article>
+</div>
+
+<style>
+  .top-footer-container {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .responsive-general-links {
+    display: flex;
+    flex-direction: column;
+    gap: 2.37rem;
+    width: 60%;
+  }
+
+  @media (width < 648px) {
+    .top-footer-container {
+      flex-direction: column;
+      gap: 2.12rem;
+    }
+    .responsive-general-links {
+      gap: 1.8rem;
+      width: 100%;
+    }
+
+    .responsive-fixed-links {
+    width: 13.7rem;
+
+    }
+  }
+</style>

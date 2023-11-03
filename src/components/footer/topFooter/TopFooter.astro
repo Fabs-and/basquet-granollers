@@ -1,16 +1,14 @@
 ---
+//Import types
+import type { TopFooterLinks } from "src/types";
 
-
+//Import components
 import ImportantLinksContainer from "./ImportantLinksContainer.astro";
 
-interface Props {
-  topFooterLinks: any[];
-  topFooterImportantLinks: Link[];
-}
 
 const { topFooterLinks } = Astro.props;
 
-const { generalLinks, fixedLinks } = topFooterLinks;
+const { generalLinks, fixedLinks }: TopFooterLinks = topFooterLinks;
 ---
 
 {
@@ -57,7 +55,6 @@ const { generalLinks, fixedLinks } = topFooterLinks;
   }
 
   .links-container {
-    font-size: 0.6875rem;
     display: flex;
     flex-grow: 1;
     flex-direction: column;

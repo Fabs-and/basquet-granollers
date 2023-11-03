@@ -280,3 +280,18 @@ export class FetchError extends Error {
 export interface PostsQueryCache {
   [key: string]: Post[];
 }
+
+type LinkContent = {
+  title: string;
+  content: {name: string, link: string}[]; // assuming the content array contains strings
+};
+
+type FixedLink = {
+  name: string;
+  link: string;
+};
+
+export type TopFooterLinks = {
+  generalLinks: LinkContent[];
+  fixedLinks: FixedLink[];
+};

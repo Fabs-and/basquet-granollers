@@ -1,4 +1,9 @@
 ---
+import type { TopFooterLinks } from "src/types";
+interface Props {
+  fixedLinks: TopFooterLinks['fixedLinks'];
+}
+
 const { fixedLinks } = Astro.props;
 ---
 
@@ -23,7 +28,6 @@ const { fixedLinks } = Astro.props;
 <style>
   h5 {
     font-weight: 500;
-    /* font-size: 1.125rem; */
   }
 
   .g-top-footer-articles {

@@ -1,4 +1,4 @@
-import type { Media, Page, Post, PostParams } from "../types";
+import type { CustomImage, Media, Page, Post, PostParams } from "../types";
 import { getData, getPageBySlug } from "./apiFunctions";
 
 /**
@@ -268,9 +268,9 @@ export function extractImageUrlsFromContent(content: string): string[] {
 }
 
 export function sortImagesByAppearanceOrder(
-  images: any[],
+  images: CustomImage[],
   imageUrls: string[],
-): any[] {
+): CustomImage[] {
   const imageUrlOrderMapping: { [url: string]: number } = {};
   imageUrls.forEach((url, index) => {
     const baseUrl = getBaseUrl(url);

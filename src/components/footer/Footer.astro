@@ -1,24 +1,31 @@
 ---
+//Import types
+import type { TopFooterLinks } from "src/types";
+
+//Import layouts
+import HpSectionLayout from "../../layouts/HpSectionLayout.astro";
+
+//Import components
 import TopFooter from "@components/footer/topFooter/TopFooter.astro";
-import TopFooterTablet from "@components/footer/topFooter/TopFooterTablet.astro";
-import TopFooterMobile from "@components/footer/topFooter/TopFooterMobile.astro";
+import TopFooterResponsive from "@components/footer/topFooter/TopFooterResponsive.astro";
 import BottomFooter from "@components/footer/bottomFooter/BottomFooter.astro";
 import BottomFooterTablet from "@components/footer/bottomFooter/BottomFooterTablet.astro";
 import BottomFooterMobile from "@components/footer/bottomFooter/BottomFooterMobile.astro";
+
+//Import functions
 import {
   extractTopFooterInfo,
   extractBottomFooterInfo,
 } from "@utils/helperFunctions";
 
-import HpSectionLayout from "./HpSectionLayout.astro";
-
+//Import data
 import { footerData } from "@data/apiData";
 
 const {
   content: { rendered: content },
 } = footerData[0];
 
-const topFooterLinks = extractTopFooterInfo(content);
+const topFooterLinks: TopFooterLinks = extractTopFooterInfo(content);
 
 const bottomFooterLinks = extractBottomFooterInfo(content);
 ---
@@ -29,12 +36,8 @@ const bottomFooterLinks = extractBottomFooterInfo(content);
       <TopFooter {topFooterLinks} />
     </nav>
 
-    <nav class="top-footer-tablet">
-      <TopFooterTablet {topFooterLinks} />
-    </nav>
-
-    <nav class="top-footer-mobile">
-      <TopFooterMobile {topFooterLinks} />
+    <nav class="top-footer-responsive">
+      <TopFooterResponsive {topFooterLinks} />
     </nav>
   </HpSectionLayout>
   <HpSectionLayout noHeading={true} yPadding="var(--pd-y-small)" noMaxWidth={true}>
@@ -61,9 +64,8 @@ const bottomFooterLinks = extractBottomFooterInfo(content);
     justify-content: space-between;
   }
 
-  .top-footer-tablet,
+  .top-footer-responsive,
   .bottom-footer-tablet,
-  .top-footer-mobile,
   .bottom-footer-mobile {
     display: none;
   }
@@ -83,15 +85,13 @@ const bottomFooterLinks = extractBottomFooterInfo(content);
       display: none;
     }
 
-    .top-footer-tablet {
+    .top-footer-responsive {
       display: block;
     }
   }
 
   @media (width < 648px) {
-    .top-footer-tablet {
-      display: none;
-    }
+   
 
     .bottom-footer-tablet {
       display: none;
@@ -101,9 +101,6 @@ const bottomFooterLinks = extractBottomFooterInfo(content);
       display: flex;
       flex-direction: column;
       gap: 2.12rem;
-    }
-    .top-footer-mobile {
-      display: block;
     }
   }
 
