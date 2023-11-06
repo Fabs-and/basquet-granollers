@@ -18,8 +18,12 @@ import BottomFooter from "@components/footer/bottomFooter/BottomFooter.astro";
     </nav>
   </HpSectionLayout>
 
-  <HpSectionLayout noHeading={true} yPadding="var(--pd-y-small)" noMaxWidth={true}>
-      <BottomFooter />
+  <HpSectionLayout
+    noHeading={true}
+    yPadding="var(--pd-y-small)"
+    noMaxWidth={true}
+  >
+    <BottomFooter />
   </HpSectionLayout>
 </footer>
 
@@ -34,7 +38,7 @@ import BottomFooter from "@components/footer/bottomFooter/BottomFooter.astro";
     justify-content: space-between;
   }
 
-  .top-footer-responsive{
+  .top-footer-responsive {
     display: none;
   }
 
@@ -43,9 +47,9 @@ import BottomFooter from "@components/footer/bottomFooter/BottomFooter.astro";
       display: none;
     }
 
-     .top-footer-responsive{
-    display: block;
-  }
+    .top-footer-responsive {
+      display: block;
+    }
   }
 
   @media (width > 1400px) {
