@@ -4,8 +4,6 @@ import { extractTopHeaderContent } from "@utils/helperFunctions";
 
 const { topHeaderContent } = Astro.props;
 
-
-
 const { text1, link1 } = topHeaderContent![0];
 const { text2, link2 } = topHeaderContent![1];
 ---
@@ -13,11 +11,16 @@ const { text2, link2 } = topHeaderContent![1];
 <div class="top-header-content">
   <div class="text-content">
     {
-       text1 && !link1 ? (
+      text1 && !link1 ? (
         <p>{text1.toUpperCase()}</p>
       ) : text1 && link1 ? (
-        link1.includes('http') ? (
-          <a href={link1} class="g-underline-links" target="_blank" rel="noopener noreferrer">
+        link1.includes("http") ? (
+          <a
+            href={link1}
+            class="g-underline-links"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
             {text1.toUpperCase()}
           </a>
         ) : (
@@ -33,8 +36,13 @@ const { text2, link2 } = topHeaderContent![1];
       text2 && !link2 ? (
         <p>{text2.toUpperCase()}</p>
       ) : text2 && link2 ? (
-        link2.includes('http') ? (
-          <a href={link2} class="underline-links" target="_blank" rel="noopener noreferrer">
+        link2.includes("http") ? (
+          <a
+            href={link2}
+            class="underline-links"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
             {text2.toUpperCase()}
           </a>
         ) : (
@@ -44,9 +52,9 @@ const { text2, link2 } = topHeaderContent![1];
         )
       ) : null
     }
-</div>
+  </div>
   <div class="social-menu">
-    <SocialMediaMenu isFromHeader={true}/>
+    <SocialMediaMenu isFromHeader={true} />
   </div>
 </div>
 
@@ -74,7 +82,7 @@ const { text2, link2 } = topHeaderContent![1];
     right: var(--padding-inline);
   }
 
-  @media(width < 1025px) {
+  @media (max-width: 1025px) {
     .social-menu {
       display: none;
     }
@@ -84,5 +92,4 @@ const { text2, link2 } = topHeaderContent![1];
       justify-content: space-around;
     }
   }
-
 </style>

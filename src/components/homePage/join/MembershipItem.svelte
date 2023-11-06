@@ -12,7 +12,11 @@
 
 <article class="membership-article opacity" class:expanded>
   <div class="image-container">
-    <img src={updateUrltoSubdomain(item.image.url)} alt={item.image.alt} loading="lazy" />
+    <img
+      src={updateUrltoSubdomain(item.image.url)}
+      alt={item.image.alt}
+      loading="lazy"
+    />
     <h3 class="membership-title">{item.title}</h3>
   </div>
   <article class="membership-info-container">
@@ -135,7 +139,7 @@
     bottom: 0;
   }
 
-  @media (width < 1374px) {
+  @media (max-width: 1374px) {
     .membership-article {
       width: var(--membership-item-wd-medium);
       height: 56.13rem;
@@ -151,7 +155,7 @@
     }
   }
 
-  @media (width < 932px) {
+  @media (max-width: 932px) {
     h3 {
       font-size: 1.375rem;
     }
@@ -163,9 +167,7 @@
     }
 
     .membership-title {
-  
       bottom: 1.31rem;
-   
     }
 
     .button-anchor {
@@ -209,6 +211,6 @@
     }
   }
 
-  @media (width < 1076px) {
+  @media (max-width: 1076px) {
   }
 </style>

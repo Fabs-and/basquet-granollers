@@ -68,16 +68,15 @@ export const [
   fetchImagesInPageBySlug(TEAM_PAGES.femaleSenior),
 ]);
 
-console.log('weeeeee', allNews.length);
-
-async function initializePostTypes(allNews: Post[], projectsAndHeroSlides: Post[]) {
+async function initializePostTypes(
+  allNews: Post[],
+  projectsAndHeroSlides: Post[],
+) {
   let news: Post[] = [];
   let featuredNews: Post[] = [];
   let projects: Post[] = [];
   let heroSlides: Post[] = [];
-  
 
- 
   for (let i = 0; i < projectsAndHeroSlides.length; i++) {
     if (Array.isArray(projectsAndHeroSlides[i].categories)) {
       if (
@@ -91,7 +90,7 @@ async function initializePostTypes(allNews: Post[], projectsAndHeroSlides: Post[
   }
 
   let newsToRender;
-  if (featuredNews) newsToRender = [featuredNews[0], ...news]
+  if (featuredNews) newsToRender = [featuredNews[0], ...news];
   else newsToRender = news;
 
   return {
@@ -100,4 +99,7 @@ async function initializePostTypes(allNews: Post[], projectsAndHeroSlides: Post[
     heroSlides,
   };
 }
-export const { newsToRender, projects, heroSlides } = await initializePostTypes(allNews, projectsAndHeroSlides);
+export const { newsToRender, projects, heroSlides } = await initializePostTypes(
+  allNews,
+  projectsAndHeroSlides,
+);

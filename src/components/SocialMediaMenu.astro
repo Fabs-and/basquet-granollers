@@ -32,7 +32,11 @@ function getTitle(title: string) {
           <li>
             <a
               title={getTitle(socialMediaItem.title)}
-              href={socialMediaItem.title.toLowerCase().includes('tiktok') ? `https://www.tiktok.com/${socialMediaItem.caption}` : socialMediaItem.caption}
+              href={
+                socialMediaItem.title.toLowerCase().includes("tiktok")
+                  ? `https://www.tiktok.com/${socialMediaItem.caption}`
+                  : socialMediaItem.caption
+              }
               target="_blank"
               rel="noopener noreferrer"
             >
@@ -61,7 +65,7 @@ function getTitle(title: string) {
     align-items: center;
   }
 
-  @media (width < 648px) {
+  @media (max-width: 648px) {
     nav {
       width: auto;
     }

@@ -42,13 +42,13 @@ const bottomFooterLinks = extractBottomFooterInfo(content);
 
   <section class="bottom-footer-section">
     <div class="bottom-footer-desktop">
-      <BottomFooter {bottomFooterLinks}  />
+      <BottomFooter {bottomFooterLinks} />
     </div>
     <div class="bottom-footer-tablet">
-      <BottomFooterTablet {bottomFooterLinks}  />
+      <BottomFooterTablet {bottomFooterLinks} />
     </div>
     <div class="bottom-footer-mobile">
-      <BottomFooterMobile {bottomFooterLinks}  />
+      <BottomFooterMobile {bottomFooterLinks} />
     </div>
   </section>
 </footer>
@@ -87,7 +87,7 @@ const bottomFooterLinks = extractBottomFooterInfo(content);
     /* padding-inline: var(--padding-inline); */
   }
 
-  @media (width < 1025px) {
+  @media (max-width: 1025px) {
     .footer-top-section {
       padding-right: var(--padding-inline-tablet);
       padding-bottom: var(--padding-section-medium);
@@ -105,7 +105,7 @@ const bottomFooterLinks = extractBottomFooterInfo(content);
       gap: 2.12rem;
     }
   }
-  @media (width < 896px) {
+  @media (max-width: 896px) {
     .top-footer-desktop {
       display: none;
     }
@@ -115,7 +115,7 @@ const bottomFooterLinks = extractBottomFooterInfo(content);
     }
   }
 
-  @media (width < 648px) {
+  @media (max-width: 648px) {
     .top-footer-tablet {
       display: none;
     }

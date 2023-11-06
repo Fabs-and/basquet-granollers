@@ -14,8 +14,6 @@ import { joinData } from "@data/apiData";
 
 let isSelected = true;
 
-
-
 const memberships = extractMembershipsOptions(joinData[0].content.rendered);
 const sponsors = extractSponsorshipsOptions(joinData[0].content.rendered);
 
@@ -143,11 +141,11 @@ function toggleSelected() {
   .memberships.active {
     animation: slide-in-from-left 0.45s forwards ease-in;
   }
-  
+
   .memberships.outgoing {
     animation: slide-out-to-left 0.45s forwards ease-in;
   }
-  
+
   .sponsors.active {
     animation: slide-in-from-right 0.45s forwards ease-in;
   }
@@ -164,7 +162,7 @@ function toggleSelected() {
     flex-wrap: wrap;
     gap: 1.5rem;
   }
-  
+
   .options-container {
     display: flex;
     gap: 1.5rem;
@@ -244,7 +242,7 @@ function toggleSelected() {
       transform: translateX(-100%);
     }
   }
-  @media (width < 1399px) {
+  @media (max-width: 1399px) {
     .sponsors-desktop > div:nth-child(odd) {
       justify-self: end;
     }
@@ -254,7 +252,7 @@ function toggleSelected() {
     }
   }
 
-  @media (width < 1374px) {
+  @media (max-width: 1374px) {
     .membership-desktop {
       grid-template-columns:
         var(--membership-item-wd-medium) var(--membership-item-wd-medium)
@@ -264,7 +262,7 @@ function toggleSelected() {
     }
   }
 
-  @media (width < 1025px) {
+  @media (max-width: 1025px) {
     .title-and-options-container {
       padding-inline: var(--padding-inline-tablet);
     }
@@ -284,7 +282,7 @@ function toggleSelected() {
     }
   }
 
-  @media (width < 932px) {
+  @media (max-width: 932px) {
     .membership-desktop {
       display: none;
     }
@@ -297,7 +295,7 @@ function toggleSelected() {
     }
   }
 
-  @media (width < 859px) {
+  @media (max-width: 859px) {
     .sponsors-desktop {
       display: none;
     }
@@ -313,7 +311,7 @@ function toggleSelected() {
       animation: none !important;
     }
   }
-  @media (width < 648px) {
+  @media (max-width: 648px) {
     .title-and-options-container {
       padding-right: var(--padding-inline-mobile);
       padding-bottom: var(--padding-heading-small);
@@ -342,8 +340,8 @@ function toggleSelected() {
     }
   }
 
-  @media (width < 375px) {
-     .button-anchor {
+  @media (max-width: 375px) {
+    .button-anchor {
       width: 8rem;
     }
   }

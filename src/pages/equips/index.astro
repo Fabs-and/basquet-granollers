@@ -16,13 +16,13 @@ import Teams from "@components/homePage/teams/Teams.astro";
     margin-top: calc(var(--padding-section-big) * -1);
   }
 
-  @media (width < 1025px) {
+  @media (max-width: 1025px) {
     .teams-wrapper {
       margin-inline: calc(var(--padding-inline-tablet) * -1);
       margin-top: calc(var(--padding-section-medium) * -1);
     }
   }
-  @media (width < 648px) {
+  @media (max-width: 648px) {
     .teams-wrapper {
       margin-inline: calc(var(--padding-inline-mobile) * -1);
       margin-top: calc(var(--padding-section-small) * -1);

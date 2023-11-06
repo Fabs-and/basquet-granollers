@@ -4,8 +4,11 @@ import BottomHeader from "@components/header/bottomHeader/BottomHeader.astro";
 import HeaderLineSeparator from "@components/header/HeaderLineSeparator.astro";
 import BottomHeaderResponsive from "../components/header/bottomHeader/BottomHeaderResponsive.svelte";
 
-import { extractNavigation, extractTopHeaderContent } from "@utils/helperFunctions";
-import { pages, posts, headerData, socialMediaInfo } from "@data/apiData"
+import {
+  extractNavigation,
+  extractTopHeaderContent,
+} from "@utils/helperFunctions";
+import { pages, posts, headerData, socialMediaInfo } from "@data/apiData";
 import { EXCLUDED_PAGES } from "@data/globalConstants";
 
 const {
@@ -16,13 +19,14 @@ const topHeaderContent = extractTopHeaderContent(content);
 
 const bottomHeaderNav = extractNavigation(content);
 
+const pagesToSearch = pages.filter((page) => !EXCLUDED_PAGES.has(page.slug));
 
-const pagesToSearch = pages.filter(
-   (page) => !EXCLUDED_PAGES.has(page.slug),
- );
-
-const postsToSearch = posts.filter((post) => post.categories.includes(19) || post.categories.includes(41) || post.categories.includes(42));
-
+const postsToSearch = posts.filter(
+  (post) =>
+    post.categories.includes(19) ||
+    post.categories.includes(41) ||
+    post.categories.includes(42),
+);
 
 postsToSearch.forEach((post) => {
   if (
@@ -43,14 +47,20 @@ const websiteContent = [...pagesToSearch, ...postsToSearch];
 
 <header>
   <section class="header-top-section">
-      <TopHeader {topHeaderContent} />
+    <TopHeader {topHeaderContent} />
   </section>
   <section class="header-bottom-section">
     <div class="bottom-header">
-      <BottomHeader {websiteContent} navigation={bottomHeaderNav}  />
+      <BottomHeader {websiteContent} navigation={bottomHeaderNav} />
     </div>
     <div class="bottom-header responsive">
-      <BottomHeaderResponsive client:load {websiteContent} navigation={bottomHeaderNav} {topHeaderContent} {socialMediaInfo}/>
+      <BottomHeaderResponsive
+        client:load
+        {websiteContent}
+        navigation={bottomHeaderNav}
+        {topHeaderContent}
+        {socialMediaInfo}
+      />
     </div>
   </section>
   <div class="separator-line">
@@ -82,7 +92,7 @@ const websiteContent = [...pagesToSearch, ...postsToSearch];
   .separator-line {
     height: var(--header-separator-line-hg);
   }
-  @media (width < 1258px) {
+  @media (max-width: 1258px) {
     .bottom-header {
       display: none;
       padding-inline: var(--padding-inline);
@@ -95,7 +105,7 @@ const websiteContent = [...pagesToSearch, ...postsToSearch];
       display: block;
     }
   }
-  @media (width < 1065px) {
+  @media (max-width: 1065px) {
     .bottom-header {
       padding-inline: var(--padding-inline-tablet);
     }
@@ -110,6 +120,4 @@ const websiteContent = [...pagesToSearch, ...postsToSearch];
       padding-inline: var(--padding-inline-mobile);
     }
   }
-
-  
 </style>

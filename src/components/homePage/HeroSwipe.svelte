@@ -244,7 +244,7 @@
     animation: slide-out-to-right 0.5s forwards ease-in-out;
   }
 
-  @media (width < 1184px) {
+  @media (max-width: 1184px) {
     .hero-info-container {
       width: 50%;
     }
@@ -255,7 +255,7 @@
     }
   }
 
-  @media (width < 1025px) {
+  @media (max-width: 1025px) {
     .hero-info-container {
       padding-inline: var(--padding-inline-tablet);
     }
@@ -266,7 +266,7 @@
     }
   }
 
-  @media (width < 648px) {
+  @media (max-width: 648px) {
     .hero-info-container {
       padding-inline: var(--padding-inline-mobile);
       width: 100%;

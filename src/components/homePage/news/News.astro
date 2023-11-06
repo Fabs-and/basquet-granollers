@@ -5,28 +5,27 @@ import NewsDesktop from "@components/homePage/news/NewsDesktop.svelte";
 import Slider from "@components/Slider.svelte";
 
 import { isLastYearNews } from "@utils/helperFunctions";
-import { allNews
- } from "@data/apiData";
+import { allNews } from "@data/apiData";
 import { FEATURED_NEWS_CATEGORY_ID } from "@data/globalConstants";
 import type { Post } from "src/types";
-
 
 allNews.splice(10);
 
 let lastYearNews = allNews.filter((oneNews) => isLastYearNews(oneNews.date));
 
-const featuredNews = [lastYearNews.find((oneNews)=> oneNews.categories.includes(FEATURED_NEWS_CATEGORY_ID))
-]
+const featuredNews = [
+  lastYearNews.find((oneNews) =>
+    oneNews.categories.includes(FEATURED_NEWS_CATEGORY_ID),
+  ),
+];
 
-let newsToRender = lastYearNews.filter((oneNews) => !oneNews.categories.includes(FEATURED_NEWS_CATEGORY_ID))
-
-
-
+let newsToRender = lastYearNews.filter(
+  (oneNews) => !oneNews.categories.includes(FEATURED_NEWS_CATEGORY_ID),
+);
 
 if (featuredNews && featuredNews.length > 0) {
-  newsToRender = [featuredNews[0]!, ...newsToRender]
-} 
-
+  newsToRender = [featuredNews[0]!, ...newsToRender];
+}
 ---
 
 <HomePageSectionLayout
@@ -35,10 +34,7 @@ if (featuredNews && featuredNews.length > 0) {
   backgroundColor={`var(--clr-contrast)`}
 >
   <div class="news-desktop">
-    <NewsDesktop
-      client:visible
-      news={newsToRender}
-    />
+    <NewsDesktop client:visible news={newsToRender} />
   </div>
 
   <div class="g-slider-container">
@@ -57,7 +53,7 @@ if (featuredNews && featuredNews.length > 0) {
     display: none;
   }
 
-  @media (width < 1068px) {
+  @media (max-width: 1068px) {
     .news-desktop {
       display: none;
     }
@@ -66,13 +62,13 @@ if (featuredNews && featuredNews.length > 0) {
     }
   }
 
-  @media (width < 1025px) {
+  @media (max-width: 1025px) {
     .g-slider-container {
       padding-bottom: var(--padding-section-medium);
     }
   }
 
-  @media (width < 648px) {
+  @media (max-width: 648px) {
     .g-slider-container {
       padding-bottom: var(--padding-section-small);
     }

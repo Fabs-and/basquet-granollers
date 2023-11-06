@@ -26,7 +26,7 @@ import { mainSponsorsWhite } from "@data/apiData";
     justify-content: center;
     gap: 3.05rem;
     height: var(--sponsors-main-hg);
-    padding-inline: var(--padding-inline-tablet)
+    padding-inline: var(--padding-inline-tablet);
   }
 
   .main-sponsors-title {
@@ -42,8 +42,7 @@ import { mainSponsorsWhite } from "@data/apiData";
     gap: 3.05rem;
   }
 
-  
-  @media (width < 680px) {
+  @media (max-width: 680px) {
     .main-sponsors-title {
       height: fit-content;
       padding: 0rem;
@@ -51,7 +50,7 @@ import { mainSponsorsWhite } from "@data/apiData";
     }
     .main-sponsors-flex-container {
       flex-direction: column;
-    padding-inline: var(--padding-inline-mobile);
+      padding-inline: var(--padding-inline-mobile);
 
       gap: 1rem;
     }

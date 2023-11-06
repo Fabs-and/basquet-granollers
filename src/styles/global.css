@@ -51,7 +51,6 @@
   --btn-width-regular: 11rem;
   --btn-width-small: 9.8rem;
 
-  
   /**/
   --membership-item-wd-big: 24.1875rem;
   --membership-item-wd-medium: 18.3875rem;
@@ -225,7 +224,7 @@ small {
 }
 
 /* For samsung galaxies */
-/* @media (width < 374px) {
+/* @media (max-width: 374px) {
     .g-slider-container {
       width: calc(102vw - var(--padding-inline-mobile));
     }
@@ -323,7 +322,7 @@ small {
   margin: 0 auto;
 }
 
-@media (width < 1025px) {
+@media (max-width: 1025px) {
   h2 {
     font-size: var(--font-size-h2-medium);
     line-height: var(--line-height-h2-medium);
@@ -348,7 +347,7 @@ small {
     width: calc(100vw - var(--padding-inline-tablet));
   }
 }
-@media (width < 648px) {
+@media (max-width: 648px) {
   .g-internal-page {
     padding-block: var(--padding-section-small);
     padding-inline: var(--padding-inline-mobile);

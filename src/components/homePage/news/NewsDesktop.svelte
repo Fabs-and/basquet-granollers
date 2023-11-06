@@ -2,7 +2,7 @@
   import NewsItem from "@components/homePage/news/NewsItem.svelte";
   import { sliderLeftArrow, sliderRightArrow } from "@assets/icons";
   import ButtonAnchor from "@components/ButtonAnchor.svelte";
-  
+
   export let news;
 
   let position = 1;
@@ -11,7 +11,6 @@
   let direction = "";
 
   const totalSlides = Math.ceil(news.length / 3);
-
 
   async function goBack() {
     if (position > 1) {
@@ -46,7 +45,9 @@
           class:active={currentIndex === i}
           class:outgoing={prevIndex === i && currentIndex !== i}
         >
-          {#each news.slice(1).slice(i * 3, i * 3 + 3) as newsItem (newsItem.date)}
+          {#each news
+            .slice(1)
+            .slice(i * 3, i * 3 + 3) as newsItem (newsItem.date)}
             <NewsItem item={newsItem} isDesktopNews={true} />
           {/each}
         </div>
@@ -191,13 +192,13 @@
     }
   }
 
-  @media (width < 1025px) {
+  @media (max-width: 1025px) {
     .desktop-news-container {
       padding-bottom: var(--padding-section-medium);
     }
   }
 
-   @media (width > 1400px) {
+  @media (width > 1400px) {
     .desktop-news-container {
       padding-right: 0rem;
     }

@@ -206,18 +206,18 @@
   input[type="search"]::-webkit-search-cancel-button {
     display: none;
   }
-  @media (width < 1258px) {
+  @media (max-width: 1258px) {
     aside {
       padding-inline: var(--padding-inline);
     }
   }
 
-  @media (width < 1065px) {
+  @media (max-width: 1065px) {
     aside {
       padding-inline: var(--padding-inline-tablet);
     }
   }
-  @media (width < 648px) {
+  @media (max-width: 648px) {
     aside {
       top: calc(
         var(--bottom-header-hg) + var(--header-separator-line-responsive-hg)

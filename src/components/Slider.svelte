@@ -5,14 +5,14 @@
   import MembershipItem from "./homePage/join/MembershipItem.svelte";
   import SponsorshipItem from "./homePage/join/SponsorshipItem.svelte";
   import ButtonAnchor from "@components/ButtonAnchor.svelte";
-  
+
   import {
     sliderLeftArrow,
     sliderRightArrow,
     sliderLeftArrowWhite,
     sliderRightArrowWhite,
   } from "@assets/icons";
-    import { toggleDialog } from "@utils/helperFunctions";
+  import { toggleDialog } from "@utils/helperFunctions";
 
   //Props
   export let sliderItems: any;
@@ -76,15 +76,17 @@
 
 <div class="slider-controls-container">
   {#if component === NewsItem}
-  <ButtonAnchor
-    text={buttonText}
-    {slug}
-    {textColor}
-    hoverTextColor={"var(--clr-contrast)"}
-    hidden={childComponent === "ProjectItem"}
-  />
+    <ButtonAnchor
+      text={buttonText}
+      {slug}
+      {textColor}
+      hoverTextColor={"var(--clr-contrast)"}
+      hidden={childComponent === "ProjectItem"}
+    />
   {:else if component === MembershipItem || component === SponsorshipItem}
-    <button on:click={toggleDialog} class="button-anchor"> {buttonText.toUpperCase()} </button>
+    <button on:click={toggleDialog} class="button-anchor">
+      {buttonText.toUpperCase()}
+    </button>
   {/if}
   <div class="arrows-container" class:forProjects>
     <button on:click={goBack}>
@@ -135,13 +137,13 @@
     justify-content: space-between;
   }
 
-  @media (width < 1025px) {
+  @media (max-width: 1025px) {
     .slider-controls-container {
       padding-right: var(--padding-inline-tablet);
     }
   }
 
-  @media (width < 648px) {
+  @media (max-width: 648px) {
     .slider-controls-container {
       padding-right: var(--padding-inline-mobile);
     }

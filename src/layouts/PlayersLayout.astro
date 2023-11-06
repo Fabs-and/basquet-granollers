@@ -3,30 +3,36 @@ import InternalPageLayout from "./NonDynamicPageLayout.astro";
 import { extractPlayerInfo } from "@utils/helperFunctions";
 
 const { heading, subHeading, team } = Astro.props;
-
 ---
 
-<InternalPageLayout  pageTitle={`Equips masculins del Club Bàsquet Granollers`}  {heading}
-      {subHeading}>
-    <div class="players-container">
-      {
-        team.map((player, i) => {
-          return (
+<InternalPageLayout
+  pageTitle={`Equips masculins del Club Bàsquet Granollers`}
+  {heading}
+  {subHeading}
+>
+  <div class="players-container">
+    {
+      team.map((player, i) => {
+        return (
           <article class="player">
             <div class="image-container">
               <img
                 src={player.url ? player.url : "/player-avatar.png"}
-                alt="" loading={i < 3 ? "eager" : "lazy"}
+                alt=""
+                loading={i < 3 ? "eager" : "lazy"}
               />
             </div>
             <div class="info-container">
               <p class="name">{extractPlayerInfo(player.caption).name}</p>
-              <p class="position">{extractPlayerInfo(player.caption).position}</p>
+              <p class="position">
+                {extractPlayerInfo(player.caption).position}
+              </p>
             </div>
           </article>
-        )})
-      }
-    </div>
+        );
+      })
+    }
+  </div>
 </InternalPageLayout>
 
 <style>
@@ -85,10 +91,10 @@ const { heading, subHeading, team } = Astro.props;
     color: var(--clr-contrast);
   }
 
-  @media (width < 1025px) {
+  @media (max-width: 1025px) {
     .equips-page {
       padding-inline: var(--padding-inline-tablet);
-      padding-block:var(--padding-section-medium);;
+      padding-block: var(--padding-section-medium);
     }
     .player {
       width: 21.625rem;
@@ -96,7 +102,7 @@ const { heading, subHeading, team } = Astro.props;
     }
   }
 
-  @media (width < 648px) {
+  @media (max-width: 648px) {
     .equips-page {
       padding-inline: var(--padding-inline-mobile);
       padding-block: var(--padding-section-big);
@@ -111,7 +117,7 @@ const { heading, subHeading, team } = Astro.props;
       padding-top: 0.75rem;
     }
 
-     .player {
+    .player {
       width: 20.4375rem;
       height: 31.21838rem;
     }

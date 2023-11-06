@@ -6,7 +6,7 @@ const { teamsImages, heading, subHeading, title } = Astro.props;
 <InternalPageLayout {title} {heading} {subHeading}>
   <div class="images-container">
     {
-      Array.isArray(teamsImages) ?
+      Array.isArray(teamsImages) ? (
         teamsImages.map((image, i) => (
           <div class="image-container">
             <img
@@ -15,15 +15,16 @@ const { teamsImages, heading, subHeading, title } = Astro.props;
               loading={i < 3 ? "eager" : "lazy"}
             />
           </div>
-        )) : (
-          <div class="image-container">
-            <img
-              src={teamsImages.url}
-              alt={teamsImages.alt && teamsImages.alt}
-              loading="eager"
-            />
-          </div>
-        )
+        ))
+      ) : (
+        <div class="image-container">
+          <img
+            src={teamsImages.url}
+            alt={teamsImages.alt && teamsImages.alt}
+            loading="eager"
+          />
+        </div>
+      )
     }
   </div>
 </InternalPageLayout>
@@ -49,14 +50,14 @@ const { teamsImages, heading, subHeading, title } = Astro.props;
     object-fit: cover;
   }
 
-  @media (width < 848px) {
+  @media (max-width: 848px) {
     .image-container {
       width: 100%;
       height: auto;
     }
   }
 
-  @media (width < 415px) {
+  @media (max-width: 415px) {
     .image-container {
       width: 100vw;
       margin-inline: calc(var(--padding-inline-mobile) * -1);

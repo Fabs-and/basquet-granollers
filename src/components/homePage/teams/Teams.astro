@@ -7,10 +7,7 @@ import { teamsCategories } from "@data/apiData";
 const { noHeading } = Astro.props;
 ---
 
-<HomePageSectionLayout
-  sectionTitle="Els nostres equips"
-  {noHeading}
->
+<HomePageSectionLayout sectionTitle="Els nostres equips" {noHeading}>
   <div class="teams-container">
     {
       teamsCategories.map((teamCategory) => (
@@ -30,7 +27,7 @@ const { noHeading } = Astro.props;
     padding-right: var(--padding-inline);
   }
 
-  @media (width < 1400px) {
+  @media (max-width: 1400px) {
     .teams-container {
       display: grid;
       grid-template-columns: repeat(2, 1fr);
@@ -55,30 +52,29 @@ const { noHeading } = Astro.props;
     }
   }
 
-  @media (width < 1025px) {
+  @media (max-width: 1025px) {
     .teams-container {
       padding-right: var(--padding-inline-tablet);
     }
   }
-  @media (width < 754px) {
+  @media (max-width: 754px) {
     .teams-container {
       display: flex;
       flex-direction: column;
       align-items: center;
     }
   }
-  @media (width < 648px) {
+  @media (max-width: 648px) {
     .teams-container {
       padding-right: var(--padding-inline-mobile);
     }
   }
 
-   @media (width > 1400px) {
+  @media (width > 1400px) {
     .teams-container {
       padding-right: 0rem;
       justify-content: center;
       gap: 1.25rem;
-
     }
   }
 </style>

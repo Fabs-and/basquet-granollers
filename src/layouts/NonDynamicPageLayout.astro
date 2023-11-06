@@ -7,8 +7,8 @@ const { title, heading, subHeading } = Astro.props;
 <BaseLayout {title}>
   <section class="internal-page">
     <div class="max-width-page">
-        <Headings {heading} {subHeading}/>
-      <slot/>
+      <Headings {heading} {subHeading} />
+      <slot />
     </div>
   </section>
 </BaseLayout>
@@ -26,16 +26,16 @@ const { title, heading, subHeading } = Astro.props;
     margin: 0 auto;
   }
 
-  @media (width < 1025px) {
+  @media (max-width: 1025px) {
     .internal-page {
-    padding-block: var(--padding-section-medium);
-    padding-inline: var(--padding-inline-tablet);
+      padding-block: var(--padding-section-medium);
+      padding-inline: var(--padding-inline-tablet);
+    }
   }
-  }
-  @media (width < 648px) {
+  @media (max-width: 648px) {
     .internal-page {
-    padding-block: var(--padding-section-small);
-    padding-inline: var(--padding-inline-mobile);
-  }
+      padding-block: var(--padding-section-small);
+      padding-inline: var(--padding-inline-mobile);
+    }
   }
 </style>

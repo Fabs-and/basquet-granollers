@@ -1,7 +1,6 @@
 <script>
-
   import { membershipCheck } from "@assets/icons";
-   import { toggleDialog } from "@utils/helperFunctions";
+  import { toggleDialog } from "@utils/helperFunctions";
 
   export let item;
 </script>
@@ -26,7 +25,7 @@
       </div>
     {/each}
   </div>
-   <button on:click={toggleDialog} class="button-anchor"> CONTACTA </button>
+  <button on:click={toggleDialog} class="button-anchor"> CONTACTA </button>
 </article>
 
 <style>
@@ -69,7 +68,7 @@
     gap: 0.63rem;
   }
 
-  @media (width < 859px) {
+  @media (max-width: 859px) {
     .sponsor-article {
       width: var(--slider-item-width);
       height: 100%;
@@ -79,6 +78,4 @@
       display: none;
     }
   }
-
-
 </style>

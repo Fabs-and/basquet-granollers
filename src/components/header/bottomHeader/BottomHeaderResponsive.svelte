@@ -114,7 +114,7 @@
   {/each}
 
   <div class="social-media-container">
-    <SocialMediaMenu {socialMediaInfo}/>
+    <SocialMediaMenu {socialMediaInfo} />
   </div>
 </ul>
 
@@ -183,7 +183,7 @@
     font-weight: var(--font-weight-bold);
   }
 
-  @media (width < 648px) {
+  @media (max-width: 648px) {
     .dropdown-content-responsive {
       top: calc(
         var(--bottom-header-hg) + var(--header-separator-line-responsive-hg)

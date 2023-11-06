@@ -69,7 +69,7 @@
 >
   <form action="" class="form" class:show={showForm}>
     <input
-     style="font-family: 'obviously', sans-serif; font-size: var(--font-size-regular); font-weight: 400;"
+      style="font-family: 'obviously', sans-serif; font-size: var(--font-size-regular); font-weight: 400;"
       type="search"
       required
       min="2"
@@ -98,7 +98,9 @@
       {#if filteredContent.length > 0}
         {#each filteredContent as post}
           <li>
-            <a href={`/${post.slug}`}>{formatHTMLContent(post.title.rendered)}</a>
+            <a href={`/${post.slug}`}
+              >{formatHTMLContent(post.title.rendered)}</a
+            >
           </li>
         {/each}
       {:else if searchInput.length > 0}
@@ -237,7 +239,7 @@
     display: none;
   }
 
-  @media (width < 1300px) {
+  @media (max-width: 1300px) {
     aside {
       --searchbox-width: 15.875rem;
     }

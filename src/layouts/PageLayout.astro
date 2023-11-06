@@ -5,10 +5,7 @@ import BaseLayout from "./BaseLayout.astro";
 
 const { post, pageTitle, isPost } = Astro.props;
 
-
-const { title, content, image, date,  } = post;
-
-
+const { title, content, image, date } = post;
 ---
 
 <BaseLayout heading={pageTitle}>
@@ -17,7 +14,11 @@ const { title, content, image, date,  } = post;
       <header class="article-header">
         <div class="article-header-text">
           <h1 set:html={formatHTMLContent(title)} />
-          {isPost && <p class="g-date-style">{`Publicat ${dateConverter(date)}`}</p>}
+          {
+            isPost && (
+              <p class="g-date-style">{`Publicat ${dateConverter(date)}`}</p>
+            )
+          }
         </div>
         {
           image && image.url !== "" ? (
@@ -29,8 +30,8 @@ const { title, content, image, date,  } = post;
           ) : (
             <img
               class="g-opacity"
-              src='/default-pic.avif'
-              alt='Imatge de recurs amb totes les seccions del Club Bàsquet Granollers'
+              src="/default-pic.avif"
+              alt="Imatge de recurs amb totes les seccions del Club Bàsquet Granollers"
             />
           )
         }
@@ -57,9 +58,8 @@ const { title, content, image, date,  } = post;
     position: relative;
     background: #181e29;
     margin-inline: calc(var(--padding-inline) * -1);
-    
   }
-  
+
   .article-header-text {
     color: var(--clr-contrast);
     position: relative;
@@ -78,7 +78,7 @@ const { title, content, image, date,  } = post;
     gap: 2.62rem;
     max-width: 1206px;
     margin: auto;
-     /* overflow-y: scroll; */
+    /* overflow-y: scroll; */
   }
 
   .article-header img {
@@ -110,8 +110,7 @@ const { title, content, image, date,  } = post;
     display: block !important;
   }
 
-  @media (width < 1181px) {
-  
+  @media (max-width: 1181px) {
     .page-container {
       padding-inline: var(--padding-inline-tablet);
     }
@@ -130,7 +129,7 @@ const { title, content, image, date,  } = post;
     } */
   }
 
-  @media (width < 648px) {
+  @media (max-width: 648px) {
     h1 {
       font-size: 2.25rem;
       line-height: 2.75rem;
@@ -151,6 +150,4 @@ const { title, content, image, date,  } = post;
       padding-inline: calc(var(--padding-inline-mobile) * -1);
     }
   }
-
-  
 </style>

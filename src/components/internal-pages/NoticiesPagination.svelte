@@ -1,9 +1,9 @@
 <script>
   import { dateConverter } from "@utils/helperFunctions";
-  import { slide } from 'svelte/transition';
+  import { slide } from "svelte/transition";
   export let noticies;
-  import {formatHTMLContent} from '@utils/helperFunctions';
-  let index = 9;  // Start index at 9 since initial slice is 0 to 9
+  import { formatHTMLContent } from "@utils/helperFunctions";
+  let index = 9; // Start index at 9 since initial slice is 0 to 9
   let displayedNews = noticies && noticies.length ? noticies.slice(0, 9) : [];
 
   $: showButton = displayedNews.length < noticies.length;
@@ -20,18 +20,26 @@
       <a href={`/noticies/${noticia.slug}`}>
         <div class="image-container">
           {#if noticia.image}
-          {#if i < 3}
-             <img
-              src={noticia.image.url ? noticia.image.url : '/default-pic.avif'}
-              alt={noticia.image.alt ? noticia.image.alt : noticia.title.rendered}
-              loading='eager'
-            />
-          {:else}
-            <img
-              src={noticia.image.url ? noticia.image.url : '/default-pic.avif'}
-              alt={noticia.image.alt ? noticia.image.alt : noticia.title.rendered}
-              loading='lazy'
-            />
+            {#if i < 3}
+              <img
+                src={noticia.image.url
+                  ? noticia.image.url
+                  : "/default-pic.avif"}
+                alt={noticia.image.alt
+                  ? noticia.image.alt
+                  : noticia.title.rendered}
+                loading="eager"
+              />
+            {:else}
+              <img
+                src={noticia.image.url
+                  ? noticia.image.url
+                  : "/default-pic.avif"}
+                alt={noticia.image.alt
+                  ? noticia.image.alt
+                  : noticia.title.rendered}
+                loading="lazy"
+              />
             {/if}
           {/if}
         </div>
@@ -46,11 +54,11 @@
   {/each}
 </div>
 {#if showButton}
-  <button class='button-anchor' on:click={loadNineMore}>VEURE MÉS</button>
+  <button class="button-anchor" on:click={loadNineMore}>VEURE MÉS</button>
 {/if}
 
 <style>
-   h4  { 
+  h4 {
     font-weight: 500;
   }
 
@@ -59,7 +67,7 @@
     margin-inline: auto;
     color: var(--clr-accent);
   }
-   .button-anchor:hover {
+  .button-anchor:hover {
     color: var(--clr-contrast);
   }
   .allNews-container {
@@ -69,7 +77,7 @@
     gap: 1rem;
     /* padding-inline: var(--padding-inline); */
   }
-  
+
   p {
     position: absolute;
     bottom: 0;
@@ -120,7 +128,7 @@
     height: 33%;
   }
 
-  @media (width < 1025px) {
+  @media (max-width: 1025px) {
     .noticia {
       width: 21.625rem;
       height: 20.93rem;
@@ -131,17 +139,16 @@
     }
   }
 
-  @media (width < 648px) {
-  
-     .button-anchor {
+  @media (max-width: 648px) {
+    .button-anchor {
       margin-top: var(--padding-section-small);
     }
-      .noticia {
+    .noticia {
       width: 20.4375rem;
     }
   }
 
-  @media (width < 375px) {
+  @media (max-width: 375px) {
     .noticia {
       width: 100%;
     }

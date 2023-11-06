@@ -2,12 +2,11 @@
 import ButtonAnchor from "@components/ButtonAnchor.astro";
 import { titleSlugMapper } from "@utils/helperFunctions";
 
-import { TEAMS_SLUGS} from "@data/globalConstants";
+import { TEAMS_SLUGS } from "@data/globalConstants";
 
 const { team } = Astro.props;
 
 const { title, url, alt } = team;
-
 
 const mapped = TEAMS_SLUGS.find((pair) => titleSlugMapper(title, pair.word));
 
@@ -97,13 +96,13 @@ const slug = mapped ? mapped.slug : "/equips/cos-tecnic";
     gap: 1rem;
     padding-bottom: 1rem;
   }
-  
+
   .mascot {
     /* position: absolute; */
     width: 9rem;
     object-fit: contain;
   }
-  @media (width < 1385px) {
+  @media (max-width: 1385px) {
     .team-article {
       width: 22.14806rem;
       height: 23.4375rem;
@@ -138,14 +137,14 @@ const slug = mapped ? mapped.slug : "/equips/cos-tecnic";
     }
   }
 
-  @media (width < 754px) {
+  @media (max-width: 754px) {
     .team-article {
       width: 23.4375rem;
       height: 23.4375rem;
     }
   }
 
-  @media (width < 425px) {
+  @media (max-width: 425px) {
     .team-article {
       width: 100vw;
       height: auto;

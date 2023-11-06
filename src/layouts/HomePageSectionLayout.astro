@@ -26,7 +26,7 @@ const { sectionTitle, textColor, backgroundColor, noHeading } = Astro.props;
     margin: 0 auto;
   }
 
-  @media (width < 1025px) {
+  @media (max-width: 1025px) {
     .page-section-container {
       padding-left: var(--padding-inline-tablet);
       padding-top: var(--padding-section-medium);
@@ -37,7 +37,7 @@ const { sectionTitle, textColor, backgroundColor, noHeading } = Astro.props;
     }
   }
 
-  @media (width < 648px) {
+  @media (max-width: 648px) {
     .page-section-container {
       padding-left: var(--padding-inline-mobile);
       padding-top: var(--padding-section-small);

@@ -1,6 +1,6 @@
 <script>
-  import { onMount, onDestroy } from 'svelte';
-  import ButtonAnchor from '../ButtonAnchor.svelte';
+  import { onMount, onDestroy } from "svelte";
+  import ButtonAnchor from "../ButtonAnchor.svelte";
   export let slides;
   let totalDots;
   let currentSlideIndex = 0;
@@ -10,67 +10,88 @@
     extractSlideDescriptionAndLink,
   } from "@utils/helperFunctions";
 
-  $: totalDots = Array((slides ? slides.length : 0)).fill(0);
+  $: totalDots = Array(slides ? slides.length : 0).fill(0);
 
-let intervalId;
+  let intervalId;
 
-onMount(() => {
+  onMount(() => {
     intervalId = setInterval(() => {
-        if (slides && slides.length > 0) {
+      if (slides && slides.length > 0) {
         currentSlideIndex = (currentSlideIndex + 1) % slides.length;
-    }
+      }
     }, 10000);
-});
+  });
 
-onDestroy(() => {
+  onDestroy(() => {
     clearInterval(intervalId);
-});
+  });
   function handleDotClick(index) {
     if (!isNaN(index)) {
       currentSlideIndex = index;
     }
   }
-
 </script>
 
 {#if slides && slides.length > 0}
-   <section class="hero-section">
+  <section class="hero-section">
     {#each slides as slide, index}
+      <div
+        data-index={index}
+        class="slide {index === currentSlideIndex ? 'active' : ''}"
+      >
+        {#if index === 0}
+          <img
+            src={slide.image.url}
+            class="hidden"
+            alt={slide.image.alt}
+            loading="eager"
+          />
+        {:else}
+          <img
+            src={slide.image.url}
+            class="hidden"
+            alt={slide.image.alt}
+            loading="lazy"
+          />
+        {/if}
 
-    <div data-index={index} class="slide {index === currentSlideIndex ? 'active' : ''}">
-      {#if index === 0}
-        <img src={slide.image.url} class="hidden" alt={slide.image.alt} loading='eager'/>
-      {:else}
-        <img src={slide.image.url} class="hidden" alt={slide.image.alt} loading='lazy' />
-      {/if}
-      
-      <div class="hero-info-container">
-        <div class="hero-info-flex">
-          <h2>{formatHTMLContent(slide.title.rendered)}</h2>
-          <p>{formatHTMLContent(extractSlideDescriptionAndLink(slide.content.rendered).description)}</p>
-          {#if extractSlideDescriptionAndLink(slide.content.rendered).link}
-            <ButtonAnchor slug={extractSlideDescriptionAndLink(slide.content.rendered).link} text={`veure més`} />
-          {/if}
-
+        <div class="hero-info-container">
+          <div class="hero-info-flex">
+            <h2>{formatHTMLContent(slide.title.rendered)}</h2>
+            <p>
+              {formatHTMLContent(
+                extractSlideDescriptionAndLink(slide.content.rendered)
+                  .description,
+              )}
+            </p>
+            {#if extractSlideDescriptionAndLink(slide.content.rendered).link}
+              <ButtonAnchor
+                slug={extractSlideDescriptionAndLink(slide.content.rendered)
+                  .link}
+                text={`veure més`}
+              />
+            {/if}
+          </div>
         </div>
       </div>
-    </div>
-    {#if totalDots && totalDots.length > 1}
-    <div class="carousel-dots">
-      {#each totalDots as _, index}
-       <button class="carousel-dot {index === currentSlideIndex ? 'active-dot' : ''}" on:click={() => handleDotClick(index)} />
-      {/each}
-    </div>
-  {/if}
-
+      {#if totalDots && totalDots.length > 1}
+        <div class="carousel-dots">
+          {#each totalDots as _, index}
+            <button
+              class="carousel-dot {index === currentSlideIndex
+                ? 'active-dot'
+                : ''}"
+              on:click={() => handleDotClick(index)}
+            />
+          {/each}
+        </div>
+      {/if}
     {/each}
-    
-     
-    </section>
+  </section>
 {/if}
 
 <style>
-    h2 {
+  h2 {
     font-size: 2.75rem;
     line-height: 3.25rem;
   }
@@ -147,7 +168,7 @@ onDestroy(() => {
     text-wrap: balance;
   }
 
-  @media (width < 1184px) {
+  @media (max-width: 1184px) {
     .hero-info-container {
       width: 50%;
     }
@@ -158,7 +179,7 @@ onDestroy(() => {
     }
   }
 
-  @media (width < 1025px) {
+  @media (max-width: 1025px) {
     .hero-info-container {
       padding-inline: var(--padding-inline-tablet);
     }
@@ -169,7 +190,7 @@ onDestroy(() => {
     }
   }
 
-  @media (width < 648px) {
+  @media (max-width: 648px) {
     .hero-info-container {
       padding-inline: var(--padding-inline-mobile);
       width: 100%;

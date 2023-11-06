@@ -1,0 +1,60 @@
+---
+//Import layouts
+import HpSectionLayout from "../../layouts/HpSectionLayout.astro";
+
+//Import components
+import TopFooter from "@components/footer/topFooter/TopFooter.astro";
+import TopFooterResponsive from "@components/footer/topFooter/TopFooterResponsive.astro";
+import BottomFooter from "@components/footer/bottomFooter/BottomFooter.astro";
+---
+
+<footer>
+  <HpSectionLayout noHeading={true} bgColor="var(--clr-footer-top)">
+    <nav class="top-footer-desktop">
+      <TopFooter />
+    </nav>
+    <nav class="top-footer-responsive">
+      <TopFooterResponsive />
+    </nav>
+  </HpSectionLayout>
+
+  <HpSectionLayout
+    noHeading={true}
+    yPadding="var(--pd-y-small)"
+    noMaxWidth={true}
+  >
+    <BottomFooter />
+  </HpSectionLayout>
+</footer>
+
+<style>
+  footer {
+    font-size: var(--fnt-sz-footer);
+  }
+
+  .top-footer-desktop {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .top-footer-responsive {
+    display: none;
+  }
+
+  @media (max-width: 896px) {
+    .top-footer-desktop {
+      display: none;
+    }
+
+    .top-footer-responsive {
+      display: block;
+    }
+  }
+
+  @media (width > 1400px) {
+    .top-footer-desktop {
+      padding-right: 0rem;
+    }
+  }
+</style>

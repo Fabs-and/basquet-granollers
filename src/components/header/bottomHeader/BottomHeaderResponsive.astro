@@ -3,13 +3,11 @@ import { logoSmall } from "@assets/logo";
 import { magnifyingGlass, hamburgerMenuIcon } from "@assets/icons";
 
 import DropDownAccordion from "./DropDownAccordion.astro";
-  
 
 import SocialMediaMenu from "@components/SocialMediaMenu.astro";
 import SearchWidgetResponsive from "@components/SearchWidgetResponsive.svelte";
 
 const { navigation, topHeaderContent, websiteContent } = Astro.props;
-
 
 const { text1, link1 } = topHeaderContent![0];
 const { text2, link2 } = topHeaderContent![0];
@@ -51,7 +49,7 @@ const { text2, link2 } = topHeaderContent![0];
   >
 
   <div class="search-icon">
-    <SearchWidgetResponsive client:load {websiteContent}/>
+    <SearchWidgetResponsive client:load {websiteContent} />
   </div>
 </div>
 
@@ -189,7 +187,7 @@ const { text2, link2 } = topHeaderContent![0];
     font-weight: var(--font-weight-bold);
   }
 
-  @media (width < 648px) {
+  @media (max-width: 648px) {
     .dropdown-content-responsive {
       top: calc(
         var(--bottom-header-hg) + var(--header-separator-line-responsive-hg)

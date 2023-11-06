@@ -11,8 +11,10 @@ const { bottomFooterLinks } = Astro.props;
     <BottomFooterLinks {bottomFooterLinks} />
   </div>
   <small>
-    Web Propietat del Club Bàsquet Granollers. Copyright © <CurrentYear client:visible />. All rights reserved.
-</small>
+    Web Propietat del Club Bàsquet Granollers. Copyright © <CurrentYear
+      client:visible
+    />. All rights reserved.
+  </small>
   <SocialMediaMenu />
 </div>
 
@@ -23,11 +25,11 @@ const { bottomFooterLinks } = Astro.props;
     justify-content: space-between;
   }
 
-    small {
+  small {
     font-size: 0.5625rem;
   }
 
-  @media (width < 1025px) {
+  @media (max-width: 1025px) {
     small {
       font-size: 0.75rem;
     }

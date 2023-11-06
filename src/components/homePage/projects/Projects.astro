@@ -3,10 +3,9 @@ import HomePageSectionLayout from "@layouts/HomePageSectionLayout.astro";
 
 import Slider from "@components/Slider.svelte";
 
-import { projects } from "@data/apiData"
+import { projects } from "@data/apiData";
 
-projects.splice(9)
-
+projects.splice(9);
 ---
 
 <HomePageSectionLayout sectionTitle="Events i projectes">
@@ -16,11 +15,11 @@ projects.splice(9)
         project.image ? (
           <article class="project-item">
             <a href={`/projectes-i-events/${project.slug}`}>
-                <img
-                  class="image"
-                  src={project.image.url}
-                  alt={project.image.alt}
-                />
+              <img
+                class="image"
+                src={project.image.url}
+                alt={project.image.alt}
+              />
             </a>
           </article>
         ) : null,
@@ -56,9 +55,7 @@ projects.splice(9)
     gap: 1rem;
     padding-bottom: var(--padding-section-big);
   }
-  
-  
-  
+
   .project-item {
     background: var(--clr-contrast);
     width: 24.1875rem;
@@ -70,14 +67,14 @@ projects.splice(9)
     object-fit: cover;
   }
 
-  @media (width < 1025px) {
+  @media (max-width: 1025px) {
     .projects-desktop {
       padding-right: var(--padding-inline-tablet);
       padding-bottom: var(--padding-section-medium);
     }
   }
 
-  @media (width < 720px) {
+  @media (max-width: 720px) {
     .mobile {
       display: block;
       padding-bottom: var(--padding-section-medium);
@@ -87,7 +84,7 @@ projects.splice(9)
     }
   }
 
-  @media (width < 648px) {
+  @media (max-width: 648px) {
     .mobile {
       padding-bottom: var(--padding-section-small);
     }
