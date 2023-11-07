@@ -2,7 +2,7 @@
   import { dateConverter } from "@utils/helperFunctions";
   import { slide } from "svelte/transition";
   export let noticies;
-  import { formatHTMLContent } from "@utils/helperFunctions";
+  import { formatHtml } from "@utils/helperFunctions";
   let index = 9; // Start index at 9 since initial slice is 0 to 9
   let displayedNews = noticies && noticies.length ? noticies.slice(0, 9) : [];
 
@@ -45,7 +45,7 @@
         </div>
         <div class="info-container">
           <h4>
-            {@html formatHTMLContent(noticia.title.rendered)}
+            {@html formatHtml(noticia.title.rendered)}
           </h4>
           <p>Publicat {dateConverter(noticia.date)}</p>
         </div>
@@ -54,7 +54,7 @@
   {/each}
 </div>
 {#if showButton}
-  <button class="button-anchor" on:click={loadNineMore}>VEURE MÉS</button>
+  <button class="g-button-anchor" on:click={loadNineMore}>VEURE MÉS</button>
 {/if}
 
 <style>
@@ -62,12 +62,12 @@
     font-weight: 500;
   }
 
-  .button-anchor {
-    margin-top: var(--padding-section-big);
+  .g-button-anchor {
+    margin-top: var(--pd-y-big);
     margin-inline: auto;
     color: var(--clr-accent);
   }
-  .button-anchor:hover {
+  .g-button-anchor:hover {
     color: var(--clr-contrast);
   }
   .allNews-container {
@@ -75,7 +75,6 @@
     flex-wrap: wrap;
     justify-content: center;
     gap: 1rem;
-    /* padding-inline: var(--padding-inline); */
   }
 
   p {
@@ -116,7 +115,7 @@
     height: 21.87rem;
     width: 24.25rem;
     flex-shrink: 0;
-    border-top-left-radius: 2.9375rem;
+    border-top-left-radius: var(--brdr-left-top-radius);
     overflow: hidden;
   }
 
@@ -134,14 +133,14 @@
       height: 20.93rem;
     }
 
-    .button-anchor {
-      margin-top: var(--padding-section-medium);
+    .g-button-anchor {
+      margin-top: var(--pd-y-medium);
     }
   }
 
   @media (max-width: 648px) {
-    .button-anchor {
-      margin-top: var(--padding-section-small);
+    .g-button-anchor {
+      margin-top: var(--pd-y-small);
     }
     .noticia {
       width: 20.4375rem;

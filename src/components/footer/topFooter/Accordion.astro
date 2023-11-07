@@ -1,4 +1,9 @@
 ---
+import type { TopFooterLinks } from "src/types";
+
+type Props = {
+  generalLinks: TopFooterLinks['generalLinks'];
+};  
 const { generalLinks } = Astro.props;
 ---
 

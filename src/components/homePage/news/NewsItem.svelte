@@ -1,8 +1,5 @@
 <script>
-  import {
-    dateConverter,
-    formatHTMLContent,
-  } from "../../../utils/helperFunctions";
+  import { dateConverter, formatHtml } from "../../../utils/helperFunctions";
 
   export let item;
   export let isFeatured = false;
@@ -19,7 +16,7 @@
 <article class:isFeatured class:isSliderItem class:isDesktopNews>
   <a href={`/noticies/${slug}`}>
     <div class="image-container">
-      {#if image && (image.url !== "")}
+      {#if image && image.url !== ""}
         <img src={image.url} alt={image.alt} />
       {:else}
         <img
@@ -29,7 +26,7 @@
       {/if}
     </div>
     <div class="info-container">
-      <h4>{@html formatHTMLContent(title)}</h4>
+      <h4>{@html formatHtml(title)}</h4>
       <p class="g-date-style">{`Publicat ${dateConverter(date)}`}</p>
     </div>
   </a>
@@ -75,7 +72,7 @@
   .isFeatured {
     height: 33.1875rem;
     width: 60%;
-    border-top-left-radius: 2.9375rem;
+    border-top-left-radius: var(--brdr-left-top-radius);
     overflow: hidden;
     flex-shrink: 0;
   }
@@ -144,9 +141,9 @@
 
   .isSliderItem {
     height: 18rem;
-    width: var(--slider-item-width);
+    width: var(--wd-slider-item);
     flex-shrink: 0;
-    border-top-left-radius: 2.9375rem;
+    border-top-left-radius: var(--brdr-left-top-radius);
     overflow: hidden;
     scroll-snap-align: start;
   }

@@ -1,10 +1,10 @@
 ---
-import NonDynamicPageLayout from "@layouts/NonDynamicPageLayout.astro";
+import PageLayout from "@layouts/PageLayout.astro.tsx";
 
 import { projects} from '../../data/apiData.ts'
 ---
 
-<NonDynamicPageLayout title={`Projectes i events del Club Bàsquet Granollers`} heading={`Projectes i events del CBG`}>
+<PageLayout title={`Projectes i events del Club Bàsquet Granollers`} heading={`Projectes i events del CBG`}>
   <div class="component-container">
     <div class="projects-desktop">
       {
@@ -24,7 +24,7 @@ import { projects} from '../../data/apiData.ts'
       }
     </div>
   </div>
-</NonDynamicPageLayout>
+</PageLayout>
 
 
 <style>

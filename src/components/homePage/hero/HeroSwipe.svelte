@@ -1,10 +1,10 @@
 <script>
-  import ButtonAnchor from "../ButtonAnchor.svelte";
+  import ButtonAnchor from "@components/ButtonAnchor.svelte";
   export let slides;
   let totalDots;
 
   import {
-    formatHTMLContent,
+    formatHtml,
     extractSlideDescriptionAndLink,
   } from "@utils/helperFunctions";
 
@@ -31,17 +31,17 @@
   let prevSlideIndex = 0;
 
   function prevSlide() {
-    transitionDirection = "prev"; // Changed from 'next' to 'prev'
-    prevSlideIndex = currentSlideIndex; // Store the current slide index as the previous slide index
+    transitionDirection = "prev"; 
+    prevSlideIndex = currentSlideIndex; 
     currentSlideIndex =
-      currentSlideIndex === 0 ? slides.length - 1 : currentSlideIndex - 1; // Corrected the logic for cycling to the previous slide
+      currentSlideIndex === 0 ? slides.length - 1 : currentSlideIndex - 1; 
   }
 
   function nextSlide() {
-    transitionDirection = "next"; // Changed from 'prev' to 'next'
-    prevSlideIndex = currentSlideIndex; // Store the current slide index as the previous slide index
+    transitionDirection = "next";
+    prevSlideIndex = currentSlideIndex; 
     currentSlideIndex =
-      currentSlideIndex === slides.length - 1 ? 0 : currentSlideIndex + 1; // Corrected the logic for cycling to the next slide
+      currentSlideIndex === slides.length - 1 ? 0 : currentSlideIndex + 1; 
   }
 
   function handleDotClick(index) {
@@ -75,9 +75,9 @@
 
         <div class="hero-info-container">
           <div class="hero-info-flex">
-            <h2>{formatHTMLContent(slide.title.rendered)}</h2>
+            <h2>{formatHtml(slide.title.rendered)}</h2>
             <p>
-              {formatHTMLContent(
+              {formatHtml(
                 extractSlideDescriptionAndLink(slide.content.rendered)
                   .description,
               )}
@@ -148,8 +148,6 @@
     height: 0.6875rem;
     border-radius: 50%;
     border: 1px solid var(--clr-accent);
-    /* background-color: var(--color-white);
-    cursor: pointer; */
   }
 
   .active-dot {
@@ -158,9 +156,9 @@
   section {
     position: relative;
     margin-top: calc(
-      (var(--bottom-header-hg) + var(--header-separator-line-hg)) * -1
+      (var(--hg-header-bottom-section) + var(--hg-sponsors-all)) * -1
     );
-    height: calc(100dvh - var(--top-header-hg));
+    height: calc(100dvh - var(--hg-header-top-section));
     overflow: hidden;
   }
 
@@ -173,13 +171,12 @@
   .hero-info-container {
     position: absolute;
     background-color: rgba(0, 0, 0, 0.65);
-    top: calc(var(--bottom-header-hg) + var(--header-separator-line-hg));
+    top: calc(var(--hg-header-bottom-section) + var(--hg-sponsors-all));
     left: 0;
     width: 37rem;
     bottom: 0rem;
     display: flex;
-    padding-inline: var(--padding-inline);
-    /* justify-content: center; */
+    padding-inline: var(--pd-x);
     align-items: center;
   }
 
@@ -257,7 +254,7 @@
 
   @media (max-width: 1025px) {
     .hero-info-container {
-      padding-inline: var(--padding-inline-tablet);
+      padding-inline: var(--pd-x-medium);
     }
 
     h2 {
@@ -268,11 +265,11 @@
 
   @media (max-width: 648px) {
     .hero-info-container {
-      padding-inline: var(--padding-inline-mobile);
+      padding-inline: var(--pd-x-small);
       width: 100%;
     }
     .carousel-dots {
-      left: var(--padding-inline-mobile);
+      left: var(--pd-x-small);
       transform: none;
     }
     section {

@@ -1,5 +1,8 @@
 ---
+//Import components
 import ButtonAnchor from "@components/ButtonAnchor.astro";
+
+//Import functions
 import { titleSlugMapper } from "@utils/helperFunctions";
 
 import { TEAMS_SLUGS } from "@data/globalConstants";
@@ -44,9 +47,9 @@ const slug = mapped ? mapped.slug : "/equips/cos-tecnic";
 <style>
   .team-article {
     position: relative;
-    width: 17.8125rem;
+    width: var(--wd-four-columns);
     height: 19.3125rem;
-    border-top-left-radius: 2.9375rem;
+    border-top-left-radius: var(--brdr-left-top-radius);
     overflow: hidden;
   }
 
@@ -98,13 +101,12 @@ const slug = mapped ? mapped.slug : "/equips/cos-tecnic";
   }
 
   .mascot {
-    /* position: absolute; */
     width: 9rem;
     object-fit: contain;
   }
   @media (max-width: 1385px) {
     .team-article {
-      width: 22.14806rem;
+      width: var(--wd-three-columns);
       height: 23.4375rem;
     }
     .half-hidden {
@@ -148,7 +150,6 @@ const slug = mapped ? mapped.slug : "/equips/cos-tecnic";
     .team-article {
       width: 100vw;
       height: auto;
-      margin-left: calc(var(--padding-inline-mobile) * -1);
     }
   }
 </style>

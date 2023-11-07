@@ -1,8 +1,8 @@
 ---
-const { fixedLinks } = Astro.props;
+import { fixedLinks } from "@data/apiData";
 ---
 
-<ul class="top-footer-articles">
+<ul class="g-top-footer-articles">
   {
     fixedLinks.map((link) => (
       <li>
@@ -22,17 +22,21 @@ const { fixedLinks } = Astro.props;
 
 <style>
   h5 {
-    font-weight: 500;
-    /* font-size: 1.125rem; */
+    font-weight: var(--fnt-wg-regular);
   }
 
-  /* Add padding to the bottom of all <li> elements */
-  .top-footer-articles li {
-    padding-bottom: 1.8rem; /* or whatever value you prefer */
+  .g-top-footer-articles {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 8.0625rem;
   }
 
-  /* Remove padding from the bottom of the last <li> element */
-  .top-footer-articles li:last-child {
+  .g-top-footer-articles li {
+    padding-bottom: 1.8rem;
+  }
+
+  .g-top-footer-articles li:last-child {
     padding-bottom: 0;
   }
 

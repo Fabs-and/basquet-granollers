@@ -1,16 +1,20 @@
 ---
-import PageLayout from "@layouts/PageLayout.astro";
+//Import layouts
+import DynamicPageLayout from "@layouts/DynamicPageLayout.astro.tsx";
 
+//Import data
 import { projects } from "../../data/apiData.ts";
+
+//Import functions
+import { formatHtml } from "@utils/helperFunctions";
 
 export async function getStaticPaths() {
   return projects.map((project) => {
     return {
       params: { projectes: project.slug },
       props: {
-        title: project.title.rendered,
-        content: project.content.rendered,
-        date: project.date,
+        title: formatHtml(project.title.rendered),
+        content: formatHtml(project.content.rendered),
         image: project.image,
       },
     };
@@ -20,4 +24,4 @@ export async function getStaticPaths() {
 const project = Astro.props;
 ---
 
-<PageLayout post={project} pageTitle={project.title.rendered} />
+<DynamicPageLayout post={project} />

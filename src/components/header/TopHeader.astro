@@ -1,6 +1,5 @@
 ---
 import SocialMediaMenu from "@components/SocialMediaMenu.astro";
-import { extractTopHeaderContent } from "@utils/helperFunctions";
 
 const { topHeaderContent } = Astro.props;
 
@@ -65,11 +64,11 @@ const { text2, link2 } = topHeaderContent![1];
     font-weight: 500;
     font-style: italic;
     width: 100%;
-    min-height: var(--top-header-hg);
+    min-height: var(--hg-header-top-section);
     display: flex;
     align-items: center;
     padding-left: 12.14rem;
-    padding-right: var(--padding-inline);
+    padding-right: var(--pd-x);
   }
 
   .text-content {
@@ -79,7 +78,7 @@ const { text2, link2 } = topHeaderContent![1];
   }
   .social-menu {
     position: absolute;
-    right: var(--padding-inline);
+    right: var(--pd-x);
   }
 
   @media (max-width: 1025px) {

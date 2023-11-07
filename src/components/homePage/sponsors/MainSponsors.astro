@@ -1,23 +1,33 @@
 ---
+//Import layouts
+import HpSectionLayout from "@layouts/HpSectionLayout.astro";
+
+//Import data
 import { mainSponsorsWhite } from "@data/apiData";
 ---
 
-<section class="main-sponsors-flex-container">
-  <p class="main-sponsors-title">Patrocinadors principals</p>
-  <nav>
-    <ul class="main-sponsors-container">
-      {
-        mainSponsorsWhite.map((sponsor) => (
-          <li>
-            <a href={sponsor.caption} target="_blank" rel="noopener noreferrer">
-              <img src={sponsor.url} alt={sponsor.alt} loading="lazy" />
-            </a>
-          </li>
-        ))
-      }
-    </ul>
-  </nav>
-</section>
+<HpSectionLayout noHeading={true} yPadding="var(--pd-y-small)">
+  <aside class="main-sponsors-flex-container">
+    <p class="main-sponsors-title">Patrocinadors principals</p>
+    <nav>
+      <ul class="main-sponsors-container">
+        {
+          mainSponsorsWhite.map((sponsor) => (
+            <li>
+              <a
+                href={sponsor.caption}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <img src={sponsor.url} alt={sponsor.alt} loading="lazy" />
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+    </nav>
+  </aside>
+</HpSectionLayout>
 
 <style>
   .main-sponsors-flex-container {
@@ -25,36 +35,44 @@ import { mainSponsorsWhite } from "@data/apiData";
     align-items: center;
     justify-content: center;
     gap: 3.05rem;
-    height: var(--sponsors-main-hg);
-    padding-inline: var(--padding-inline-tablet);
   }
 
   .main-sponsors-title {
-    height: 60%;
+    position: relative;
     padding-right: 3.05rem;
     display: flex;
     align-items: center;
-    border-right: 1px solid white;
   }
-  ul {
+
+  .main-sponsors-title::after {
+    content: "";
+    border-right: 1px solid white;
+    height: calc(var(--pd-y-medium) * 2); 
+    position: absolute;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+  .main-sponsors-container {
     display: flex;
     align-items: center;
     gap: 3.05rem;
   }
 
   @media (max-width: 680px) {
+    .main-sponsors-flex-container {
+      flex-direction: column;
+      gap: 1rem;
+    }
     .main-sponsors-title {
       height: fit-content;
       padding: 0rem;
-      border-right: none;
     }
-    .main-sponsors-flex-container {
-      flex-direction: column;
-      padding-inline: var(--padding-inline-mobile);
+    .main-sponsors-title::after {
+      display: none;
+    }
 
-      gap: 1rem;
-    }
-    ul {
+    .main-sponsors-container {
       gap: 2rem;
     }
   }

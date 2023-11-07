@@ -1,0 +1,150 @@
+---
+//Import layouts
+import BaseLayout from "./BaseLayout.astro";
+
+// Import functions
+import {
+  stripHtml,
+  truncateString,
+} from "@utils/helperFunctions";
+
+const { post, isPost } = Astro.props;
+
+const { title, content, image, date } = post;
+
+const pageDescription = truncateString(stripHtml(content));
+---
+
+<BaseLayout {title} {pageDescription}>
+  <section class="page-container">
+    <article>
+      <header class="article-header">
+        <div class="article-header-text">
+          <h1 set:html={title} />
+          {isPost && <p class="g-date-style">{`Publicat ${date}`}</p>}
+        </div>
+        {
+          image && image.url !== "" ? (
+            <img
+              class="g-opacity"
+              src={image.url}
+              alt={image.alt && image.alt}
+            />
+          ) : (
+            <img
+              class="g-opacity"
+              src="/default-pic.avif"
+              alt="Imatge de recurs amb totes les seccions del Club Bàsquet Granollers"
+            />
+          )
+        }
+      </header>
+      <div class="article-content">
+        <Fragment set:html={content} />
+      </div>
+    </article>
+  </section>
+</BaseLayout>
+
+<style>
+  h1 {
+    font-size: 2.75rem;
+    font-weight: 600;
+  }
+  .page-container {
+    background-color: var(--clr-contrast);
+    padding-inline: var(--pd-x);
+    color: var(--clr-primary);
+  }
+
+  .article-header {
+    position: relative;
+    background: #181e29;
+    margin-inline: calc(var(--pd-x) * -1);
+  }
+
+  .article-header-text {
+    color: var(--clr-contrast);
+    position: relative;
+    padding-inline: var(--pd-x-internal-page);
+    padding-block: 2rem;
+    min-height: 19.0625rem;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    text-align: center;
+    justify-content: center;
+    text-wrap: balance;
+    gap: 2.62rem;
+    max-width: 1206px;
+    margin: auto;
+  }
+
+  .article-header img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center top;
+  }
+  .article-content {
+    padding-inline: calc(19.44rem - var(--pd-x));
+    padding-block: 2.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    text-align: justify;
+    max-width: 1206px;
+    margin: auto;
+  }
+
+  .article-content img {
+    object-fit: contain;
+  }
+
+  .article-content li {
+    display: block !important;
+  }
+
+  @media (max-width: 1181px) {
+    .page-container {
+      padding-inline: var(--pd-x-medium);
+    }
+    .article-header {
+      margin-inline: calc(var(--pd-x-medium) * -1);
+    }
+    .article-header-text {
+      padding-inline: var(--pd-x-medium);
+    }
+
+    .article-content {
+      padding-inline: calc(6.88rem - var(--pd-x-medium));
+    }
+  }
+
+  @media (max-width: 648px) {
+    h1 {
+      font-size: 2.25rem;
+      line-height: 2.75rem;
+    }
+    .page-container {
+      padding-inline: var(--pd-x-small);
+    }
+
+    .article-header {
+      margin-inline: calc(var(--pd-x-small) * -1);
+    }
+
+    .article-header-text {
+      padding-inline: var(--pd-x-small);
+      gap: 1.38rem;
+    }
+    .article-content {
+      padding-inline: calc(var(--pd-x-small) * -1);
+    }
+  }
+</style>

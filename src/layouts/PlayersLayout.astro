@@ -1,5 +1,8 @@
 ---
-import InternalPageLayout from "./NonDynamicPageLayout.astro";
+//Import layouts
+import InternalPageLayout from "./PageLayout.astro";
+
+//Import functions
 import { extractPlayerInfo } from "@utils/helperFunctions";
 
 const { heading, subHeading, team } = Astro.props;
@@ -50,7 +53,7 @@ const { heading, subHeading, team } = Astro.props;
     font-size: 0.78rem;
   }
   .players-container {
-    /* padding-block: var(--padding-section-big); */
+    /* padding-block: var(--pd-y-big); */
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
@@ -69,7 +72,7 @@ const { heading, subHeading, team } = Astro.props;
     height: 78%;
     width: 100%;
     background-color: #d9d9d9;
-    border-top-left-radius: 2.9375rem;
+    border-top-left-radius: var(--brdr-left-top-radius);
     overflow: hidden;
   }
 
@@ -93,8 +96,8 @@ const { heading, subHeading, team } = Astro.props;
 
   @media (max-width: 1025px) {
     .equips-page {
-      padding-inline: var(--padding-inline-tablet);
-      padding-block: var(--padding-section-medium);
+      padding-inline: var(--pd-x-medium);
+      padding-block: var(--pd-y-medium);
     }
     .player {
       width: 21.625rem;
@@ -104,8 +107,8 @@ const { heading, subHeading, team } = Astro.props;
 
   @media (max-width: 648px) {
     .equips-page {
-      padding-inline: var(--padding-inline-mobile);
-      padding-block: var(--padding-section-big);
+      padding-inline: var(--pd-x-small);
+      padding-block: var(--pd-y-big);
     }
 
     h1 {

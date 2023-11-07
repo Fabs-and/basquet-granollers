@@ -1,77 +1,79 @@
 ---
-import { mainSponsorsBlue, otherSponsors} from '@data/apiData'
+//Import layouts
+import HpSectionLayout from "@layouts/HpSectionLayout.astro";
+
+//Import data
+import { mainSponsorsBlue, otherSponsors } from "@data/apiData";
 ---
 
-<section class="sponsors-outter-container">
-  <div class="inner-containers">
-    <p>Patrocinadors principals</p>
-    <nav>
-      <ul class="main-sponsors-container">
-        {
-          mainSponsorsBlue.map((mainSponsor) => (
-            <li>
-              <a
-                href={mainSponsor.caption}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <img
-                  src={mainSponsor.url}
-                  alt={mainSponsor.alt}
-                  loading="lazy"
-                />
-              </a>
-            </li>
-          ))
-        }
-      </ul>
-    </nav>
-  </div>
-  <div class="inner-containers">
-    <p>Patrocinadors equips</p>
-    <nav>
-      <ul class="other-sponsors-container">
-        {
-          otherSponsors.map((otherSponsor) => (
-            <li>
-              <a
-                href={otherSponsor.caption}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <img
-                  class="other-sponsors-images"
-                  src={otherSponsor.url}
-                  alt={otherSponsor.alt}
-                  loading="lazy"
-                />
-              </a>
-            </li>
-          ))
-        }
-      </ul>
-    </nav>
-  </div>
-</section>
+<HpSectionLayout
+  noHeading={true}
+  color="var(--clr-primary)"
+  bgColor="var(--clr-contrast)"
+>
+  <aside class="sponsors-outter-container">
+    <div class="sponsors-inner-containers">
+      <p class="title-line">Patrocinadors principals</p>
+      <nav>
+        <ul class="main-sponsors-container">
+          {
+            mainSponsorsBlue.map((mainSponsor) => (
+              <li>
+                <a
+                  href={mainSponsor.caption}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <img
+                    src={mainSponsor.url}
+                    alt={mainSponsor.alt}
+                    loading="lazy"
+                  />
+                </a>
+              </li>
+            ))
+          }
+        </ul>
+      </nav>
+    </div>
+    <div class="sponsors-inner-containers">
+      <p class="title-line">Patrocinadors equips</p>
+      <nav>
+        <ul class="other-sponsors-container">
+          {
+            otherSponsors.map((otherSponsor) => (
+              <li>
+                <a
+                  href={otherSponsor.caption}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <img
+                    class="other-sponsors-images"
+                    src={otherSponsor.url}
+                    alt={otherSponsor.alt}
+                    loading="lazy"
+                  />
+                </a>
+              </li>
+            ))
+          }
+        </ul>
+      </nav>
+    </div>
+  </aside>
+</HpSectionLayout>
 
 <style>
   .sponsors-outter-container {
-    background-color: var(--clr-contrast);
-    color: var(--clr-primary);
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding-block: 3rem;
-    padding-inline: var(--padding-inline);
     gap: 2.5rem;
   }
 
-  nav {
+  .sponsors-inner-containers {
     width: 100%;
-  }
-  .inner-containers {
-    width: 100%;
-    max-width: 1200px; /* or whatever maximum width you desire */
     margin: 0 auto;
     display: flex;
     flex-direction: column;
@@ -89,33 +91,30 @@ import { mainSponsorsBlue, otherSponsors} from '@data/apiData'
   .other-sponsors-container {
     display: flex;
     flex-wrap: wrap;
-    justify-content: center; /* This will center the items horizontally */
-    align-content:start; /* This will center the items vertically when there's more than one row */
+    justify-content: center;
+    align-content: start;
     gap: 4.11rem;
     width: 100%;
-    max-width: 1200px; /* Or whatever maximum width you desire */
-    margin: 0 auto; /* This will center the container itself */
-}
+  }
 
-.other-sponsors-container li {
-    max-width: 123.29px; /* This ensures the items don't grow beyond 104px */
-    height: 58.96px; /* This sets the height of the items */
-}
+  .other-sponsors-container li {
+    max-width: 123.29px;
+    height: 58.96px;
+  }
 
-.other-sponsors-images {
-    /* width: 100%; */
-    height: 100%; /* This ensures the image takes up the full height of the list item */
-    object-fit: contain; /* This keeps the image aspect ratio while covering the area */
+  .other-sponsors-images {
+    height: 100%;
+    object-fit: contain;
     margin: auto;
-}
+  }
 
-  p {
+  .title-line {
     width: 100vw;
     text-align: center;
     position: relative;
   }
 
-  p::before {
+  .title-line::before {
     content: "";
     height: 1px;
     width: calc(50% - 6rem);
@@ -125,7 +124,7 @@ import { mainSponsorsBlue, otherSponsors} from '@data/apiData'
     left: 0;
   }
 
-  p::after {
+  .title-line::after {
     content: "";
     height: 1px;
     width: calc(50% - 6rem);
@@ -135,19 +134,7 @@ import { mainSponsorsBlue, otherSponsors} from '@data/apiData'
     right: 0;
   }
 
-  
-
-  @media (max-width: 1025px) {
-    .sponsors-outter-container {
-      padding-inline: var(--padding-inline-tablet);
-    }
-  }
-
   @media (max-width: 680px) {
-    .sponsors-outter-container {
-      padding-inline: var(--padding-inline-mobile);
-    }
-
     .main-sponsors-container {
       gap: 2rem;
     }
@@ -157,9 +144,8 @@ import { mainSponsorsBlue, otherSponsors} from '@data/apiData'
     }
 
     .other-sponsors-container li {
-    max-width: 92.28px; /* This ensures the items don't grow beyond 104px */
-    height: 43.13px; /* This sets the height of the items */
- 
-
+      max-width: 92.28px;
+      height: 43.13px;
+    }
   }
 </style>

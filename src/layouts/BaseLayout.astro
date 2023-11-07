@@ -2,13 +2,16 @@
 // Import styles
 import "@styles/global.css";
 
-import {SEO} from 'astro-seo'
-// Import components
-import FooterLayout from "./FooterLayout.astro";
-import HeaderLayout from "./HeaderLayout.astro";
 
-const { pageHeading } = Astro.props;
-const DESCRIPTION = "Benvinguts i benvingudes a la web oficial del Club Bàsquet Granollers, un equip de bàsquet amb més de 90 anys d'història. El nostre equip està dedicat a promoure l'esportivitat, la comunitat i l'amor pel bàsquet. Vine al proper partit o segueix-nos a les xarxes socials per donar suport a l'esport local i ser part de la nostra família de bàsquet."
+// Import components
+import { SEO } from "astro-seo";
+import Footer from "../components/footer/Footer.astro";
+import Header from "../components/header/Header.astro";
+
+const { title, pageDescription } = Astro.props;
+
+const DESCRIPTION =
+  "Benvinguts i benvingudes a la web oficial del Club Bàsquet Granollers, un equip de bàsquet amb més de 90 anys d'història. El nostre equip està dedicat a promoure l'esportivitat, la comunitat i l'amor pel bàsquet. Vine al proper partit o segueix-nos a les xarxes socials per donar suport a l'esport local i ser part de la nostra família de bàsquet.";
 ---
 
 <html lang="ca">
@@ -22,23 +25,26 @@ const DESCRIPTION = "Benvinguts i benvingudes a la web oficial del Club Bàsquet
 
     <meta name="generator" content={Astro.generator} />
     <SEO
-      title="Club Bàsquet Granollers"
+      title={title !== undefined &&
+      title.toLowerCase().includes("club bàsquet granollers")
+        ? `${title}`
+        : title !== undefined ? `${title} | Club Bàsquet Granollers` :"Club Bàsquet Granollers"}
       canonical="https://cbgranollers.cat/"
-      description={pageHeading || DESCRIPTION}
+      description={pageDescription || DESCRIPTION}
       openGraph={{
         basic: {
-          title: `${'Club Bàsquet Granollers'}`,
+          title: title ? `${title}` : "Club Bàsquet Granollers",
           type: "website",
           image: `/og-image.png`,
-        }
+        },
       }}
     />
   </head>
   <body>
-    <HeaderLayout />
+    <Header />
     <main>
       <slot />
     </main>
-    <FooterLayout />
+    <Footer />
   </body>
 </html>

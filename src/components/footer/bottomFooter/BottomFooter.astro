@@ -1,35 +1,62 @@
 ---
+//Import components
 import SocialMediaMenu from "@components/SocialMediaMenu.astro";
-import CurrentYear from "./CurrentYear.svelte";
-
 import BottomFooterLinks from "./BottomFooterLinks.astro";
-const { bottomFooterLinks } = Astro.props;
+import Copyright from "./Copyright.svelte";
 ---
 
-<div class="bottom-footer-desktop">
+<div class="bottom-footer-container-responsive">
+  <BottomFooterLinks />
+
+  <div class="social-container">
+    <SocialMediaMenu />
+  </div>
+
   <div>
-    <BottomFooterLinks {bottomFooterLinks} />
+    <Copyright client:visible />
   </div>
   <small>
-    Web Propietat del Club Bàsquet Granollers. Copyright © <CurrentYear
-      client:visible
-    />. All rights reserved.
-  </small>
+    Web Propietat del Club Bàsquet Granollers. Copyright © <CurrentYear client:visible />. All rights reserved.
+</small>
   <SocialMediaMenu />
 </div>
 
 <style>
-  .bottom-footer-desktop {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
+  .bottom-footer-container-responsive {
+    display: grid;
+    grid-template-columns: 5rem 8rem auto 15rem;
   }
 
-  small {
-    font-size: 0.5625rem;
+  .social-container {
+    grid-column-start: 4;
+    justify-self: end;
   }
 
+  .bottom-footer-container-responsive div:last-child {
+    grid-column-start: 3;
+    grid-column-end: 4;
+    grid-row-start: 1;
+    justify-self: center;
+  }
   @media (max-width: 1025px) {
+    .bottom-footer-container-responsive {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      row-gap: 2.12rem;
+    }
+    .social-container {
+      grid-row-start: 1;
+      justify-self: end;
+    }
+    .bottom-footer-container-responsive div:last-child {
+      grid-row-start: 2;
+      grid-column-start: 1;
+      grid-column-end: 5;
+      justify-self: center;
+    }
+  }
+
+  @media (width < 1025px) {
     small {
       font-size: 0.75rem;
     }

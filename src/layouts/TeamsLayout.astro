@@ -1,5 +1,7 @@
 ---
-import InternalPageLayout from "./NonDynamicPageLayout.astro";
+//Import layouts
+import InternalPageLayout from "./PageLayout.astro";
+
 const { teamsImages, heading, subHeading, title } = Astro.props;
 ---
 
@@ -40,7 +42,7 @@ const { teamsImages, heading, subHeading, title } = Astro.props;
   .image-container {
     max-width: 595px;
     /* height: 18.4rem; */
-    border-top-left-radius: 2.9375rem;
+    border-top-left-radius: var(--brdr-left-top-radius);
     overflow: hidden;
   }
 
@@ -60,7 +62,7 @@ const { teamsImages, heading, subHeading, title } = Astro.props;
   @media (max-width: 415px) {
     .image-container {
       width: 100vw;
-      margin-inline: calc(var(--padding-inline-mobile) * -1);
+      margin-inline: calc(var(--pd-x-small) * -1);
     }
   }
 </style>

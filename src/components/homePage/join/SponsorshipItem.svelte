@@ -25,7 +25,7 @@
       </div>
     {/each}
   </div>
-  <button on:click={toggleDialog} class="button-anchor"> CONTACTA </button>
+  <button on:click={toggleDialog} class="g-button-anchor"> CONTACTA </button>
 </article>
 
 <style>
@@ -36,7 +36,7 @@
     height: 25.1875rem;
     width: 24.1875rem;
     background-color: var(--clr-secondary);
-    border-top-left-radius: 2.9375rem;
+    border-top-left-radius: var(--brdr-left-top-radius);
     overflow: hidden;
     padding-inline: 1.88rem;
     display: flex;
@@ -70,11 +70,11 @@
 
   @media (max-width: 859px) {
     .sponsor-article {
-      width: var(--slider-item-width);
+      width: var(--wd-slider-item);
       height: 100%;
     }
 
-    .button-anchor {
+    .g-button-anchor {
       display: none;
     }
   }

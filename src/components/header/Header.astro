@@ -2,7 +2,7 @@
 import TopHeader from "@components/header/TopHeader.astro";
 import BottomHeader from "@components/header/bottomHeader/BottomHeader.astro";
 import HeaderLineSeparator from "@components/header/HeaderLineSeparator.astro";
-import BottomHeaderResponsive from "../components/header/bottomHeader/BottomHeaderResponsive.svelte";
+import BottomHeaderResponsive from "./bottomHeader/BottomHeaderResponsive.svelte";
 
 import {
   extractNavigation,
@@ -75,12 +75,12 @@ const websiteContent = [...pagesToSearch, ...postsToSearch];
     z-index: 10;
   }
   .header-top-section {
-    min-height: var(--top-header-hg);
+    min-height: var(--hg-header-top-section);
     background-color: var(--clr-primary);
   }
 
   .bottom-header {
-    min-height: var(--bottom-header-hg);
+    min-height: var(--hg-header-bottom-section);
     background-color: var(--clr-contrast);
     background-color: rgba(243, 243, 243, 0.9);
     position: relative;
@@ -90,15 +90,15 @@ const websiteContent = [...pagesToSearch, ...postsToSearch];
   }
 
   .separator-line {
-    height: var(--header-separator-line-hg);
+    height: var(--hg-sponsors-all);
   }
   @media (max-width: 1258px) {
     .bottom-header {
       display: none;
-      padding-inline: var(--padding-inline);
+      padding-inline: var(--pd-x);
     }
     .separator-line {
-      height: var(--header-separator-line-responsive-hg);
+      height: var(--hg-sponsors-all-responsive);
     }
 
     .responsive {
@@ -107,17 +107,17 @@ const websiteContent = [...pagesToSearch, ...postsToSearch];
   }
   @media (max-width: 1065px) {
     .bottom-header {
-      padding-inline: var(--padding-inline-tablet);
+      padding-inline: var(--pd-x-medium);
     }
   }
 
-  @media (max-width: 647px) {
+  @media (max-width: 648px) {
     .header-top-section {
       display: none;
     }
 
     .bottom-header {
-      padding-inline: var(--padding-inline-mobile);
+      padding-inline: var(--pd-x-small);
     }
   }
 </style>

@@ -1,195 +1,53 @@
 // Replace <div> for <p>
-export function formatHTMLContent(str: string) {
+import { replaceCharacters, processParagraphTags, cleanupImgTags,styleListTags, modifyAnchorTags, replaceAccents, replaceHeadingTags, setIframeWidth, replaceURLs, urlRegex  } from "./helpersHelpers";
+
+
+export function formatHtml(str: string) {
   // Check if the input is a string
   if (typeof str !== "string") {
     console.error("Expected a string argument, received:", typeof str);
     return "";
   }
-  // Replace &#215;3 with x
-  str = str.replace(/&#215;/g, "x");
-
-  const divTag = /<div>/g;
-  const closingDiv = /<\/div>/g;
-  const imgTag = /<img [^>]*src="([^"]*)"[^>]*>/g;
-
-  // Convert divs to ps
   let newStr = str;
-  if (divTag.test(str) && closingDiv.test(str)) {
-    newStr = str.replace(divTag, "<p>").replace(closingDiv, "</p>");
+  if (/&#215;|&#8217;/.test(str)) {
+    newStr = replaceCharacters(str, [
+      { pattern: /&#215;/g, replacement: "x" },
+      { pattern: /&#8217;/g, replacement: "'" },
+    ]);
   }
 
-  // Clean up img tags
-  if (imgTag.test(newStr)) {
-    newStr = newStr.replace(imgTag, (match, p1) => `<img src="${p1}">`);
+  // Call each helper function in sequence with checks
+  newStr = processParagraphTags(newStr);
+
+  if (/img/.test(newStr)) {
+    newStr = cleanupImgTags(newStr);
   }
 
-  // Strip a tags from around img tags
-  newStr = newStr.replace(/<a[^>]*>\s*(<img [^>]+>)\s*<\/a>/g, "$1");
-
-  // Apply align-self: center to img tags
-  const imgTagSimple = /<img src="([^"]*)">/g;
-  if (imgTagSimple.test(newStr)) {
-    newStr = newStr.replace(
-      imgTagSimple,
-      '<img style="align-self: center;" src="$1">',
-    );
+  if (/(ul|ol|li)/.test(newStr)) {
+    newStr = styleListTags(newStr);
   }
 
-  // Strip p tags from around img tags
-  const pTagAroundImg = /<p[^>]*>\s*(<img [^>]+>)\s*<\/p>/g;
-  if (pTagAroundImg.test(newStr)) {
-    newStr = newStr.replace(pTagAroundImg, "$1");
+  if (/a/.test(newStr)) {
+    newStr = modifyAnchorTags(newStr);
   }
 
-  // Ensure ul, ol, and li have default behaviors
-  const ulTag = /<ul([^>]*)>/g;
-  const olTag = /<ol([^>]*)>/g;
-  const liTag = /<li([^>]*)>/g;
+  newStr = replaceAccents(newStr);
+  newStr = replaceHeadingTags(newStr);
 
-  if (ulTag.test(newStr)) {
-    newStr = newStr.replace(
-      ulTag,
-      '<ul$1 style="list-style-type: disc; padding-left: 2em;">',
-    );
+  if (/iframe/.test(newStr)) {
+    newStr = setIframeWidth(newStr);
   }
 
-  if (olTag.test(newStr)) {
-    newStr = newStr.replace(
-      olTag,
-      '<ol$1 style="list-style-type: decimal; padding-left: 2em;">',
-    );
-  }
-
-  if (liTag.test(newStr)) {
-    newStr = newStr.replace(liTag, '<li$1 style="display: list-item;">');
-  }
-
-  // Remove text-align style from p tags
-  const pTagStyle = /<p style="[^"]*text-align:[^;]*;?[^"]*">/g;
-  if (pTagStyle.test(newStr)) {
-    newStr = newStr.replace(pTagStyle, (match) =>
-      match.replace(/text-align:[^;]*;?/g, ""),
-    );
-  }
-
-  // Set color for anchor tags
-  const aTag = /<a([^>]*)>/g;
-  if (aTag.test(newStr)) {
-    newStr = newStr.replace(
-      aTag,
-      '<a$1 style="color: var(--clr-primary); text-decoration: underline">',
-    );
-  }
-
-  // Replace right accents with apostrophes
-  if (/\b´\b/g.test(newStr)) {
-    newStr = newStr.replace(/(\b)´(\b)/g, "$1'$2");
-  }
-
-  // Replace heading tags and adjust capitalization
-  newStr = newStr.replace(
-    /<(\/?)h([1-6])([^>]*)>(.*?)<\/h\2>/g,
-    (match, closingSlash, level, rest, content) => {
-      const newLevel = parseInt(level, 10) + 1;
-      if (newLevel <= 6) {
-        // Strip <span> and <strong> tags from heading content
-        const strippedContent = content.replace(
-          /<\/?span[^>]*>|<\/?strong[^>]*>/g,
-          "",
-        );
-        // Remove any existing class and style attributes
-        const restWithoutClassOrStyle = rest.replace(
-          / class="[^"]*"| style="[^"]*"/g,
-          "",
-        );
-        // Determine class based on heading level
-        const className =
-          newLevel === 2 ? "g-h2-internal-page" : "g-headings-internal-page";
-        // Adjust capitalization of heading content
-        const adjustedContent = strippedContent
-          .toLowerCase()
-          .replace(/\b\w/g, (char, index) => {
-            // Capitalize the first character of the content and the first character following a period and a space
-            if (index === 0 || strippedContent.charAt(index - 2) === ".") {
-              return char.toUpperCase();
-            }
-            return char;
-          });
-        return `<${closingSlash}h${newLevel}${restWithoutClassOrStyle} class="${className}">${adjustedContent}</h${newLevel}>`;
-      }
-
-      return match; // Return the original match if the new level is out of range
-    },
-  );
-
-  // Pull out anchor tags from headings, span or strong
-  newStr = newStr.replace(
-    /<(h[1-6]|span|strong)[^>]*>(.*?)<a ([^>]*)>(.*?)<\/a>(.*?)<\/\1>/g,
-    (match, tag, before, aAttributes, aContent, after) => {
-      return `${before}<a ${aAttributes}>${aContent}</a>${after}`;
-    },
-  );
-
-  newStr = newStr.replace(
-    /<a([^>]*)style="[^"]*"([^>]*)>(.*?)<\/a>/g,
-    (match, before, after, content) => {
-      return `<a${before}${after} class="button-anchor-internals">${content}</a>`;
-    },
-  );
-
-  // Remove > and < characters from anchor tag content
-  newStr = newStr.replace(
-    /<a([^>]*)>(.*?)<\/a>/g,
-    (match, attributes, content) => {
-      // Replace &gt; and &lt; with empty strings to remove them
-      const updatedContent = content.replace(/&gt;|&lt;/g, "");
-      return `<a${attributes}>${updatedContent}</a>`;
-    },
-  );
-
-  // Convert anchor tag text to uppercase
-  newStr = newStr.replace(
-    /<a([^>]*)>(.*?)<\/a>/g,
-    (match, attributes, content) => {
-      // Convert content to uppercase
-      const uppercaseContent = content.toUpperCase();
-      return `<a${attributes}>${uppercaseContent}</a>`;
-    },
-  );
-
-  // Set width to 100% for iframe tags
-  newStr = newStr.replace(/<iframe([^>]+)>/g, (match, p1) => {
-    // Check if width attribute already exists
-    const widthAttrMatch = p1.match(/\bwidth="[^"]*"/);
-    if (widthAttrMatch) {
-      // Replace value of existing width attribute
-      return match.replace(widthAttrMatch[0], 'width="100%"');
-    } else {
-      // Add width attribute if it doesn't exist
-      return `<iframe width="100%"${p1}>`;
-    }
-  });
-
-  // Replace cbgranollers.cat URLs with wordpress.cbgranollers.cat URLs
-  const urlRegex = /(https?:\/\/cbgranollers\.cat\/[^"]*)/g;
   if (urlRegex.test(newStr)) {
-    newStr = newStr.replace(urlRegex, (match) => {
-      return match.replace("cbgranollers.cat", "wordpress.cbgranollers.cat");
-    });
+    newStr = replaceURLs(newStr);
   }
 
   return newStr;
 }
 
-export function removeHTMLTags(str: string) {
-  const ellipsis = /\[.*?\]/g; // match anything in square brackets
-  const emptySpace = /&.*?;/g; // match anything between & and ;
-  let newStr;
-  if (ellipsis.test(str) || emptySpace.test(str)) {
-    newStr = str.replace(ellipsis, "...");
-  }
-  if (emptySpace.test(str)) str.replace(emptySpace, " ");
-  return newStr;
+
+export function stripHtml(str: string) {
+  return str.replace(/<\/?[^>]+(>|$)/g, "").replace(/&nbsp;/g, " ");
 }
 
 export function dateConverter(date: string | null | Date) {
@@ -206,17 +64,6 @@ export function dateConverter(date: string | null | Date) {
   )}.${new Intl.DateTimeFormat("ca", { month: "numeric" }).format(
     newDate,
   )}.${new Intl.DateTimeFormat("ca", { year: "numeric" }).format(newDate)}`;
-}
-
-export function categoryMapper(
-  allCategories: Category[],
-  postCategories: number[],
-) {
-  if (!Array.isArray(allCategories)) return;
-  const categories = allCategories.filter(
-    (category) => postCategories.indexOf(category.id) !== -1,
-  );
-  return categories;
 }
 
 export function toggleDialog() {
@@ -317,17 +164,6 @@ export function extractNavigation(content: string): NavItem[] {
   return navigation;
 }
 
-export function displayButtonHistory(content: string) {
-  const regex =
-    /<li>\s*<strong>\s*Botó\s+de\s+la\s+història\s*:\s*s[ií]\s*<\/strong>\s*<\/li>/i;
-  return regex.test(content);
-}
-
-export function displaySearchIcon(content: string) {
-  const regex =
-    /<li>\s*<strong>\s*Barra\s+de\s+cerca\s*:\s*s[ií]\s*<\/strong>\s*<\/li>/i;
-  return regex.test(content);
-}
 
 export interface DescriptionAndLink {
   description: string | null;
@@ -536,11 +372,27 @@ export function updateUrltoSubdomain(htmlContent: string): string {
   return htmlContent.replace(urlRegex, "https://wordpress.cbgranollers.cat/$1");
 }
 
-export function isLastYearNews(str: string){
+export function lastYearsNews(str: string) {
   const date = new Date(str).getTime();
   const currentYear = new Date();
   const aYearAgo = currentYear.getTime() - 31536000000;
   return date > aYearAgo;
 }
 
-export function filterConfigPages() {};
+export function truncateString(str: string) {
+  if (str.length <= 198) {
+    return str;
+  }
+
+  let truncated = str.slice(0, 198);
+
+  // Find the index of the last space character in the truncated string
+  let lastSpaceIndex = truncated.lastIndexOf(" ");
+
+  // If a space character is found, truncate the string to end at this last space
+  if (lastSpaceIndex !== -1) {
+    truncated = truncated.slice(0, lastSpaceIndex);
+  }
+  //Trim in case the content starts with empty spaces
+  return truncated.trim() + "...";
+}

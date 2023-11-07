@@ -85,8 +85,8 @@
   .desktop-news-container {
     display: flex;
     gap: 1rem;
-    padding-right: var(--padding-inline);
-    padding-bottom: var(--padding-section-big);
+    /* padding-right: var(--pd-x); */
+    /* padding-bottom: var(--pd-y-big); */
   }
 
   .desktop-news-and-controls {
@@ -194,7 +194,7 @@
 
   @media (max-width: 1025px) {
     .desktop-news-container {
-      padding-bottom: var(--padding-section-medium);
+      padding-bottom: var(--pd-y-medium);
     }
   }
 

@@ -12,84 +12,72 @@
   --clr-contrast: #f3f3f3;
   --clr-accent: #fa6e19;
   --clr-secondary: #084395;
-  --clr-footer: #142847;
+  --clr-footer-top: #142847;
 
   /*Element sizes*/
   /*Cannot use variables in media queries. Would be ideal for responsiveness. Still writting sizes here to have as reference
-    Using px instead of rem to trigger based on screen size
+  Using px instead of rem to trigger based on screen size
   */
-  --regular-width: 1400px;
-  --tablet-width: 769px;
-  --mobile-width: 375px;
-  --padding-inline: 6.13rem;
-  --padding-inline-tablet: 2rem;
-  --padding-inline-mobile: 1.56rem;
-  --padding-inline-header: 3.6rem;
-  --padding-inline-internal-page: 18.88rem;
-  --padding-inline-internal-page-tablet: 3.37rem;
-  --padding-inline-internal-page-mobile: 1.62rem;
-  --header-hg: 3rem;
-  --footer-top-section-hg: 17.6875rem;
+  --wd-regular: 1400px;
+  --wd-btn-regular: 11rem;
+  --wd-btn-small: 9.8rem;
+  --wd-three-columns: 24.1875rem;
+  --wd-three-columns-medium: 18.3875rem;
+  --wd-four-columns: 17.8125rem;
 
-  --footer-bottom-section-hg: 5.6875rem;
-  --footer-bottom-section-tablet-hg: 9.0625rem;
-  --footer-bottom-section-mobile-hg: 13.875rem;
-  --header-separator-line-hg: 0.5625rem;
-  --header-separator-line-responsive-hg: 0.3125rem;
-  --footer-hg: calc(
-    var(--footer-top-section-hg) + var(--footer-bottom-section-hg)
+  --wd-slider-item: 18.6875rem;
+
+  --hg-sponsors-all: 0.5625rem;
+  --hg-sponsors-all-responsive: 0.3125rem;
+  --hg-header-top-section: 2.75rem;
+  --hg-header-bottom-section: 6.3125rem;
+
+  --hg-footer-top-section: 17.6875rem;
+  --hg-footer-bottom-section: 5.6875rem;
+  --hg-footer: calc(
+    var(--hg-footer-top-section) + var(--hg-footer-bottom-section)
   );
 
-  --top-header-hg: 2.75rem;
-  --bottom-header-hg: 6.3125rem;
+  --hg-btn: 2.69rem;
 
-  --sponsors-main-hg: 7.875rem;
-  --sponsors-all-hg: 72.0625rem;
-
-  /*Buttons*/
-  --btn-height: 2.69rem;
-  --btn-width-regular: 11rem;
-  --btn-width-small: 9.8rem;
-
-  /**/
-  --membership-item-wd-big: 24.1875rem;
-  --membership-item-wd-medium: 18.3875rem;
-  --membership-item-wd-small: 24rem;
-
-  --slider-item-width: 18.6875rem;
-
-  --padding-section-big: 4.5rem;
-  --padding-section-medium: 2.62rem;
-  --padding-section-small: 2rem;
-  --padding-heading-big: 2.62rem;
-  --padding-heading-medium: 1.75rem;
-  --padding-heading-small: 1.5rem;
+  --pd-x: 6.13rem;
+  --pd-x-medium: 2rem;
+  --pd-x-small: 1.56rem;
+  --pd-x-internal-page: 18.88rem;
+  --pd-y-big: 4.5rem;
+  --pd-y-medium: 2.62rem;
+  --pd-y-small: 2rem;
+  --pd-y-heading-big: 2.62rem;
+  --pd-y-heading-medium: 1.75rem;
+  --pd-y-heading-small: 1.5rem;
 
   /*Font sizes*/
-  --font-size-regular: 0.78125rem;
-  --font-size-regular: 0.75rem;
-  --font-size-h1: 3.375rem;
-  --font-size-h2: 2.25rem;
-  --font-size-h2-medium: 1.625rem;
-  --font-size-h3: 1.875rem;
-  --font-size-h3: 1.75rem;
-  --font-size-h3-medium: 1.375rem;
-  --font-size-h4: 1.25rem;
-  --font-size-h5: 0.9375rem;
-  --font-size-footer: 0.5625rem;
+  --fnt-sz-regular: 0.78125rem;
+  --fnt-sz-regular: 0.75rem;
+  --fnt-sz-h1: 3.375rem;
+  --fnt-sz-h2: 2.25rem;
+  --fnt-sz-h2-medium: 1.625rem;
+  --fnt-sz-h3: 1.875rem;
+  --fnt-sz-h3: 1.75rem;
+  --fnt-sz-h3-medium: 1.375rem;
+  --fnt-sz-h4: 1.25rem;
+  --fnt-sz-h5: 0.9375rem;
+  --fnt-sz-footer: 0.5625rem;
+  --fnt-sz-footer-top: 0.6875rem;
 
   /*Font weight*/
-  --font-weight-regular: 550;
-  --font-weight-bold: 560;
+  --fnt-wg-regular: 500;
+  --fnt-wg-medium: 600;
+  --fnt-wg-bold: 700;
 
   /*Line Heights*/
-  --line-height-regular: 1.125rem;
-  --line-height-h1: 3.6875rem;
-  --line-height-h2: 2.5625rem;
-  --line-height-h2-medium: 2rem;
-  --line-height-h3: 1.5625rem;
-  --line-height-h4: 1.5625rem;
-  --line-height-h5: 1.5625rem;
+  --line-hg-regular: 1.125rem;
+  --line-hg-h1: 3.6875rem;
+  --line-hg-h2: 2.5625rem;
+  --line-hg-h2-medium: 2rem;
+  --line-hg-h3: 1.5625rem;
+
+  --brdr-left-top-radius: 2.9375rem;
 }
 
 html {
@@ -99,20 +87,13 @@ html {
 }
 
 body {
-  /* position: relative; */
   width: 100vw;
   background-color: var(--clr-primary);
   font-family: "obviously", sans-serif;
-  font-size: var(--font-size-regular);
-  /* font-weight: 300; */
-  line-height: var(--line-height-regular);
+  font-size: var(--fnt-sz-regular);
+  line-height: var(--line-hg-regular);
   color: var(--clr-contrast);
 }
-
-/* main {
-  max-width: var(--regular-width);
-  margin: auto;
-} */
 
 img {
   max-width: 100%;
@@ -120,33 +101,32 @@ img {
 }
 
 h1 {
-  font-size: var(--font-size-h1);
-  line-height: var(--line-height-h1);
-  font-weight: 800;
+  font-size: var(--fnt-sz-h1);
+  line-height: var(--line-hg-h1);
+  font-weight: var(--fnt-wg-bold);
 }
 
 h2 {
-  font-size: var(--font-size-h2);
-  line-height: var(--line-height-h2);
-  font-weight: 600;
+  font-size: var(--fnt-sz-h2);
+  line-height: var(--line-hg-h2);
+  font-weight: var(--fnt-wg-medium);
 }
 
 h3 {
-  font-size: var(--font-size-h3);
+  font-size: var(--fnt-sz-h3);
   line-height: 2.1875rem;
-  font-weight: 500;
+  font-weight: var(--fnt-wg-regular);
 }
 
 h4 {
-  font-size: var(--font-size-h4);
-  line-height: var(--line-height-h4);
-  font-weight: 600;
-  /* text-wrap: balance; */
+  font-size: var(--fnt-sz-h4);
+  line-height: var(--line-hg-h3);
+  font-weight: var(--fnt-wg-medium);
 }
 
 h5 {
-  font-size: var(--font-size-h5);
-  font-weight: 560;
+  font-size: var(--fnt-sz-h5);
+  font-weight: var(--fnt-wg-medium);
 }
 
 ul {
@@ -165,20 +145,20 @@ a {
   color: var(--clr-contrast);
 }
 
-button {
-  all: unset;
-}
-
-button:hover {
-  cursor: pointer;
-}
-
 a:hover {
   color: var(--clr-accent);
 }
 
 a:hover svg.icons path {
   fill: var(--clr-accent);
+}
+
+button {
+  all: unset;
+}
+
+button:hover {
+  cursor: pointer;
 }
 
 /* Targeting the svg arrow position controls */
@@ -190,30 +170,7 @@ button:hover svg.icons path {
   stroke: var(--clr-contrast);
 }
 
-small {
-  font-size: inherit;
-  text-wrap: balance;
-}
-
 /*Global Classes*/
-.g-underline-links {
-  text-decoration: underline;
-}
-
-/*Global Classes for Footer Components*/
-.top-footer-articles {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  height: 8.0625rem;
-}
-
-.footer-main-container {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-evenly;
-}
-
 .g-opacity {
   opacity: 0.5;
   transition: opacity 0.3s;
@@ -223,27 +180,20 @@ small {
   width: calc(100vw - var(--padding-inline));
 }
 
-/* For samsung galaxies */
-/* @media (max-width: 374px) {
-    .g-slider-container {
-      width: calc(102vw - var(--padding-inline-mobile));
-    }
-  } */
-
 /*Button Classes*/
-.button-anchor {
+.g-button-anchor {
   text-decoration: none;
   padding-bottom: 0.1rem;
   display: grid;
   place-items: center;
-  height: var(--btn-height);
-  width: var(--btn-width-regular);
+  height: var(--hg-btn);
+  width: var(--wd-btn-regular);
   border: 1px solid var(--clr-accent);
   border-radius: 1.75rem;
   font-weight: 500;
 }
 
-.button-anchor:hover {
+.g-button-anchor:hover {
   cursor: pointer;
   background-color: var(--clr-accent);
   color: var(--hoverTextColor);
@@ -287,11 +237,11 @@ small {
 
 /*Button Classes*/
 
-.button-anchor-internals {
+.g-button-anchor-internals {
   text-decoration: none;
   display: grid;
   place-items: center;
-  min-height: var(--btn-height);
+  min-height: var(--hg-btn);
   padding-inline: 1rem;
   font-weight: 560;
   padding-block: 0.5rem;
@@ -304,7 +254,7 @@ small {
   text-align: center;
 }
 
-.button-anchor-internals:hover {
+.g-button-anchor-internals:hover {
   cursor: pointer;
   background-color: var(--clr-accent);
   color: var(--clr-contrast) !important;
@@ -313,50 +263,51 @@ small {
 .g-internal-page {
   background-color: var(--clr-contrast);
   color: var(--clr-primary);
-  padding-block: var(--padding-section-big);
-  padding-inline: var(--padding-inline);
+  padding-block: var(--pd-y-big);
+  padding-inline: var(--pd-x);
 }
 
-.g-section-container {
-  max-width: 1400px;
-  margin: 0 auto;
+.g-top-footer-articles {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 8.0625rem;
+}
+
+.g-underline-links {
+  text-decoration: underline;
 }
 
 @media (max-width: 1025px) {
   h2 {
-    font-size: var(--font-size-h2-medium);
-    line-height: var(--line-height-h2-medium);
+    font-size: var(--fnt-sz-h2-medium);
+    line-height: var(--line-hg-h2-medium);
   }
 
   h3 {
-    font-size: var(--font-size-h3-medium);
-    /* line-height: var(--line-height-h2-medium); */
+    font-size: var(--fnt-sz-h3-medium);
+    line-height: var(--line-hg-h2-medium);
   }
 
-  /* body {
-
-  font-size: var(--font-size-regular-medium);
-  } */
-
   .g-internal-page {
-    padding-inline: var(--padding-inline-tablet);
-    padding-block: var(--padding-section-medium);
+    padding-inline: var(--pd-x-medium);
+    padding-block: var(--pd-y-medium);
   }
 
   .g-slider-container {
-    width: calc(100vw - var(--padding-inline-tablet));
+    width: calc(100vw - var(--pd-x-medium));
   }
 }
 @media (max-width: 648px) {
   .g-internal-page {
-    padding-block: var(--padding-section-small);
-    padding-inline: var(--padding-inline-mobile);
+    padding-block: var(--pd-y-small);
+    padding-inline: var(--pd-x-small);
   }
   .g-slider-container {
-    width: calc(100vw - var(--padding-inline-mobile));
+    width: calc(100vw - var(--pd-x-small));
   }
 
-  .top-footer-articles {
+  .g-top-footer-articles {
     height: auto;
   }
 }

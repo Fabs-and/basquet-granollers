@@ -1,31 +1,14 @@
 ---
-import NonDynamicPageLayout from "@layouts/NonDynamicPageLayout.astro";
+import PageLayout from "@layouts/PageLayout.astro";
 
 import Teams from "@components/homePage/teams/Teams.astro";
+
+const title = "Equips del club Bàsquet Granollers";
+const pageDescription = "Totes les seccions d'equips del Club Bàsquet Granollers";
 ---
 
-<NonDynamicPageLayout heading="Equips del club Bàsquet Granollers">
-  <div class="teams-wrapper">
+<PageLayout {title} {pageDescription}>
     <Teams noHeading={true} />
-  </div>
-</NonDynamicPageLayout>
+</PageLayout>
 
-<style>
-  .teams-wrapper {
-    margin-inline: calc(var(--padding-inline) * -1);
-    margin-top: calc(var(--padding-section-big) * -1);
-  }
 
-  @media (max-width: 1025px) {
-    .teams-wrapper {
-      margin-inline: calc(var(--padding-inline-tablet) * -1);
-      margin-top: calc(var(--padding-section-medium) * -1);
-    }
-  }
-  @media (max-width: 648px) {
-    .teams-wrapper {
-      margin-inline: calc(var(--padding-inline-mobile) * -1);
-      margin-top: calc(var(--padding-section-small) * -1);
-    }
-  }
-</style>

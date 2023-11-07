@@ -30,13 +30,9 @@
       : ProjectItem;
 
   const buttonText = childComponent === "NewsItem" ? "veure totes" : "contacta";
-
   const textColor = childComponent === "NewsItem" && "var(--clr-accent)";
-
   const arrowsColor = childComponent !== "NewsItem" && "white";
-
   const forProjects = childComponent === "ProjectItem";
-
   const isSliderItem = childComponent === "NewsItem";
   const slug = childComponent === "NewsItem" ? "/noticies" : "";
 
@@ -84,7 +80,7 @@
       hidden={childComponent === "ProjectItem"}
     />
   {:else if component === MembershipItem || component === SponsorshipItem}
-    <button on:click={toggleDialog} class="button-anchor">
+    <button on:click={toggleDialog} class="g-button-anchor">
       {buttonText.toUpperCase()}
     </button>
   {/if}
@@ -116,7 +112,7 @@
   }
 
   .slider-container > :last-child {
-    padding-right: var(--padding-inline-mobile);
+    padding-right: var(--pd-x-small);
   }
 
   .slider-controls-container {
@@ -124,7 +120,7 @@
     justify-content: space-between;
     align-items: center;
     padding-top: 2rem;
-    padding-right: var(--padding-inline);
+    padding-right: var(--pd-x);
   }
 
   .arrows-container {
@@ -139,13 +135,13 @@
 
   @media (max-width: 1025px) {
     .slider-controls-container {
-      padding-right: var(--padding-inline-tablet);
+      padding-right: var(--pd-x-medium);
     }
   }
 
   @media (max-width: 648px) {
     .slider-controls-container {
-      padding-right: var(--padding-inline-mobile);
+      padding-right: var(--pd-x-small);
     }
   }
 </style>

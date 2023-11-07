@@ -11,7 +11,7 @@ const { heading, subHeading } = Astro.props;
   .headings-container {
     display: flex;
     flex-direction: column;
-    padding-bottom: var(--padding-section-big);
+    padding-bottom: var(--pd-y-big);
     gap: 1.6rem;
   }
   h1 {
@@ -34,14 +34,14 @@ const { heading, subHeading } = Astro.props;
 
     .headings-container {
       gap: 0.75rem;
-      padding-bottom: var(--padding-section-medium);
+      padding-bottom: var(--pd-y-medium);
     }
   }
 
   @media (max-width: 648px) {
     .headings-container {
       gap: 0.75rem;
-      padding-bottom: var(--padding-section-small);
+      padding-bottom: var(--pd-y-small);
     }
   }
 </style>

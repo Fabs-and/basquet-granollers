@@ -258,9 +258,41 @@ export interface ExtendedMedia extends Media {
 export type CustomEndpoint = "media-by-url";
 
 export type CustomImage = {
-  ID: number;
+  ID?: number;
+  id?: number;
   url: string;
   title: string;
   alt: string;
   caption: string;
 };
+
+export class FetchError extends Error {
+  status: number;
+  url: string;
+
+  constructor(message: string, status: number, url: string) {
+    super(message);
+    this.status = status;
+    this.url = url;
+  }
+}
+
+export interface PostsQueryCache {
+  [key: string]: Post[];
+}
+
+type LinkContent = {
+  title: string;
+  content: {name: string, link: string}[]; // assuming the content array contains strings
+};
+
+export type FixedLink = {
+  name: string;
+  link: string;
+};
+
+export type TopFooterLinks = {
+  generalLinks: LinkContent[];
+  fixedLinks: FixedLink[];
+};
+
