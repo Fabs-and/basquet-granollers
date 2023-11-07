@@ -2,7 +2,6 @@
 // Import styles
 import "@styles/global.css";
 
-
 // Import components
 import { SEO } from "astro-seo";
 import Footer from "../components/footer/Footer.astro";
@@ -12,6 +11,21 @@ const { title, pageDescription } = Astro.props;
 
 const DESCRIPTION =
   "Benvinguts i benvingudes a la web oficial del Club Bàsquet Granollers, un equip de bàsquet amb més de 90 anys d'història. El nostre equip està dedicat a promoure l'esportivitat, la comunitat i l'amor pel bàsquet. Vine al proper partit o segueix-nos a les xarxes socials per donar suport a l'esport local i ser part de la nostra família de bàsquet.";
+
+function titleChecker(title: string) {
+  if (
+    title !== undefined &&
+    title.toLowerCase().includes("club bàsquet granollers")
+  ) {
+    return `${title}`;
+  } else if (title !== undefined) {
+    return `${title} | Club Bàsquet Granollers`;
+  } else {
+    return "Club Bàsquet Granollers";
+  }
+}
+
+const titleToRender = titleChecker(title);
 ---
 
 <html lang="ca">
@@ -25,15 +39,12 @@ const DESCRIPTION =
 
     <meta name="generator" content={Astro.generator} />
     <SEO
-      title={title !== undefined &&
-      title.toLowerCase().includes("club bàsquet granollers")
-        ? `${title}`
-        : title !== undefined ? `${title} | Club Bàsquet Granollers` :"Club Bàsquet Granollers"}
+      title={titleToRender}
       canonical="https://cbgranollers.cat/"
       description={pageDescription || DESCRIPTION}
       openGraph={{
         basic: {
-          title: title ? `${title}` : "Club Bàsquet Granollers",
+          title: titleToRender,
           type: "website",
           image: `/og-image.png`,
         },
