@@ -1,5 +1,8 @@
 ---
+//Import layouts
 import InternalPageLayout from "./PageLayout.astro";
+
+//Import functions
 import { extractPlayerInfo } from "@utils/helperFunctions";
 
 const { heading, subHeading, team } = Astro.props;
@@ -91,7 +94,7 @@ const { heading, subHeading, team } = Astro.props;
     color: var(--clr-contrast);
   }
 
-  @media (width < 1025px) {
+  @media (max-width: 1025px) {
     .equips-page {
       padding-inline: var(--pd-x-medium);
       padding-block: var(--pd-y-medium);
@@ -102,7 +105,7 @@ const { heading, subHeading, team } = Astro.props;
     }
   }
 
-  @media (width < 648px) {
+  @media (max-width: 648px) {
     .equips-page {
       padding-inline: var(--pd-x-small);
       padding-block: var(--pd-y-big);

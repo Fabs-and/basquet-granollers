@@ -1,6 +1,4 @@
 <script>
-  import { componentIsHTMLElement } from "astro/runtime/server/render/dom.js";
-
   export let text;
   export let slug = "";
   export let isFilled = false;

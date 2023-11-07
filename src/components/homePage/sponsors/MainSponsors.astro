@@ -35,22 +35,19 @@ import { mainSponsorsWhite } from "@data/apiData";
     align-items: center;
     justify-content: center;
     gap: 3.05rem;
-    /* height: calc(var(--pd-y-big) * 2);  */
   }
 
   .main-sponsors-title {
-    /* height: 120%; specifically for the line */
     position: relative;
     padding-right: 3.05rem;
     display: flex;
     align-items: center;
-    /* border-right: 1px solid white; */
   }
 
   .main-sponsors-title::after {
     content: "";
     border-right: 1px solid white;
-    height: calc(var(--pd-y-medium) * 2); /* or whatever height you want */
+    height: calc(var(--pd-y-medium) * 2); 
     position: absolute;
     right: 0;
     top: 50%;
@@ -62,10 +59,10 @@ import { mainSponsorsWhite } from "@data/apiData";
     gap: 3.05rem;
   }
 
-  @media (width < 680px) {
+  @media (max-width: 680px) {
     .main-sponsors-flex-container {
       flex-direction: column;
-      gap: var(--pd-y-small);
+      gap: 1rem;
     }
     .main-sponsors-title {
       height: fit-content;

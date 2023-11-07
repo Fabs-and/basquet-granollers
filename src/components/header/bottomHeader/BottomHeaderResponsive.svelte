@@ -183,7 +183,7 @@
     font-weight: var(--fnt-wg-medium);
   }
 
-  @media (width < 648px) {
+  @media (max-width: 648px) {
     .dropdown-content-responsive {
       top: calc(
         var(--hg-header-bottom-section) + var(--hg-sponsors-all-responsive)

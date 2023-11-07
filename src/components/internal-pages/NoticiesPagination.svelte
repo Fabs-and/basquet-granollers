@@ -75,7 +75,6 @@
     flex-wrap: wrap;
     justify-content: center;
     gap: 1rem;
-    /* padding-inline: var(--pd-x); */
   }
 
   p {
@@ -128,7 +127,7 @@
     height: 33%;
   }
 
-  @media (width < 1025px) {
+  @media (max-width: 1025px) {
     .noticia {
       width: 21.625rem;
       height: 20.93rem;
@@ -139,7 +138,7 @@
     }
   }
 
-  @media (width < 648px) {
+  @media (max-width: 648px) {
     .g-button-anchor {
       margin-top: var(--pd-y-small);
     }
@@ -148,7 +147,7 @@
     }
   }
 
-  @media (width < 375px) {
+  @media (max-width: 375px) {
     .noticia {
       width: 100%;
     }

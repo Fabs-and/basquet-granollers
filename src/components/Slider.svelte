@@ -30,13 +30,9 @@
       : ProjectItem;
 
   const buttonText = childComponent === "NewsItem" ? "veure totes" : "contacta";
-
   const textColor = childComponent === "NewsItem" && "var(--clr-accent)";
-
   const arrowsColor = childComponent !== "NewsItem" && "white";
-
   const forProjects = childComponent === "ProjectItem";
-
   const isSliderItem = childComponent === "NewsItem";
   const slug = childComponent === "NewsItem" ? "/noticies" : "";
 
@@ -137,13 +133,13 @@
     justify-content: space-between;
   }
 
-  @media (width < 1025px) {
+  @media (max-width: 1025px) {
     .slider-controls-container {
       padding-right: var(--pd-x-medium);
     }
   }
 
-  @media (width < 648px) {
+  @media (max-width: 648px) {
     .slider-controls-container {
       padding-right: var(--pd-x-small);
     }

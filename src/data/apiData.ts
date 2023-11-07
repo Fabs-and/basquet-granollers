@@ -1,12 +1,7 @@
-import {
-  getImagesBySlug,
-  getPageBySlug,
-  getPages,
-  getPosts,
-  getPostsInCategories,
-} from "@services/apiFunctions";
+//Import types
+import type {  Post } from "../types";
 
-import type { Page, Post } from "../types";
+//Import constants
 import {
   PAGE_FIELDS,
   PROJECTS_CATEGORY_ID,
@@ -17,6 +12,17 @@ import {
   TEAM_PAGES,
   POST_FIELDS,
 } from "./globalConstants";
+
+//Import apiFunctions
+import {
+  getImagesBySlug,
+  getPageBySlug,
+  getPages,
+  getPosts,
+  getPostsInCategories,
+} from "@services/apiFunctions";
+
+//Import functions
 import { extractBottomFooterInfo, extractTopFooterInfo } from "@utils/helperFunctions";
 
 export const [
@@ -48,7 +54,6 @@ export const [
     100,
   ),
   getPostsInCategories([NEWS_CATEGORY_ID], POST_FIELDS, 100),
-  //Fetching of Config pages
   getPageBySlug(CONFIG_PAGES.homePageJoinSection, ["content"]),
   getImagesBySlug(CONFIG_PAGES.socialMedia),
   getPageBySlug(CONFIG_PAGES.header, ["content"]),

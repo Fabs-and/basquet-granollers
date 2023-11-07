@@ -22,7 +22,7 @@ const { heading, subHeading } = Astro.props;
     color: var(--clr-accent);
   }
 
-  @media (width < 1025px) {
+  @media (max-width: 1025px) {
     h1 {
       font-size: 1.625rem;
       line-height: 2rem;
@@ -38,7 +38,7 @@ const { heading, subHeading } = Astro.props;
     }
   }
 
-  @media (width < 648px) {
+  @media (max-width: 648px) {
     .headings-container {
       gap: 0.75rem;
       padding-bottom: var(--pd-y-small);

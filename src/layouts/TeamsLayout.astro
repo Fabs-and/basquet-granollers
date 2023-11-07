@@ -1,5 +1,7 @@
 ---
+//Import layouts
 import InternalPageLayout from "./PageLayout.astro";
+
 const { teamsImages, heading, subHeading, title } = Astro.props;
 ---
 
@@ -50,14 +52,14 @@ const { teamsImages, heading, subHeading, title } = Astro.props;
     object-fit: cover;
   }
 
-  @media (width < 848px) {
+  @media (max-width: 848px) {
     .image-container {
       width: 100%;
       height: auto;
     }
   }
 
-  @media (width < 415px) {
+  @media (max-width: 415px) {
     .image-container {
       width: 100vw;
       margin-inline: calc(var(--pd-x-small) * -1);

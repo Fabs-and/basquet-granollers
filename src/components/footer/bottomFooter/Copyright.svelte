@@ -3,17 +3,17 @@
 </script>
 
 <small>
-  Web Propietat del Club Bàsquet Granollers. Copyright © 
+  Web Propietat del Club Bàsquet Granollers. Copyright ©
   {currentyear}
   . All rights reserved.
 </small>
 
 <style>
-      small {
+  small {
     font-size: var(--fnt-sz-footer);
   }
 
-  @media (width < 1025px) {
+  @media (max-width: 1025px) {
     small {
       font-size: 0.75rem;
     }

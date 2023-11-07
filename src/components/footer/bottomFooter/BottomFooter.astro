@@ -34,11 +34,11 @@ import Copyright from "./Copyright.svelte";
     grid-row-start: 1;
     justify-self: center;
   }
-  @media (width < 1025px) {
+  @media (max-width: 1025px) {
     .bottom-footer-container-responsive {
       display: grid;
       grid-template-columns: 1fr 1fr 1fr;
-      row-gap: 2.13rem;
+      row-gap: 2.12rem;
     }
     .social-container {
       grid-row-start: 1;
@@ -52,11 +52,10 @@ import Copyright from "./Copyright.svelte";
     }
   }
 
-  @media (width < 648px) {
+  @media (max-width: 648px) {
     .bottom-footer-container-responsive {
       grid-template-columns: 1fr 1fr;
       grid-template-rows: auto auto auto;
-      row-gap: 1.5rem;
     }
     .social-container {
       grid-column-start: span 2;

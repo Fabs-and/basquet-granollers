@@ -1,9 +1,7 @@
 <script>
-  import { onMount, onDestroy } from "svelte";
-  import ButtonAnchor from "../ButtonAnchor.svelte";
+  import ButtonAnchor from "@components/ButtonAnchor.svelte";
   export let slides;
   let totalDots;
-  let currentSlideIndex = 0;
 
   import {
     formatHtml,
@@ -13,18 +11,39 @@
   $: totalDots = Array(slides ? slides.length : 0).fill(0);
 
   let intervalId;
+  let startX;
 
-  onMount(() => {
-    intervalId = setInterval(() => {
-      if (slides && slides.length > 0) {
-        currentSlideIndex = (currentSlideIndex + 1) % slides.length;
-      }
-    }, 10000);
-  });
+  function handleTouchStart(event) {
+    startX = event.touches[0].clientX;
+  }
 
-  onDestroy(() => {
-    clearInterval(intervalId);
-  });
+  function handleTouchEnd(event) {
+    const endX = event.changedTouches[0].clientX;
+    if (startX - endX > 50) {
+      nextSlide(); // swiped left
+    } else if (endX - startX > 50) {
+      prevSlide(); // swiped right
+    }
+  }
+
+  let transitionDirection = "";
+  let currentSlideIndex = 0;
+  let prevSlideIndex = 0;
+
+  function prevSlide() {
+    transitionDirection = "prev"; 
+    prevSlideIndex = currentSlideIndex; 
+    currentSlideIndex =
+      currentSlideIndex === 0 ? slides.length - 1 : currentSlideIndex - 1; 
+  }
+
+  function nextSlide() {
+    transitionDirection = "next";
+    prevSlideIndex = currentSlideIndex; 
+    currentSlideIndex =
+      currentSlideIndex === slides.length - 1 ? 0 : currentSlideIndex + 1; 
+  }
+
   function handleDotClick(index) {
     if (!isNaN(index)) {
       currentSlideIndex = index;
@@ -33,27 +52,26 @@
 </script>
 
 {#if slides && slides.length > 0}
-  <section class="hero-section">
+  <section
+    class="hero-section"
+    on:touchstart={handleTouchStart}
+    on:touchend={handleTouchEnd}
+  >
     {#each slides as slide, index}
       <div
         data-index={index}
-        class="slide {index === currentSlideIndex ? 'active' : ''}"
+        class="slide {index === 0 ? 'active' : ''}"
+        class:active={index === currentSlideIndex}
+        class:outgoing={index === prevSlideIndex && index !== currentSlideIndex}
+        class:transition-next={transitionDirection === "next"}
+        class:transition-prev={transitionDirection === "prev"}
       >
-        {#if index === 0}
-          <img
-            src={slide.image.url}
-            class="hidden"
-            alt={slide.image.alt}
-            loading="eager"
-          />
-        {:else}
-          <img
-            src={slide.image.url}
-            class="hidden"
-            alt={slide.image.alt}
-            loading="lazy"
-          />
-        {/if}
+        <img
+          src={slide.image.url}
+          class="hidden"
+          alt={slide.image.alt}
+          loading="eager"
+        />
 
         <div class="hero-info-container">
           <div class="hero-info-flex">
@@ -98,12 +116,18 @@
   .hero-section {
     position: relative;
   }
+
   .slide {
-    display: none;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
     height: 100%;
+    display: none;
   }
 
-  .slide.active {
+  .slide.active,
+  .slide.outgoing {
     display: block;
   }
 
@@ -124,8 +148,6 @@
     height: 0.6875rem;
     border-radius: 50%;
     border: 1px solid var(--clr-accent);
-    /* background-color: var(--color-white);
-    cursor: pointer; */
   }
 
   .active-dot {
@@ -155,7 +177,6 @@
     bottom: 0rem;
     display: flex;
     padding-inline: var(--pd-x);
-    /* justify-content: center; */
     align-items: center;
   }
 
@@ -168,7 +189,59 @@
     text-wrap: balance;
   }
 
-  @media (width < 1184px) {
+  @keyframes slide-in-from-right {
+    0% {
+      transform: translateX(100%);
+    }
+    100% {
+      transform: translateX(0);
+    }
+  }
+
+  @keyframes slide-out-to-left {
+    0% {
+      transform: translateX(0);
+    }
+    100% {
+      transform: translateX(-100%);
+    }
+  }
+
+  @keyframes slide-in-from-left {
+    0% {
+      transform: translateX(-100%);
+    }
+    100% {
+      transform: translateX(0);
+    }
+  }
+
+  @keyframes slide-out-to-right {
+    0% {
+      transform: translateX(0);
+    }
+    100% {
+      transform: translateX(100%);
+    }
+  }
+
+  .slide.transition-next.active {
+    animation: slide-in-from-right 0.5s forwards ease-in-out;
+  }
+
+  .slide.transition-next.outgoing {
+    animation: slide-out-to-left 0.5s forwards ease-in-out;
+  }
+
+  .slide.transition-prev.active {
+    animation: slide-in-from-left 0.5s forwards ease-in-out;
+  }
+
+  .slide.transition-prev.outgoing {
+    animation: slide-out-to-right 0.5s forwards ease-in-out;
+  }
+
+  @media (max-width: 1184px) {
     .hero-info-container {
       width: 50%;
     }
@@ -179,7 +252,7 @@
     }
   }
 
-  @media (width < 1025px) {
+  @media (max-width: 1025px) {
     .hero-info-container {
       padding-inline: var(--pd-x-medium);
     }
@@ -190,7 +263,7 @@
     }
   }
 
-  @media (width < 648px) {
+  @media (max-width: 648px) {
     .hero-info-container {
       padding-inline: var(--pd-x-small);
       width: 100%;
@@ -200,7 +273,7 @@
       transform: none;
     }
     section {
-      height: 100svh;
+      height: 101svh;
     }
   }
 </style>

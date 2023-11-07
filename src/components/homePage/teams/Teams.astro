@@ -28,12 +28,12 @@ const { noHeading } = Astro.props;
     }
   }
 
-  @media (width < 1025px) {
+  @media (max-width: 1025px) {
     .teams-container {
       margin-bottom: calc(var(--pd-y-medium) * -1);
     }
   }
-  @media (width < 648px) {
+  @media (max-width: 648px) {
     .teams-container {
       margin-bottom: calc(var(--pd-y-small) * -1);
       margin-inline: calc(var(--pd-x-small) * -1);

@@ -1,13 +1,12 @@
 ---
-// Import utils functions
+//Import layouts
+import BaseLayout from "./BaseLayout.astro";
+
+// Import functions
 import {
-addApostrophe,
-  dateConverter,
-  formatHtml,
   stripHtml,
   truncateString,
 } from "@utils/helperFunctions";
-import BaseLayout from "./BaseLayout.astro";
 
 const { post, isPost } = Astro.props;
 
@@ -68,7 +67,6 @@ const pageDescription = truncateString(stripHtml(content));
     color: var(--clr-contrast);
     position: relative;
     padding-inline: var(--pd-x-internal-page);
-    /* padding-block: 4.37rem; */
     padding-block: 2rem;
     min-height: 19.0625rem;
     z-index: 2;
@@ -82,7 +80,6 @@ const pageDescription = truncateString(stripHtml(content));
     gap: 2.62rem;
     max-width: 1206px;
     margin: auto;
-    /* overflow-y: scroll; */
   }
 
   .article-header img {
@@ -100,7 +97,6 @@ const pageDescription = truncateString(stripHtml(content));
     display: flex;
     flex-direction: column;
     gap: 0.5rem;
-    /* align-items: center; */
     text-align: justify;
     max-width: 1206px;
     margin: auto;
@@ -114,7 +110,7 @@ const pageDescription = truncateString(stripHtml(content));
     display: block !important;
   }
 
-  @media (width < 1181px) {
+  @media (max-width: 1181px) {
     .page-container {
       padding-inline: var(--pd-x-medium);
     }
@@ -128,12 +124,9 @@ const pageDescription = truncateString(stripHtml(content));
     .article-content {
       padding-inline: calc(6.88rem - var(--pd-x-medium));
     }
-    /* .article-header-text: {
-      padding-inline: 10rem;
-    } */
   }
 
-  @media (width < 648px) {
+  @media (max-width: 648px) {
     h1 {
       font-size: 2.25rem;
       line-height: 2.75rem;

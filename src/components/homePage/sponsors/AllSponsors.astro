@@ -6,7 +6,11 @@ import HpSectionLayout from "@layouts/HpSectionLayout.astro";
 import { mainSponsorsBlue, otherSponsors } from "@data/apiData";
 ---
 
-<HpSectionLayout noHeading={true} color="var(--clr-primary)" bgColor="var(--clr-contrast)">
+<HpSectionLayout
+  noHeading={true}
+  color="var(--clr-primary)"
+  bgColor="var(--clr-contrast)"
+>
   <aside class="sponsors-outter-container">
     <div class="sponsors-inner-containers">
       <p class="title-line">Patrocinadors principals</p>
@@ -87,20 +91,20 @@ import { mainSponsorsBlue, otherSponsors } from "@data/apiData";
   .other-sponsors-container {
     display: flex;
     flex-wrap: wrap;
-    justify-content: center; 
-    align-content: start; 
+    justify-content: center;
+    align-content: start;
     gap: 4.11rem;
     width: 100%;
   }
 
   .other-sponsors-container li {
-    max-width: 123.29px; 
+    max-width: 123.29px;
     height: 58.96px;
   }
 
   .other-sponsors-images {
-    height: 100%; 
-    object-fit: contain; 
+    height: 100%;
+    object-fit: contain;
     margin: auto;
   }
 
@@ -130,8 +134,7 @@ import { mainSponsorsBlue, otherSponsors } from "@data/apiData";
     right: 0;
   }
 
-
-  @media (width < 680px) {
+  @media (max-width: 680px) {
     .main-sponsors-container {
       gap: 2rem;
     }
@@ -141,8 +144,8 @@ import { mainSponsorsBlue, otherSponsors } from "@data/apiData";
     }
 
     .other-sponsors-container li {
-      max-width: 92.28px; 
-      height: 43.13px; 
+      max-width: 92.28px;
+      height: 43.13px;
     }
   }
 </style>

@@ -68,7 +68,7 @@
     gap: 0.63rem;
   }
 
-  @media (width < 859px) {
+  @media (max-width: 859px) {
     .sponsor-article {
       width: var(--wd-slider-item);
       height: 100%;

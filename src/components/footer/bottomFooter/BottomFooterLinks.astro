@@ -1,9 +1,9 @@
 ---
-import { bottomFooterLinks } from "@data/apiData"
+import { bottomFooterLinks } from "@data/apiData";
 ---
 
 {
-  bottomFooterLinks.map((link) => (
+  bottomFooterLinks.map((link) =>
     link.link.includes("http") ? (
       <a
         href={link.link}
@@ -17,8 +17,8 @@ import { bottomFooterLinks } from "@data/apiData"
       <a href={link.link} class="g-underline-links">
         {link.name}
       </a>
-    )
-  ))
+    ),
+  )
 }
 
 <style>
@@ -30,7 +30,7 @@ import { bottomFooterLinks } from "@data/apiData"
     margin-right: 1.62rem;
   }
 
-  @media (width < 1025px) {
+  @media (max-width: 1025px) {
     a {
       font-size: 0.75rem;
     }

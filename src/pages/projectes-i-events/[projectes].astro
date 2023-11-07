@@ -1,7 +1,11 @@
 ---
+//Import layouts
 import DynamicPageLayout from "@layouts/DynamicPageLayout.astro.tsx";
 
+//Import data
 import { projects } from "../../data/apiData.ts";
+
+//Import functions
 import { formatHtml } from "@utils/helperFunctions";
 
 export async function getStaticPaths() {

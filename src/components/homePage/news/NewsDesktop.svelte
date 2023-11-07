@@ -192,7 +192,7 @@
     }
   }
 
-  @media (width < 1025px) {
+  @media (max-width: 1025px) {
     .desktop-news-container {
       padding-bottom: var(--pd-y-medium);
     }

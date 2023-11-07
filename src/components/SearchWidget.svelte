@@ -237,7 +237,7 @@
     display: none;
   }
 
-  @media (width < 1300px) {
+  @media (max-width: 1300px) {
     aside {
       --searchbox-width: 15.875rem;
     }

@@ -92,7 +92,7 @@ const websiteContent = [...pagesToSearch, ...postsToSearch];
   .separator-line {
     height: var(--hg-sponsors-all);
   }
-  @media (width < 1258px) {
+  @media (max-width: 1258px) {
     .bottom-header {
       display: none;
       padding-inline: var(--pd-x);
@@ -105,13 +105,13 @@ const websiteContent = [...pagesToSearch, ...postsToSearch];
       display: block;
     }
   }
-  @media (width < 1065px) {
+  @media (max-width: 1065px) {
     .bottom-header {
       padding-inline: var(--pd-x-medium);
     }
   }
 
-  @media (width < 648px) {
+  @media (max-width: 648px) {
     .header-top-section {
       display: none;
     }

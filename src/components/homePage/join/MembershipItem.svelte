@@ -139,7 +139,7 @@
     bottom: 0;
   }
 
-  @media (width < 1374px) {
+  @media (max-width: 1374px) {
     .membership-article {
       width: var(--wd-three-columns-medium);
       height: 56.13rem;
@@ -155,7 +155,7 @@
     }
   }
 
-  @media (width < 932px) {
+  @media (max-width: 932px) {
     h3 {
       font-size: 1.375rem;
     }
@@ -211,6 +211,6 @@
     }
   }
 
-  @media (width < 1076px) {
+  @media (max-width: 1076px) {
   }
 </style>
