@@ -124,8 +124,6 @@
     height: 0.6875rem;
     border-radius: 50%;
     border: 1px solid var(--clr-accent);
-    /* background-color: var(--color-white);
-    cursor: pointer; */
   }
 
   .active-dot {

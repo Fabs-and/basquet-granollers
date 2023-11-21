@@ -1,6 +1,5 @@
 import type {
   CategoryFields,
-  CommonPagesAndPostsFields,
   PageFields,
   PostFields,
 } from "../types";

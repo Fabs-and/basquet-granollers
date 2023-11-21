@@ -1,5 +1,5 @@
 //Import types
-import type {  Post } from "../types";
+import type { Post } from "../types";
 
 //Import constants
 import {
@@ -23,7 +23,10 @@ import {
 } from "@services/apiFunctions";
 
 //Import functions
-import { extractBottomFooterInfo, extractTopFooterInfo } from "@utils/helperFunctions";
+import {
+  extractBottomFooterInfo,
+  extractTopFooterInfo,
+} from "@utils/helperFunctions";
 
 export const [
   pages,
@@ -96,11 +99,12 @@ export const { projects, heroSlides } = await initializePostTypes(
   projectsAndHeroSlides,
 );
 
-const { content: {rendered: footerContent} } = footerData[0];
+const {
+  content: { rendered: footerContent },
+} = footerData[0];
 
 const topFooterContent = extractTopFooterInfo(footerContent);
 
-export const {generalLinks, fixedLinks} = topFooterContent;
+export const { generalLinks, fixedLinks } = topFooterContent;
 
 export const bottomFooterLinks = extractBottomFooterInfo(footerContent);
-
