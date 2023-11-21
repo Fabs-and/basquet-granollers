@@ -25,26 +25,20 @@ jobs:
 
       - name: Install and Build
         run: |
-          npm install
-          npm run build
+          pnpm install
+          pnpm run build
         env:
           PUBLIC_BASE_URL: ${{ secrets.PUBLIC_BASE_URL }}
           USERNAME: ${{ secrets.USERNAME }}
           WP_APPLICATION_PASSWORD: ${{ secrets.WP_APPLICATION_PASSWORD }}
 
-      - name: Get LFTP
-        run: sudo apt install lftp
-
-      - name: Configure LFTP
-        run: |
-          mkdir ~/.lftp
-          echo "set ssl:verify-certificate false;" >> ~/.lftp/rc
-
-      - name: Load Secrets
-        run: |
-          echo "machine ${{ secrets.FTP_HOST }} login ${{ secrets.FTP_USER }} password ${{ secrets.FTP_PASSWORD }}" > ~/.netrc
-
-      - name: Upload to server
-        run: |
-          lftp -e "mirror --reverse --verbose ./dist/ / --exclude-glob .htaccess --exclude-glob .ftpquota --exclude-glob wordpress/**/*" ${{ secrets.FTP_HOST }}
-
+      - name: Deploy to server
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.4
+        with:
+          server: ${{ secrets.FTP_HOST }}
+          username: ${{ secrets.FTP_USER }}
+          password: ${{ secrets.FTP_PASSWORD }}
+          port: 21
+          local-dir: dist/
+          server-dir: /
+          exclude: ".htaccess .ftpquota wordpress/**/*"
