@@ -15,6 +15,14 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
+      - name: Cache node modules
+        uses: actions/cache@v3
+        with:
+          path: node_modules
+          key: ${{ runner.OS }}-node-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.OS }}-node-
+
       - name: Install and Build
         run: |
           npm install
@@ -24,13 +32,19 @@ jobs:
           USERNAME: ${{ secrets.USERNAME }}
           WP_APPLICATION_PASSWORD: ${{ secrets.WP_APPLICATION_PASSWORD }}
 
-      - name: Deploy to server
-        uses: SamKirkland/FTP-Deploy-Action@v4.3.4
-        with:
-          server: ${{ secrets.FTP_HOST }}
-          username: ${{ secrets.FTP_USER }}
-          password: ${{ secrets.FTP_PASSWORD }}
-          port: 21
-          local-dir: dist/
-          server-dir: /
-          exclude: ".htaccess .ftpquota wordpress/**/*"
+      - name: Get LFTP
+        run: sudo apt install lftp
+
+      - name: Configure LFTP
+        run: |
+          mkdir ~/.lftp
+          echo "set ssl:verify-certificate false;" >> ~/.lftp/rc
+
+      - name: Load Secrets
+        run: |
+          echo "machine ${{ secrets.FTP_HOST }} login ${{ secrets.FTP_USER }} password ${{ secrets.FTP_PASSWORD }}" > ~/.netrc
+
+      - name: Upload to server
+        run: |
+          lftp -e "mirror --reverse --verbose ./dist/ / --exclude-glob .htaccess --exclude-glob .ftpquota --exclude-glob wordpress/**/*" ${{ secrets.FTP_HOST }}
+
