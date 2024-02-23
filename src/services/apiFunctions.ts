@@ -471,8 +471,6 @@ export async function getImagesBySlug(slug: string): Promise<CustomImage[]> {
     const renderedImagesUrls = extractImageUrlsFromContent(content.rendered);
     const renderedImagesUrlsSet = new Set(renderedImagesUrls);
 
-    if (slug === "basquet-en-cadira-de-rodes-4")
-      console.log("renderedImagesUrls", renderedImagesUrls);
     // Fetch images with the same parent page and all available media concurrently.
     const [imagesWithSamePageParent, allMedia] = await Promise.all([
       getImagesInfo(id),
@@ -483,7 +481,6 @@ export async function getImagesBySlug(slug: string): Promise<CustomImage[]> {
     );
     // If there's only one image URL, return it after verifying it's in the parent page images.
     if (renderedImagesUrls.length === 1 && imagesInParentPage !== undefined) {
-      console.log("herreeeeererrwwrewr", imagesInParentPage);
       return [imagesInParentPage];
     }
 
