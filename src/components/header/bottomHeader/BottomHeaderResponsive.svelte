@@ -1,7 +1,7 @@
 <script>
   import DropDownAccordion from "./DropDownAccordion.svelte";
   import SearchWidgetResponsive from "@components/SearchWidgetResponsive.svelte";
-
+  import LaHistoriaLogo from "@assets/LaHistoriaLogo.svelte"
   import SocialMediaMenu from "@components/SocialMediaMenu.svelte";
 
   import { logoSmall } from "@assets/logo";
@@ -112,13 +112,25 @@
       {/if}
     </li>
   {/each}
+    <div class='la-historia-logo'>
+      <a href="https://historiabasquetgranollers.cat/" target="_blank">
 
+        <LaHistoriaLogo wd={"221"} title="Logo de La Història del Bàsquet a Granollers" color={"#fff"}/>
+      </a>
+    </div>
   <div class="social-media-container">
     <SocialMediaMenu {socialMediaInfo} />
   </div>
 </ul>
 
 <style>
+  .la-historia-logo {
+    position: absolute;
+    bottom: 5rem;
+    left: 50%;
+    transform: translateX(-50%);
+  
+  }
   .top-header-link {
     margin-inline: auto;
   }
@@ -153,7 +165,8 @@
   }
 
   .social-media-container {
-    margin-top: auto;
+  margin-top: auto;
+
   }
   .dropdown-content-responsive.visible {
     transform: translateX(0);

@@ -1,6 +1,6 @@
 ---
 import DropDownMenu from "@components/header/bottomHeader/DropDownMenu.astro";
-
+import LaHistoriaLogo from "../../../assets/LaHistoriaLogo.astro"
 import SearchWidget from "@components/SearchWidget.svelte";
 
 const { navigation, websiteContent } = Astro.props;
@@ -31,7 +31,11 @@ const { navigation, websiteContent } = Astro.props;
 </nav>
 
 <div class="history-search-container">
-  <SearchWidget client:load {websiteContent} />
+  <a href="https://historiabasquetgranollers.cat/" target="_blank">
+    <LaHistoriaLogo  wd="221"  title="Logo de La Història del Bàsquet a Granollers"/>
+  </a>
+         
+  <!-- <SearchWidget client:load {websiteContent} /> -->
 </div>
 
 <style>
