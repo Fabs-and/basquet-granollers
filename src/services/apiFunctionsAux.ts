@@ -74,52 +74,56 @@ export function slugExtractor(link: string) {
  * @param {Post[]} posts - The array of posts to check for redirects.
  * @returns {Promise<Post[]>} A new array of posts with redirects resolved.
  */
-export async function detectRedirects(posts: Post[]): Promise<Post[]> {
-  const newPosts = await Promise.all(
-    posts.map(async (post) => {
-      try {
-        const linkSlug = slugExtractor(post.link as string);
-        if (post.slug !== linkSlug) {
-          const redirectedPost = await getPageBySlug(linkSlug);
+export async function detectRedirects(posts: Post[]): Promise<(Post | Page)[]> {
+  const newPosts:( Post | Page)[] = [];
 
-          if (redirectedPost && redirectedPost.length > 0) {
-            redirectedPost[0] = {
-              ...redirectedPost[0],
-              categories: post.categories,
-              image: post.image,
-              title: { rendered: post.title.rendered },
-            };
-          }
+  for (const post of posts) {
+    try {
+      const linkSlug = slugExtractor(post.link as string);
 
-          return redirectedPost;
-        } else {
-          return post;
+      if (post.slug !== linkSlug) {
+        const redirectedPost = await getPageBySlug(linkSlug);
+
+        if (redirectedPost && redirectedPost.length > 0) {
+          redirectedPost[0] = {
+            ...redirectedPost[0],
+            categories: post.categories,
+            image: post.image,
+            title: { rendered: post.title.rendered },
+          };
         }
-      } catch (error) {
-        console.error("Error in detectRedirects:", error);
-        return post;
-      }
-    }),
-  );
 
-  return newPosts.flat() as Post[];
+        newPosts.push(...redirectedPost);
+      } else {
+        newPosts.push(post);
+      }
+    } catch (error) {
+      console.error("Error in detectRedirects:", error);
+      newPosts.push(post);
+    }
+  }
+
+  return newPosts;
 }
 
-export async function addImagesToPost(data: Post[] | Page[]) {
-  const postsWithImages = await Promise.all(
-    data.map(async (post: Post | Page) => {
-      try {
-        if (post?.image || !post?.featured_media) return post;
-        const imageLink = await getImageLink(post.featured_media);
-        post = { ...post, image: imageLink };
 
-        return post;
-      } catch (error) {
-        console.error("Error in addImageToPost:", error);
-        return post;
+export async function addImagesToPost(data: Post[] | Page[]): Promise<(Post | Page)[]> {
+  const postsWithImages: (Post | Page)[] = [];
+
+  for (const post of data) {
+    try {
+      if (post?.image || !post?.featured_media) {
+        postsWithImages.push(post);
+      } else {
+        const imageLink = await getImageLink(post.featured_media);
+        const updatedPost = { ...post, image: imageLink };
+        postsWithImages.push(updatedPost);
       }
-    }),
-  );
+    } catch (error) {
+      console.error("Error in addImageToPost:", error);
+      postsWithImages.push(post);
+    }
+  }
 
   return postsWithImages;
 }

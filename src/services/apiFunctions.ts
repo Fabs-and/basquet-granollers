@@ -31,6 +31,7 @@ import type {
 } from "../types";
 
 import { IMAGE_FIELDS } from "@data/globalConstants";
+
 async function fetchWithRetry(
   url: URL,
   retries: number = 3,
@@ -180,17 +181,17 @@ export async function getPosts(
       const data = await getData<Post>("posts", queryBuilder(endpointParams));
 
       const allPostsWithCustomFields = await detectRedirects(data);
-      postsQueryCache[cacheKey] = allPostsWithCustomFields;
-      return allPostsWithCustomFields;
+      postsQueryCache[cacheKey] = allPostsWithCustomFields as Post[];
+      return allPostsWithCustomFields as Post[];
     }
 
     const endpointParams = endpointParamsBuilder(postFields, quantity);
 
     const data = await getData<Post>("posts", queryBuilder(endpointParams));
     const posts = await detectRedirects(data);
-    postsQueryCache[cacheKey] = posts;
+    postsQueryCache[cacheKey] = posts as Post[];
 
-    return posts;
+    return posts as Post[];
   } catch (error) {
     console.error("Error in getPosts:", error);
     throw error; // Propagate the error to the caller
@@ -218,7 +219,7 @@ export async function getPostsInCategories(
 
     const data = await getData<Post>("posts", queryBuilder(endpointParams));
     const posts = await detectRedirects(data);
-    return posts;
+    return posts as Post[];
   } catch (error) {
     console.error("Error in getPostsInCategories:", error);
     throw error; // Propagate the error to the caller
@@ -464,21 +465,25 @@ export async function getImagesBySlug(slug: string): Promise<CustomImage[]> {
   try {
     // Fetch the page by slug and get its content and ID.
     const page = await getPageBySlug(slug, ["id", "content"]);
+
     if (!page.length) throw new Error(`Page not found for slug: ${slug}`);
 
     const { id, content } = page[0];
+
     // Extract URLs of images rendered on the page.
     const renderedImagesUrls = extractImageUrlsFromContent(content.rendered);
     const renderedImagesUrlsSet = new Set(renderedImagesUrls);
 
-    // Fetch images with the same parent page and all available media concurrently.
-    const [imagesWithSamePageParent, allMedia] = await Promise.all([
-      getImagesInfo(id),
-      getImages(),
-    ]);
+    // Fetch images with the same parent page.
+    const imagesWithSamePageParent = await getImagesInfo(id);
+
+    // Fetch all available media.
+    const allMedia = await getImages();
+
     const imagesInParentPage = imagesWithSamePageParent.find(
       (image) => image.url === renderedImagesUrls[0],
     );
+
     // If there's only one image URL, return it after verifying it's in the parent page images.
     if (renderedImagesUrls.length === 1 && imagesInParentPage !== undefined) {
       return [imagesInParentPage];
@@ -512,6 +517,7 @@ export async function getImagesBySlug(slug: string): Promise<CustomImage[]> {
     if (filteredImages.length === 0) {
       return imagesWithSamePageParent;
     }
+
     // Return the sorted images by appearance order.
     return sortImagesByAppearanceOrder(filteredImages, renderedImagesUrls);
   } catch (error) {
@@ -519,3 +525,4 @@ export async function getImagesBySlug(slug: string): Promise<CustomImage[]> {
     throw error;
   }
 }
+
