@@ -3,6 +3,7 @@
   import SearchWidgetResponsive from "@components/SearchWidgetResponsive.svelte";
   import LaHistoriaLogo from "@assets/LaHistoriaLogo.svelte"
   import SocialMediaMenu from "@components/SocialMediaMenu.svelte";
+  import DirectesIcon from "@assets/DirectesIcon.svelte";
 
   import { logoSmall } from "@assets/logo";
   import { isModalOpen } from "../../../svelte/store.ts";
@@ -55,6 +56,12 @@
   class:visible={isDropdownVisible}
   class="dropdown-content-responsive"
 >
+<li class="top-header-link">
+  <a href=""  class="directes" target="_blank">
+    <DirectesIcon wd={"35"} title="Icona de Directes" color={"#fff"}/>
+    <p >PARTITS EN DIRECTE</p>
+  </a>
+</li>
   {#if text1}
     <li class="top-header-link">
       {#if !link1}
@@ -135,6 +142,10 @@
     margin-inline: auto;
   }
 
+  .directes {
+    display: flex;
+    gap: 1rem;
+  }
   .top-header-link > a {
     color: var(--clr-contrast);
     font-size: var(--fnt-sz-h5);
