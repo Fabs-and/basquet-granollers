@@ -1,4 +1,5 @@
 ---
+import DirectesIcon from "@assets/DirectesIcon.astro"
 import SocialMediaMenu from "@components/SocialMediaMenu.astro";
 
 const { topHeaderContent } = Astro.props;
@@ -53,6 +54,9 @@ const { text2, link2 } = topHeaderContent![1];
     }
   </div>
   <div class="social-menu">
+    <a href="" title="Partits en directe">
+      <DirectesIcon />
+    </a>
     <SocialMediaMenu isFromHeader={true} />
   </div>
 </div>
@@ -79,7 +83,15 @@ const { text2, link2 } = topHeaderContent![1];
   .social-menu {
     position: absolute;
     right: var(--pd-x);
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+
   }
+ .text-content {
+  padding-bottom: 0.4rem;
+  }
+ 
 
   @media (max-width: 1025px) {
     .social-menu {

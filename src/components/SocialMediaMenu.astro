@@ -31,7 +31,7 @@ function getTitle(title: string) {
       socialMediaInfo.map((socialMediaItem) => {
         return (
           <li>
-            <a
+            <a 
               title={getTitle(socialMediaItem.title)}
               href={
                 socialMediaItem.title.toLowerCase().includes("tiktok")
@@ -55,6 +55,8 @@ function getTitle(title: string) {
     width: 11.0544rem;
     height: 1.09956rem;
   }
+
+
   ul {
     display: flex;
     justify-content: space-between;
