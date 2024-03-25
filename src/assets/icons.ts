@@ -3,7 +3,7 @@ export const collapsibleArrowHeader = `<svg xmlns="http://www.w3.org/2000/svg" s
 <path d="M1.19 1.00006L4.50979 4.69871" stroke="#002E6D" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
 </svg>`;
 
-export const magnifyingGlass = `<svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 28 28" fill="none">
+export const magnifyingGlass = `<svg xmlns="http://www.w3.org/2000/svg" class='search-icon' width="28" height="28" viewBox="0 0 28 28" fill="none">
   <path d="M20.8057 20.8062L26.8057 26.8062" stroke="#002E6D" stroke-width="2" stroke-linecap="round"/>
   <circle cx="13.8995" cy="13.8994" r="8.82843" transform="rotate(-45 13.8995 13.8994)" stroke="#002E6D" stroke-width="2"/>
 </svg>`;

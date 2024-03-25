@@ -72,7 +72,7 @@
     {#if showForm}
     <div class="close" style="display: block;">{@html closeIcon}</div>
     {:else}
-    <div class="magnifying">{@html magnifyingGlass}</div>
+    <div title="Cerca" class="magnifying">{@html magnifyingGlass}</div>
     {/if}
   </button>
   <div class="bridge" class:show={showForm || showResults}></div>
@@ -147,6 +147,7 @@
     /*Max-height is calculated with two lines for results (0.75rem) plus the padding-block times 10 to have around 10 results before scrolling*/
     /* backgrouxnd-color: var(--clr-primary); */
     /* border-color: var(--clr-secondary); ; */
+    padding-inline: 1.5rem;
     font-weight: 400;
     z-index: 1;
     overflow-y: auto;
@@ -154,7 +155,7 @@
   .wrapper {
     display: none;
     width: var(--searchbox-width);
-    padding-inline: 1.31rem;
+    margin-inline: 1.31rem;
     /* display: flex; */
     flex-direction: column;
     background-color: var(--clr-primary);
@@ -213,6 +214,7 @@
     display: flex;
     justify-content: center;
     padding-block: 0.81rem;
+    margin-inline: 1.5rem;
     /* padding-inline: 1.5rem; */
   }
 
@@ -228,8 +230,8 @@
     width: 3.7rem;
     height: 2.6875rem;
     background-color: transparent;
-    padding-inline: 1.5rem;
     color: var(--clr-contrast);
+    padding-left: 1.5rem;
     /* margin-right: -1rem; */
     /* position: absolute; Absolute position is necessary to use 'right' */
     /* right: 0; Set initial right position to 0 */
@@ -253,7 +255,8 @@
   }
 
   form.show input {
-    width: 16.25rem;
+    width: 100%;
+    /* margin-inline: 1.5rem; */
     /* Set final opacity to 1 */
   }
 
