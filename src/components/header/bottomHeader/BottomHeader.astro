@@ -32,10 +32,10 @@ const { navigation, websiteContent } = Astro.props;
 
 <div class="history-search-container">
   <a href="https://historiabasquetgranollers.cat/" target="_blank">
-    <LaHistoriaLogo  wd="221"  title="Logo de La Història del Bàsquet a Granollers"/>
+    <LaHistoriaLogo  wd="199"  title="Logo de La Història del Bàsquet a Granollers"/>
   </a>
          
-  <!-- <SearchWidget client:load {websiteContent} /> -->
+  <SearchWidget client:load {websiteContent} />
 </div>
 
 <style>
@@ -52,12 +52,15 @@ const { navigation, websiteContent } = Astro.props;
     bottom: 50%;
     transform: translateY(50%);
     gap: 0.94rem;
+    display: flex;
+    gap: 3.22rem;
+    align-items: center;
   }
 
   ul {
     min-height: var(--hg-header-bottom-section);
     display: flex;
-    gap: 2rem;
+    gap: 1.5rem;
     align-items: center;
     color: var(--clr-primary);
     font-weight: var(--fnt-wg-medium);

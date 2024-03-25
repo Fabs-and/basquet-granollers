@@ -61,62 +61,70 @@
 
 <aside
   id="search-component"
+  class='search-component'
   on:mouseenter={() => (hovering = true)}
   on:mouseleave={() => {
     hovering = false;
     hideComponents();
   }}
 >
-  <form action="" class="form" class:show={showForm}>
-    <input
-      style="font-family: 'obviously', sans-serif; font-size: var(--fnt-sz-regular); font-weight: 400;"
-      type="search"
-      required
-      min="2"
-      max="24"
-      name="search"
-      id="search"
-      placeholder="Buscar"
-      bind:value={searchInput}
-      on:input={handleInput}
-    />
-  </form>
   <button class="search-icon" on:click={toggleForm}>
     {#if showForm}
-      <div class="close" style="display: block;">{@html closeIcon}</div>
+    <div class="close" style="display: block;">{@html closeIcon}</div>
     {:else}
-      <div class="magnifying">{@html magnifyingGlass}</div>
+    <div class="magnifying">{@html magnifyingGlass}</div>
     {/if}
   </button>
   <div class="bridge" class:show={showForm || showResults}></div>
   <div
-    class="wrapper"
-    class:show={showResults ||
-      (searchInput.length > 0 && filteredContent.length === 0)}
-  >
-    <ul class="results-modal">
-      {#if filteredContent.length > 0}
-        {#each filteredContent as post}
-          <li>
-            <a href={`/${post.slug}`}>{formatHtml(post.title.rendered)}</a>
-          </li>
-        {/each}
-      {:else if searchInput.length > 0}
-        <li>No s'ha trobat res</li>
-      {/if}
-    </ul>
-  </div>
+  class="wrapper" class:show={showForm}>
+  <!-- class:show={showResults ||
+        (searchInput.length > 0 && filteredContent.length === 0)} -->
+    
+    
+    <form action="" class="form" class:show={showForm}>
+      <input
+        style="font-family: 'obviously', sans-serif; font-size: var(--fnt-sz-regular); font-weight: 400;"
+        type="search"
+        required
+        min="2"
+        max="24"
+        name="search"
+        id="search"
+        placeholder="Buscar"
+        bind:value={searchInput}
+        on:input={handleInput}
+      />
+    </form>
+      <ul class="results-modal"  class:show={showResults ||
+        (searchInput.length > 0 && filteredContent.length === 0)} >
+        {#if filteredContent.length > 0}
+          {#each filteredContent as post}
+            <li>
+              <a href={`/${post.slug}`}>{formatHtml(post.title.rendered)}</a>
+            </li>
+          {/each}
+        {:else if searchInput.length > 0}
+          <li>No s'ha trobat res</li>
+        {/if}
+      </ul>
+    </div>
 </aside>
 
 <style>
+  .search-component {
+    position: relative;
+  }
   .bridge {
     display: none;
-    top: 2.6875rem;
+    top: 1.6875rem;
     position: absolute;
     height: 2rem;
     width: var(--searchbox-width);
-    left: calc((var(--searchbox-width) * -1) + 1rem);
+    /* left: calc((var(--searchbox-width) * -1) + 1rem); */
     background: transparent;
+    right: -2rem;
+
   }
 
   .bridge.show {
@@ -128,30 +136,37 @@
     height: 2.6875rem;
     /* padding-top: 0.1rem; */
   }
-
+  
   ul {
     display: flex;
     flex-direction: column;
     left: calc((var(--searchbox-width) * -1) + 1rem);
-    top: 4rem;
+    /* top: 4rem; */
     gap: 0.75rem;
-    position: absolute;
+    /* position: absolute; */
     /*Max-height is calculated with two lines for results (0.75rem) plus the padding-block times 10 to have around 10 results before scrolling*/
-    max-height: 15.5rem;
-    background-color: var(--clr-primary);
+    /* backgrouxnd-color: var(--clr-primary); */
     /* border-color: var(--clr-secondary); ; */
-    padding-inline: 1.31rem;
-    padding-block: 0.81rem;
     font-weight: 400;
-    width: var(--searchbox-width);
     z-index: 1;
     overflow-y: auto;
   }
   .wrapper {
     display: none;
+    width: var(--searchbox-width);
+    padding-inline: 1.31rem;
+    /* display: flex; */
+    flex-direction: column;
+    background-color: var(--clr-primary);
+    padding-block: 0.81rem;
+    max-height: 15.5rem;
+    position: absolute;
+    right: -2rem;
+    top: 3.2rem;
   }
   .wrapper.show {
     display: flex;
+    gap: 0.75rem;
   }
 
   .wrapper:before {
@@ -162,8 +177,8 @@
     border-right: 0.71875rem solid transparent; /* Half of the width */
     border-bottom: 0.9375rem solid var(--clr-primary); /* Given height */
     position: absolute;
-    top: 3.2rem;
-    left: calc((var(--searchbox-width) * -1) + 2rem);
+    top: -0.9rem;
+    right: calc(2.2rem);
     /* transform: translateX(5%); */
   }
 
@@ -190,11 +205,15 @@
     right: 0rem;
     bottom: 0.5rem;
   }
-  form {
+  form{
     position: relative;
     opacity: 0;
     visibility: hidden;
     transition: opacity 0.5s ease-in-out;
+    display: flex;
+    justify-content: center;
+    padding-block: 0.81rem;
+    /* padding-inline: 1.5rem; */
   }
 
   form.show {
@@ -205,32 +224,41 @@
   input {
     display: flex;
     border-radius: 1.34375rem;
-    border: 1px solid var(--clr-primary);
-    width: 3.7rem; /* Set initial width to 2rem */
+    border: 1px solid var(--clr-contrast);
+    width: 3.7rem;
     height: 2.6875rem;
     background-color: transparent;
     padding-inline: 1.5rem;
-    color: var(--clr-primary);
-    margin-right: -1rem;
-    position: absolute; /* Absolute position is necessary to use 'right' */
-    right: 0; /* Set initial right position to 0 */
+    color: var(--clr-contrast);
+    /* margin-right: -1rem; */
+    /* position: absolute; Absolute position is necessary to use 'right' */
+    /* right: 0; Set initial right position to 0 */
     /* Set initial opacity to 0 */
     transition: width 0.3s ease-in-out; /* Set transitions for opacity and width */
     font-size: var(--fnt-sz-regular);
     font-weight: 600;
   }
 
+  .results-modal {
+    display:none;
+  }
+
+  .results-modal.show {
+    display: flex;
+  } 
+
   input:focus {
-    outline: 2px solid var(--clr-primary); /* Blue outline */
+    border: none;
+    outline: 2px solid var(--clr-accent); /* Blue outline */
   }
 
   form.show input {
-    width: var(--searchbox-width);
+    width: 16.25rem;
     /* Set final opacity to 1 */
   }
 
   input::placeholder {
-    color: var(--clr-primary);
+    color: var(--clr-contrast);
   }
 
   input[type="search"]::-webkit-search-cancel-button {
