@@ -45,12 +45,35 @@ postsToSearch.forEach((post) => {
 const websiteContent = [...pagesToSearch, ...postsToSearch];
 ---
 
+<script>
+  const header = document.getElementById("bottom-header");
+  let isScrolling = false;
+
+  const handleScroll = () => {
+    if (window.scrollY > 0) {
+      // Scrolling down
+      if (!isScrolling) {
+        header!.style.setProperty("--hg-header-bottom-section", "3.15rem");
+        isScrolling = true;
+      }
+    } else {
+      // At the top of the page
+      if (isScrolling) {
+        header!.style.setProperty("--hg-header-bottom-section", "");
+        isScrolling = false;
+      }
+    }
+  };
+
+  window.addEventListener("scroll", handleScroll);
+</script>
+
 <header>
   <section class="header-top-section">
     <TopHeader {topHeaderContent} />
   </section>
   <section class="header-bottom-section">
-    <div class="bottom-header">
+    <div class="bottom-header" id="bottom-header">
       <BottomHeader {websiteContent} navigation={bottomHeaderNav} />
     </div>
     <div class="bottom-header responsive">
@@ -80,10 +103,11 @@ const websiteContent = [...pagesToSearch, ...postsToSearch];
   }
 
   .bottom-header {
-    min-height: var(--hg-header-bottom-section);
+    height: var(--hg-header-bottom-section, 6.3125rem);
     background-color: var(--clr-contrast);
     background-color: rgba(243, 243, 243, 0.9);
     position: relative;
+    transition: height 0.5s ease-in;
   }
   .responsive {
     display: none;

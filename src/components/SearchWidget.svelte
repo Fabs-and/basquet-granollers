@@ -162,7 +162,7 @@
     padding-block: 0.81rem;
     max-height: 15.5rem;
     position: absolute;
-    right: -2rem;
+    right: -3.31rem;
     top: 3.2rem;
   }
   .wrapper.show {

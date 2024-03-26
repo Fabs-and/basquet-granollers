@@ -6,9 +6,39 @@ import SearchWidget from "@components/SearchWidget.svelte";
 const { navigation, websiteContent } = Astro.props;
 ---
 
-<a class="logo" href="/"
-  ><img src="/logo.svg" alt="Logo del Club Bàsquet Granollers" /></a
->
+<script>
+  let isScrolling = false;
+  const logo = document.querySelector(".logo");
+  const logoContainer = document.querySelector(".logo-container");
+
+  const handleScroll = () => {
+  if (window.scrollY > 0) {
+    // Scrolling down
+    if (!isScrolling) {
+      logo.style.bottom = "-1.2rem";
+      logoContainer.style.setProperty("--logo-size", "90%"); // Reduce logo size
+      isScrolling = true;
+    }
+  } else {
+    // At the top of the page
+    if (isScrolling) {
+      logo.style.bottom = "0.5rem";
+
+      logoContainer.style.setProperty("--logo-size", "100%"); // Restore logo size
+      isScrolling = false;
+    }
+  }
+};
+
+  window.addEventListener("scroll", handleScroll);
+</script>
+
+
+<div class="logo-container">
+  <a class="logo" href="/">
+    <img src="/logo.svg" alt="Logo del Club Bàsquet Granollers" style="width: var(--logo-size); height: var(--logo-size);" />
+  </a>
+</div>
 
 <nav class="nav">
   <ul>
@@ -31,7 +61,7 @@ const { navigation, websiteContent } = Astro.props;
 </nav>
 
 <div class="history-search-container">
-  <a href="https://historiabasquetgranollers.cat/" target="_blank">
+  <a class="history-logo-link" href="https://historiabasquetgranollers.cat/" target="_blank">
     <LaHistoriaLogo  wd="199"  title="Logo de La Història del Bàsquet a Granollers"/>
   </a>
          
@@ -39,13 +69,29 @@ const { navigation, websiteContent } = Astro.props;
 </div>
 
 <style>
-  .logo {
+
+.logo-responsive {
+  --logo-size: 100%; /* Default size */
+  /* transition: --logo-size 10s ease-in-out; Add transition for smooth resizing */
+}
+.logo {
+    width: 68px;
+    display: flex;
+    justify-content: center;
     position: absolute;
     bottom: 0.5rem;
     left: var(--pd-x);
+    transition: bottom 0.5s ease-in-out; /* Add transition for smooth resizing */
+  }
+
+  .logo img {
+    width: var(--logo-size);
+    height: var(--logo-size);
+    transition: width 0.5s ease-in-out, height 0.5s ease-in-out; /* Add transition for smooth resizing */
   }
 
   .history-search-container {
+    height: 100%;
     position: absolute;
     display: flex;
     right: var(--pd-x);
@@ -57,6 +103,10 @@ const { navigation, websiteContent } = Astro.props;
     align-items: center;
   }
 
+  .history-logo-link {
+    height: 100%;
+  }
+
   ul {
     min-height: var(--hg-header-bottom-section);
     display: flex;
@@ -65,6 +115,7 @@ const { navigation, websiteContent } = Astro.props;
     color: var(--clr-primary);
     font-weight: var(--fnt-wg-medium);
     padding-left: 12.4rem;
+    transition: min-height 0.5s ease-in-out;
   }
 
   a {
