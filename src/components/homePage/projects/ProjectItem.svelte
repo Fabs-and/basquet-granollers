@@ -1,5 +1,12 @@
 <script>
+    import { isNamedTupleMember } from "typescript";
+
   export let item;
+
+  if (item.image.id === null) {
+    item.image.url = `https://wordpress.cbgranollers.cat/wp-content/uploads/2023/10/11P.webp`;
+    item.image.alt = `Imatge de les 11 preguntes i respostes`;
+  }
 </script>
 
 {#if item.image}

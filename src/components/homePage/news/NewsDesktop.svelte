@@ -10,7 +10,7 @@
   let prevIndex = 0;
   let direction = "";
 
-  console.log('news qty:', news.length);
+
   const totalSlides = Math.ceil(news.length / 3) - 1;
 
   async function goBack() {
