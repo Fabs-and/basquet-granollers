@@ -91,38 +91,18 @@ const WP_APPLICATION_PASSWORD = import.meta.env.WP_APPLICATION_PASSWORD;
 const TOKEN = btoa(`${USERNAME}:${WP_APPLICATION_PASSWORD}`);
 
 export async function getData<T>(
-  endpoint:
-    | Endpoints
-    | PostsWithId
-    | PagesWithId
-    | MediaWithId
-    | CustomEndpoint,
+  endpoint: Endpoints | PostsWithId | PagesWithId | MediaWithId | CustomEndpoint,
   query?: URLSearchParams,
-  isImage?: boolean, // add isImage parameter to control the image fetching logic
 ): Promise<T[]> {
-  const url = new URL(`${import.meta.env.PUBLIC_BASE_URL}
-${WP_API}/${endpoint}`);
+  const url = new URL(`${import.meta.env.PUBLIC_BASE_URL}${WP_API}/${endpoint}`);
+
   try {
-    let fieldValue: string | null = null;
     if (query) {
-      fieldValue = query.get("_fields");
-      if (fieldValue && fieldValue.includes("image")) {
-        // Split the _fields string into an array
-        const fieldsArray = fieldValue.split(",");
-        // Filter out 'image'
-        const updatedFieldsArray = fieldsArray.filter(
-          (field) => field !== "image",
-        );
-        // Join the array back into a string
-        const updatedFieldValue = updatedFieldsArray.join(",");
-        query.set("_fields", updatedFieldValue);
-        // set isImage flag to true
-        isImage = true;
-      }
       url.search = query.toString();
     }
 
     const res = await fetchWithRetry(url);
+
     if (!res.ok) {
       console.error(
         "Error in getData:",
@@ -134,16 +114,7 @@ ${WP_API}/${endpoint}`);
     }
 
     const data = await res.json();
-
-    if (
-      (isImage || fieldValue === null || fieldValue.includes("page")) &&
-      (endpoint.includes("pages") || endpoint.includes("posts"))
-    ) {
-      const dataWithImages = await addImagesToPost(data);
-      return dataWithImages as T[];
-    } else {
-      return Array.isArray(data) ? data : [data];
-    }
+    return Array.isArray(data) ? data : [data];
   } catch (error) {
     console.error("Error in getData:", error, "URL:", url.toString());
     throw error;

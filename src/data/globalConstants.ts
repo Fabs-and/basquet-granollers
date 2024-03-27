@@ -37,6 +37,7 @@ const POST_FIELDS: PostFields[] = [
   "categories",
   "date",
   "image",
+  "imatge_destacada_interior",
   "id",
 ];
 

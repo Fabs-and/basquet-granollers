@@ -75,7 +75,7 @@ export function slugExtractor(link: string) {
  * @returns {Promise<Post[]>} A new array of posts with redirects resolved.
  */
 export async function detectRedirects(posts: Post[]): Promise<(Post | Page)[]> {
-  const newPosts:( Post | Page)[] = [];
+  const newPosts: (Post | Page)[] = [];
 
   for (const post of posts) {
     try {
@@ -106,17 +106,26 @@ export async function detectRedirects(posts: Post[]): Promise<(Post | Page)[]> {
   return newPosts;
 }
 
-
 export async function addImagesToPost(data: Post[] | Page[]): Promise<(Post | Page)[]> {
   const postsWithImages: (Post | Page)[] = [];
 
   for (const post of data) {
     try {
-      if (post?.image || !post?.featured_media) {
+      if (post?.image || post?.imatge_destacada_interior) {
         postsWithImages.push(post);
       } else {
-        const imageLink = await getImageLink(post.featured_media);
-        const updatedPost = { ...post, image: imageLink };
+        let updatedPost: Post | Page = { ...post };
+
+        if (post?.featured_media) {
+          const imageLink = await getImageData(post.featured_media);
+          updatedPost.image = imageLink;
+        }
+
+        if (post?.acf?.imatge_destacada_interior != null) {
+          const imageLinkInterior = await getImageData(post.acf.imatge_destacada_interior);
+          updatedPost.imatge_destacada_interior = imageLinkInterior;
+        }
+
         postsWithImages.push(updatedPost);
       }
     } catch (error) {
@@ -127,8 +136,63 @@ export async function addImagesToPost(data: Post[] | Page[]): Promise<(Post | Pa
 
   return postsWithImages;
 }
+// export async function addImagesToPost(data: Post[] | Page[]): Promise<(Post | Page)[]> {
+//   const postsWithImages: (Post | Page)[] = [];
 
-export async function getImageLink(featured_media: number) {
+//   for (const post of data) {
+//     try {
+//       if (post?.image || !post?.featured_media || post?.acf) {
+//         postsWithImages.push(post);
+//       } else {
+//         const imageLink = await getImageLink(post.featured_media);
+//         const updatedPost = { ...post, image: imageLink };
+//         postsWithImages.push(updatedPost);
+//       }
+//     } catch (error) {
+//       console.error("Error in addImageToPost:", error);
+//       postsWithImages.push(post);
+//     }
+//   }
+
+//   return postsWithImages;
+// }
+
+// export async function addImagesToPost(
+//   data: Post[] | Page[],
+// ): Promise<(Post | Page)[]> {
+//   const postsWithImages: (Post | Page)[] = [];
+
+//   for (const post of data) {
+//     try {
+//       if (post?.image || !post?.featured_media) {
+//         postsWithImages.push(post);
+//       } else {
+//         const imageLink = await getImageData(post.featured_media);
+//         const updatedPost = { ...post, image: imageLink };
+//         postsWithImages.push(updatedPost);
+//       }
+
+//       // Check if the post has ACF data and imatge_destacada_interior field
+//       if (post?.acf.imatge_destacada_interior !== null) {
+//         const imageId = post.acf.imatge_destacada_interior;
+//         console.log('idddddd', post);
+//         const imageLinkInterior = await getImageData(
+//           post.acf.imatge_destacada_interior,
+//         );
+//         // console.log('adddding link', imageLinkInterior);
+//         const updatedPost = { ...post, imagetge_destacada_interior: imageLinkInterior };
+//         postsWithImages.push(updatedPost);
+//       }
+//     } catch (error) {
+//       // console.error("Error in addImageToPost:", error);
+//       postsWithImages.push(post);
+//     }
+//   }
+
+//   return postsWithImages;
+// }
+
+export async function getImageData(featured_media: number) {
   try {
     const imageMetaInfo = await getData<Media>(`${"media"}/${featured_media}`);
 
@@ -179,7 +243,7 @@ export async function getImageLink(featured_media: number) {
       // ... extract other properties from mediaItem here
     };
   } catch (error) {
-    console.error("Error in getImageLink:", error);
+    console.error("Error in getImageData:", error);
     return {
       id: null,
       url: "",
@@ -242,7 +306,6 @@ export function removeParagraphTags(string: string) {
   // Trim spaces at the beginning and end
   return cleanedString.trim();
 }
-
 
 export function extractUrlFromCaption(caption: string, description: string) {
   const match = description.match(

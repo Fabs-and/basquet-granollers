@@ -1,11 +1,10 @@
 ---
 import {
-  PAGE_FIELDS,
   NEWS_CATEGORY_ID,
   POST_FIELDS,
 } from "@data/globalConstants";
 import DynamicPageLayout from "@layouts/DynamicPageLayout.astro";
-import { getPostsInCategories } from "@services/apiFunctions";
+import { getPostById, getPostsInCategories } from "@services/apiFunctions";
 import { dateConverter, formatHtml } from "@utils/helperFunctions";
 
 export async function getStaticPaths() {
@@ -23,12 +22,15 @@ export async function getStaticPaths() {
         content: formatHtml(noticia.content.rendered),
         date: dateConverter(noticia.date),
         image: noticia.image,
+        imatge_destacada_interior: noticia.imatge_destacada_interior,
       },
     };
   });
 }
 
 const noticia = Astro.props;
+
+console.log('notiii', noticia)
 ---
 
 <DynamicPageLayout isPost={true} post={noticia} />

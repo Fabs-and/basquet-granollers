@@ -10,9 +10,10 @@ import {
 
 const { post, isPost } = Astro.props;
 
-const { title, content, image, date } = post;
+const { title, content, image, date, imatge_destacada_interior } = post;
 
 const pageDescription = truncateString(stripHtml(content));
+
 ---
 
 <BaseLayout {title} {pageDescription}>
@@ -24,7 +25,13 @@ const pageDescription = truncateString(stripHtml(content));
           {isPost && <p class="g-date-style">{`Publicat ${date}`}</p>}
         </div>
         {
-          image && image.url !== "" ? (
+          imatge_destacada_interior && imatge_destacada_interior.url ? (
+            <img
+              class="g-opacity"
+              src={imatge_destacada_interior.url}
+              alt={imatge_destacada_interior.alt && imatge_destacada_interior.alt}
+            />
+          ) : image && image.url ? (
             <img
               class="g-opacity"
               src={image.url}
@@ -38,6 +45,7 @@ const pageDescription = truncateString(stripHtml(content));
             />
           )
         }
+
       </header>
       <div class="article-content">
         <Fragment set:html={content} />

@@ -28,31 +28,37 @@ export type CommonPagesAndPostsFields =
   | "status"
   | "template"
   | "title"
-  | "type";
+  | "type"
+  | "acf"
+  | "imatge_destacada_interior";
 
-export type PostSpecificFields = "categories" | "format" | "sticky" | "tags";
-  
-  export type PageSpecificFields =
-    | "generated_slug"
-    | "menu_order"
-    | "password"
-    | "permalink_template";
-  
-  export type PageFields = CommonPagesAndPostsFields | PageSpecificFields;
-  export type PostFields = CommonPagesAndPostsFields | PostSpecificFields;
-  
-  export type CategoryFields =
-    | "count"
-    | "description"
-    | "id"
-    | "link"
-    | "meta"
-    | "parent"
-    | "name"
-    | "slug"
-    | "taxonomy";
-  type IdAutosaves = `${number}/autosaves`;
-  type PagesRevisionsWithID = `${"pages"}/${number}/revisions`;
+export type PostSpecificFields =
+  | "categories"
+  | "format"
+  | "sticky"
+  | "tags";
+
+export type PageSpecificFields =
+  | "generated_slug"
+  | "menu_order"
+  | "password"
+  | "permalink_template";
+
+export type PageFields = CommonPagesAndPostsFields | PageSpecificFields;
+export type PostFields = CommonPagesAndPostsFields | PostSpecificFields;
+
+export type CategoryFields =
+  | "count"
+  | "description"
+  | "id"
+  | "link"
+  | "meta"
+  | "parent"
+  | "name"
+  | "slug"
+  | "taxonomy";
+type IdAutosaves = `${number}/autosaves`;
+type PagesRevisionsWithID = `${"pages"}/${number}/revisions`;
 type PostsRevisionsWithID = `${"posts"}/${number}/revisions`;
 
 export type Endpoints =
@@ -148,6 +154,10 @@ export type Post = {
   template: string;
   title: { rendered: string };
   type: string;
+  acf: {
+    imatge_destacada_interior: number;
+  };
+  imatge_destacada_interior:  { url: string; title: string; alt: string };
 };
 
 export type Category = {
@@ -202,6 +212,10 @@ export type Page = {
     raw?: string;
   };
   type: "page";
+  acf: {
+    imatge_destacada_interior: number;
+  };
+  imatge_destacada_interior:  { url: string; title: string; alt: string };
 };
 
 export type Media = {
@@ -283,7 +297,7 @@ export interface PostsQueryCache {
 
 type LinkContent = {
   title: string;
-  content: {name: string, link: string}[]; // assuming the content array contains strings
+  content: { name: string; link: string }[]; // assuming the content array contains strings
 };
 
 export type FixedLink = {
@@ -295,4 +309,3 @@ export type TopFooterLinks = {
   generalLinks: LinkContent[];
   fixedLinks: FixedLink[];
 };
-
