@@ -1,7 +1,6 @@
 <script>
   export let isScrolling = false;
 
-  console.log('isScrolling', isScrolling)
 </script>
 
 <svg xmlns="http://www.w3.org/2000/svg"  width="68" height="120" viewBox="0 0 68 120" fill="none">
