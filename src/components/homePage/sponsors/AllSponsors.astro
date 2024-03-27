@@ -10,7 +10,7 @@ import { mainSponsorsBlue, otherSponsors } from "@data/apiData";
   noHeading={true}
   color="var(--clr-primary)"
   bgColor="var(--clr-contrast)"
->
+  noMaxWidth={true}>
   <aside class="sponsors-outter-container">
     <div class="sponsors-inner-containers">
       <p class="title-line">Patrocinadors principals</p>
@@ -98,8 +98,8 @@ import { mainSponsorsBlue, otherSponsors } from "@data/apiData";
   }
 
   .other-sponsors-container li {
-    max-width: 123.29px;
-    height: 58.96px;
+    max-width: 90px;
+    height: 40px;
   }
 
   .other-sponsors-images {
@@ -141,11 +141,6 @@ import { mainSponsorsBlue, otherSponsors } from "@data/apiData";
 
     .other-sponsors-container {
       gap: 2rem;
-    }
-
-    .other-sponsors-container li {
-      max-width: 92.28px;
-      height: 43.13px;
     }
   }
 </style>
