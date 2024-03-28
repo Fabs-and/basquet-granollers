@@ -5,13 +5,13 @@ import BaseLayout from "./BaseLayout.astro";
 //Import components
 import Headings from "@components/internal-pages/headings.astro";
 
-const { title, subHeading, pageDescription } = Astro.props;
+const { title, subHeading, heading, pageDescription } = Astro.props;
 ---
 
 <BaseLayout {title} {pageDescription}>
   <section class="internal-page">
     <div class="max-width-page">
-      <Headings heading={title} {subHeading} />
+      <Headings {heading} {subHeading} />
       <slot />
     </div>
   </section>
