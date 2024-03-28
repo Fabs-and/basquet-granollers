@@ -5,7 +5,6 @@
   let totalDots;
   let currentSlideIndex = 0;
 
-  console.log('slides', slides)
 
   import {
     formatHtml,
@@ -33,11 +32,7 @@
     }
 
   }
-  function isVideoUrl(url) {
-  const videoExtensions = ['.mp4', '.webm', '.ogg'];
-  const extension = url.substring(url.lastIndexOf('.')).toLowerCase();
-  return videoExtensions.includes(extension);
-}
+  
 </script>
 
 {#if slides && slides.length > 0}
@@ -47,12 +42,11 @@
         data-index={index}
         class="slide {index === currentSlideIndex ? 'active' : ''}"
       >
-      {#if slide.image && slide.image.url}
-      {#if isVideoUrl(slide.image.url)}
+      {#if slide.video !== null}
       <video
-        src={slide.image.url}
+        src={slide.video.url}
         class="hidden"
-        alt={slide.image.alt}
+        alt={slide.video?.alt}
         loading={index === 0 ? 'eager' : 'lazy'}
         autoplay
         muted
@@ -62,24 +56,19 @@
       <img
         src={slide.image.url}
         class="hidden"
-        alt={slide.image.alt}
+        alt={slide.image?.alt}
         loading={index === 0 ? 'eager' : 'lazy'}
       />
     {/if}
-    {/if}
         <div class="hero-info-container">
           <div class="hero-info-flex">
-            <h2>{formatHtml(slide.title.rendered)}</h2>
+            <h2>{slide.title}</h2>
             <p>
-              {formatHtml(
-                extractSlideDescriptionAndLink(slide.content.rendered)
-                  .description,
-              )}
+              {slide.description}
             </p>
-            {#if extractSlideDescriptionAndLink(slide.content.rendered).link}
+            {#if slide.link}
               <ButtonAnchor
-                slug={extractSlideDescriptionAndLink(slide.content.rendered)
-                  .link}
+                slug={slide.link}
                 text={`veure més`}
               />
             {/if}
@@ -150,7 +139,7 @@
     overflow: hidden;
   }
 
-  img {
+  img, video {
     height: inherit;
     width: 100%;
     object-fit: cover;

@@ -1,7 +1,6 @@
 <script>
   export let item;
 
-  console.log('iteeeeem', item)
 </script>
 
 <details>

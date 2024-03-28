@@ -83,7 +83,8 @@ export type Endpoints =
   | "taxonomies"
   | "themes"
   | "users"
-  | "capcalera";
+  | "capcalera"
+  | "carrusel";
 
 export interface GlobalParams {
   _fields?: string;
@@ -187,6 +188,22 @@ type NoDeplegable = {
   titol: string;
   enllac: string;
 };
+
+type slideMedia = {
+  id: string;
+  url: string;
+  date: string;
+  caption: string;
+  description: string;
+  title: string;
+}
+
+export type HeroSlide = {
+  image: slideMedia | null;
+  video: slideMedia | null;
+  description: string;
+  link: string;
+}
 
 export type Category = {
   count: number;

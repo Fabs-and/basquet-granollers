@@ -29,6 +29,7 @@ import type {
   CustomImage,
   PostsQueryCache,
   Capcalera,
+  HeroSlide,
 } from "../types";
 
 import { IMAGE_FIELDS } from "@data/globalConstants";
@@ -236,6 +237,21 @@ export async function getCapcalera(
     throw error; // Propagate the error to the caller
   }
 }
+
+export async function getHeroSlides(
+  ): Promise<HeroSlide[]> {
+    try {
+      const endpointParams = endpointParamsBuilder();
+  
+      const posts = await getData<HeroSlide>("carrusel", queryBuilder(endpointParams));
+     
+      return posts;
+    } catch (error) {
+      console.error("Error in getPostBySlug:", error);
+      throw error; // Propagate the error to the caller
+    }
+  }
+  
 
 /**
  * Fetches a post by its ID with optional fields.

@@ -1,4 +1,4 @@
-<!-- <script>
+<script>
   import ButtonAnchor from "@components/ButtonAnchor.svelte";
   export let slides;
   let totalDots;
@@ -66,26 +66,34 @@
         class:transition-next={transitionDirection === "next"}
         class:transition-prev={transitionDirection === "prev"}
       >
+      {#if slide.video !== null}
+      <video
+        src={slide.video.url}
+        class="hidden"
+        alt={slide.video?.alt}
+        loading={index === 0 ? 'eager' : 'lazy'}
+        autoplay
+        muted
+        loop
+      ></video>
+    {:else}
         <img
           src={slide.image.url}
           class="hidden"
-          alt={slide.image.alt}
+          alt={slide.image?.alt}
           loading="eager"
         />
+       {/if} 
 
         <div class="hero-info-container">
           <div class="hero-info-flex">
-            <h2>{formatHtml(slide.title.rendered)}</h2>
+            <h2>{slide.title}</h2>
             <p>
-              {formatHtml(
-                extractSlideDescriptionAndLink(slide.content.rendered)
-                  .description,
-              )}
+              {slide.description}
             </p>
-            {#if extractSlideDescriptionAndLink(slide.content.rendered).link}
+            {#if slide.link}
               <ButtonAnchor
-                slug={extractSlideDescriptionAndLink(slide.content.rendered)
-                  .link}
+                slug={slide.link}
                 text={`veure més`}
               />
             {/if}
@@ -162,7 +170,7 @@
     overflow: hidden;
   }
 
-  img {
+  img, video {
     height: inherit;
     width: 100%;
     object-fit: cover;
@@ -276,4 +284,4 @@
       height: 101svh;
     }
   }
-</style> -->
+</style>
