@@ -1,24 +1,26 @@
 <script>
   export let item;
+
+  console.log('iteeeeem', item)
 </script>
 
 <details>
   <summary>
-    <h5>{item.name.toUpperCase()}</h5>
+    <h5>{item.desplegable.toUpperCase()}</h5>
   </summary>
   <ul class="links-container">
-    {#each item.dropdown as dropDownItem}
+    {#each item.values as dropDownItem}
       <li>
-        {#if dropDownItem.link.includes('http')}
+        {#if dropDownItem.enllac.includes('http')}
           <a
-            href={dropDownItem.link}
+            href={dropDownItem.enllac}
             target="_blank"
             rel="noopener noreferrer"
           >
-            {dropDownItem.name}
+            {dropDownItem.nom}
           </a>
         {:else}
-          <a href={dropDownItem.link}>{dropDownItem.name}</a>
+          <a href={dropDownItem.enllac}>{dropDownItem.nom}</a>
         {/if}
       </li>
     {/each}

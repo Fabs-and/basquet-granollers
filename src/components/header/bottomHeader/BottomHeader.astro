@@ -4,6 +4,10 @@ import LaHistoriaLogo from "../../../assets/LaHistoriaLogo.astro"
 import SearchWidget from "@components/SearchWidget.svelte";
 
 const { navigation, websiteContent } = Astro.props;
+
+// navigation.map(item =>{ if (item.values) console.log('itemiiii',item)})
+
+// console.log('navigation', navigation)
 ---
 
 <script>
@@ -45,14 +49,14 @@ const { navigation, websiteContent } = Astro.props;
     {
       navigation.map((item) => (
         <li>
-          {item.dropdown ? (
+          {item.desplegable ? (
             <DropDownMenu {item} />
-          ) : item.link.includes("http") ? (
-            <a href={item.link} target="_blank" rel="noopener noreferrer">
-              {item.name!.toUpperCase()}
+          ) : item.enllac?.includes("http") ? (
+            <a href={item.enllac} target="_blank" rel="noopener noreferrer">
+              {item.titol?.toUpperCase()}
             </a>
           ) : (
-            <a href={item.link}>{item.name!.toUpperCase()}</a>
+            <a href={item.enllac}>{item.titol?.toUpperCase()}</a>
           )}
         </li>
       ))

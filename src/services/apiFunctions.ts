@@ -28,6 +28,7 @@ import type {
   CustomEndpoint,
   CustomImage,
   PostsQueryCache,
+  Capcalera,
 } from "../types";
 
 import { IMAGE_FIELDS } from "@data/globalConstants";
@@ -136,7 +137,7 @@ export async function getPosts(
   postFields?: PostFields[],
 ): Promise<Post[]> {
   try {
-    // Create a cache key from the function parameters
+    // Create a cache key from the function parameters  
     const cacheKey = JSON.stringify({ quantity, postFields });
     // Check the cache for a previous result
     if (postsQueryCache[cacheKey]) {
@@ -146,7 +147,7 @@ export async function getPosts(
       const allPosts = await getData<Post>("posts");
       postsQueryCache[cacheKey] = allPosts;
       return allPosts;
-    } else if (typeof postFields !== "undefined" && quantity === -1) {
+    } else if (typeof postFields !== "undefined" && quantity === -1) { 
       const endpointParams = endpointParamsBuilder(postFields);
 
       const data = await getData<Post>("posts", queryBuilder(endpointParams));
@@ -216,6 +217,20 @@ export async function getPostBySlug(
     const post = await getData<Post>("posts", queryBuilder(endpointParams));
 
     return post;
+  } catch (error) {
+    console.error("Error in getPostBySlug:", error);
+    throw error; // Propagate the error to the caller
+  }
+} 
+
+export async function getCapcalera(
+): Promise<Capcalera> {
+  try {
+    const endpointParams = endpointParamsBuilder();
+
+    const post = await getData<Capcalera>("capcalera", queryBuilder(endpointParams));
+    const {capcalera_superior, capcalera_inferior } = post[0];
+    return {capcalera_superior, capcalera_inferior};
   } catch (error) {
     console.error("Error in getPostBySlug:", error);
     throw error; // Propagate the error to the caller

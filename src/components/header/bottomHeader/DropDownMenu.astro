@@ -1,6 +1,8 @@
 ---
-const { item } = Astro.props;
 import { collapsibleArrowHeader } from "@assets/icons";
+
+const { item } = Astro.props;
+
 ---
 
 <script>
@@ -36,7 +38,7 @@ import { collapsibleArrowHeader } from "@assets/icons";
 
 <div class="dropdown">
   <button id="drop-down-menu" aria-haspopup="true" aria-expanded="false">
-    {item.name.toUpperCase()}
+    {item.desplegable.toUpperCase()}
     <div class="rotate">
       <Fragment set:html={collapsibleArrowHeader} />
     </div>
@@ -45,18 +47,18 @@ import { collapsibleArrowHeader } from "@assets/icons";
   <nav>
     <ul id="myDropdown" class="dropdown-content">
       {
-        item.dropdown.map((dropDownItem) => (
+        item.values.map((dropDownItem) => (
           <li>
-            {dropDownItem.link.includes("http") ? (
+            {dropDownItem.enllac.includes("http") ? (
               <a
-                href={dropDownItem.link}
+                href={dropDownItem.enllac}
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                {dropDownItem.name!}
+                {dropDownItem.nom!}
               </a>
             ) : (
-              <a href={dropDownItem.link}>{dropDownItem.name!}</a>
+              <a href={dropDownItem.enllac}>{dropDownItem.nom!}</a>
             )}
           </li>
         ))

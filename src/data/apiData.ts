@@ -15,6 +15,7 @@ import {
 
 //Import apiFunctions
 import {
+  getCapcalera,
   getImagesBySlug,
   getPageBySlug,
   getPages,
@@ -29,6 +30,7 @@ import {
 } from "@utils/helperFunctions";
 
 export const [
+  header,
   pages,
   posts,
   projectsAndHeroSlides,
@@ -49,6 +51,7 @@ export const [
   femaleTeamsData,
   femaleSeniorTeamData,
 ] = await Promise.all([
+  getCapcalera(),
   getPages(100, PAGE_FIELDS),
   getPosts(100, POST_FIELDS),
   getPostsInCategories(
@@ -108,3 +111,4 @@ const topFooterContent = extractTopFooterInfo(footerContent);
 export const { generalLinks, fixedLinks } = topFooterContent;
 
 export const bottomFooterLinks = extractBottomFooterInfo(footerContent);
+

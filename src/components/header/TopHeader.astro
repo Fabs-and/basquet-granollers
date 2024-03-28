@@ -4,55 +4,35 @@ import SocialMediaMenu from "@components/SocialMediaMenu.astro";
 
 const { topHeaderContent } = Astro.props;
 
-const { text1, link1 } = topHeaderContent![0];
-const { text2, link2 } = topHeaderContent![1];
+const {titol, link} = topHeaderContent[0];
+
 ---
 
 <div class="top-header-content">
   <div class="text-content">
     {
-      text1 && !link1 ? (
-        <p>{text1.toUpperCase()}</p>
-      ) : text1 && link1 ? (
-        link1.includes("http") ? (
+      titol && !link ? (
+        <p>{titol.toUpperCase()}</p>
+      ) : titol && link ? (
+        link.includes("http") ? (
           <a
-            href={link1}
+            href={link}
             class="g-underline-links"
             target="_blank"
             rel="noopener noreferrer"
           >
-            {text1.toUpperCase()}
+            {titol.toUpperCase()}
           </a>
         ) : (
-          <a href={link1} class="g-underline-links">
-            {text1.toUpperCase()}
+          <a href={link} class="g-underline-links">
+            {titol.toUpperCase()}
           </a>
         )
       ) : null
     }
   </div>
-  <div class="text-content">
-    {
-      text2 && !link2 ? (
-        <p>{text2.toUpperCase()}</p>
-      ) : text2 && link2 ? (
-        link2.includes("http") ? (
-          <a
-            href={link2}
-            class="underline-links"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            {text2.toUpperCase()}
-          </a>
-        ) : (
-          <a href={link2} class="underline-links" target="_blank">
-            {text2.toUpperCase()}
-          </a>
-        )
-      ) : null
-    }
-  </div>
+ 
+
   <div class="social-menu">
     <!-- <a href="" title="Partits en directe">
       <DirectesIcon />

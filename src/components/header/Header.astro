@@ -8,16 +8,21 @@ import {
   extractNavigation,
   extractTopHeaderContent,
 } from "@utils/helperFunctions";
-import { pages, posts, headerData, socialMediaInfo } from "@data/apiData";
+import { pages, posts, headerData, socialMediaInfo, header } from "@data/apiData";
 import { EXCLUDED_PAGES } from "@data/globalConstants";
+
+// console.log('headeer', header)
+
+const capcaleraSuperior = header.capcalera_superior;
+const capcaleraInferior = header.capcalera_inferior;
 
 const {
   content: { rendered: content },
 } = headerData[0];
 
-const topHeaderContent = extractTopHeaderContent(content);
+// const topHeaderContent = extractTopHeaderContent(content);
 
-const bottomHeaderNav = extractNavigation(content);
+// const bottomHeaderNav = extractNavigation(content);
 
 const pagesToSearch = pages.filter((page) => !EXCLUDED_PAGES.has(page.slug));
 
@@ -70,18 +75,18 @@ const websiteContent = [...pagesToSearch, ...postsToSearch];
 
 <header>
   <section class="header-top-section">
-    <TopHeader {topHeaderContent} />
+    <TopHeader topHeaderContent={capcaleraSuperior} />
   </section>
   <section class="header-bottom-section">
     <div class="bottom-header" id="bottom-header">
-      <BottomHeader {websiteContent} navigation={bottomHeaderNav} />
+      <BottomHeader {websiteContent} navigation={capcaleraInferior} />
     </div>
     <div class="bottom-header responsive">
       <BottomHeaderResponsive
         client:load
         {websiteContent}
-        navigation={bottomHeaderNav}
-        {topHeaderContent}
+        navigation={capcaleraInferior}
+        topHeaderContent={capcaleraSuperior}
         {socialMediaInfo}
       />
     </div>

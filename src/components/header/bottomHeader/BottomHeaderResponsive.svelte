@@ -16,6 +16,9 @@
 
   let isDropdownVisible = false;
 
+const {titol, link} = topHeaderContent[0];
+
+
   function handleClick() {
     if ($isModalOpen === "modalMenu") {
       isDropdownVisible = false;
@@ -32,8 +35,7 @@
     }
   }
 
-  const { text1, link1 } = topHeaderContent[0];
-  const { text2, link2 } = topHeaderContent[0];
+ 
 </script>
 
 <div class="flex-container">
@@ -62,59 +64,38 @@
     <p >PARTITS EN DIRECTE</p>
   </a>
 </li>
-  {#if text1}
+  {#if titol}
     <li class="top-header-link">
-      {#if !link1}
-        <p>{text1.toUpperCase()}</p>
-      {:else if link1.includes("http")}
+      {#if !link}
+        <p>{titol.toUpperCase()}</p>
+      {:else if link.includes("http")}
         <a
-          href={link1}
+          href={link}
           class="underline-links"
           target="_blank"
           rel="noopener noreferrer"
         >
-          {text1.toUpperCase()}
+          {titol.toUpperCase()}
         </a>
       {:else}
-        <a href={link1} class="underline-links">
-          {text1.toUpperCase()}
+        <a href={link} class="underline-links">
+          {titol.toUpperCase()}
         </a>
       {/if}
     </li>
   {/if}
 
-  {#if text2}
-    <li class="top-header-link">
-      {#if !link2}
-        <p>{text2.toUpperCase()}</p>
-      {:else if link2.includes("http")}
-        <a
-          href={link2}
-          class="underline-links"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          {text2.toUpperCase()}
-        </a>
-      {:else}
-        <a href={link2} class="underline-links">
-          {text2.toUpperCase()}
-        </a>
-      {/if}
-    </li>
-  {/if}
-
-  {#each navigation as item (item.name)}
+  {#each navigation as item}
     <li>
-      {#if item.dropdown}
+      {#if item.desplegable}
         <DropDownAccordion {item} />
-      {:else if item.link.includes("http")}
-        <a href={item.link} target="_blank" rel="noopener noreferrer">
-          <h5>{item.name.toUpperCase()}</h5>
+      {:else if item.enllac.includes("http")}
+        <a href={item.enllac} target="_blank" rel="noopener noreferrer">
+          <h5>{item.titol.toUpperCase()}</h5>
         </a>
       {:else}
-        <a href={item.link}>
-          <h5>{item.name.toUpperCase()}</h5>
+        <a href={item.enllac}>
+          <h5>{item.titol.toUpperCase()}</h5>
         </a>
       {/if}
     </li>

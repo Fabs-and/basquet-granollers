@@ -82,7 +82,8 @@ export type Endpoints =
   | "tags"
   | "taxonomies"
   | "themes"
-  | "users";
+  | "users"
+  | "capcalera";
 
 export interface GlobalParams {
   _fields?: string;
@@ -158,6 +159,33 @@ export type Post = {
     imatge_destacada_interior: number;
   };
   imatge_destacada_interior:  { url: string; title: string; alt: string };
+};
+
+export type Capcalera = {
+  capcalera_superior: CapcaleraSuperior[];
+  capcalera_inferior: CapcaleraInferior[];
+};
+
+type CapcaleraSuperior = {
+  titol: string;
+  link: string;
+};
+
+type CapcaleraInferior = Desplegable | NoDeplegable;
+
+type Desplegable = {
+  deplegable: string;
+  values: DesplegableValue[];
+};
+
+type DesplegableValue = {
+  nom: string;
+  enllac: string;
+};
+
+type NoDeplegable = {
+  titol: string;
+  enllac: string;
 };
 
 export type Category = {
