@@ -12,12 +12,29 @@ import Copyright from "./Copyright.svelte";
     <SocialMediaMenu />
   </div>
 
-  <div>
+  <div style="display: flex; flex-direction: column; align-items: center; gap:1rem;">
     <Copyright client:visible />
+    <div style="display: flex; align-items: center; gap:0.3rem; align-items: center">
+      <p class='made-by'>
+        Dissenyat per 
+      </p>
+      <a href="http://www.biombostudio.com/" target="_blank" rel="noopener noreferrer"><img src="biombo-logo-transparent.webp" width="40" style="display: inline-block"/></a>
+    </div>
   </div>
+
 </div>
 
 <style>
+    .made-by {
+    font-weight: var(--fnt-wg-light);
+    padding-bottom: 0.5rem;
+  }
+
+  .made-by a {
+    color: var(--clr-accent);
+    text-decoration: underline;
+    font-style: italic;
+  }
   .bottom-footer-container-responsive {
     display: grid;
     grid-template-columns: 5rem 8rem auto 15rem;

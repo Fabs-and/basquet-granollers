@@ -5,6 +5,8 @@
   let totalDots;
   let currentSlideIndex = 0;
 
+  console.log('slides', slides)
+
   import {
     formatHtml,
     extractSlideDescriptionAndLink,
@@ -29,7 +31,13 @@
     if (!isNaN(index)) {
       currentSlideIndex = index;
     }
+
   }
+  function isVideoUrl(url) {
+  const videoExtensions = ['.mp4', '.webm', '.ogg'];
+  const extension = url.substring(url.lastIndexOf('.')).toLowerCase();
+  return videoExtensions.includes(extension);
+}
 </script>
 
 {#if slides && slides.length > 0}
@@ -39,22 +47,26 @@
         data-index={index}
         class="slide {index === currentSlideIndex ? 'active' : ''}"
       >
-        {#if index === 0}
-          <img
-            src={slide.image.url}
-            class="hidden"
-            alt={slide.image.alt}
-            loading="eager"
-          />
-        {:else}
-          <img
-            src={slide.image.url}
-            class="hidden"
-            alt={slide.image.alt}
-            loading="lazy"
-          />
-        {/if}
-
+      {#if slide.image && slide.image.url}
+      {#if isVideoUrl(slide.image.url)}
+      <video
+        src={slide.image.url}
+        class="hidden"
+        alt={slide.image.alt}
+        loading={index === 0 ? 'eager' : 'lazy'}
+        autoplay
+        muted
+        loop
+      ></video>
+    {:else}
+      <img
+        src={slide.image.url}
+        class="hidden"
+        alt={slide.image.alt}
+        loading={index === 0 ? 'eager' : 'lazy'}
+      />
+    {/if}
+    {/if}
         <div class="hero-info-container">
           <div class="hero-info-flex">
             <h2>{formatHtml(slide.title.rendered)}</h2>

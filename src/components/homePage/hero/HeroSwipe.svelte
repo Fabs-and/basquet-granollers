@@ -1,4 +1,4 @@
-<script>
+<!-- <script>
   import ButtonAnchor from "@components/ButtonAnchor.svelte";
   export let slides;
   let totalDots;
@@ -276,4 +276,4 @@
       height: 101svh;
     }
   }
-</style>
+</style> -->
