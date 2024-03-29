@@ -100,23 +100,34 @@ const {titol, link} = topHeaderContent[0];
       {/if}
     </li>
   {/each}
-    <div class='la-historia-logo'>
-      <a href="https://historiabasquetgranollers.cat/" target="_blank">
 
+  <div class='last-part'>
+
+    <div class='la-historia-logo'>
+      <a href="https://historiabasquetgranollers.cat/" target="_blank" >
+        
         <LaHistoriaLogo wd={"221"} title="Logo de La Història del Bàsquet a Granollers" color={"#fff"}/>
       </a>
     </div>
-  <div class="social-media-container">
-    <SocialMediaMenu {socialMediaInfo} />
+    <div class="social-media-container">
+      <SocialMediaMenu {socialMediaInfo} />
+    </div>
   </div>
-</ul>
+  </ul>
 
 <style>
+  .last-part {
+    margin-top: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 1.87rem;
+  }
   .la-historia-logo {
-    position: absolute;
-    bottom: 5rem;
-    left: 50%;
-    transform: translateX(-50%);
+    align-self: center;
+   /* margin-top: auto; */
+   /* position: relative;
+   bottom: -10rem; */
+   /* margin-top: auto; */
   
   }
   .top-header-link {
@@ -137,7 +148,7 @@ const {titol, link} = topHeaderContent[0];
 
   .dropdown-content-responsive {
     position: fixed;
-    display: flex;
+    /* display: flex; */
     background-color: var(--clr-primary);
     color: var(--clr-contrast);
     top: calc(
@@ -149,15 +160,20 @@ const {titol, link} = topHeaderContent[0];
     bottom: 0;
     padding-inline: var(--pd-x-medium);
     padding-block: 2.06rem;
-    flex-direction: column;
+    /* flex-direction: column; */
     gap: 1.87rem;
     transform: translateX(-100%);
     transition: transform 0.2s ease-in-out;
     overflow: auto;
   }
 
+  ul {
+    display: flex;
+    flex-direction: column;
+  }
+
   .social-media-container {
-  margin-top: auto;
+  /* margin-top: auto; */
 
   }
   .dropdown-content-responsive.visible {
