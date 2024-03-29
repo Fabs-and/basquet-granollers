@@ -12,24 +12,41 @@ import Copyright from "./Copyright.svelte";
     <SocialMediaMenu />
   </div>
 
-  <div style="display: flex; flex-direction: column; align-items: center; gap:1rem;">
+  <div >
     <Copyright client:visible />
-    <div style="display: flex; align-items: center; gap:0.3rem; align-items: center">
-      <p class='made-by'>
-        Dissenyat per 
-      </p>
-      <a href="http://www.biombostudio.com/" target="_blank" rel="noopener noreferrer"><img src="biombo-logo-transparent.webp" width="40" style="display: inline-block"/></a>
-    </div>
   </div>
-
+  
 </div>
 
+<small class="made-by-container">
+
+  <p class='made-by'>
+    Dissenyat per 
+  </p>
+  <a href="http://www.biombostudio.com/" target="_blank" rel="noopener noreferrer"><img src="biombo-logo-transparent.webp" width="40" style="display: inline-block"/></a>
+</small>
+
+
 <style>
-    .made-by {
+  .made-by-container {
+    display: flex;
+    /* justify-content: center; */
+    /* width: 100vw; */
+    gap: 0.3rem;
+    align-items: center;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: var(--fnt-sz-footer);
+    /* margin: auto; */
+  }
+  
+  
+  .made-by {
     font-weight: var(--fnt-wg-light);
     padding-bottom: 0.5rem;
   }
-
+  
   .made-by a {
     color: var(--clr-accent);
     text-decoration: underline;
@@ -38,6 +55,7 @@ import Copyright from "./Copyright.svelte";
   .bottom-footer-container-responsive {
     display: grid;
     grid-template-columns: 5rem 8rem auto 15rem;
+    margin-bottom: 1.5rem;  
   }
 
   .social-container {

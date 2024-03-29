@@ -1,25 +1,24 @@
 ---
-import { bottomFooterLinks } from "@data/apiData";
+
 ---
 
-{
-  bottomFooterLinks.map((link) =>
-    link.link.includes("http") ? (
-      <a
-        href={link.link}
-        class="g-underline-links"
-        target="_blank"
-        rel="noopener noreferrer"
-      >
-        {link.name}
-      </a>
-    ) : (
-      <a href={link.link} class="g-underline-links">
-        {link.name}
-      </a>
-    ),
-  )
-}
+<a
+href={`/avis-legal`}
+class="g-underline-links"
+target="_blank"
+rel="noopener noreferrer"
+>
+{`Avís legal`}
+</a>
+
+<a
+href={`/politica-de-cookies`}
+class="g-underline-links"
+target="_blank"
+rel="noopener noreferrer"
+>
+{`Política de cookies`}
+</a>
 
 <style>
   a {
