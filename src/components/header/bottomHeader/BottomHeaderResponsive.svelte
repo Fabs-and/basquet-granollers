@@ -59,7 +59,7 @@ const {titol, link} = topHeaderContent[0];
   class="dropdown-content-responsive"
 >
 <li class="top-header-link">
-  <a href=""  class="directes" target="_blank">
+  <a href="https://ott.myplay.com/es/cb-granollers/all-teams/home" class="directes" target="_blank">
     <DirectesIcon wd={"35"} title="Icona de Directes" color={"#fff"}/>
     <p >PARTITS EN DIRECTE</p>
   </a>

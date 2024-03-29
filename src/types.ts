@@ -32,11 +32,7 @@ export type CommonPagesAndPostsFields =
   | "acf"
   | "imatge_destacada_interior";
 
-export type PostSpecificFields =
-  | "categories"
-  | "format"
-  | "sticky"
-  | "tags";
+export type PostSpecificFields = "categories" | "format" | "sticky" | "tags";
 
 export type PageSpecificFields =
   | "generated_slug"
@@ -84,7 +80,8 @@ export type Endpoints =
   | "themes"
   | "users"
   | "capcalera"
-  | "carrusel";
+  | "carrusel"
+  | "footer";
 
 export interface GlobalParams {
   _fields?: string;
@@ -159,7 +156,7 @@ export type Post = {
   acf: {
     imatge_destacada_interior: number;
   };
-  imatge_destacada_interior:  { url: string; title: string; alt: string };
+  imatge_destacada_interior: { url: string; title: string; alt: string };
 };
 
 export type Capcalera = {
@@ -196,14 +193,30 @@ type slideMedia = {
   caption: string;
   description: string;
   title: string;
-}
+};
+
+export type Footer = {
+  [key: string]: MenuItem | MenuItem[];
+};
+
+type MenuItem = {
+  title?: string;
+  values?: MenuValue[];
+  nom?: string;
+  link?: string;
+};
+
+type MenuValue = {
+  nom: string;
+  link: string;
+};
 
 export type HeroSlide = {
   image: slideMedia | null;
   video: slideMedia | null;
   description: string;
   link: string;
-}
+};
 
 export type Category = {
   count: number;
@@ -260,7 +273,7 @@ export type Page = {
   acf: {
     imatge_destacada_interior: number;
   };
-  imatge_destacada_interior:  { url: string; title: string; alt: string };
+  imatge_destacada_interior: { url: string; title: string; alt: string };
 };
 
 export type Media = {

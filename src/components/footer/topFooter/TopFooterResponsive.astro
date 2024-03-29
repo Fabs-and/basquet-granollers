@@ -5,14 +5,17 @@ import ImportantLinksContainer from "./ImportantLinksContainer.astro";
 
 //Import data
 import { generalLinks } from "@data/apiData";
+
+const { footer } = Astro.props;
+
 ---
 
 <div class="top-footer-container">
   <article class="responsive-general-links">
-    <Accordion {generalLinks} />
+    <Accordion generalLinks={Object.entries(footer[0]).slice(0,3)} />
   </article>
   <article class="responsive-fixed-links">
-    <ImportantLinksContainer />
+    <ImportantLinksContainer fixedLinks={footer[0][3]}/>
   </article>
 </div>
 

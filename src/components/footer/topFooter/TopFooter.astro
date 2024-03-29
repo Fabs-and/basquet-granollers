@@ -1,48 +1,44 @@
 ---
-//Import components
+// Import components
 import ImportantLinksContainer from "./ImportantLinksContainer.astro";
-import { generalLinks, fixedLinks } from "@data/apiData";
+
+const { footer } = Astro.props;
 ---
 
-{
-  generalLinks.map((item) => (
+
+  {Object.entries(footer[0]).slice(0, 3).map(([key, column]) => (
     <article class="g-top-footer-articles">
       <header>
-        <h5>{item.title.toUpperCase()}</h5>
+        <h5>{column.title.toUpperCase()}</h5>
       </header>
-
       <ul class="links-container">
-        {item.content.map((link) => (
+        {column.values.map((link) => (
           <li>
-            {link.link.includes("http") ? (
-              <a
-                href={link.link}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                {link.name}
-              </a>
-            ) : (
-              <a href={link.link}>
-                {link.name}
-              </a>
-            )}
+            <a href={link.link} target={link.link.startsWith("http") ? "_blank" : undefined} rel={link.link.startsWith("http") ? "noopener noreferrer" : undefined}>
+              {link.nom}
+            </a>
           </li>
         ))}
       </ul>
     </article>
-  ))
-}
+  ))}
 
-<article>
-  <ImportantLinksContainer {fixedLinks} />
-</article>
+  <article>
+    <ImportantLinksContainer fixedLinks={footer[0][3]} />
+  </article>
+
 
 <style>
+  .footer-links {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1rem;
+  }
+
   h5 {
     font-weight: 500;
-
   }
+
   article header {
     margin-bottom: 0.5rem;
   }
@@ -50,8 +46,7 @@ import { generalLinks, fixedLinks } from "@data/apiData";
   .links-container {
     font-size: var(--fnt-sz-footer-top);
     display: flex;
-    flex-grow: 1;
     flex-direction: column;
-    justify-content: space-between;
+    gap: 0.5rem;
   }
 </style>

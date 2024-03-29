@@ -1,28 +1,25 @@
 ---
-import type { TopFooterLinks } from "src/types";
-
-type Props = {
-  generalLinks: TopFooterLinks['generalLinks'];
-};  
 const { generalLinks } = Astro.props;
+
+console.log('generalLinks', generalLinks);
 ---
 
 {
   generalLinks.map((item) => (
     <details>
       <summary>
-        <h5>{item.title.toUpperCase()}</h5>
+        <h5>{item[1].title.toUpperCase()}</h5>
           <span class="arrow-icon"></span>
       </summary>
       <ul class="links-container">
-        {item.content.map((link) => (
+        {item[1].values.map((link) => (
           <li>
             {link.link.includes("http") ? (
               <a href={link.link} target="_blank" rel="noopener noreferrer">
-                {link.name}
+                {link.nom}
               </a>
             ) : (
-              <a href={link.link}>{link.name}</a>
+              <a href={link.link}>{link.nom}</a>
             )}
           </li>
         ))}

@@ -16,6 +16,7 @@ import {
 //Import apiFunctions
 import {
   getCapcalera,
+  getFooter,
   getHeroSlides,
   getImagesBySlug,
   getPageBySlug,
@@ -32,6 +33,7 @@ import {
 
 export const [
   header,
+  footer,
   hSlides,
   pages,
   posts,
@@ -54,6 +56,7 @@ export const [
   femaleSeniorTeamData,
 ] = await Promise.all([
   getCapcalera(),
+  getFooter(),
   getHeroSlides(),
   getPages(100, PAGE_FIELDS),
   getPosts(100, POST_FIELDS),

@@ -6,15 +6,19 @@ import HpSectionLayout from "../../layouts/HpSectionLayout.astro";
 import TopFooter from "@components/footer/topFooter/TopFooter.astro";
 import TopFooterResponsive from "@components/footer/topFooter/TopFooterResponsive.astro";
 import BottomFooter from "@components/footer/bottomFooter/BottomFooter.astro";
+import { footer} from "@data/apiData.ts";
+
+
+
 ---
 
 <footer>
   <HpSectionLayout noHeading={true} bgColor="var(--clr-footer-top)">
     <nav class="top-footer-desktop">
-      <TopFooter />
+      <TopFooter {footer}/>
     </nav>
     <nav class="top-footer-responsive">
-      <TopFooterResponsive />
+      <TopFooterResponsive {footer}/>
     </nav>
   </HpSectionLayout>
 

@@ -1,5 +1,10 @@
 ---
-import { fixedLinks } from "@data/apiData";
+
+// import { fixedLinks } from "@data/apiData";
+
+const { fixedLinks} = Astro.props;
+
+console.log(fixedLinks);
 ---
 
 <ul class="g-top-footer-articles">
@@ -8,11 +13,11 @@ import { fixedLinks } from "@data/apiData";
       <li>
         {link.link.includes("http") ? (
           <a href={link.link} target="_blank" rel="noopener noreferrer">
-            <h5>{link.name.toUpperCase()}</h5>
+            <h5>{link.nom.toUpperCase()}</h5>
           </a>
         ) : (
           <a href={link.link}>
-            <h5>{link.name.toUpperCase()}</h5>
+            <h5>{link.nom.toUpperCase()}</h5>
           </a>
         )}
       </li>

@@ -30,6 +30,7 @@ import type {
   PostsQueryCache,
   Capcalera,
   HeroSlide,
+  Footer,
 } from "../types";
 
 import { IMAGE_FIELDS } from "@data/globalConstants";
@@ -251,6 +252,20 @@ export async function getHeroSlides(
       throw error; // Propagate the error to the caller
     }
   }
+
+  export async function getFooter(
+    ): Promise<Footer[]> {
+      try {
+        const endpointParams = endpointParamsBuilder();
+    
+        const posts = await getData<Footer>("footer", queryBuilder(endpointParams));
+       
+        return posts;
+      } catch (error) {
+        console.error("Error in getPostBySlug:", error);
+        throw error; // Propagate the error to the caller
+      }
+    }
   
 
 /**
