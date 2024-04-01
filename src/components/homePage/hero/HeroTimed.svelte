@@ -5,12 +5,8 @@
   let totalDots;
   let currentSlideIndex = 0;
 
-
-  import {
-    formatHtml,
-    extractSlideDescriptionAndLink,
-  } from "@utils/helperFunctions";
-
+ console.log('slides', slides)
+  
   $: totalDots = Array(slides ? slides.length : 0).fill(0);
 
   let intervalId;
@@ -44,9 +40,8 @@
       >
       {#if slide.video !== null}
       <video
-        src={slide.video.url}
+        src={slide.video}
         class="hidden"
-        alt={slide.video?.alt}
         loading={index === 0 ? 'eager' : 'lazy'}
         autoplay
         muted
@@ -54,9 +49,8 @@
       ></video>
     {:else}
       <img
-        src={slide.image.url}
+        src={slide.image}
         class="hidden"
-        alt={slide.image?.alt}
         loading={index === 0 ? 'eager' : 'lazy'}
       />
     {/if}

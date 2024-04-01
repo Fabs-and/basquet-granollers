@@ -89,7 +89,7 @@ const TEAM_PAGES = {
   wheelchair: "basquet-en-cadira-de-rodes-4",
   maleSenior: "jugadors-equip-senior-masculi",
   femaleSenior: "jugadores-equip-senior-femeni",
-  coaches: "entrenadors-i-entrenadores",
+  coaches: "cos-tecnic",
 };
 
 export {
