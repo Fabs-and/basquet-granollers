@@ -7,7 +7,7 @@
       extractNavigation,
       extractTopHeaderContent,
     } from "@utils/helperFunctions";
-    import { pages, posts, headerData, socialMediaInfo } from "@data/apiData";
+    import { pages, posts, headerData, socialMedia } from "@data/apiData";
     import { EXCLUDED_PAGES } from "@data/globalConstants";
   
     const {
@@ -75,7 +75,7 @@
           {websiteContent}
           navigation={bottomHeaderNav}
           {topHeaderContent}
-          {socialMediaInfo}
+          {socialMedia}
         />
       </div>
     </section>

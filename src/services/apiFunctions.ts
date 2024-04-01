@@ -311,14 +311,15 @@ export async function getFamiliaSectionContactaMessage(): Promise<FamiliaMissatg
   }
 }
 
-export async function getSocialMEdia(): Promise<XarxaSocial> {
+export async function getSocialMedia(): Promise<XarxaSocial[]> {
   try {
     const endpointParams = endpointParamsBuilder();
-    const familiaMissatge = await getData<XarxaSocial>("xarxes-socials", queryBuilder(endpointParams));
+    const socialMediaResponse = await getData<XarxaSocial[]>("xarxes-socials", queryBuilder(endpointParams));
 
-   console.log('familiaMissatge', familiaMissatge[0])
+    let socialMediaData = Object.values(socialMediaResponse[0]).slice(0, -1);
 
-    return familiaMissatge[0];
+
+    return socialMediaData;
   } catch (error) {
     console.error("Error in getFamiliaSection:", error);
     throw error; // Propagate the error to the caller

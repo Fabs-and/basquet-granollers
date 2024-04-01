@@ -1,47 +1,50 @@
----
+<!-- ---
 //Import data
-import { socialMediaInfo } from "@data/apiData";
+import { socialMedia } from "@data/apiData";
+import YoutubeLogo from "@assets/xarxesSocials/YoutubeLogo.svelte";
+import InstagramLogo from "@assets/xarxesSocials/InstagramLogo.svelte";
+import FacebookLogo from "@assets/xarxesSocials/FacebookLogo.svelte";
+import TwitterLogo from "@assets/xarxesSocials/TwitterLogo.svelte";
+import TiktokLogo from "@assets/xarxesSocials/TikTokLogo.svelte";
 
-interface TitleMap {
-  [key: string]: string;
-}
 
-const titleMap: TitleMap = {
-  instagram: "Instagram",
-  facebook: "Facebook",
-  "x.com": "Twitter",
-  youtube: "Youtube",
-  twitch: "Twitch",
-};
 
-function getTitle(title: string) {
+
+  const logoComponents: any = {
+    instagram: InstagramLogo,
+    facebook: FacebookLogo,
+    youtube: YoutubeLogo,
+    "x.com": TwitterLogo,
+    "X.com": TwitterLogo,
+    twitter: TwitterLogo,
+    x: TwitterLogo,
+    X: TwitterLogo,
+    tiktok: TiktokLogo,
+  };
+
+function getImageSrc(title: string) {
   const lowerCaseTitle = title.toLowerCase();
   for (let socialMediaName in titleMap) {
     if (lowerCaseTitle.includes(socialMediaName)) {
       return titleMap[socialMediaName];
     }
   }
-  return "TikTok";
 }
 ---
 
 <nav>
   <ul>
     {
-      socialMediaInfo.map((socialMediaItem) => {
+      socialMedia.map((socialMediaItem) => {
         return (
           <li>
-            <a 
-              title={getTitle(socialMediaItem.title)}
-              href={
-                socialMediaItem.title.toLowerCase().includes("tiktok")
-                  ? `https://www.tiktok.com/${socialMediaItem.caption}`
-                  : socialMediaItem.caption
-              }
+            <a
+              title={socialMediaItem.name}
+              href={socialMediaItem.link}
               target="_blank"
               rel="noopener noreferrer"
             >
-              <img src={socialMediaItem.url} alt={socialMediaItem.alt} />
+              {getImageSrc(socialMediaItem.name)}
             </a>
           </li>
         );
@@ -55,7 +58,6 @@ function getTitle(title: string) {
     width: 11.0544rem;
     height: 1.09956rem;
   }
-
 
   ul {
     display: flex;
@@ -73,4 +75,4 @@ function getTitle(title: string) {
       width: inherit;
     }
   }
-</style>
+</style> -->

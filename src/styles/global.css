@@ -281,6 +281,10 @@ button:hover svg.icons path {
   height: 8.0625rem;
 }
 
+.g-svg:hover path {
+  fill: red;
+}
+
 .g-underline-links {
   text-decoration: underline;
 }

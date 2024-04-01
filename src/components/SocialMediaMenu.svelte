@@ -1,19 +1,47 @@
 <script>
-  export let socialMediaInfo;
+  export let socialMedia;
+
+  import YoutubeLogo from "@assets/xarxesSocials/YoutubeLogo.svelte";
+import InstagramLogo from "@assets/xarxesSocials/InstagramLogo.svelte";
+import FacebookLogo from "@assets/xarxesSocials/FacebookLogo.svelte";
+import TwitterLogo from "@assets/xarxesSocials/TwitterLogo.svelte";
+import TiktokLogo from "@assets/xarxesSocials/TikTokLogo.svelte";
+
+  const logoComponents = {
+    instagram: InstagramLogo,
+    facebook: FacebookLogo,
+    youtube: YoutubeLogo,
+    "x.com": TwitterLogo,
+    "X.com": TwitterLogo,
+    twitter: TwitterLogo,
+    x: TwitterLogo,
+    X: TwitterLogo,
+    tiktok: TiktokLogo,
+  };
+
+  function getLogoComponent(name) {
+    const lowerCaseName = name.toLowerCase();
+    for (let socialMediaName in logoComponents) {
+      if (lowerCaseName.includes(socialMediaName)) {
+        return logoComponents[socialMediaName];
+      }
+    }
+    return null;
+  }
 </script>
 
 <nav>
   <ul>
-    {#each socialMediaInfo as socialMediaItem}
-      {#if socialMediaItem.title}
-     
+    {#each socialMedia as socialMediaItem}
+      {#if socialMediaItem.name}
         <li>
           <a
-            href={socialMediaItem.title.toLowerCase().includes('tiktok') ? `https://www.tiktok.com/${socialMediaItem.caption}` : socialMediaItem.caption}
+            href={socialMediaItem.link}
+            title={socialMediaItem.name}
             target="_blank"
             rel="noopener noreferrer"
           >
-            <img src={socialMediaItem.url} alt={socialMediaItem.alt} />
+            <svelte:component this={getLogoComponent(socialMediaItem.name)} />
           </a>
         </li>
       {/if}
@@ -26,6 +54,7 @@
     width: 11.0544rem;
     height: 1.09956rem;
   }
+
   ul {
     display: flex;
     justify-content: space-between;

@@ -1,15 +1,16 @@
 ---
 //Import components
-import SocialMediaMenu from "@components/SocialMediaMenu.astro";
+import SocialMediaMenu from "@components/SocialMediaMenu.svelte";
 import BottomFooterLinks from "./BottomFooterLinks.astro";
 import Copyright from "./Copyright.svelte";
+import {socialMedia } from "@data/apiData"
 ---
 
 <div class="bottom-footer-container-responsive">
   <BottomFooterLinks />
 
   <div class="social-container">
-    <SocialMediaMenu />
+    <SocialMediaMenu {socialMedia}/>
   </div>
 
   <div >
@@ -23,7 +24,7 @@ import Copyright from "./Copyright.svelte";
   <p class='made-by'>
     Dissenyat per 
   </p>
-  <a href="http://www.biombostudio.com/" target="_blank" rel="noopener noreferrer"><img src="biombo-logo-transparent.webp" width="40" style="display: inline-block"/></a>
+  <a title="Biombö Studio" href="http://www.biombostudio.com/" target="_blank" rel="noopener noreferrer"><img src="biombo-logo-transparent.webp" alt="Logo de Biombö Studio" width="40" style="display: inline-block"/></a>
 </small>
 
 

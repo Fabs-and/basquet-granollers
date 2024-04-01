@@ -8,7 +8,7 @@ import {
   extractNavigation,
   extractTopHeaderContent,
 } from "@utils/helperFunctions";
-import { pages, posts, headerData, socialMediaInfo, header } from "@data/apiData";
+import { pages, posts, headerData, socialMedia, header } from "@data/apiData";
 import { EXCLUDED_PAGES } from "@data/globalConstants";
 
 
@@ -74,7 +74,7 @@ const websiteContent = [...pagesToSearch, ...postsToSearch];
 
 <header>
   <section class="header-top-section">
-    <TopHeader topHeaderContent={capcaleraSuperior} />
+    <TopHeader topHeaderContent={capcaleraSuperior} {socialMedia}/>
   </section>
   <section class="header-bottom-section">
     <div class="bottom-header" id="bottom-header">
@@ -86,7 +86,7 @@ const websiteContent = [...pagesToSearch, ...postsToSearch];
         {websiteContent}
         navigation={capcaleraInferior}
         topHeaderContent={capcaleraSuperior}
-        {socialMediaInfo}
+        {socialMedia}
       />
     </div>
   </section>

@@ -1,8 +1,8 @@
 ---
 import DirectesIcon from "@assets/DirectesIcon.svelte"
-import SocialMediaMenu from "@components/SocialMediaMenu.astro";
+import SocialMediaMenu from "@components/SocialMediaMenu.svelte";
 
-const { topHeaderContent } = Astro.props;
+const { topHeaderContent, socialMedia } = Astro.props;
 
 const {titol, link} = topHeaderContent[0];
 
@@ -37,7 +37,7 @@ const {titol, link} = topHeaderContent[0];
     <a href="https://ott.myplay.com/es/cb-granollers/all-teams/home" target="_blank" title="Partits en directe">
       <DirectesIcon />
     </a>
-    <SocialMediaMenu isFromHeader={true} />
+    <SocialMediaMenu {socialMedia} />
   </div>
 </div>
 

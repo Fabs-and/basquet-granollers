@@ -12,7 +12,7 @@
   export let navigation;
   export let topHeaderContent;
   export let websiteContent;
-  export let socialMediaInfo;
+  export let socialMedia;
 
   let isDropdownVisible = false;
 
@@ -110,7 +110,7 @@ const {titol, link} = topHeaderContent[0];
       </a>
     </div>
     <div class="social-media-container">
-      <SocialMediaMenu {socialMediaInfo} />
+      <SocialMediaMenu {socialMedia} />
     </div>
   </div>
   </ul>

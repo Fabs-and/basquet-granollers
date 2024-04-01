@@ -25,6 +25,7 @@ import {
   getPages,
   getPosts,
   getPostsInCategories,
+  getSocialMedia,
 } from "@services/apiFunctions";
 
 //Import functions
@@ -36,6 +37,7 @@ import {
 export const [
   header,
   footer,
+  socialMedia,
   hSlides,
   familiaSection,
   familiaContactaMessage,
@@ -61,6 +63,7 @@ export const [
 ] = await Promise.all([
   getCapcalera(),
   getFooter(),
+  getSocialMedia(),
   getHeroSlides(),
   getFamiliaSection(),
   getFamiliaSectionContactaMessage(),
