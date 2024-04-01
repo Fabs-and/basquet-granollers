@@ -8,6 +8,7 @@ import { lastYearsNews } from "@utils/helperFunctions";
 import { allNews } from "@data/apiData";
 import { FEATURED_NEWS_CATEGORY_ID } from "@data/globalConstants";
 
+const { title} = Astro.props
 
 allNews.splice(10);
 
@@ -29,7 +30,7 @@ if (featuredNews && featuredNews.length > 0) {
 ---
 
 <HpSectionLayout
-  sectionTitle="Notícies CBG"
+  sectionTitle={title}
   color={`var(--clr-primary)`}
   bgColor={`var(--clr-contrast)`}
   isSliderSection={true}

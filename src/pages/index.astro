@@ -11,15 +11,20 @@ import Teams from "@components/homePage/teams/Teams.astro";
 import Join from "@components/homePage/join/Join.astro";
 import News from "@components/homePage/news/News.astro";
 
+import { pageSectionTitles } from "@data/apiData";
+
+const { news, family, teams, projects} = pageSectionTitles;
+
+
 ---
 
 <BaseLayout>
   <h1 class="g-visibly-hidden">Club Bàsquet Granollers</h1>
   <Hero />
   <MainSponsors />
-  <News />
-  <Join />
-  <Teams needsHeading={true} />
-  <Projects />
+  <News title={news}/>
+  <Join title={family}/>
+  <Teams needsHeading={true} title={teams}/>
+  <Projects title={projects}/>
   <AllSponsors />
 </BaseLayout>

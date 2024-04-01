@@ -5,11 +5,13 @@ import Slider from "@components/Slider.svelte";
 
 import { projects } from "@data/apiData";
 
+const { title} = Astro.props
+
 projects.splice(9);
 
 ---
 
-<HpSectionLayout sectionTitle="Events i projectes" isSliderSection={true}>
+<HpSectionLayout sectionTitle={title} isSliderSection={true}>
   <div class="projects-desktop">
     {
       projects.map((project) =>

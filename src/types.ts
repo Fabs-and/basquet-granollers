@@ -84,7 +84,8 @@ export type Endpoints =
   | "footer"
   | "familia"
   | "missatge"
-  | "xarxes-socials";
+  | "xarxes-socials"
+  | "titols";
 
 export interface GlobalParams {
   _fields?: string;
@@ -240,8 +241,7 @@ export type FamiliaData = {
       dealImage: string | null;
     }[];
   };
-}
-
+};
 
 export type FamiliaMissatge = {
   title: string;
@@ -249,12 +249,19 @@ export type FamiliaMissatge = {
   secondBlueText: string;
   firstOrangePart: string;
   secondOrangePart: string;
-}
+};
 
 export type XarxaSocial = {
   name: string;
   link: string;
-}
+};
+
+export type CBGContent = {
+  news: string;
+  family: string;
+  teams: string;
+  projects: string;
+};
 
 export type Category = {
   count: number;

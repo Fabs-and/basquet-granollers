@@ -34,6 +34,7 @@ import type {
   FamiliaData,
   FamiliaMissatge,
   XarxaSocial,
+  CBGContent,
 } from "../types";
 
 import { IMAGE_FIELDS } from "@data/globalConstants";
@@ -325,6 +326,21 @@ export async function getSocialMedia(): Promise<XarxaSocial[]> {
     throw error; // Propagate the error to the caller
   }
 }
+
+
+export async function getPageSectionTitles(): Promise<CBGContent> {
+  try {
+    const endpointParams = endpointParamsBuilder();
+    const titles = await getData<CBGContent>("titols", queryBuilder(endpointParams));
+
+
+    return titles[0];
+  } catch (error) {
+    console.error("Error in getFamiliaSection:", error);
+    throw error; // Propagate the error to the caller
+  }
+}
+
 /**
  * Fetches a post by its ID with optional fields.
  * @param {number} id - The ID of the post to fetch.

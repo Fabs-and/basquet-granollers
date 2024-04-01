@@ -4,10 +4,10 @@ import TeamItem from "@components/homePage/teams/TeamItem.astro";
 
 import { teamsCategories } from "@data/apiData";
 
-const { noHeading } = Astro.props;
+const { noHeading, title } = Astro.props;
 ---
 
-<HpSectionLayout sectionTitle="Els nostres equips" {noHeading}>
+<HpSectionLayout sectionTitle={title} {noHeading}>
   <ul class="teams-container">
     {teamsCategories.map((teamCategory) => <TeamItem team={teamCategory} />)}
   </ul>

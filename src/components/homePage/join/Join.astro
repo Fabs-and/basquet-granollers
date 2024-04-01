@@ -12,6 +12,9 @@ import {
 } from "@utils/helperFunctions";
 import { familiaSection } from "@data/apiData";
 
+
+const { title} = Astro.props
+
 const {sponsors, membres: memberships} = familiaSection;
 
 let isSelected = true;
@@ -78,7 +81,7 @@ function toggleSelected() {
 
 <HpSectionLayout noHeading={true} isSliderSection={true}>
   <div class="title-and-options-container">
-    <h2>Forma part de la família CBG</h2>
+    <h2>{title}</h2>
     <div class="options-container">
       <button id="btn-memberships" class="g-button-anchor options"
         >{memberships.buttonText.toUpperCase()}</button
