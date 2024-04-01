@@ -31,6 +31,9 @@ import type {
   Capcalera,
   HeroSlide,
   Footer,
+  FamiliaData,
+  FamiliaMissatge,
+  XarxaSocial,
 } from "../types";
 
 import { IMAGE_FIELDS } from "@data/globalConstants";
@@ -94,10 +97,17 @@ const WP_APPLICATION_PASSWORD = import.meta.env.WP_APPLICATION_PASSWORD;
 const TOKEN = btoa(`${USERNAME}:${WP_APPLICATION_PASSWORD}`);
 
 export async function getData<T>(
-  endpoint: Endpoints | PostsWithId | PagesWithId | MediaWithId | CustomEndpoint,
+  endpoint:
+    | Endpoints
+    | PostsWithId
+    | PagesWithId
+    | MediaWithId
+    | CustomEndpoint,
   query?: URLSearchParams,
 ): Promise<T[]> {
-  const url = new URL(`${import.meta.env.PUBLIC_BASE_URL}${WP_API}/${endpoint}`);
+  const url = new URL(
+    `${import.meta.env.PUBLIC_BASE_URL}${WP_API}/${endpoint}`,
+  );
 
   try {
     if (query) {
@@ -139,7 +149,7 @@ export async function getPosts(
   postFields?: PostFields[],
 ): Promise<Post[]> {
   try {
-    // Create a cache key from the function parameters  
+    // Create a cache key from the function parameters
     const cacheKey = JSON.stringify({ quantity, postFields });
     // Check the cache for a previous result
     if (postsQueryCache[cacheKey]) {
@@ -149,7 +159,7 @@ export async function getPosts(
       const allPosts = await getData<Post>("posts");
       postsQueryCache[cacheKey] = allPosts;
       return allPosts;
-    } else if (typeof postFields !== "undefined" && quantity === -1) { 
+    } else if (typeof postFields !== "undefined" && quantity === -1) {
       const endpointParams = endpointParamsBuilder(postFields);
 
       const data = await getData<Post>("posts", queryBuilder(endpointParams));
@@ -223,51 +233,97 @@ export async function getPostBySlug(
     console.error("Error in getPostBySlug:", error);
     throw error; // Propagate the error to the caller
   }
-} 
+}
 
-export async function getCapcalera(
-): Promise<Capcalera> {
+export async function getCapcalera(): Promise<Capcalera> {
   try {
     const endpointParams = endpointParamsBuilder();
 
-    const post = await getData<Capcalera>("capcalera", queryBuilder(endpointParams));
-    const {capcalera_superior, capcalera_inferior } = post[0];
-    return {capcalera_superior, capcalera_inferior};
+    const post = await getData<Capcalera>(
+      "capcalera",
+      queryBuilder(endpointParams),
+    );
+    const { capcalera_superior, capcalera_inferior } = post[0];
+    return { capcalera_superior, capcalera_inferior };
   } catch (error) {
     console.error("Error in getPostBySlug:", error);
     throw error; // Propagate the error to the caller
   }
 }
 
-export async function getHeroSlides(
-  ): Promise<HeroSlide[]> {
-    try {
-      const endpointParams = endpointParamsBuilder();
-  
-      const posts = await getData<HeroSlide>("carrusel", queryBuilder(endpointParams));
-     
-      return posts;
-    } catch (error) {
-      console.error("Error in getPostBySlug:", error);
-      throw error; // Propagate the error to the caller
-    }
+export async function getHeroSlides(): Promise<HeroSlide[]> {
+  try {
+    const endpointParams = endpointParamsBuilder();
+
+    const posts = await getData<HeroSlide>(
+      "carrusel",
+      queryBuilder(endpointParams),
+    );
+
+    return posts;
+  } catch (error) {
+    console.error("Error in getPostBySlug:", error);
+    throw error; // Propagate the error to the caller
   }
+}
 
-  export async function getFooter(
-    ): Promise<Footer[]> {
-      try {
-        const endpointParams = endpointParamsBuilder();
-    
-        const posts = await getData<Footer>("footer", queryBuilder(endpointParams));
-       
-        return posts;
-      } catch (error) {
-        console.error("Error in getPostBySlug:", error);
-        throw error; // Propagate the error to the caller
-      }
-    }
-  
+export async function getFooter(): Promise<Footer[]> {
+  try {
+    const endpointParams = endpointParamsBuilder();
 
+    const posts = await getData<Footer>("footer", queryBuilder(endpointParams));
+
+    return posts;
+  } catch (error) {
+    console.error("Error in getPostBySlug:", error);
+    throw error; // Propagate the error to the caller
+  }
+}
+export async function getFamiliaSection(): Promise<FamiliaData> {
+  try {
+    const endpointParams = endpointParamsBuilder();
+    const familiaData = await getData<FamiliaData>("familia", queryBuilder(endpointParams));
+
+    const sponsors = familiaData.find(item => item.hasOwnProperty('sponsors'));
+    const membres = familiaData.find(item => item.hasOwnProperty('membres'));
+
+    return {
+      sponsors: sponsors ? sponsors.sponsors : { buttonText: '', deals: [] },
+      membres: membres ? membres.membres : { buttonText: '', deals: [] }
+    };
+  } catch (error) {
+    console.error("Error in getFamiliaSection:", error);
+    throw error; // Propagate the error to the caller
+  }
+}
+
+export async function getFamiliaSectionContactaMessage(): Promise<FamiliaMissatge> {
+  try {
+    const endpointParams = endpointParamsBuilder();
+    const familiaMissatge = await getData<FamiliaMissatge>("missatge", queryBuilder(endpointParams));
+
+   
+
+    return familiaMissatge[0];
+  } catch (error) {
+    console.error("Error in getFamiliaSection:", error);
+    throw error; // Propagate the error to the caller
+  }
+}
+
+export async function getSocialMEdia(): Promise<XarxaSocial> {
+  try {
+    const endpointParams = endpointParamsBuilder();
+    const familiaMissatge = await getData<XarxaSocial>("xarxes-socials", queryBuilder(endpointParams));
+
+   console.log('familiaMissatge', familiaMissatge[0])
+
+    return familiaMissatge[0];
+  } catch (error) {
+    console.error("Error in getFamiliaSection:", error);
+    throw error; // Propagate the error to the caller
+  }
+}
 /**
  * Fetches a post by its ID with optional fields.
  * @param {number} id - The ID of the post to fetch.
@@ -542,4 +598,3 @@ export async function getImagesBySlug(slug: string): Promise<CustomImage[]> {
     throw error;
   }
 }
-

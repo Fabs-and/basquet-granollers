@@ -1,4 +1,5 @@
 ---
+import { familiaContactaMessage } from "@data/apiData";
 
 ---
 
@@ -16,16 +17,16 @@
     <img src="closeModalButton.png" alt="" />
   </button>
   <div class="dialog-container">
-    <h3>Vols formar part de la familia cbg?</h3>
+    <h3>{familiaContactaMessage.title}</h3>
     <br />
     <div>
-      <p>Envia'ns un correu electrònic a:</p>
-      <p class="g-text-clr-accent">somcbg@cbgranollers.cat</p>
+      <p>{familiaContactaMessage.firstBlueText}</p>
+      <p class="g-text-clr-accent">{familiaContactaMessage.firstOrangeText}</p>
     </div>
     <div>
-      <p>O bé, vine a les oficines:</p>
+      <p>{familiaContactaMessage.secondBlueText}</p>
       <p class="g-text-clr-accent">
-        dimarts, dimecres o divendres de 17 a 20 h.
+        {familiaContactaMessage.secondOrangeText}
       </p>
     </div>
   </div>

@@ -13,21 +13,20 @@
 <article class="membership-article opacity" class:expanded>
   <div class="image-container">
     <img
-      src={updateUrltoSubdomain(item.image.url)}
-      alt={item.image.alt}
+      src={item.dealImage}
       loading="lazy"
     />
-    <h3 class="membership-title">{item.title}</h3>
+    <h3 class="membership-title">{item.dealTitle}</h3>
   </div>
   <article class="membership-info-container">
     <div class="membership-price">
       <p>
-        <span class="price-number">{item.price}</span>
+        <span class="price-number">{item.dealPrice}</span>
         / any
       </p>
     </div>
     <div class="membership-advantages">
-      {#each item.advantages as advantage}
+      {#each item.dealAdvantages as advantage}
         <div class="advantage-line">
           <div>
             {@html membershipCheck}

@@ -16,6 +16,8 @@ import {
 //Import apiFunctions
 import {
   getCapcalera,
+  getFamiliaSection,
+  getFamiliaSectionContactaMessage,
   getFooter,
   getHeroSlides,
   getImagesBySlug,
@@ -35,6 +37,8 @@ export const [
   header,
   footer,
   hSlides,
+  familiaSection,
+  familiaContactaMessage,
   pages,
   posts,
   projectsAndHeroSlides,
@@ -58,6 +62,8 @@ export const [
   getCapcalera(),
   getFooter(),
   getHeroSlides(),
+  getFamiliaSection(),
+  getFamiliaSectionContactaMessage(),
   getPages(100, PAGE_FIELDS),
   getPosts(100, POST_FIELDS),
   getPostsInCategories(

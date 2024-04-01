@@ -81,7 +81,10 @@ export type Endpoints =
   | "users"
   | "capcalera"
   | "carrusel"
-  | "footer";
+  | "footer"
+  | "familia"
+  | "missatge"
+  | "xarxes-socials";
 
 export interface GlobalParams {
   _fields?: string;
@@ -217,6 +220,41 @@ export type HeroSlide = {
   description: string;
   link: string;
 };
+
+export type FamiliaData = {
+  sponsors: {
+    buttonText: string;
+    deals: {
+      dealTitle: string;
+      dealAdvantages: string[];
+      dealPrice: string;
+      dealImage: string | null;
+    }[];
+  };
+  membres: {
+    buttonText: string;
+    deals: {
+      dealTitle: string;
+      dealAdvantages: string[];
+      dealPrice: string;
+      dealImage: string | null;
+    }[];
+  };
+}
+
+
+export type FamiliaMissatge = {
+  title: string;
+  firstBlueText: string;
+  secondBlueText: string;
+  firstOrangePart: string;
+  secondOrangePart: string;
+}
+
+export type XarxaSocial = {
+  name: string;
+  link: string;
+}
 
 export type Category = {
   count: number;

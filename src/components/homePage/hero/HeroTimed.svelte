@@ -4,8 +4,6 @@
   export let slides;
   let totalDots;
   let currentSlideIndex = 0;
-
- console.log('slides', slides)
   
   $: totalDots = Array(slides ? slides.length : 0).fill(0);
 

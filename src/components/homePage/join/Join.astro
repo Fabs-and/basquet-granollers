@@ -5,17 +5,16 @@ import Dialog from "@components/Dialog.astro";
 import MembershipItem from "@components/homePage/join/MembershipItem.svelte";
 import SponsorshipItem from "@components/homePage/join/SponsorshipItem.svelte";
 import Slider from "@components/Slider.svelte";
-
+import { getFamiliaSection } from "@services/apiFunctions";
 import {
   extractMembershipsOptions,
   extractSponsorshipsOptions,
 } from "@utils/helperFunctions";
-import { joinData } from "@data/apiData";
+import { familiaSection } from "@data/apiData";
+
+const {sponsors, membres: memberships} = familiaSection;
 
 let isSelected = true;
-
-const memberships = extractMembershipsOptions(joinData[0].content.rendered);
-const sponsors = extractSponsorshipsOptions(joinData[0].content.rendered);
 
 function toggleSelected() {
   isSelected = !isSelected;
@@ -82,10 +81,10 @@ function toggleSelected() {
     <h2>Forma part de la família CBG</h2>
     <div class="options-container">
       <button id="btn-memberships" class="g-button-anchor options"
-        >{"fes-te soci".toUpperCase()}</button
+        >{memberships.buttonText.toUpperCase()}</button
       >
       <button id="btn-sponsors" class="g-button-anchor options"
-        >{"fes-te sponsor".toUpperCase()}</button
+        >{sponsors.buttonText.toUpperCase()}</button
       >
     </div>
   </div>
@@ -94,7 +93,7 @@ function toggleSelected() {
     <div class="memberships">
       <div class="memberships-container flex">
         {
-          memberships.map((membership) => (
+          memberships.deals.map((membership) => (
             <div>
               <MembershipItem client:visible item={membership} />
             </div>
@@ -105,7 +104,7 @@ function toggleSelected() {
       <div class="memberships-slider g-slider-container meberships-slider">
         <Slider
           client:visible
-          sliderItems={memberships}
+          sliderItems={memberships.deals}
           childComponent="MembershipItem"
           itemWidth={315}
           gap={`1rem`}
@@ -116,7 +115,7 @@ function toggleSelected() {
     <div class="sponsors">
       <div class="sponsors-container flex">
         {
-          sponsors.map((sponsor) => (
+          sponsors.deals.map((sponsor) => (
             <div>
               <SponsorshipItem client:visible item={sponsor} />
             </div>
@@ -127,7 +126,7 @@ function toggleSelected() {
       <div class="g-slider-container sponsors-slider">
         <Slider
           client:visible
-          sliderItems={sponsors}
+          sliderItems={sponsors.deals}
           childComponent="SponsorshipItem"
           itemWidth={315}
           gap={`1rem`}

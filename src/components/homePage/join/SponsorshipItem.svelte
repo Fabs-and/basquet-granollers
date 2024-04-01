@@ -8,15 +8,15 @@
 <article class="sponsor-article opacity">
   <div class="sponsor-title">
     <small>Patrocinador</small>
-    <h3>{item.title}</h3>
+    <h3>{item.dealTitle}</h3>
   </div>
   <div class="sponsor-price">
     <p>
-      <span class="price-number">{item.price}</span>
+      <span class="price-number">{item.dealPrice}</span>
     </p>
   </div>
   <div class="sponsor-advantages">
-    {#each item.advantages as advantage}
+    {#each item.dealAdvantages as advantage}
       <div class="advantage-line">
         <div>
           {@html membershipCheck}

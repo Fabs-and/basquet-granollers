@@ -24,11 +24,12 @@
     childComponent === "NewsItem"
       ? NewsItem
       : childComponent === "MembershipItem"
-      ? MembershipItem
-      : childComponent === "SponsorshipItem"
-      ? SponsorshipItem
-      : ProjectItem;
+        ? MembershipItem
+        : childComponent === "SponsorshipItem"
+          ? SponsorshipItem
+          : ProjectItem;
 
+ 
   const buttonText = childComponent === "NewsItem" ? "veure totes" : "contacta";
   const textColor = childComponent === "NewsItem" && "var(--clr-accent)";
   const arrowsColor = childComponent !== "NewsItem" && "white";
