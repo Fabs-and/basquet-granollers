@@ -1,11 +1,13 @@
 ---
 import TeamsLayout from "@layouts/TeamsLayout.astro";
+import { schoolTeamImage, schoolTeamTitle } from "@data/apiData";
 
-import { schoolTeamData } from "@data/apiData";
 
+import { getSeasonYears } from "@utils/helperFunctions";
+const { firstYear, secondYear } = getSeasonYears();
 
-const title = "Club Bàsquet Granollers";
-const heading = "Escola de bàsquet";
+const heading = schoolTeamTitle[0].title.rendered;
+const title = `Escola de bàsquet temporada 20${firstYear}-${secondYear}`;
 ---
 
-<TeamsLayout teamsImages={schoolTeamData} {title} {heading} />
+<TeamsLayout teamsImages={schoolTeamImage} {heading} {title}/>

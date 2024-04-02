@@ -396,3 +396,26 @@ export function truncateString(str: string) {
   //Trim in case the content starts with empty spaces
   return truncated.trim() + "...";
 }
+
+export function getSeasonYears() {
+  const today = new Date();
+  const currentYear = today.getFullYear();
+  const currentMonth = today.getMonth() + 1; // Month is zero-indexed, so we add 1
+
+  let firstYear, secondYear;
+
+  if (currentMonth >= 9) {
+    // If the current month is September or later
+    firstYear = currentYear.toString().slice(-2);
+    secondYear = (currentYear + 1).toString().slice(-2);
+  } else {
+    // If the current month is before September
+    firstYear = (currentYear - 1).toString().slice(-2);
+    secondYear = currentYear.toString().slice(-2);
+  }
+
+  return {
+    firstYear: firstYear,
+    secondYear: secondYear
+  };
+}

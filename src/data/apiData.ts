@@ -1,4 +1,5 @@
 //Import types
+import { get } from "http";
 import type { Post } from "../types";
 
 //Import constants
@@ -53,14 +54,19 @@ export const [
   footerData,
   mainSponsorsWhite,
   mainSponsorsBlue,
-  otherSponsors, //only blue
+  otherSponsors, 
   teamsCategories,
-  schoolTeamData,
-  coachesData,
-  wheelchairTeamData,
-  maleTeamsData,
+  schoolTeamImage,
+  schoolTeamTitle,
+  coachesImage,
+  coachesTitle,
+  wheelchairTeamImage,
+  wheelchairTeamTitle,
+  maleTeamsImage,
+  maleTeamsTitle,
   maleSeniorTeamData,
-  femaleTeamsData,
+  femaleTeamsImage,
+  femaleTeamsTitle,
   femaleSeniorTeamData,
 ] = await Promise.all([
   getCapcalera(),
@@ -87,11 +93,16 @@ export const [
   getImagesBySlug(CONFIG_PAGES.homePageOtherSponsors),
   getImagesBySlug(TEAM_PAGES.allTeams),
   getImagesBySlug(TEAM_PAGES.school),
+  getPageBySlug(TEAM_PAGES.school, ["title"]),
   getImagesBySlug(TEAM_PAGES.coaches),
+  getPageBySlug(TEAM_PAGES.coaches, ["title"]),
   getImagesBySlug(TEAM_PAGES.wheelchair),
+  getPageBySlug(TEAM_PAGES.wheelchair, ["title"]),
   getImagesBySlug(TEAM_PAGES.maleTeams),
+  getPageBySlug(TEAM_PAGES.maleTeams, ["title"]),
   getImagesBySlug(TEAM_PAGES.maleSenior),
   getImagesBySlug(TEAM_PAGES.femaleTeams),
+  getPageBySlug(TEAM_PAGES.femaleTeams, ["title"]),
   getImagesBySlug(TEAM_PAGES.femaleSenior),
 ]);
 

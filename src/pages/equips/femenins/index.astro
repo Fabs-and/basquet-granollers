@@ -3,10 +3,12 @@
 import TeamsLayout from "@layouts/TeamsLayout.astro";
 
 //Import data
-import { femaleTeamsData } from "@data/apiData";
+import { femaleTeamsImage, femaleTeamsTitle } from "@data/apiData";
+import { getSeasonYears } from "@utils/helperFunctions";
+const { firstYear, secondYear } = getSeasonYears();
 
-const title = "Els equips femenins del club Bàsquet Granollers";
-const heading = "Equips femenins";
+const heading = femaleTeamsTitle[0].title.rendered;
+const title = `Equips femenins temporada 20${firstYear}-${secondYear}`;
 ---
 
-<TeamsLayout teamsImages={femaleTeamsData} {title} {heading} />
+<TeamsLayout teamsImages={femaleTeamsImage} {title} {heading} />

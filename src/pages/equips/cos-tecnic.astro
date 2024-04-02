@@ -1,10 +1,12 @@
 ---
 import TeamsLayout from "@layouts/TeamsLayout.astro";
 
-import { coachesData } from "@data/apiData";
+import { coachesImage, coachesTitle } from "@data/apiData";
+import { getSeasonYears } from "@utils/helperFunctions";
+const { firstYear, secondYear } = getSeasonYears();
 
-const title = "Club Bàsquet Granollers";
-const heading = "Cos tècnic";
+const heading = coachesTitle[0].title.rendered;
+const title = `Cost tècnic temporada 20${firstYear}-${secondYear}`;
 ---
 
-<TeamsLayout teamsImages={coachesData} {title} {heading} />
+<TeamsLayout teamsImages={coachesImage} {title} {heading} />

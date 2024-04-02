@@ -2,10 +2,10 @@
 //Import layouts
 import InternalPageLayout from "./PageLayout.astro";
 
-const { teamsImages, heading, subHeading, title } = Astro.props;
+const { teamsImages, heading, title } = Astro.props;
 ---
 
-<InternalPageLayout {title} {heading}>
+<InternalPageLayout {heading} {title}>
   <div class="images-container">
     {
       Array.isArray(teamsImages) ? (

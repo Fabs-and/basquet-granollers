@@ -1,15 +1,18 @@
 ---
 //Import layouts
 import TeamsLayout from "@layouts/TeamsLayout.astro";
-import { getImagesBySlug } from "@services/apiFunctions";
-import { getImagesInfo } from "@services/apiFunctionsAux";
+import { getSeasonYears } from "@utils/helperFunctions";
 
 //Import data
-// import { wheelchairTeamData } from "@data/apiData";
+import { wheelchairTeamImage, wheelchairTeamTitle } from "@data/apiData";
 
-const wheelchairTeamData = await getImagesBySlug(`basquet-en-cadira-de-rodes-4`)
-const title = "Club Bàsquet Granollers";
-const heading = "Bàsquet en cadira de rodes";
+
+const { firstYear, secondYear } = getSeasonYears();
+
+
+const heading = wheelchairTeamTitle[0].title.rendered;
+const title = `Equip de cadira de rodes temporada 20${firstYear}-${secondYear}`;
+
 ---
 
-<TeamsLayout teamsImages={wheelchairTeamData} {title} {heading} />
+<TeamsLayout teamsImages={wheelchairTeamImage} {heading} {title}/>
