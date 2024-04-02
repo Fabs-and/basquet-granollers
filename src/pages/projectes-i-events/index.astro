@@ -1,14 +1,14 @@
 ---
 import PageLayout from "@layouts/PageLayout.astro";
 
-import { projects} from '../../data/apiData.ts'
+import { projectsData} from '../../data/apiData.ts'
 ---
 
 <PageLayout title={`Projectes i events del Club Bàsquet Granollers`} heading={`Projectes i events del CBG`}>
   <div class="component-container">
     <div class="projects-desktop">
       {
-        projects.map((project) =>
+        projectsData.map((project) =>
           project.image ? (
             <a href={`/projectes-i-events/${project.slug}`}>
               <div class="image-container">
