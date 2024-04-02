@@ -2,10 +2,14 @@
 //Import layouts
 import InternalPageLayout from "./PageLayout.astro";
 
-const { teamsImages, heading, title } = Astro.props;
+const { teamsImages, heading, title, isCadira } = Astro.props;
+if (isCadira) {
+  console.log('inside Teams images', teamsImages)
+}
 ---
 
 <InternalPageLayout {heading} {title}>
+  <h2>Our Teams</h2>
   <div class="images-container">
     {
       teamsImages.map((image, i) => (
