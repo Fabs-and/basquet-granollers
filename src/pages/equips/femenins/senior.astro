@@ -1,10 +1,18 @@
 ---
 import PlayersLayout from "@layouts/PlayersLayout.astro";
 
-import { femaleSeniorTeamData } from "@data/apiData";
+import { femaleSeniorTeamData, seniorTeamsData } from "@data/apiData";
+
+const { femaleSenior} = seniorTeamsData;
+import { getSeasonYears } from "@utils/helperFunctions";
+const { firstYear, secondYear } = getSeasonYears();
+
+const heading = femaleSenior!.title;
+const title = `Sènior primer femení temporada 20${firstYear}-${secondYear}`;
 ---
 
 <PlayersLayout
-  heading={`Sènior 1 femení - SuperCopa Femenina`}
-  team={femaleSeniorTeamData}
+  {heading}
+  {title}
+  team={femaleSenior!.players}
 />

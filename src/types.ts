@@ -85,7 +85,8 @@ export type Endpoints =
   | "familia"
   | "missatge"
   | "xarxes-socials"
-  | "titols";
+  | "titols"
+  | "jugadors";
 
 export interface GlobalParams {
   _fields?: string;
@@ -262,6 +263,23 @@ export type CBGContent = {
   teams: string;
   projects: string;
 };
+
+type Player = {
+  name: string;
+  position: string;
+  image: string;
+}
+
+export type Team = {
+  title: string;
+  players: Player[];
+} | undefined;
+
+export type SeniorTeamData = {
+  male?: Team;
+  female?: Team;
+}
+
 
 export type Category = {
   count: number;

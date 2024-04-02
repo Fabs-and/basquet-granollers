@@ -3,10 +3,17 @@
 import PlayersLayout from "@layouts/PlayersLayout.astro";
 
 //Import data
-import { maleSeniorTeamData } from "@data/apiData";
+import { seniorTeamsData } from "@data/apiData";
+const { maleSenior} = seniorTeamsData;
+import { getSeasonYears } from "@utils/helperFunctions";
+const { firstYear, secondYear } = getSeasonYears();
+
+const heading = maleSenior!.title;
+const title = `Sènior primer masculí temporada 20${firstYear}-${secondYear}`;
 ---
 
 <PlayersLayout
-  heading={`Sènior 1 masculí Pisos.com - Liga EBA`}
-  team={maleSeniorTeamData}
+  {heading}
+  {title}
+  team={maleSenior!.players}
 />

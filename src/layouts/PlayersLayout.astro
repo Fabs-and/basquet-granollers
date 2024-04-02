@@ -5,11 +5,11 @@ import InternalPageLayout from "./PageLayout.astro";
 //Import functions
 import { extractPlayerInfo } from "@utils/helperFunctions";
 
-const { heading, subHeading, team } = Astro.props;
+const { heading, team, title } = Astro.props;
 ---
 
 <InternalPageLayout
-  pageTitle={`Equips masculins del Club Bàsquet Granollers`}
+  {title}
   {heading}
 >
   <div class="players-container">
@@ -19,15 +19,15 @@ const { heading, subHeading, team } = Astro.props;
           <article class="player">
             <div class="image-container">
               <img
-                src={player.url ? player.url : "/player-avatar.png"}
+                src={player.image ? player.image : "/player-avatar.png"}
                 alt=""
                 loading={i < 3 ? "eager" : "lazy"}
               />
             </div>
             <div class="info-container">
-              <p class="name">{extractPlayerInfo(player.caption).name}</p>
+              <p class="name">{player.name}</p>
               <p class="position">
-                {extractPlayerInfo(player.caption).position}
+                {player.position}
               </p>
             </div>
           </article>

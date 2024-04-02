@@ -27,6 +27,7 @@ import {
   getPages,
   getPosts,
   getPostsInCategories,
+  getSeniorTeamsData,
   getSocialMedia,
 } from "@services/apiFunctions";
 
@@ -56,6 +57,7 @@ export const [
   mainSponsorsBlue,
   otherSponsors, 
   teamsCategories,
+  seniorTeamsData,
   schoolTeamImage,
   schoolTeamTitle,
   coachesImage,
@@ -92,6 +94,7 @@ export const [
   getImagesBySlug(CONFIG_PAGES.homePageMainSponsorsBlue),
   getImagesBySlug(CONFIG_PAGES.homePageOtherSponsors),
   getImagesBySlug(TEAM_PAGES.allTeams),
+  getSeniorTeamsData(),
   getImagesBySlug(TEAM_PAGES.school),
   getPageBySlug(TEAM_PAGES.school, ["title"]),
   getImagesBySlug(TEAM_PAGES.coaches),

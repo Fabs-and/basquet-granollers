@@ -35,6 +35,8 @@ import type {
   FamiliaMissatge,
   XarxaSocial,
   CBGContent,
+  SeniorTeamData,
+  Team,
 } from "../types";
 
 import { IMAGE_FIELDS } from "@data/globalConstants";
@@ -335,6 +337,21 @@ export async function getPageSectionTitles(): Promise<CBGContent> {
 
 
     return titles[0];
+  } catch (error) {
+    console.error("Error in getFamiliaSection:", error);
+    throw error; // Propagate the error to the caller
+  }
+}
+export async function getSeniorTeamsData(): Promise<{maleSenior: Team, femaleSenior: Team}> {
+  try {
+    const endpointParams = endpointParamsBuilder();
+    const seniorTeams = await getData<SeniorTeamData>("jugadors", queryBuilder(endpointParams));
+
+    const maleSenior = seniorTeams[0].male;
+    const femaleSenior = seniorTeams[1].female;
+
+    // console.log('maleSenior', maleSenior);
+    return {maleSenior, femaleSenior};
   } catch (error) {
     console.error("Error in getFamiliaSection:", error);
     throw error; // Propagate the error to the caller
