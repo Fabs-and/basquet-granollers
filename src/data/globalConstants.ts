@@ -87,8 +87,6 @@ const TEAM_PAGES = {
   femaleTeams: "equips-femenins",
   school: "escola",
   wheelchair: "cadira-de-rodes",
-  maleSenior: "jugadors-equip-senior-masculi",
-  femaleSenior: "jugadores-equip-senior-femeni",
   coaches: "cos-tecnic",
 };
 

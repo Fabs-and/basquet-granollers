@@ -572,6 +572,7 @@ export async function getImagesBySlug(slug: string): Promise<CustomImage[]> {
   try {
     // Fetch the page by slug and get its content and ID.
     const page = await getPageBySlug(slug, ["id", "content"]);
+    console.log('slug', slug);
 
     if (!page.length) throw new Error(`Page not found for slug: ${slug}`);
 
