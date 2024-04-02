@@ -25,23 +25,39 @@
       prevSlide(); // swiped right
     }
   }
+  import { onMount } from "svelte";
+
+  let videoElement;
+  let isMobile =
+    /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
+      navigator.userAgent,
+    );
+
+  onMount(() => {
+    if (isMobile) {
+      // Programmatically trigger video play on mobile devices
+      videoElement.play().catch((error) => {
+        console.error("Error autoplaying video:", error);
+      });
+    }
+  });
 
   let transitionDirection = "";
   let currentSlideIndex = 0;
   let prevSlideIndex = 0;
 
   function prevSlide() {
-    transitionDirection = "prev"; 
-    prevSlideIndex = currentSlideIndex; 
+    transitionDirection = "prev";
+    prevSlideIndex = currentSlideIndex;
     currentSlideIndex =
-      currentSlideIndex === 0 ? slides.length - 1 : currentSlideIndex - 1; 
+      currentSlideIndex === 0 ? slides.length - 1 : currentSlideIndex - 1;
   }
 
   function nextSlide() {
     transitionDirection = "next";
-    prevSlideIndex = currentSlideIndex; 
+    prevSlideIndex = currentSlideIndex;
     currentSlideIndex =
-      currentSlideIndex === slides.length - 1 ? 0 : currentSlideIndex + 1; 
+      currentSlideIndex === slides.length - 1 ? 0 : currentSlideIndex + 1;
   }
 
   function handleDotClick(index) {
@@ -66,22 +82,18 @@
         class:transition-next={transitionDirection === "next"}
         class:transition-prev={transitionDirection === "prev"}
       >
-      {#if slide.video !== null}
-      <video
-        src={slide.video}
-        class="hidden"
-        loading={index === 0 ? 'eager' : 'lazy'}
-        autoplay
-        muted
-        loop
-      ></video>
-    {:else}
-        <img
-          src={slide.image}
-          class="hidden"
-          loading="eager"
-        />
-       {/if} 
+        {#if slide.video !== null}
+          <video
+            bind:this={videoElement}
+            src={slide.video}
+            class="hidden"
+            loading={index === 0 ? "eager" : "lazy"}
+            muted
+            loop
+          ></video>
+        {:else}
+          <img src={slide.image} class="hidden" loading="eager" />
+        {/if}
 
         <div class="hero-info-container">
           <div class="hero-info-flex">
@@ -90,10 +102,7 @@
               {slide.description}
             </p>
             {#if slide.link}
-              <ButtonAnchor
-                slug={slide.link}
-                text={`veure més`}
-              />
+              <ButtonAnchor slug={slide.link} text={`veure més`} />
             {/if}
           </div>
         </div>
@@ -168,7 +177,8 @@
     overflow: hidden;
   }
 
-  img, video {
+  img,
+  video {
     height: inherit;
     width: 100%;
     object-fit: cover;
