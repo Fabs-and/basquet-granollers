@@ -1,44 +1,59 @@
 ---
 import DropDownMenu from "@components/header/bottomHeader/DropDownMenu.astro";
-import LaHistoriaLogo from "../../../assets/LaHistoriaLogo.astro"
+import LaHistoriaLogo from "../../../assets/LaHistoriaLogo.astro";
 import SearchWidget from "@components/SearchWidget.svelte";
 
 const { navigation, websiteContent } = Astro.props;
-
-
 ---
 
 <script>
-  let isScrolling = false;
-  const logo = document.querySelector(".logo");
-  const logoContainer = document.querySelector(".logo-container");
+  document.addEventListener("DOMContentLoaded", function () {
+    let isScrollingDown = false;
+    let previousScrollPosition = window.scrollY;
+    const scrollThreshold = 10; // Adjust this value as needed
 
-  const handleScroll = () => {
-  if (window.scrollY > 0) {
-    // Scrolling down
-    if (!isScrolling) {
-      logo.style.bottom = "-1.2rem";
-      logoContainer.style.setProperty("--logo-size", "90%"); // Reduce logo size
-      isScrolling = true;
-    }
-  } else {
-    // At the top of the page
-    if (isScrolling) {
-      logo.style.bottom = "0.5rem";
+    const logo = document.querySelector(".logo");
+    const logoContainer = document.querySelector(".logo-container");
+    logo.style.bottom = "0.5rem";
+    logoContainer.style.setProperty("--logo-size", "100%"); // Restore logo size
+    isScrollingDown = false;
 
-      logoContainer.style.setProperty("--logo-size", "100%"); // Restore logo size
-      isScrolling = false;
-    }
-  }
-};
+    const handleScroll = () => {
+      const currentScrollPosition = window.scrollY;
 
-  window.addEventListener("scroll", handleScroll);
+      if (currentScrollPosition > previousScrollPosition + scrollThreshold) {
+        // Scrolling down beyond the threshold
+        if (!isScrollingDown) {
+          logo.style.bottom = "0.3rem";
+          logoContainer.style.setProperty("--logo-size", "50%"); // Reduce logo size
+          isScrollingDown = true;
+        }
+      } else if (
+        currentScrollPosition <
+        previousScrollPosition - scrollThreshold
+      ) {
+        // Scrolling up beyond the threshold
+        if (isScrollingDown) {
+          logo.style.bottom = "0.5rem";
+          logoContainer.style.setProperty("--logo-size", "100%"); // Restore logo size
+          isScrollingDown = false;
+        }
+      }
+
+      previousScrollPosition = currentScrollPosition;
+    };
+
+    window.addEventListener("scroll", handleScroll);
+  });
 </script>
-
 
 <div class="logo-container">
   <a class="logo" href="/">
-    <img src="/logo.svg" alt="Logo del Club Bàsquet Granollers" style="width: var(--logo-size); height: var(--logo-size);" />
+    <img
+      src="/logo.svg"
+      alt="Logo del Club Bàsquet Granollers"
+      style="width: var(--logo-size); height: var(--logo-size);"
+    />
   </a>
 </div>
 
@@ -63,33 +78,41 @@ const { navigation, websiteContent } = Astro.props;
 </nav>
 
 <div class="history-search-container">
-  <a class="history-logo-link" href="https://historiabasquetgranollers.cat/" target="_blank">
-    <LaHistoriaLogo  wd="199"  title="Logo de La Història del Bàsquet a Granollers"/>
+  <a
+    class="history-logo-link"
+    href="https://historiabasquetgranollers.cat/"
+    target="_blank"
+  >
+    <LaHistoriaLogo
+      wd="199"
+      title="Logo de La Història del Bàsquet a Granollers"
+    />
   </a>
-         
+
   <SearchWidget client:load {websiteContent} />
 </div>
 
 <style>
-
-.logo-responsive {
-  --logo-size: 100%; /* Default size */
-  /* transition: --logo-size 10s ease-in-out; Add transition for smooth resizing */
-}
-.logo {
+  .logo-responsive {
+    --logo-size: 100%; /* Default size */
+    /* transition: --logo-size 10s ease-in-out; Add transition for smooth resizing */
+  }
+  .logo {
     width: 68px;
     display: flex;
     justify-content: center;
     position: absolute;
     bottom: 0.5rem;
     left: var(--pd-x);
-    transition: bottom 0.5s ease-in-out; /* Add transition for smooth resizing */
+    transition: bottom 0.5s ease-in; /* Add transition for smooth resizing */
   }
 
   .logo img {
     width: var(--logo-size);
     height: var(--logo-size);
-    transition: width 0.5s ease-in-out, height 0.5s ease-in-out; /* Add transition for smooth resizing */
+    transition:
+      width 0.5s ease-in,
+      height 0.5s ease-in; /* Add transition for smooth resizing */
   }
 
   .history-search-container {

@@ -40,30 +40,34 @@ postsToSearch.forEach((post) => {
 
 const websiteContent = [...pagesToSearch, ...postsToSearch];
 ---
-
 <script>
   const header = document.getElementById("bottom-header");
-  let isScrolling = false;
-
+  let isScrollingDown = false;
+  let previousScrollPosition = window.scrollY;
+  const scrollThreshold = 10; // Adjust this value as needed
+  
   const handleScroll = () => {
-    if (window.scrollY > 0) {
-      // Scrolling down
-      if (!isScrolling) {
+    const currentScrollPosition = window.scrollY;
+  
+    if (currentScrollPosition > previousScrollPosition + scrollThreshold) {
+      // Scrolling down beyond the threshold
+      if (!isScrollingDown) {
         header!.style.setProperty("--hg-header-bottom-section", "3.15rem");
-        isScrolling = true;
+        isScrollingDown = true;
       }
-    } else {
-      // At the top of the page
-      if (isScrolling) {
+    } else if (currentScrollPosition < previousScrollPosition - scrollThreshold) {
+      // Scrolling up beyond the threshold
+      if (isScrollingDown) {
         header!.style.setProperty("--hg-header-bottom-section", "");
-        isScrolling = false;
+        isScrollingDown = false;
       }
     }
+  
+    previousScrollPosition = currentScrollPosition;
   };
-
+  
   window.addEventListener("scroll", handleScroll);
-</script>
-
+  </script>
 <header>
   <section class="header-top-section">
     <TopHeader topHeaderContent={capcaleraSuperior} {socialMedia}/>

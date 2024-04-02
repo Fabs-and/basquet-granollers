@@ -1,4 +1,4 @@
-name: Build and Deploy
+name: Genera i puja la web al servidor
 on:
   repository_dispatch:
     types: [generar-web]
