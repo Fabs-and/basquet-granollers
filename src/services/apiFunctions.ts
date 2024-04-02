@@ -285,14 +285,19 @@ export async function getFooter(): Promise<Footer[]> {
 export async function getFamiliaSection(): Promise<FamiliaData> {
   try {
     const endpointParams = endpointParamsBuilder();
-    const familiaData = await getData<FamiliaData>("familia", queryBuilder(endpointParams));
+    const familiaData = await getData<FamiliaData>(
+      "familia",
+      queryBuilder(endpointParams),
+    );
 
-    const sponsors = familiaData.find(item => item.hasOwnProperty('sponsors'));
-    const membres = familiaData.find(item => item.hasOwnProperty('membres'));
+    const sponsors = familiaData.find((item) =>
+      item.hasOwnProperty("sponsors"),
+    );
+    const membres = familiaData.find((item) => item.hasOwnProperty("membres"));
 
     return {
-      sponsors: sponsors ? sponsors.sponsors : { buttonText: '', deals: [] },
-      membres: membres ? membres.membres : { buttonText: '', deals: [] }
+      sponsors: sponsors ? sponsors.sponsors : { buttonText: "", deals: [] },
+      membres: membres ? membres.membres : { buttonText: "", deals: [] },
     };
   } catch (error) {
     console.error("Error in getFamiliaSection:", error);
@@ -303,9 +308,10 @@ export async function getFamiliaSection(): Promise<FamiliaData> {
 export async function getFamiliaSectionContactaMessage(): Promise<FamiliaMissatge> {
   try {
     const endpointParams = endpointParamsBuilder();
-    const familiaMissatge = await getData<FamiliaMissatge>("missatge", queryBuilder(endpointParams));
-
-   
+    const familiaMissatge = await getData<FamiliaMissatge>(
+      "missatge",
+      queryBuilder(endpointParams),
+    );
 
     return familiaMissatge[0];
   } catch (error) {
@@ -317,10 +323,12 @@ export async function getFamiliaSectionContactaMessage(): Promise<FamiliaMissatg
 export async function getSocialMedia(): Promise<XarxaSocial[]> {
   try {
     const endpointParams = endpointParamsBuilder();
-    const socialMediaResponse = await getData<XarxaSocial[]>("xarxes-socials", queryBuilder(endpointParams));
+    const socialMediaResponse = await getData<XarxaSocial[]>(
+      "xarxes-socials",
+      queryBuilder(endpointParams),
+    );
 
     let socialMediaData = Object.values(socialMediaResponse[0]).slice(0, -1);
-
 
     return socialMediaData;
   } catch (error) {
@@ -329,12 +337,13 @@ export async function getSocialMedia(): Promise<XarxaSocial[]> {
   }
 }
 
-
 export async function getPageSectionTitles(): Promise<CBGContent> {
   try {
     const endpointParams = endpointParamsBuilder();
-    const titles = await getData<CBGContent>("titols", queryBuilder(endpointParams));
-
+    const titles = await getData<CBGContent>(
+      "titols",
+      queryBuilder(endpointParams),
+    );
 
     return titles[0];
   } catch (error) {
@@ -342,16 +351,22 @@ export async function getPageSectionTitles(): Promise<CBGContent> {
     throw error; // Propagate the error to the caller
   }
 }
-export async function getSeniorTeamsData(): Promise<{maleSenior: Team, femaleSenior: Team}> {
+export async function getSeniorTeamsData(): Promise<{
+  maleSenior: Team;
+  femaleSenior: Team;
+}> {
   try {
     const endpointParams = endpointParamsBuilder();
-    const seniorTeams = await getData<SeniorTeamData>("jugadors", queryBuilder(endpointParams));
+    const seniorTeams = await getData<SeniorTeamData>(
+      "jugadors",
+      queryBuilder(endpointParams),
+    );
 
     const maleSenior = seniorTeams[0].male;
     const femaleSenior = seniorTeams[1].female;
 
     // console.log('maleSenior', maleSenior);
-    return {maleSenior, femaleSenior};
+    return { maleSenior, femaleSenior };
   } catch (error) {
     console.error("Error in getFamiliaSection:", error);
     throw error; // Propagate the error to the caller
@@ -572,7 +587,6 @@ export async function getImagesBySlug(slug: string): Promise<CustomImage[]> {
   try {
     // Fetch the page by slug and get its content and ID.
     const page = await getPageBySlug(slug, ["id", "content"]);
-    console.log('slug', slug);
 
     if (!page.length) throw new Error(`Page not found for slug: ${slug}`);
 
@@ -585,8 +599,19 @@ export async function getImagesBySlug(slug: string): Promise<CustomImage[]> {
     // Fetch images with the same parent page.
     const imagesWithSamePageParent = await getImagesInfo(id);
 
-    // Fetch all available media.
-    const allMedia = await getImages();
+    // If there's only one image URL and imagesWithSamePageParent is undefined, return the image URL.
+    if (
+      renderedImagesUrls.length === 1 &&
+      imagesWithSamePageParent.length === 0
+    ) {
+      const customImage: CustomImage = {
+        url: renderedImagesUrls[0],
+        title: "",
+        alt: "",
+        caption: "",
+      };
+      return [customImage];
+    }
 
     const imagesInParentPage = imagesWithSamePageParent.find(
       (image) => image.url === renderedImagesUrls[0],
@@ -615,6 +640,8 @@ export async function getImagesBySlug(slug: string): Promise<CustomImage[]> {
       return sortImagesByAppearanceOrder(imagesRendered, renderedImagesUrls);
     }
 
+    // Fetch all available media.
+    const allMedia = await getImages();
     // If images rendered don't share same parent Filter all media to get images that match the rendered images.
     const filteredImages =
       allMedia && allMedia.length
