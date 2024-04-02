@@ -8,25 +8,15 @@ const { teamsImages, heading, title } = Astro.props;
 <InternalPageLayout {heading} {title}>
   <div class="images-container">
     {
-      Array.isArray(teamsImages) ? (
-        teamsImages.map((image, i) => (
-          <div class="image-container">
-            <img
-              src={image.url}
-              alt={image.alt && image.alt}
-              loading={i < 3 ? "eager" : "lazy"}
-            />
-          </div>
-        ))
-      ) : (
+      teamsImages.map((image, i) => (
         <div class="image-container">
           <img
-            src={teamsImages.url}
-            alt={teamsImages.alt && teamsImages.alt}
-            loading="eager"
+            src={image.url}
+            alt={image.alt && image.alt}
+            loading={i < 3 ? "eager" : "lazy"}
           />
         </div>
-      )
+      ))
     }
   </div>
 </InternalPageLayout>
