@@ -3,6 +3,7 @@
 import ImportantLinksContainer from "./ImportantLinksContainer.astro";
 
 const { footer } = Astro.props;
+
 ---
 
 
@@ -14,7 +15,7 @@ const { footer } = Astro.props;
       <ul class="links-container">
         {column.values.map((link) => (
           <li>
-            <a href={link.link} target={link.link.startsWith("http") ? "_blank" : undefined} rel={link.link.startsWith("http") ? "noopener noreferrer" : undefined}>
+            <a href={link.link.trim()} target={link.link.startsWith("http") ? "_blank" : undefined} rel={link.link.startsWith("http") ? "noopener noreferrer" : undefined}>
               {link.nom}
             </a>
           </li>
