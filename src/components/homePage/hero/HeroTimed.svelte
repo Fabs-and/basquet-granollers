@@ -44,6 +44,7 @@
         autoplay
         muted
         loop
+        playsinline
       ></video>
     {:else}
       <img
