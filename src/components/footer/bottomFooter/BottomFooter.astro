@@ -3,30 +3,36 @@
 import SocialMediaMenu from "@components/SocialMediaMenu.svelte";
 import BottomFooterLinks from "./BottomFooterLinks.astro";
 import Copyright from "./Copyright.svelte";
-import {socialMedia } from "@data/apiData"
+import { socialMedia } from "@data/apiData";
 ---
 
 <div class="bottom-footer-container-responsive">
   <BottomFooterLinks />
 
   <div class="social-container">
-    <SocialMediaMenu {socialMedia}/>
+    <SocialMediaMenu {socialMedia} />
   </div>
 
-  <div >
+  <div>
     <Copyright client:visible />
   </div>
-  
 </div>
 
 <small class="made-by-container">
-
-  <p class='made-by'>
-    Dissenyat per 
-  </p>
-  <a title="Biombö Studio" href="http://www.biombostudio.com/" target="_blank" rel="noopener noreferrer"><img src="biombo-logo-transparent.webp" alt="Logo de Biombö Studio" width="40" style="display: inline-block"/></a>
+  <p class="made-by">Dissenyat per</p>
+  <a
+    title="Biombö Studio"
+    href="http://www.biombostudio.com/"
+    target="_blank"
+    rel="noopener noreferrer"
+    ><img
+      src="/biombo-logo-transparent.webp"
+      alt="Logo de Biombö Studio"
+      width="40"
+      style="display: inline-block"
+    /></a
+  >
 </small>
-
 
 <style>
   .made-by-container {
@@ -41,13 +47,12 @@ import {socialMedia } from "@data/apiData"
     font-size: var(--fnt-sz-footer);
     /* margin: auto; */
   }
-  
-  
+
   .made-by {
     font-weight: var(--fnt-wg-light);
     padding-bottom: 0.5rem;
   }
-  
+
   .made-by a {
     color: var(--clr-accent);
     text-decoration: underline;
@@ -56,7 +61,7 @@ import {socialMedia } from "@data/apiData"
   .bottom-footer-container-responsive {
     display: grid;
     grid-template-columns: 5rem 8rem auto 15rem;
-    margin-bottom: 1.5rem;  
+    margin-bottom: 1.5rem;
   }
 
   .social-container {
