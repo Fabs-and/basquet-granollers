@@ -8,20 +8,12 @@ import {
   extractNavigation,
   extractTopHeaderContent,
 } from "@utils/helperFunctions";
-import { pages, posts, headerData, socialMedia, header } from "@data/apiData";
+import { pages, posts, socialMedia, header } from "@data/apiData";
 import { EXCLUDED_PAGES } from "@data/globalConstants";
 
 
 const capcaleraSuperior = header.capcalera_superior;
 const capcaleraInferior = header.capcalera_inferior;
-
-const {
-  content: { rendered: content },
-} = headerData[0];
-
-// const topHeaderContent = extractTopHeaderContent(content);
-
-// const bottomHeaderNav = extractNavigation(content);
 
 const pagesToSearch = pages.filter((page) => !EXCLUDED_PAGES.has(page.slug));
 

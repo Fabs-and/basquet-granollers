@@ -41,7 +41,7 @@ const POST_FIELDS: PostFields[] = [
   "id",
 ];
 
-const PROJECTS_AND_HERO_SLIDES_FIELDS: PostFields[] = [
+const PROJECTS_FIELDS: PostFields[] = [
   "title",
   "content",
   "image",
@@ -104,6 +104,6 @@ export {
   FEATURED_NEWS_CATEGORY_ID,
   CONFIG_PAGES,
   TEAM_PAGES,
-  PROJECTS_AND_HERO_SLIDES_FIELDS,
+  PROJECTS_FIELDS,
   IMAGE_FIELDS,
 };

@@ -3,18 +3,19 @@ import HpSectionLayout from "@layouts/HpSectionLayout.astro";
 
 import Slider from "@components/Slider.svelte";
 
-import { projects } from "@data/apiData";
+import { projectsData } from "@data/apiData";
 
 const { title} = Astro.props
 
-projects.splice(9);
+projectsData.splice(9);
+console.log('projectsData', projectsData)
 
 ---
 
 <HpSectionLayout sectionTitle={title} isSliderSection={true}>
   <div class="projects-desktop">
     {
-      projects.map((project) =>
+      projectsData.map((project) =>
         project.image ? (
           <article class="project-item">
             <a href={`/projectes-i-events/${project.slug}`}>
@@ -33,7 +34,7 @@ projects.splice(9);
   <div class="g-slider-container mobile">
     <Slider
       client:visible
-      sliderItems={projects}
+      sliderItems={projectsData}
       childComponent={`ProjectItem`}
       itemWidth={331}
       gap={`1rem`}

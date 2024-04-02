@@ -8,7 +8,7 @@ import {
   PROJECTS_CATEGORY_ID,
   NEWS_CATEGORY_ID,
   HERO_SLIDES_CATEGORY_ID,
-  PROJECTS_AND_HERO_SLIDES_FIELDS,
+  PROJECTS_FIELDS,
   CONFIG_PAGES,
   TEAM_PAGES,
   POST_FIELDS,
@@ -47,15 +47,11 @@ export const [
   familiaContactaMessage,
   pages,
   posts,
-  projectsAndHeroSlides,
+  projectsData,
   allNews,
-  joinData,
-  socialMediaInfo,
-  headerData,
-  footerData,
   mainSponsorsWhite,
   mainSponsorsBlue,
-  otherSponsors, 
+  otherSponsors,
   teamsCategories,
   seniorTeamsData,
   schoolTeamImage,
@@ -66,10 +62,8 @@ export const [
   wheelchairTeamTitle,
   maleTeamsImage,
   maleTeamsTitle,
-  maleSeniorTeamData,
   femaleTeamsImage,
   femaleTeamsTitle,
-  femaleSeniorTeamData,
 ] = await Promise.all([
   getCapcalera(),
   getFooter(),
@@ -81,15 +75,11 @@ export const [
   getPages(100, PAGE_FIELDS),
   getPosts(100, POST_FIELDS),
   getPostsInCategories(
-    [PROJECTS_CATEGORY_ID, HERO_SLIDES_CATEGORY_ID],
-    PROJECTS_AND_HERO_SLIDES_FIELDS,
+    [PROJECTS_CATEGORY_ID],
+    PROJECTS_FIELDS,
     100,
   ),
   getPostsInCategories([NEWS_CATEGORY_ID], POST_FIELDS, 100),
-  getPageBySlug(CONFIG_PAGES.homePageJoinSection, ["content"]),
-  getImagesBySlug(CONFIG_PAGES.socialMedia),
-  getPageBySlug(CONFIG_PAGES.header, ["content"]),
-  getPageBySlug(CONFIG_PAGES.footer, ["content"]),
   getImagesBySlug(CONFIG_PAGES.homePageMainSponsorsWhite),
   getImagesBySlug(CONFIG_PAGES.homePageMainSponsorsBlue),
   getImagesBySlug(CONFIG_PAGES.homePageOtherSponsors),
@@ -103,44 +93,6 @@ export const [
   getPageBySlug(TEAM_PAGES.wheelchair, ["title"]),
   getImagesBySlug(TEAM_PAGES.maleTeams),
   getPageBySlug(TEAM_PAGES.maleTeams, ["title"]),
-  getImagesBySlug(TEAM_PAGES.maleSenior),
   getImagesBySlug(TEAM_PAGES.femaleTeams),
   getPageBySlug(TEAM_PAGES.femaleTeams, ["title"]),
-  getImagesBySlug(TEAM_PAGES.femaleSenior),
 ]);
-
-async function initializePostTypes(projectsAndHeroSlides: Post[]) {
-  let projects: Post[] = [];
-  let heroSlides: Post[] = [];
-
-  for (let i = 0; i < projectsAndHeroSlides.length; i++) {
-    if (Array.isArray(projectsAndHeroSlides[i].categories)) {
-      if (
-        projectsAndHeroSlides[i].categories.includes(HERO_SLIDES_CATEGORY_ID)
-      ) {
-        heroSlides.push(projectsAndHeroSlides[i]);
-      } else {
-        projects.push(projectsAndHeroSlides[i]);
-      }
-    }
-  }
-
-  return {
-    projects,
-    heroSlides,
-  };
-}
-export const { projects, heroSlides } = await initializePostTypes(
-  projectsAndHeroSlides,
-);
-
-const {
-  content: { rendered: footerContent },
-} = footerData[0];
-
-const topFooterContent = extractTopFooterInfo(footerContent);
-
-export const { generalLinks, fixedLinks } = topFooterContent;
-
-export const bottomFooterLinks = extractBottomFooterInfo(footerContent);
-

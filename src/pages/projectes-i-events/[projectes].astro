@@ -3,13 +3,13 @@
 import DynamicPageLayout from "@layouts/DynamicPageLayout.astro";
 
 //Import data
-import { projects } from "../../data/apiData.ts";
+import { projectsData } from "../../data/apiData.ts";
 
 //Import functions
 import { formatHtml } from "@utils/helperFunctions";
 
 export async function getStaticPaths() {
-  return projects.map((project) => {
+  return projectsData.map((project) => {
     return {
       params: { projectes: project.slug },
       props: {
