@@ -12,6 +12,7 @@
     sliderLeftArrowWhite,
     sliderRightArrowWhite,
   } from "@assets/icons";
+
   import { toggleDialog } from "@utils/helperFunctions";
 
   //Props
@@ -64,7 +65,7 @@
   bind:this={carousel}
   on:scroll={updateXScrollPosition}
 >
-  {#each sliderItems as sliderItem, i (sliderItem.date)}
+  {#each sliderItems as sliderItem, i}
     <div use:removeOpacity={i} class:g-opacity={i > 0}>
       <svelte:component this={component} item={sliderItem} {isSliderItem} />
     </div>
@@ -85,6 +86,7 @@
       {buttonText.toUpperCase()}
     </button>
   {/if}
+
   <div class="arrows-container" class:forProjects>
     <button on:click={goBack}>
       {#if arrowsColor === "white"}
