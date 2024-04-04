@@ -425,3 +425,13 @@ export class FetchError extends Error {
 export type PostsQueryCache = {
   [key: string]: Post[];
 };
+
+export type TransformedResultCache = {
+  allImages?: {
+    id: number;
+    url: string;
+    title: string;
+    alt: string;
+    caption: string;
+  }[]; // Replace YourImageType with the type of your images
+}

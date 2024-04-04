@@ -1,7 +1,7 @@
 <script>
   import DropDownAccordion from "./DropDownAccordion.svelte";
   import SearchWidgetResponsive from "@components/SearchWidgetResponsive.svelte";
-  import LaHistoriaLogo from "@assets/LaHistoriaLogo.svelte"
+  import LaHistoriaLogo from "@assets/LaHistoriaLogo.svelte";
   import SocialMediaMenu from "@components/SocialMediaMenu.svelte";
   import DirectesIcon from "@assets/DirectesIcon.svelte";
 
@@ -9,15 +9,14 @@
   import { isModalOpen } from "../../../svelte/store.ts";
   import { hamburgerMenuIcon } from "@assets/icons";
 
-  export let navigation;
-  export let topHeaderContent;
-  export let websiteContent;
-  export let socialMedia;
+  export let navigation = [];
+  export let topHeaderContent = [];
+  export let websiteContent = [];
+  export let socialMedia = [];
 
   let isDropdownVisible = false;
 
-const {titol, link} = topHeaderContent[0];
-
+  const { titol, link } = topHeaderContent[0];
 
   function handleClick() {
     if ($isModalOpen === "modalMenu") {
@@ -34,8 +33,6 @@ const {titol, link} = topHeaderContent[0];
       isDropdownVisible = false;
     }
   }
-
- 
 </script>
 
 <div class="flex-container">
@@ -58,12 +55,16 @@ const {titol, link} = topHeaderContent[0];
   class:visible={isDropdownVisible}
   class="dropdown-content-responsive"
 >
-<li class="top-header-link">
-  <a href="https://ott.myplay.com/es/cb-granollers/all-teams/home" class="directes" target="_blank">
-    <DirectesIcon wd={"35"} title="Icona de Directes" color={"#fff"}/>
-    <p >PARTITS EN DIRECTE</p>
-  </a>
-</li>
+  <li class="top-header-link">
+    <a
+      href="https://ott.myplay.com/es/cb-granollers/all-teams/home"
+      class="directes"
+      target="_blank"
+    >
+      <DirectesIcon  />
+      <p>PARTITS EN DIRECTE</p>
+    </a>
+  </li>
   {#if titol}
     <li class="top-header-link">
       {#if !link}
@@ -101,19 +102,21 @@ const {titol, link} = topHeaderContent[0];
     </li>
   {/each}
 
-  <div class='last-part'>
-
-    <div class='la-historia-logo'>
-      <a href="https://historiabasquetgranollers.cat/" target="_blank" >
-        
-        <LaHistoriaLogo wd={"221"} title="Logo de La Història del Bàsquet a Granollers" color={"#fff"}/>
+  <div class="last-part">
+    <div class="la-historia-logo">
+      <a href="https://historiabasquetgranollers.cat/" target="_blank">
+        <LaHistoriaLogo
+          wd={"221"}
+          title="Logo de La Història del Bàsquet a Granollers"
+          color={"#fff"}
+        />
       </a>
     </div>
     <div class="social-media-container">
       <SocialMediaMenu {socialMedia} />
     </div>
   </div>
-  </ul>
+</ul>
 
 <style>
   .last-part {
@@ -124,11 +127,10 @@ const {titol, link} = topHeaderContent[0];
   }
   .la-historia-logo {
     align-self: center;
-   /* margin-top: auto; */
-   /* position: relative;
+    /* margin-top: auto; */
+    /* position: relative;
    bottom: -10rem; */
-   /* margin-top: auto; */
-  
+    /* margin-top: auto; */
   }
   .top-header-link {
     margin-inline: auto;
@@ -173,8 +175,7 @@ const {titol, link} = topHeaderContent[0];
   }
 
   .social-media-container {
-  /* margin-top: auto; */
-
+    /* margin-top: auto; */
   }
   .dropdown-content-responsive.visible {
     transform: translateX(0);

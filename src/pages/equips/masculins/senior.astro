@@ -4,7 +4,7 @@ import PlayersLayout from "@layouts/PlayersLayout.astro";
 
 //Import data
 import { seniorTeamsData } from "@data/apiData";
-const { maleSenior} = seniorTeamsData;
+const { maleSenior } = seniorTeamsData;
 import { getSeasonYears } from "@utils/helperFunctions";
 const { firstYear, secondYear } = getSeasonYears();
 
@@ -12,8 +12,4 @@ const heading = maleSenior!.title;
 const title = `Sènior primer masculí temporada 20${firstYear}-${secondYear}`;
 ---
 
-<PlayersLayout
-  {heading}
-  {title}
-  team={maleSenior!.players}
-/>
+<PlayersLayout {heading} {title} team={maleSenior!.players} />

@@ -4,6 +4,7 @@
   import DOMPurify from "dompurify";
 
   export let websiteContent = [];
+  
   let filteredContent = websiteContent;
   let searchInput = "";
   let showResults = false;
@@ -61,7 +62,7 @@
 
 <aside
   id="search-component"
-  class='search-component'
+  class="search-component"
   on:mouseenter={() => (hovering = true)}
   on:mouseleave={() => {
     hovering = false;
@@ -70,18 +71,16 @@
 >
   <button class="search-icon" on:click={toggleForm}>
     {#if showForm}
-    <div class="close" style="display: block;">{@html closeIcon}</div>
+      <div class="close" style="display: block;">{@html closeIcon}</div>
     {:else}
-    <div title="Cerca" class="magnifying">{@html magnifyingGlass}</div>
+      <div title="Cerca" class="magnifying">{@html magnifyingGlass}</div>
     {/if}
   </button>
   <div class="bridge" class:show={showForm || showResults}></div>
-  <div
-  class="wrapper" class:show={showForm}>
-  <!-- class:show={showResults ||
+  <div class="wrapper" class:show={showForm}>
+    <!-- class:show={showResults ||
         (searchInput.length > 0 && filteredContent.length === 0)} -->
-    
-    
+
     <form action="" class="form" class:show={showForm}>
       <input
         style="font-family: 'obviously', sans-serif; font-size: var(--fnt-sz-regular); font-weight: 400;"
@@ -96,19 +95,22 @@
         on:input={handleInput}
       />
     </form>
-      <ul class="results-modal"  class:show={showResults ||
-        (searchInput.length > 0 && filteredContent.length === 0)} >
-        {#if filteredContent.length > 0}
-          {#each filteredContent as post}
-            <li>
-              <a href={`/${post.slug}`}>{formatHtml(post.title.rendered)}</a>
-            </li>
-          {/each}
-        {:else if searchInput.length > 0}
-          <li>No s'ha trobat res</li>
-        {/if}
-      </ul>
-    </div>
+    <ul
+      class="results-modal"
+      class:show={showResults ||
+        (searchInput.length > 0 && filteredContent.length === 0)}
+    >
+      {#if filteredContent.length > 0}
+        {#each filteredContent as post}
+          <li>
+            <a href={`/${post.slug}`}>{formatHtml(post.title.rendered)}</a>
+          </li>
+        {/each}
+      {:else if searchInput.length > 0}
+        <li>No s'ha trobat res</li>
+      {/if}
+    </ul>
+  </div>
 </aside>
 
 <style>
@@ -124,7 +126,6 @@
     /* left: calc((var(--searchbox-width) * -1) + 1rem); */
     background: transparent;
     right: -2rem;
-
   }
 
   .bridge.show {
@@ -136,7 +137,7 @@
     height: 2.6875rem;
     /* padding-top: 0.1rem; */
   }
-  
+
   ul {
     display: flex;
     flex-direction: column;
@@ -206,7 +207,7 @@
     right: 0rem;
     bottom: 0.5rem;
   }
-  form{
+  form {
     position: relative;
     opacity: 0;
     visibility: hidden;
@@ -242,12 +243,12 @@
   }
 
   .results-modal {
-    display:none;
+    display: none;
   }
 
   .results-modal.show {
     display: flex;
-  } 
+  }
 
   input:focus {
     border: none;

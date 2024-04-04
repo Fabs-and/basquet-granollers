@@ -1,10 +1,12 @@
 <script>
-  import { onMount, onDestroy } from "svelte";
   import ButtonAnchor from "@components/ButtonAnchor.svelte";
-  export let slides;
+  import { onMount, onDestroy } from "svelte";
+  
+  export let slides = [];
+  
   let totalDots;
   let currentSlideIndex = 0;
-  
+
   $: totalDots = Array(slides ? slides.length : 0).fill(0);
 
   let intervalId;
@@ -24,9 +26,7 @@
     if (!isNaN(index)) {
       currentSlideIndex = index;
     }
-
   }
-  
 </script>
 
 {#if slides && slides.length > 0}
@@ -36,23 +36,24 @@
         data-index={index}
         class="slide {index === currentSlideIndex ? 'active' : ''}"
       >
-      {#if slide.video !== null}
-      <video
-        src={slide.video}
-        class="hidden"
-        loading={index === 0 ? 'eager' : 'lazy'}
-        autoplay
-        muted
-        loop
-        playsinline
-      ></video>
-    {:else}
-      <img
-        src={slide.image}
-        class="hidden"
-        loading={index === 0 ? 'eager' : 'lazy'}
-      />
-    {/if}
+        {#if slide.video !== null}
+          <video
+            src={slide.video}
+            class="hidden"
+            loading={index === 0 ? "eager" : "lazy"}
+            autoplay
+            muted
+            loop
+            playsinline
+          ></video>
+        {:else}
+          <img
+            src={slide.image}
+            class="hidden"
+            loading={index === 0 ? "eager" : "lazy"}
+            alt={`Imatge de la diapositiva ${index + 1}: ${slide.title}`}
+          />
+        {/if}
         <div class="hero-info-container">
           <div class="hero-info-flex">
             <h2>{slide.title}</h2>
@@ -60,10 +61,7 @@
               {slide.description}
             </p>
             {#if slide.link}
-              <ButtonAnchor
-                slug={slide.link}
-                text={`veure més`}
-              />
+              <ButtonAnchor slug={slide.link} text={`veure més`} />
             {/if}
           </div>
         </div>
@@ -132,7 +130,8 @@
     overflow: hidden;
   }
 
-  img, video {
+  img,
+  video {
     height: inherit;
     width: 100%;
     object-fit: cover;

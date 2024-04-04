@@ -10,7 +10,7 @@
 
   //Import functions
   import { formatHtml } from "@utils/helperFunctions";
-  
+
   export let websiteContent = [];
 
   let filteredContent = websiteContent;
@@ -184,12 +184,12 @@
     display: flex;
     border-radius: 1.34375rem;
     border: 1px solid var(--clr-primary);
-    width: 100%; 
+    width: 100%;
     height: 2.6875rem;
     background-color: transparent;
     padding-inline: 1.5rem;
     color: var(--clr-primary);
-    transition: width 0.3s ease-in-out; 
+    transition: width 0.3s ease-in-out;
 
     /*Had it as --fnt-sz-regular, but it made an undesired zoom in mobile, when input was focused*/
     font-size: 16px !important;
@@ -197,7 +197,7 @@
   }
 
   input:focus {
-    outline: 2px solid var(--clr-primary); 
+    outline: 2px solid var(--clr-primary);
   }
 
   input::placeholder {

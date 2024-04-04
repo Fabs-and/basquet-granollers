@@ -4,27 +4,26 @@ import BaseLayout from "@layouts/BaseLayout.astro";
 
 // Import components
 import Hero from "@components/homePage/hero/Hero.astro";
+import News from "@components/homePage/news/News.astro";
+import Join from "@components/homePage/join/Join.astro";
+import Teams from "@components/homePage/teams/Teams.astro";
+import Projects from "@components/homePage/projects/Projects.astro";
 import MainSponsors from "@components/homePage/sponsors/MainSponsors.astro";
 import AllSponsors from "@components/homePage/sponsors/AllSponsors.astro";
-import Projects from "@components/homePage/projects/Projects.astro";
-import Teams from "@components/homePage/teams/Teams.astro";
-import Join from "@components/homePage/join/Join.astro";
-import News from "@components/homePage/news/News.astro";
 
+// Import variables
 import { pageSectionTitles } from "@data/apiData";
 
-const { news, family, teams, projects} = pageSectionTitles;
-
-
+const { news, family, teams, projects } = pageSectionTitles;
 ---
 
 <BaseLayout>
   <h1 class="g-visibly-hidden">Club Bàsquet Granollers</h1>
   <Hero />
   <MainSponsors />
-  <News title={news}/>
-  <Join title={family}/>
-  <Teams needsHeading={true} title={teams}/>
-  <Projects title={projects}/>
+  <News title={news} />
+  <Join title={family} />
+  <Teams needsHeading={true} title={teams} />
+  <Projects title={projects} />
   <AllSponsors />
 </BaseLayout>

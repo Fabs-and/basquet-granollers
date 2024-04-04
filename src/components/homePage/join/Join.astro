@@ -8,13 +8,9 @@ import Slider from "@components/Slider.svelte";
 
 import { familiaSection } from "@data/apiData";
 
+const { title } = Astro.props;
 
-const { title} = Astro.props
-
-const {sponsors, membres: memberships} = familiaSection;
-
-
-
+const { sponsors, membres: memberships } = familiaSection;
 ---
 
 <script>
@@ -241,13 +237,13 @@ const {sponsors, membres: memberships} = familiaSection;
       width: var(--wd-btn-small);
     }
   }
-  
+
   @media (max-width: 375px) {
     .g-button-anchor {
       width: 8rem;
     }
   }
-  
+
   @media (width > 1400px) {
     .section-wrapper {
       padding-inline: 0rem;
@@ -304,5 +300,4 @@ const {sponsors, membres: memberships} = familiaSection;
       transform: translateX(-100%);
     }
   }
-
 </style>

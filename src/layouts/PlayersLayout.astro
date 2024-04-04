@@ -5,10 +5,7 @@ import InternalPageLayout from "./PageLayout.astro";
 const { heading, team, title } = Astro.props;
 ---
 
-<InternalPageLayout
-  {title}
-  {heading}
->
+<InternalPageLayout {title} {heading}>
   <div class="players-container">
     {
       team.map((player, i) => {
@@ -23,9 +20,7 @@ const { heading, team, title } = Astro.props;
             </div>
             <div class="info-container">
               <p class="name">{player.name}</p>
-              <p class="position">
-                {player.position}
-              </p>
+              <p class="position">{player.position}</p>
             </div>
           </article>
         );

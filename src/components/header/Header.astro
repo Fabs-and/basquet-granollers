@@ -1,13 +1,16 @@
 ---
+// Import components
 import TopHeader from "@components/header/TopHeader.astro";
 import BottomHeader from "@components/header/bottomHeader/BottomHeader.astro";
 import HeaderLineSeparator from "@components/header/HeaderLineSeparator.astro";
+
 import BottomHeaderResponsive from "./bottomHeader/BottomHeaderResponsive.svelte";
 
-
+// Import content
 import { pages, posts, socialMedia, header } from "@data/apiData";
-import { EXCLUDED_PAGES } from "@data/globalConstants";
 
+// Import global constants
+import { EXCLUDED_PAGES } from "@data/globalConstants";
 
 const capcaleraSuperior = header.capcalera_superior;
 const capcaleraInferior = header.capcalera_inferior;
@@ -37,37 +40,42 @@ postsToSearch.forEach((post) => {
 
 const websiteContent = [...pagesToSearch, ...postsToSearch];
 ---
+
 <script>
   const header = document.getElementById("bottom-header");
   let isScrollingDown = false;
   let previousScrollPosition = window.scrollY;
   const scrollThreshold = 10; // Adjust this value as needed
-  
+
   const handleScroll = () => {
     const currentScrollPosition = window.scrollY;
-  
+
     if (currentScrollPosition > previousScrollPosition + scrollThreshold) {
       // Scrolling down beyond the threshold
       if (!isScrollingDown) {
         header!.style.setProperty("--hg-header-bottom-section", "3.15rem");
         isScrollingDown = true;
       }
-    } else if (currentScrollPosition < previousScrollPosition - scrollThreshold) {
+    } else if (
+      currentScrollPosition <
+      previousScrollPosition - scrollThreshold
+    ) {
       // Scrolling up beyond the threshold
       if (isScrollingDown) {
         header!.style.setProperty("--hg-header-bottom-section", "");
         isScrollingDown = false;
       }
     }
-  
+
     previousScrollPosition = currentScrollPosition;
   };
-  
+
   window.addEventListener("scroll", handleScroll);
-  </script>
+</script>
+
 <header>
   <section class="header-top-section">
-    <TopHeader topHeaderContent={capcaleraSuperior} {socialMedia}/>
+    <TopHeader topHeaderContent={capcaleraSuperior} {socialMedia} />
   </section>
   <section class="header-bottom-section">
     <div class="bottom-header" id="bottom-header">

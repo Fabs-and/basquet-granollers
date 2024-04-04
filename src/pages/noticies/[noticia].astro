@@ -1,8 +1,5 @@
 ---
-import {
-  NEWS_CATEGORY_ID,
-  POST_FIELDS,
-} from "@data/globalConstants";
+import { NEWS_CATEGORY_ID, POST_FIELDS } from "@data/globalConstants";
 import DynamicPageLayout from "@layouts/DynamicPageLayout.astro";
 import { getPostsInCategories } from "@services/apiFunctions";
 import { dateConverter, formatHtml } from "@utils/helperFunctions";
@@ -29,7 +26,6 @@ export async function getStaticPaths() {
 }
 
 const noticia = Astro.props;
-
 ---
 
 <DynamicPageLayout isPost={true} post={noticia} />

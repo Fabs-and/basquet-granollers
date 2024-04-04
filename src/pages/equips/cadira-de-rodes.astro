@@ -6,12 +6,15 @@ import { getSeasonYears } from "@utils/helperFunctions";
 //Import data
 import { wheelchairTeamImage, wheelchairTeamTitle } from "@data/apiData";
 
-
 const { firstYear, secondYear } = getSeasonYears();
 
 const heading = wheelchairTeamTitle[0].title.rendered;
 const title = `Equip de cadira de rodes temporada 20${firstYear}-${secondYear}`;
-
 ---
 
-<TeamsLayout teamsImages={wheelchairTeamImage} {heading} {title} isCadira={true}/>
+<TeamsLayout
+  teamsImages={wheelchairTeamImage}
+  {heading}
+  {title}
+  isCadira={true}
+/>

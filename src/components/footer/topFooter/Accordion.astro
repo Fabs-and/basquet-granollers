@@ -1,6 +1,5 @@
 ---
 const { generalLinks } = Astro.props;
-
 ---
 
 {
@@ -8,7 +7,7 @@ const { generalLinks } = Astro.props;
     <details>
       <summary>
         <h5>{item[1].title.toUpperCase()}</h5>
-          <span class="arrow-icon"></span>
+        <span class="arrow-icon" />
       </summary>
       <ul class="links-container">
         {item[1].values.map((link) => (
@@ -72,11 +71,11 @@ const { generalLinks } = Astro.props;
     transform: rotate(0);
     transform-origin: 50% 44%;
     transition: 0.45s transform ease-in-out;
-}
+  }
 
-details[open] .arrow-icon::before {
-  transform: rotate(-180deg);
-}
+  details[open] .arrow-icon::before {
+    transform: rotate(-180deg);
+  }
 
   .links-container {
     display: flex;

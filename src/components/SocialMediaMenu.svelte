@@ -2,10 +2,10 @@
   export let socialMedia;
 
   import YoutubeLogo from "@assets/xarxesSocials/YoutubeLogo.svelte";
-import InstagramLogo from "@assets/xarxesSocials/InstagramLogo.svelte";
-import FacebookLogo from "@assets/xarxesSocials/FacebookLogo.svelte";
-import TwitterLogo from "@assets/xarxesSocials/TwitterLogo.svelte";
-import TiktokLogo from "@assets/xarxesSocials/TikTokLogo.svelte";
+  import InstagramLogo from "@assets/xarxesSocials/InstagramLogo.svelte";
+  import FacebookLogo from "@assets/xarxesSocials/FacebookLogo.svelte";
+  import TwitterLogo from "@assets/xarxesSocials/TwitterLogo.svelte";
+  import TiktokLogo from "@assets/xarxesSocials/TikTokLogo.svelte";
 
   const logoComponents = {
     instagram: InstagramLogo,

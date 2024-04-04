@@ -1,11 +1,10 @@
 ---
-import DirectesIcon from "@assets/DirectesIcon.svelte"
+import DirectesIcon from "@assets/DirectesIcon.svelte";
 import SocialMediaMenu from "@components/SocialMediaMenu.svelte";
 
 const { topHeaderContent, socialMedia } = Astro.props;
 
-const {titol, link} = topHeaderContent[0];
-
+const { titol, link } = topHeaderContent[0];
 ---
 
 <div class="top-header-content">
@@ -31,10 +30,13 @@ const {titol, link} = topHeaderContent[0];
       ) : null
     }
   </div>
- 
 
   <div class="social-menu">
-    <a href="https://ott.myplay.com/es/cb-granollers/all-teams/home" target="_blank" title="Partits en directe">
+    <a
+      href="https://ott.myplay.com/es/cb-granollers/all-teams/home"
+      target="_blank"
+      title="Partits en directe"
+    >
       <DirectesIcon />
     </a>
     <SocialMediaMenu {socialMedia} />
@@ -66,12 +68,10 @@ const {titol, link} = topHeaderContent[0];
     display: flex;
     align-items: center;
     gap: 1.5rem;
-
   }
- .text-content {
-  padding-bottom: 0.4rem;
+  .text-content {
+    padding-bottom: 0.4rem;
   }
- 
 
   @media (max-width: 1025px) {
     .social-menu {

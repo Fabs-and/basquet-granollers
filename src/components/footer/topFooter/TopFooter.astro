@@ -3,31 +3,40 @@
 import ImportantLinksContainer from "./ImportantLinksContainer.astro";
 
 const { footer } = Astro.props;
-
 ---
 
+{
+  Object.entries(footer[0])
+    .slice(0, 3)
+    .map(([key, column]) => (
+      <article class="g-top-footer-articles">
+        <header>
+          <h5>{column.title.toUpperCase()}</h5>
+        </header>
+        <ul class="links-container">
+          {column.values.map((link) => (
+            <li>
+              <a
+                href={link.link.trim()}
+                target={link.link.startsWith("http") ? "_blank" : undefined}
+                rel={
+                  link.link.startsWith("http")
+                    ? "noopener noreferrer"
+                    : undefined
+                }
+              >
+                {link.nom}
+              </a>
+            </li>
+          ))}
+        </ul>
+      </article>
+    ))
+}
 
-  {Object.entries(footer[0]).slice(0, 3).map(([key, column]) => (
-    <article class="g-top-footer-articles">
-      <header>
-        <h5>{column.title.toUpperCase()}</h5>
-      </header>
-      <ul class="links-container">
-        {column.values.map((link) => (
-          <li>
-            <a href={link.link.trim()} target={link.link.startsWith("http") ? "_blank" : undefined} rel={link.link.startsWith("http") ? "noopener noreferrer" : undefined}>
-              {link.nom}
-            </a>
-          </li>
-        ))}
-      </ul>
-    </article>
-  ))}
-
-  <article>
-    <ImportantLinksContainer fixedLinks={footer[0][3]} />
-  </article>
-
+<article>
+  <ImportantLinksContainer fixedLinks={footer[0][3]} />
+</article>
 
 <style>
   .footer-links {
