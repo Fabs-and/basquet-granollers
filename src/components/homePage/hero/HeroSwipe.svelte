@@ -3,11 +3,6 @@
   export let slides;
   let totalDots;
 
-  import {
-    formatHtml,
-    extractSlideDescriptionAndLink,
-  } from "@utils/helperFunctions";
-
   $: totalDots = Array(slides ? slides.length : 0).fill(0);
 
   let intervalId;

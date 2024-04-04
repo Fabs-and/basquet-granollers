@@ -1,6 +1,6 @@
 <script>
   import { membershipCheck } from "@assets/icons";
-  import { toggleDialog, updateUrltoSubdomain } from "@utils/helperFunctions";
+  import { toggleDialog } from "@utils/helperFunctions";
   export let item = {};
 
   let expanded = false;

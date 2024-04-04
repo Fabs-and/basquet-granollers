@@ -392,6 +392,23 @@ export type CustomImage = {
   caption: string;
 };
 
+export type NavItem = {
+  name: string;
+  link?: string;
+  dropdown?: NavItem[];
+}
+
+export type DescriptionAndLink = {
+  description: string | null;
+  link: string | null;
+}
+
+// Interface for replacement object
+export type Replacement = {
+  pattern: RegExp | string;
+  replacement: string;
+}
+
 // Error class
 export class FetchError extends Error {
   status: number;

@@ -2,15 +2,14 @@
 import HeroSwipe from "../hero/HeroSwipe.svelte";
 import HeroTimed from "../hero/HeroTimed.svelte";
 
-import { hSlides } from "@data/apiData";
-
+import { slides } from "@data/apiData";
 ---
 
 <div class="desktop">
-  <HeroTimed client:visible slides={hSlides} />
+  <HeroTimed client:visible slides={slides} />
 </div>
 <div class="responsive">
-  <HeroSwipe client:visible slides={hSlides} />
+  <HeroSwipe client:visible slides={slides} />
 </div>
 
 <style>

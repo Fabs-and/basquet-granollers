@@ -5,11 +5,7 @@ import Dialog from "@components/Dialog.astro";
 import MembershipItem from "@components/homePage/join/MembershipItem.svelte";
 import SponsorshipItem from "@components/homePage/join/SponsorshipItem.svelte";
 import Slider from "@components/Slider.svelte";
-import { getFamiliaSection } from "@services/apiFunctions";
-import {
-  extractMembershipsOptions,
-  extractSponsorshipsOptions,
-} from "@utils/helperFunctions";
+
 import { familiaSection } from "@data/apiData";
 
 
@@ -17,11 +13,8 @@ const { title} = Astro.props
 
 const {sponsors, membres: memberships} = familiaSection;
 
-let isSelected = true;
 
-function toggleSelected() {
-  isSelected = !isSelected;
-}
+
 ---
 
 <script>

@@ -4,7 +4,7 @@ import {
   POST_FIELDS,
 } from "@data/globalConstants";
 import DynamicPageLayout from "@layouts/DynamicPageLayout.astro";
-import { getPostById, getPostsInCategories } from "@services/apiFunctions";
+import { getPostsInCategories } from "@services/apiFunctions";
 import { dateConverter, formatHtml } from "@utils/helperFunctions";
 
 export async function getStaticPaths() {

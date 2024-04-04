@@ -1,13 +1,8 @@
-//Import types
-import { get } from "http";
-import type { Post } from "../types";
-
 //Import constants
 import {
   PAGE_FIELDS,
   PROJECTS_CATEGORY_ID,
   NEWS_CATEGORY_ID,
-  HERO_SLIDES_CATEGORY_ID,
   PROJECTS_FIELDS,
   CONFIG_PAGES,
   TEAM_PAGES,
@@ -31,18 +26,12 @@ import {
   getSocialMedia,
 } from "@services/apiFunctions";
 
-//Import functions
-import {
-  extractBottomFooterInfo,
-  extractTopFooterInfo,
-} from "@utils/helperFunctions";
-
 export const [
   header,
   footer,
   socialMedia,
   pageSectionTitles,
-  hSlides,
+  slides,
   familiaSection,
   familiaContactaMessage,
   pages,
@@ -74,11 +63,7 @@ export const [
   getFamiliaSectionContactaMessage(),
   getPages(100, PAGE_FIELDS),
   getPosts(100, POST_FIELDS),
-  getPostsInCategories(
-    [PROJECTS_CATEGORY_ID],
-    PROJECTS_FIELDS,
-    100,
-  ),
+  getPostsInCategories([PROJECTS_CATEGORY_ID], PROJECTS_FIELDS, 100),
   getPostsInCategories([NEWS_CATEGORY_ID], POST_FIELDS, 100),
   getImagesBySlug(CONFIG_PAGES.homePageMainSponsorsWhite),
   getImagesBySlug(CONFIG_PAGES.homePageMainSponsorsBlue),

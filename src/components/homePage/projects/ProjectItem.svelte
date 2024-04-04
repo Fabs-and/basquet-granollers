@@ -1,6 +1,4 @@
 <script>
-    import { isNamedTupleMember } from "typescript";
-
   export let item;
 
   if (item.image.id === null) {
