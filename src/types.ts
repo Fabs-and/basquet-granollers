@@ -1,61 +1,18 @@
 import type { Url } from "url";
 
-export interface ConfigureOptions {
+// Configuration
+export type ConfigureOptions = {
   BASE_URL: string;
-}
+};
+
+// Endpoints
 export type PostsWithId = `${"posts"}/${number}`;
 export type PagesWithId = `${"pages"}/${number}`;
-
 export type MediaWithId = `${"media"}/${number}`;
-
-export type CommonPagesAndPostsFields =
-  | "author"
-  | "comment_status"
-  | "content"
-  | "date"
-  | "date_gmt"
-  | "excerpt"
-  | "featured_media"
-  | "guid"
-  | "id"
-  | "image"
-  | "link"
-  | "meta"
-  | "modified"
-  | "modified_gmt"
-  | "ping_status"
-  | "slug"
-  | "status"
-  | "template"
-  | "title"
-  | "type"
-  | "acf"
-  | "imatge_destacada_interior";
-
-export type PostSpecificFields = "categories" | "format" | "sticky" | "tags";
-
-export type PageSpecificFields =
-  | "generated_slug"
-  | "menu_order"
-  | "password"
-  | "permalink_template";
-
-export type PageFields = CommonPagesAndPostsFields | PageSpecificFields;
-export type PostFields = CommonPagesAndPostsFields | PostSpecificFields;
-
-export type CategoryFields =
-  | "count"
-  | "description"
-  | "id"
-  | "link"
-  | "meta"
-  | "parent"
-  | "name"
-  | "slug"
-  | "taxonomy";
 type IdAutosaves = `${number}/autosaves`;
 type PagesRevisionsWithID = `${"pages"}/${number}/revisions`;
 type PostsRevisionsWithID = `${"posts"}/${number}/revisions`;
+export type CustomEndpoint = "media-by-url";
 
 export type Endpoints =
   | "block-directory/search"
@@ -88,15 +45,61 @@ export type Endpoints =
   | "titols"
   | "jugadors";
 
-export interface GlobalParams {
+// Fields
+export type PostSpecificFields = "categories" | "format" | "sticky" | "tags";
+export type PageSpecificFields =
+  | "generated_slug"
+  | "menu_order"
+  | "password"
+  | "permalink_template";
+export type PageFields = CommonPagesAndPostsFields | PageSpecificFields;
+export type PostFields = CommonPagesAndPostsFields | PostSpecificFields;
+
+export type CommonPagesAndPostsFields =
+  | "author"
+  | "comment_status"
+  | "content"
+  | "date"
+  | "date_gmt"
+  | "excerpt"
+  | "featured_media"
+  | "guid"
+  | "id"
+  | "image"
+  | "link"
+  | "meta"
+  | "modified"
+  | "modified_gmt"
+  | "ping_status"
+  | "slug"
+  | "status"
+  | "template"
+  | "title"
+  | "type"
+  | "acf"
+  | "imatge_destacada_interior";
+
+export type CategoryFields =
+  | "count"
+  | "description"
+  | "id"
+  | "link"
+  | "meta"
+  | "parent"
+  | "name"
+  | "slug"
+  | "taxonomy";
+
+// Parameters
+export type GlobalParams = {
   _fields?: string;
   _embed?: string;
   _method?: string;
   _envelope?: string;
   _jsonp?: string;
-}
+};
 
-export interface PostParams extends GlobalParams {
+export type PostParams = GlobalParams & {
   context?: "view" | "embed" | "edit";
   page?: number;
   per_page?: number;
@@ -129,7 +132,7 @@ export interface PostParams extends GlobalParams {
   tags_exclude?: number | number[];
   sticky?: boolean;
   tax_relation?: "AND" | "OR";
-}
+};
 
 // Type declarations
 
@@ -268,18 +271,19 @@ type Player = {
   name: string;
   position: string;
   image: string;
-}
+};
 
-export type Team = {
-  title: string;
-  players: Player[];
-} | undefined;
+export type Team =
+  | {
+      title: string;
+      players: Player[];
+    }
+  | undefined;
 
 export type SeniorTeamData = {
   male?: Team;
   female?: Team;
-}
-
+};
 
 export type Category = {
   count: number;
@@ -292,7 +296,6 @@ export type Category = {
   taxonomy: string;
 };
 
-// A TypeScript type for a WordPress page
 export type Page = {
   author: number;
   categories?: number[]; //Note that this is not returned by the Wordpress API, this is used in detectRedirects function in helperFunctions, to convert a page into a post.
@@ -380,18 +383,6 @@ export type Media = {
   type: "page";
 };
 
-export interface ExtendedMedia extends Media {
-  source_url: string;
-  title: {
-    rendered: string;
-  };
-  caption: {
-    rendered: string;
-  };
-}
-
-export type CustomEndpoint = "media-by-url";
-
 export type CustomImage = {
   ID?: number;
   id?: number;
@@ -401,6 +392,7 @@ export type CustomImage = {
   caption: string;
 };
 
+// Error class
 export class FetchError extends Error {
   status: number;
   url: string;
@@ -412,21 +404,7 @@ export class FetchError extends Error {
   }
 }
 
-export interface PostsQueryCache {
+// Cache type
+export type PostsQueryCache = {
   [key: string]: Post[];
-}
-
-type LinkContent = {
-  title: string;
-  content: { name: string; link: string }[]; // assuming the content array contains strings
-};
-
-export type FixedLink = {
-  name: string;
-  link: string;
-};
-
-export type TopFooterLinks = {
-  generalLinks: LinkContent[];
-  fixedLinks: FixedLink[];
 };
