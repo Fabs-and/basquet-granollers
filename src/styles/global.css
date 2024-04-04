@@ -1,3 +1,4 @@
+/* Global styles and resets */
 *,
 *::after,
 *::before {
@@ -6,40 +7,30 @@
   padding: 0;
 }
 
+/* Custom properties (CSS variables) */
 :root {
-  /*Colors*/
+  /* Colors */
   --clr-primary: #002e6d;
   --clr-contrast: #f3f3f3;
   --clr-accent: #fa6e19;
   --clr-secondary: #084395;
   --clr-footer-top: #142847;
 
-  /*Element sizes*/
-  /*Cannot use variables in media queries. Would be ideal for responsiveness. Still writting sizes here to have as reference
-  Using px instead of rem to trigger based on screen size
-  */
-  --wd-regular: 1400px;
+  /* Element sizes */
   --wd-btn-regular: 11rem;
   --wd-btn-small: 9.8rem;
   --wd-three-columns: 24.1875rem;
   --wd-three-columns-medium: 18.3875rem;
   --wd-four-columns: 17.8125rem;
-
   --wd-slider-item: 18.6875rem;
-
   --hg-sponsors-all: 0.5625rem;
   --hg-sponsors-all-responsive: 0.3125rem;
   --hg-header-top-section: 2.75rem;
   --hg-header-bottom-section: 6.3125rem;
-
   --hg-footer-top-section: 17.6875rem;
   --hg-footer-bottom-section: 5.6875rem;
-  --hg-footer: calc(
-    var(--hg-footer-top-section) + var(--hg-footer-bottom-section)
-  );
-
+  --hg-footer: calc(var(--hg-footer-top-section) + var(--hg-footer-bottom-section));
   --hg-btn: 2.69rem;
-
   --pd-x: 6.13rem;
   --pd-x-medium: 2rem;
   --pd-x-small: 1.56rem;
@@ -51,35 +42,35 @@
   --pd-y-heading-medium: 1.75rem;
   --pd-y-heading-small: 1.5rem;
 
-  /*Font sizes*/
+  /* Font sizes */
   --fnt-sz-regular: 0.78125rem;
-  --fnt-sz-regular: 0.75rem;
   --fnt-sz-h1: 3.375rem;
   --fnt-sz-h2: 2.25rem;
   --fnt-sz-h2-medium: 1.625rem;
   --fnt-sz-h3: 1.875rem;
-  --fnt-sz-h3: 1.75rem;
   --fnt-sz-h3-medium: 1.375rem;
   --fnt-sz-h4: 1.25rem;
   --fnt-sz-h5: 0.9375rem;
   --fnt-sz-footer: 0.5625rem;
   --fnt-sz-footer-top: 0.6875rem;
 
-  /*Font weight*/
+  /* Font weights */
   --fnt-wg-regular: 500;
   --fnt-wg-medium: 600;
   --fnt-wg-bold: 700;
 
-  /*Line Heights*/
+  /* Line heights */
   --line-hg-regular: 1.125rem;
   --line-hg-h1: 3.6875rem;
   --line-hg-h2: 2.5625rem;
   --line-hg-h2-medium: 2rem;
   --line-hg-h3: 1.5625rem;
 
+  /* Other variables */
   --brdr-left-top-radius: 2.9375rem;
 }
 
+/* Base styles */
 html {
   display: flex;
   flex-direction: column;
@@ -100,6 +91,7 @@ img {
   display: block;
 }
 
+/* Typography */
 h1 {
   font-size: var(--fnt-sz-h1);
   line-height: var(--line-hg-h1);
@@ -129,16 +121,16 @@ h5 {
   font-weight: var(--fnt-wg-medium);
 }
 
+/* Lists */
 ul {
   list-style: none;
 }
-
-
 
 li {
   display: inline;
 }
 
+/* Links */
 a {
   margin: 0;
   padding: 0;
@@ -155,20 +147,15 @@ a:hover svg.icons path {
   fill: var(--clr-accent);
 }
 
+/* Buttons */
 button {
   all: unset;
-}
-
-.search-icon:hover path, .search-icon:hover circle { 
-  stroke: var(--clr-accent);
-  transition: stroke 0.3s ease-in-out;
 }
 
 button:hover {
   cursor: pointer;
 }
 
-/* Targeting the svg arrow position controls */
 button:hover svg.icons {
   fill: var(--clr-accent);
 }
@@ -177,7 +164,14 @@ button:hover svg.icons path {
   stroke: var(--clr-contrast);
 }
 
-/*Global Classes*/
+/* Icons */
+.search-icon:hover path,
+.search-icon:hover circle {
+  stroke: var(--clr-accent);
+  transition: stroke 0.3s ease-in-out;
+}
+
+/* Global classes */
 .g-opacity {
   opacity: 0.5;
   transition: opacity 0.3s;
@@ -187,7 +181,6 @@ button:hover svg.icons path {
   width: calc(100vw - var(--padding-inline));
 }
 
-/*Button Classes*/
 .g-button-anchor {
   text-decoration: none;
   padding-bottom: 0.1rem;
@@ -225,7 +218,7 @@ button:hover svg.icons path {
   overflow: hidden;
 }
 
-/*Internal Pages styles*/
+/* Internal pages styles */
 .g-h2-internal-page {
   font-size: 1.625rem;
   line-height: 1.75rem;
@@ -241,8 +234,6 @@ button:hover svg.icons path {
   font-weight: 800;
   text-align: left;
 }
-
-/*Button Classes*/
 
 .g-button-anchor-internals {
   text-decoration: none;
@@ -289,6 +280,7 @@ button:hover svg.icons path {
   text-decoration: underline;
 }
 
+/* Media queries */
 @media (max-width: 1025px) {
   h2 {
     font-size: var(--fnt-sz-h2-medium);
@@ -309,11 +301,13 @@ button:hover svg.icons path {
     width: calc(100vw - var(--pd-x-medium));
   }
 }
+
 @media (max-width: 648px) {
   .g-internal-page {
     padding-block: var(--pd-y-small);
     padding-inline: var(--pd-x-small);
   }
+
   .g-slider-container {
     width: calc(100vw - var(--pd-x-small));
   }
