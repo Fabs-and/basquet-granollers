@@ -13,31 +13,48 @@ import { socialMedia } from "@data/apiData";
     <SocialMediaMenu {socialMedia} />
   </div>
 
-  <div>
+  <div class="copyright">
     <Copyright client:visible />
   </div>
 </div>
 
 <small class="made-by-container">
-  <p class="made-by">Dissenyat per</p>
-  <a
-    title="Biombö Studio"
-    href="http://www.biombostudio.com/"
-    target="_blank"
-    rel="noopener noreferrer"
-    ><img
-      src="/biombo-logo-transparent.webp"
-      alt="Logo de Biombö Studio"
-      width="40"
-      style="display: inline-block"
-    /></a
-  >
+  <div class="made-by-wrapper">
+    <p class="made-by">Dissenyat per</p>
+    <a
+      title="Biombö Studio"
+      href="http://www.biombostudio.com/"
+      target="_blank"
+      rel="noopener noreferrer"
+      ><img
+        src="/logo-biombo.webp"
+        alt="Logo de Biombö Studio"
+        width="40"
+        style="display: inline-block"
+      /></a
+    >
+  </div>
+  <div class="made-by-wrapper">
+    <p class="made-by innova">Contingut i manteniment</p>
+    <a
+      title="Biombö Studio"
+      href="https://innovaplanner.com/"
+      target="_blank"
+      rel="noopener noreferrer"
+      ><img
+        src="/logo-innovaplanner.webp"
+        alt="Logo de Innova Planner"
+        width="90"
+        style="display: inline-block"
+      /></a
+    >
+  </div>
 </small>
 
 <style>
   .made-by-container {
     display: flex;
-    gap: 0.3rem;
+    gap: 2rem;
     align-items: center;
     position: absolute;
     left: 50%;
@@ -46,9 +63,18 @@ import { socialMedia } from "@data/apiData";
     /* margin: auto; */
   }
 
+  .made-by-wrapper {
+    display: flex;
+    gap: 0.3rem;
+    align-items: center;
+  }
+
   .made-by {
     font-weight: var(--fnt-wg-light);
     padding-bottom: 0.5rem;
+  }
+  .innova {
+    padding-bottom: 0.4rem;
   }
 
   .made-by a {
@@ -72,7 +98,11 @@ import { socialMedia } from "@data/apiData";
     grid-column-end: 4;
     grid-row-start: 1;
     justify-self: center;
+    padding-left: 2rem;
+    text-align: center;
   }
+  
+ 
   @media (max-width: 1025px) {
     .bottom-footer-container-responsive {
       display: grid;
@@ -88,8 +118,11 @@ import { socialMedia } from "@data/apiData";
       grid-column-start: 1;
       grid-column-end: 5;
       justify-self: center;
+      padding-left: 0rem;
+      text-align: start;
     }
   }
+
 
   @media (max-width: 648px) {
     .bottom-footer-container-responsive {
@@ -106,6 +139,13 @@ import { socialMedia } from "@data/apiData";
       grid-row-start: 2;
       grid-column-start: 1;
       grid-column-end: 3;
+
+    }
+
+    .made-by-container {
+      width: 100vw;
+      flex-direction: column;
+      gap: 0;
     }
   }
 </style>
