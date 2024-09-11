@@ -61,7 +61,7 @@
               {slide.description}
             </p>
             {#if slide.link}
-              <ButtonAnchor slug={slide.link} text={`veure més`} />
+              <ButtonAnchor slug={slide.link.trim()} text={`veure més`} />
             {/if}
           </div>
         </div>

@@ -20,13 +20,15 @@ const featuredNews = [
   ),
 ];
 
+
 let newsToRender = lastYearNews.filter(
   (oneNews) => !oneNews.categories.includes(FEATURED_NEWS_CATEGORY_ID),
 );
 
-if (featuredNews && featuredNews.length > 0) {
+if (featuredNews.length > 0 && featuredNews[0] !== undefined) {
   newsToRender = [featuredNews[0]!, ...newsToRender];
 }
+
 ---
 
 <HpSectionLayout

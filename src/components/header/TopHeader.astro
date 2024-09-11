@@ -15,7 +15,7 @@ const { titol, link } = topHeaderContent[0];
       ) : titol && link ? (
         link.includes("http") ? (
           <a
-            href={link}
+            href={link.trim()}
             class="g-underline-links"
             target="_blank"
             rel="noopener noreferrer"
@@ -23,7 +23,7 @@ const { titol, link } = topHeaderContent[0];
             {titol.toUpperCase()}
           </a>
         ) : (
-          <a href={link} class="g-underline-links">
+          <a href={link.trim()} class="g-underline-links">
             {titol.toUpperCase()}
           </a>
         )

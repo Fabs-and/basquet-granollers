@@ -12,7 +12,7 @@
 
 <article class="membership-article opacity" class:expanded>
   <div class="image-container">
-    <img src={item.dealImage} loading="lazy" />
+    <img src={item.dealImage} loading="lazy" alt="Image of the mebership deal" />
     <h3 class="membership-title">{item.dealTitle}</h3>
   </div>
   <article class="membership-info-container">
@@ -34,7 +34,7 @@
     </div>
     <button on:click={toggleDialog} class="g-button-anchor"> CONTACTA </button>
     <div class="ball-img">
-      <img src="membership-ball.png" alt="" class="" />
+      <img src="membership-ball.png" alt="Decorative basketball ball" class="" />
     </div>
     <button class="llegir-mes" on:click={toggleExpand}>
       {expanded ? `Llegir menys` : `Llegir més`}

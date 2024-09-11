@@ -1,23 +1,24 @@
 ---
 const { generalLinks } = Astro.props;
+
 ---
 
 {
   generalLinks.map((item) => (
     <details>
       <summary>
-        <h5>{item[1].title.toUpperCase()}</h5>
+        <h5>{item[1].title.toUpperCase().trim()}</h5>
         <span class="arrow-icon" />
       </summary>
       <ul class="links-container">
         {item[1].values.map((link) => (
           <li>
             {link.link.includes("http") ? (
-              <a href={link.link} target="_blank" rel="noopener noreferrer">
-                {link.nom}
+              <a href={link.link.trim()} target="_blank" rel="noopener noreferrer">
+                {link.nom.trim()}
               </a>
             ) : (
-              <a href={link.link}>{link.nom}</a>
+              <a href={link.link.trim()}>{link.nom.trim()}</a>
             )}
           </li>
         ))}
@@ -27,9 +28,6 @@ const { generalLinks } = Astro.props;
 }
 
 <style>
-  /* details {
-    width: 100%;
-  } */
   a {
     font-size: 0.875rem;
   }

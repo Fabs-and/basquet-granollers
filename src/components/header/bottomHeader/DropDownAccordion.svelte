@@ -12,14 +12,14 @@
       <li>
         {#if dropDownItem.enllac.includes('http')}
           <a
-            href={dropDownItem.enllac}
+            href={dropDownItem.enllac.trim()}
             target="_blank"
             rel="noopener noreferrer"
           >
             {dropDownItem.nom}
           </a>
         {:else}
-          <a href={dropDownItem.enllac}>{dropDownItem.nom}</a>
+          <a href={dropDownItem.enllac.trim()}>{dropDownItem.nom}</a>
         {/if}
       </li>
     {/each}

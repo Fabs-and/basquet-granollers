@@ -9,12 +9,12 @@ const { fixedLinks } = Astro.props;
     fixedLinks.map((link) => (
       <li>
         {link.link.includes("http") ? (
-          <a href={link.link} target="_blank" rel="noopener noreferrer">
-            <h5>{link.nom.toUpperCase()}</h5>
+          <a href={link.link.trim()} target="_blank" rel="noopener noreferrer">
+            <h5>{link.nom.toUpperCase().trim()}</h5>
           </a>
         ) : (
-          <a href={link.link}>
-            <h5>{link.nom.toUpperCase()}</h5>
+          <a href={link.link.trim()}>
+            <h5>{link.nom.toUpperCase().trim()}</h5>
           </a>
         )}
       </li>

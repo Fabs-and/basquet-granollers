@@ -65,11 +65,11 @@ const { navigation, websiteContent } = Astro.props;
           {item.desplegable ? (
             <DropDownMenu {item} />
           ) : item.enllac?.includes("http") ? (
-            <a href={item.enllac} target="_blank" rel="noopener noreferrer">
+            <a href={item.enllac.trim()} target="_blank" rel="noopener noreferrer">
               {item.titol?.toUpperCase()}
             </a>
           ) : (
-            <a href={item.enllac}>{item.titol?.toUpperCase()}</a>
+            <a href={item.enllac.trim()}>{item.titol?.toUpperCase()}</a>
           )}
         </li>
       ))

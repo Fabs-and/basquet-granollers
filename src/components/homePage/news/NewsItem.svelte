@@ -5,32 +5,30 @@
   export let isFeatured = false;
   export let isSliderItem = false;
   export let isDesktopNews = false;
-  const {
-    title: { rendered: title },
-    slug,
-    date,
-    image,
-  } = item;
+
+  $: isValidItem = item && item.title && item.title.rendered;
 </script>
 
-<article class:isFeatured class:isSliderItem class:isDesktopNews>
-  <a href={`/noticies/${slug}`}>
-    <div class="image-container">
-      {#if image && image.url !== ""}
-        <img src={image.url} alt={image.alt} />
-      {:else}
-        <img
-          src="./default-pic.avif"
-          alt="Imatge de recurs amb totes les seccions del Club Bàsquet Granollers"
-        />
-      {/if}
-    </div>
-    <div class="info-container">
-      <h4>{@html formatHtml(title)}</h4>
-      <p class="g-date-style">{`Publicat ${dateConverter(date)}`}</p>
-    </div>
-  </a>
-</article>
+{#if isValidItem}
+  <article class:isFeatured class:isSliderItem class:isDesktopNews>
+    <a href={`/noticies/${item.slug}`}>
+      <div class="image-container">
+        {#if item.image && item.image.url}
+          <img src={item.image.url} alt={item.image.alt || 'Fotografia de la noticia'} />
+        {:else}
+          <img
+            src="./default-pic.avif"
+            alt="Imatge de recurs amb totes les seccions del Club Bàsquet Granollers"
+          />
+        {/if}
+      </div>
+      <div class="info-container">
+        <h4>{@html formatHtml(item.title.rendered)}</h4>
+        <p class="g-date-style">{`Publicat ${dateConverter(item.date)}`}</p>
+      </div>
+    </a>
+  </article>
+{/if}
 
 <style>
   p {
@@ -160,3 +158,5 @@
     padding-bottom: 0.5rem;
   }
 </style>
+
+
